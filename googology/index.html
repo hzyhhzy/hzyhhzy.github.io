@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大数阶梯 - Googology Scale</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: #fdfdfd;
+            color: #333;
+        }
+
+        #app {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+            user-select: none;
+        }
+
+        #app:active {
+            cursor: grabbing;
+        }
+
+        #ruler-container {
+            position: absolute;
+            top: 50%;
+            height: 5px;
+            background-color: #ccc;
+            transform: translateY(-50%);
+            z-index: 5;
+        }
+
+        /* 刻度线 */
+        .tick {
+            position: absolute;
+            width: 2px;
+            background-color: #000;
+            z-index: 6;
+        }
+
+        .scale-item {
+            position: absolute;
+            top: calc(50% - 40px);
+            transform: translate(-50%, -100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            white-space: nowrap;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 10;
+        }
+
+        /* 下方的文字项 */
+        .scale-item.side-bottom {
+            top: calc(50% + 40px);
+            transform: translate(-50%, 0);
+        }
+
+        .scale-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1.5px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .scale-label a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .scale-label a:hover {
+            text-decoration: underline;
+        }
+
+        #ui-overlay {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #222;
+            letter-spacing: 1px;
+        }
+
+        #controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            z-index: 100;
+            border: 1px solid #eee;
+        }
+
+        .zoom-info {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* 隐藏不满足缩放条件的内容 */
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, -100%) scale(0.8);
+        }
+        
+        .scale-item.side-bottom.hidden {
+            transform: translate(-50%, 0) scale(0.8);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="ruler-container"></div>
+        <div id="ticks-container"></div>
+        <div id="items-container"></div>
+    </div>
+
+    <div id="ui-overlay">
+        <h1>Googology Scale</h1>
+    </div>
+
+    <div id="controls">
+        <div class="zoom-info">缩放倍率: <span id="zoom-level">1.0</span>x</div>
+        <div class="hint" style="margin-bottom: 10px;">滚轮缩放 / 拖拽移动</div>
+        <div style="display: flex; gap: 5px;">
+            <button onclick="resetView()" style="flex: 1; padding: 5px; cursor: pointer; border: 1px solid #ccc; background: #fff; border-radius: 4px;">回到起点</button>
+            <button onclick="changeZoom(1.2)" style="padding: 5px 10px; cursor: pointer; border: 1px solid #ccc; background: #fff; border-radius: 4px;">+</button>
+            <button onclick="changeZoom(0.8)" style="padding: 5px 10px; cursor: pointer; border: 1px solid #ccc; background: #fff; border-radius: 4px;">-</button>
+        </div>
+    </div>
+
+    <script>
+        const app = document.getElementById('app');
+        const itemsContainer = document.getElementById('items-container');
+        const ticksContainer = document.getElementById('ticks-container');
+        const zoomLevelDisplay = document.getElementById('zoom-level');
+
+        // 基础配置
+        let pixelsPerUnit = 250; 
+        let zoom = 1.0;
+        let offsetX = 0; 
+
+        // 缩放等级预设
+        const zoomLevels = {
+            0: 0,   // 永远显示
+            1: 2,   // > 2
+            2: 4,   // > 4
+            3: 10   // > 10
+        };
+
+        function clampOffset() {
+            // 视野范围 0 到 6
+            const unitWidth = pixelsPerUnit * zoom;
+            const centerX = window.innerWidth / 2;
+            
+            // 最左端限制：0 坐标在屏幕中间
+            // x(0) = offsetX + 0 = centerX  => offsetX_max = centerX
+            const maxOffsetX = centerX;
+            
+            // 最右端限制：6 坐标在屏幕中间
+            // x(6) = offsetX + 6 * unitWidth = centerX => offsetX_min = centerX - 6 * unitWidth
+            const minOffsetX = centerX - 6 * unitWidth;
+
+            if (offsetX > maxOffsetX) offsetX = maxOffsetX;
+            if (offsetX < minOffsetX) offsetX = minOffsetX;
+        }
+
+        function resetView() {
+            zoom = 1.0;
+            // 让坐标 3（中点）在屏幕中间
+            offsetX = (window.innerWidth / 2) - (3 * pixelsPerUnit * zoom);
+            clampOffset();
+            update();
+        }
+
+        function changeZoom(factor) {
+            const oldZoom = zoom;
+            zoom *= factor;
+            zoom = Math.max(0.75, Math.min(zoom, 20));
+            const centerX = window.innerWidth / 2;
+            offsetX = centerX - (centerX - offsetX) * (zoom / oldZoom);
+            clampOffset();
+            update();
+        }
+
+        // 初始数据
+        // level: 0-3 用于 bottom 内容垂直排列，也用于 zoom 级别控制
+        const items = [
+            { value: 0, label: '10<sup>10</sup>', zoomLevel: 0, side: 'top', level: 0 },
+            { value: 0, label: '计算机计算速度', zoomLevel: 0, side: 'bottom', level: 0 },
+            
+            { value: 1, label: '&omega; + 1', zoomLevel: 0, side: 'top', level: 0 },
+            { value: 1, label: '<a href="https://googology.fandom.com/wiki/Graham%27s_number" target="_blank">葛立恒数</a>', zoomLevel: 0, side: 'bottom', level: 0 },
+            
+            { value: 2, label: '&epsilon;<sub>0</sub>', zoomLevel: 0, side: 'top', level: 0 },
+            { value: 2, label: 'f(x)=f(x-f(x-1))/2', zoomLevel: 0, side: 'bottom', level: 0 },
+            { value: 2, label: 'Goodstein序列', zoomLevel: 0, side: 'bottom', level: 1 },
+            
+            { value: 3, label: 'SVO', zoomLevel: 0, side: 'top', level: 0 },
+            { value: 3, label: 'TREE(3)', zoomLevel: 0, side: 'bottom', level: 0 },
+            { value: 3.1, label: 'TREE(n)', zoomLevel: 1, side: 'bottom', level: 0 },
+
+            { value: 6, label: '馃槹', zoomLevel: 0, side: 'top', level: 0 },
+            { value: 6, label: '果糕', zoomLevel: 0, side: 'bottom', level: 0 },
+            { value: 6, label: '果糕果糕', zoomLevel: 1, side: 'bottom', level: 1 },
+            { value: 6, label: '果糕果糕果糕果糕', zoomLevel: 2, side: 'bottom', level: 2 },
+            { value: 6, label: '果糕果糕果糕果糕果糕果糕果糕果糕果糕果糕果糕果糕果糕果糕果糕果糕', zoomLevel: 3, side: 'bottom', level: 3 },
+        ];
+
+        function update() {
+            renderItems();
+            renderTicks();
+            updateRuler();
+            zoomLevelDisplay.innerText = zoom.toFixed(2);
+        }
+
+        function updateRuler() {
+            const ruler = document.getElementById('ruler-container');
+            const x0 = offsetX;
+            const x6 = offsetX + (6 * pixelsPerUnit * zoom);
+            ruler.style.left = `${x0}px`;
+            ruler.style.width = `${x6 - x0}px`;
+        }
+
+        function renderItems() {
+            itemsContainer.innerHTML = '';
+            items.forEach(item => {
+                // 视野范围 0 到 6
+                if (item.value < 0 || item.value > 6) return;
+
+                // 缩放级别检查
+                const minZ = zoomLevels[item.zoomLevel] || 0;
+                if (zoom < minZ) return;
+
+                const div = document.createElement('div');
+                const isBottom = item.side === 'bottom';
+                div.className = `scale-item ${isBottom ? 'side-bottom' : ''}`;
+                
+                const x = offsetX + (item.value * pixelsPerUnit * zoom);
+                div.style.left = `${x}px`;
+                
+                // 处理 level 排列
+                // 基础偏移是 40px，每增加一级 level 增加 45px (边框高度+间距)
+                const baseOffset = 40;
+                const levelGap = 45;
+                const offset = baseOffset + (item.level * levelGap);
+                
+                if (isBottom) {
+                    div.style.top = `calc(50% + ${offset}px)`;
+                    div.style.transform = `translate(-50%, 0)`;
+                } else {
+                    div.style.top = `calc(50% - ${offset}px)`;
+                    div.style.transform = `translate(-50%, -100%)`;
+                }
+
+                div.innerHTML = `<div class="scale-label">${item.label}</div>`;
+                itemsContainer.appendChild(div);
+            });
+        }
+
+        function renderTicks() {
+            ticksContainer.innerHTML = '';
+            
+            const visibleWidth = window.innerWidth;
+            
+            // 为每个可见的 item 绘制连接到轴的刻度线
+            items.forEach(item => {
+                if (item.value < 0 || item.value > 6) return;
+                
+                // 缩放级别检查
+                const minZ = zoomLevels[item.zoomLevel] || 0;
+                if (zoom < minZ) return;
+
+                const x = offsetX + (item.value * pixelsPerUnit * zoom);
+                if (x < -50 || x > visibleWidth + 50) return;
+
+                // 计算线的高度（从轴中心到框的边缘）
+                const baseOffset = 40;
+                const levelGap = 45;
+                const offset = baseOffset + (item.level * levelGap);
+
+                const tick = document.createElement('div');
+                tick.className = 'tick';
+                tick.style.left = `${x}px`;
+                
+                // 设置线的位置和高度
+                tick.style.height = `${offset}px`;
+                if (item.side === 'bottom') {
+                    tick.style.top = '50%';
+                    tick.style.transform = 'none';
+                } else {
+                    tick.style.bottom = '50%';
+                    tick.style.top = 'auto';
+                    tick.style.transform = 'none';
+                }
+                
+                ticksContainer.appendChild(tick);
+            });
+        }
+
+        // 滚轮缩放
+        app.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const delta = -e.deltaY;
+            const factor = 1.1;
+            
+            const oldZoom = zoom;
+            if (delta > 0) zoom *= factor;
+            else zoom /= factor;
+
+            zoom = Math.max(0.75, Math.min(zoom, 20));
+
+            const mouseX = e.clientX;
+            offsetX = mouseX - (mouseX - offsetX) * (zoom / oldZoom);
+            
+            clampOffset();
+            update();
+        }, { passive: false });
+
+        // 拖拽移动
+        let isDragging = false;
+        let lastX = 0;
+
+        app.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            lastX = e.clientX;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const dx = e.clientX - lastX;
+                offsetX += dx;
+                lastX = e.clientX;
+                clampOffset();
+                update();
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        window.addEventListener('resize', () => {
+            clampOffset();
+            update();
+        });
+
+        // 初始化：居中视图
+        resetView();
+    </script>
+</body>
+</html>
