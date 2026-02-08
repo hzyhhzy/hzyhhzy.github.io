@@ -31,18 +31,69 @@
         #ruler-container {
             position: absolute;
             top: 50%;
-            height: 5px;
-            background-color: #ccc;
+            height: 30px; /* 加粗轴 */
+            background: #ccc;
             transform: translateY(-50%);
-            z-index: 5;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            overflow: visible;
+        }
+
+        .axis-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            white-space: nowrap;
+            padding: 0 10px;
+            box-sizing: border-box;
+            position: absolute;
+        }
+
+        .branch-axis {
+            position: absolute;
+            height: 30px; /* 分支轴也加粗 */
+            background: #000; /* 分叉后统一黑色 */
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff; /* 白字 */
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 0 4px 4px 0;
+            padding: 0 10px;
+        }
+
+        .fork-curve {
+            fill: none;
+            stroke: #000; /* 曲线也统一黑色 */
+            stroke-width: 30px; /* 曲线也要加粗匹配分支轴 */
+        }
+
+        #svg-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 4;
         }
 
         /* 刻度线 */
         .tick {
             position: absolute;
-            width: 2px;
+            width: 3px;
             background-color: #000;
-            z-index: 6;
+            z-index: 5;
+            pointer-events: none;
+            /* 解决 1px 渲染偏差问题 */
+            shape-rendering: crispEdges;
+            will-change: left;
         }
 
         .scale-item {
@@ -67,11 +118,143 @@
             font-size: 16px;
             font-weight: 600;
             color: #1a1a1a;
-            padding: 6px 12px;
+            padding: 8px 14px; /* 增加内边距 */
             background: rgba(255, 255, 255, 0.95);
             border: 1.5px solid #333;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
+            /*white-space: nowrap;*/
+            /*line-height: 1.2;*/
+            white-space: normal; /* 允许换行 */
+            word-wrap: break-word;
+            max-width: 200px; /* 限制最大宽度以触发换行 */
+            line-height: 1.4; /* 增加行高 */
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .scale-label:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: #fff;
+        }
+
+        /* 弹窗样式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: flex-end; /* 靠右显示 */
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(2px);
+        }
+
+        .modal-content {
+            width: 400px;
+            height: 80%;
+            background: white;
+            margin-right: 40px;
+            border-radius: 12px;
+            position: relative;
+            padding: 30px;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+            overflow-y: auto;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: #000;
+        }
+
+        #modal-body {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        #modal-body h2 {
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        #modal-body pre, #modal-body code {
+            background: #1e1e1e !important; /* 强制深色背景 */
+            color: #d4d4d4 !important;      /* 强制浅色文字 */
+        }
+
+        #modal-body pre {
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Cascadia Code', 'Consolas', 'Monaco', 'Courier New', monospace; /* 更加接近 IDE 的字体 */
+            font-size: 14px;
+            border: 1px solid #3c3c3c;
+            line-height: 1.6;
+            margin: 15px 0;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            tab-size: 4;
+        }
+
+        #modal-body code {
+            font-family: 'Cascadia Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        #modal-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        #modal-body a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        #modal-body a:hover {
+            text-decoration: underline;
+        }
+
+        /* 支持多重上下标 */
+        .scale-label sup, .scale-label sub {
+            font-size: 0.75em;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline;
+        }
+        .scale-label sup { top: -0.5em; }
+        .scale-label sub { bottom: -0.25em; }
+        
+        /* 嵌套上下标自动缩小 */
+        .scale-label sup sup, .scale-label sup sub,
+        .scale-label sub sup, .scale-label sub sub {
+            font-size: 0.8em;
         }
 
         .scale-label a {
@@ -136,8 +319,17 @@
 <body>
     <div id="app">
         <div id="ruler-container"></div>
+        <svg id="svg-layer"></svg>
         <div id="ticks-container"></div>
         <div id="items-container"></div>
+    </div>
+
+    <!-- 详情弹窗 -->
+    <div id="detail-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="modal-body"></div>
+        </div>
     </div>
 
     <div id="ui-overlay">
@@ -160,6 +352,15 @@
         const ticksContainer = document.getElementById('ticks-container');
         const zoomLevelDisplay = document.getElementById('zoom-level');
 
+        // 刻度尺坐标配置
+        const RULER_CONFIG = {
+            START: 0,          // 主轴起点
+            FORK_X: 6.75,         // 主轴分叉点 (从这里开始弯曲)
+            BRANCH_START: 7.25, // 分支轴起点 (从这里变回直线)
+            BRANCH_CONTENT: 7.5, // 分支轴内容起点
+            END: 9.5             // 刻度尺总终点
+        };
+
         // 基础配置
         let pixelsPerUnit = 250; 
         let zoom = 1.0;
@@ -168,23 +369,21 @@
         // 缩放等级预设
         const zoomLevels = {
             0: 0,   // 永远显示
-            1: 2,   // > 2
-            2: 4,   // > 4
-            3: 10   // > 10
+            1: 5,   // > 2
+            2: 10,   // > 4
+            3: 20   // > 10
         };
 
         function clampOffset() {
-            // 视野范围 0 到 6
+            // 使用配置的范围
             const unitWidth = pixelsPerUnit * zoom;
             const centerX = window.innerWidth / 2;
             
-            // 最左端限制：0 坐标在屏幕中间
-            // x(0) = offsetX + 0 = centerX  => offsetX_max = centerX
-            const maxOffsetX = centerX;
+            // 最左端限制：START 坐标在屏幕中间
+            const maxOffsetX = centerX - RULER_CONFIG.START * unitWidth;
             
-            // 最右端限制：6 坐标在屏幕中间
-            // x(6) = offsetX + 6 * unitWidth = centerX => offsetX_min = centerX - 6 * unitWidth
-            const minOffsetX = centerX - 6 * unitWidth;
+            // 最右端限制：END 坐标在屏幕中间
+            const minOffsetX = centerX - RULER_CONFIG.END * unitWidth;
 
             if (offsetX > maxOffsetX) offsetX = maxOffsetX;
             if (offsetX < minOffsetX) offsetX = minOffsetX;
@@ -192,8 +391,9 @@
 
         function resetView() {
             zoom = 1.0;
-            // 让坐标 3（中点）在屏幕中间
-            offsetX = (window.innerWidth / 2) - (3 * pixelsPerUnit * zoom);
+            // 让全图（START 到 END）居中
+            const midPoint = (RULER_CONFIG.START + RULER_CONFIG.END) / 2;
+            offsetX = (window.innerWidth / 2) - (midPoint * pixelsPerUnit * zoom);
             clampOffset();
             update();
         }
@@ -201,7 +401,7 @@
         function changeZoom(factor) {
             const oldZoom = zoom;
             zoom *= factor;
-            zoom = Math.max(0.75, Math.min(zoom, 20));
+            zoom = Math.max(0.1, Math.min(zoom, 20));
             const centerX = window.innerWidth / 2;
             offsetX = centerX - (centerX - offsetX) * (zoom / oldZoom);
             clampOffset();
@@ -209,27 +409,151 @@
         }
 
         // 初始数据
-        // level: 0-3 用于 bottom 内容垂直排列，也用于 zoom 级别控制
+        // branch: 0(主轴), 1-4(分支)
         const items = [
-            { value: 0, label: '10<sup>10</sup>', zoomLevel: 0, side: 'top', level: 0 },
-            { value: 0, label: '计算机计算速度', zoomLevel: 0, side: 'bottom', level: 0 },
+            { 
+                value: 0, label: '1', zoomLevel: 0, side: 'top', level: 0, branch: 0,
+                detail: `<h2>1</h2><p>万物之始，googology 的起点。</p>`
+            },
+            { 
+                value: 1, label: '10<sup>100</sup>', zoomLevel: 0, side: 'top', level: 0, branch: 0,
+                detail: `<h2>Googol (10<sup>100</sup>)</h2><p>是 googology 这个词的词源。</p><code>10**100</code>`
+            },
+            { 
+                value: 2, label: 'f<sub>&omega;</sub>(n)', zoomLevel: 0, side: 'top', level: 0, branch: 0,
+                detail: `<h2>f<sub>&omega;</sub>(n)</h2><p>快速增长层次结构（FGH）中的第一级无限。它的增长速度大致相当于阿克曼函数。</p>`
+            },
+            { 
+                value: 3, label: 'f<sub>&epsilon;<sub>0</sub></sub>(n)', zoomLevel: 0, side: 'top', level: 0, branch: 0,
+                detail: `<h2>f<sub>&epsilon;<sub>0</sub></sub>(n)</h2><p>FGH 中对应皮亚诺算术（PA）证明强度的极限。它的增长速度极其惊人。</p>`
+            },
+            { 
+                value: 4, label: '&psi;(&Omega;<sub>&omega;</sub>)', zoomLevel: 0, side: 'top', level: 0, branch: 0,
+                detail: `<h2>&psi;(&Omega;<sub>&omega;</sub>)</h2><p>序数坍缩函数（OCF）的一个例子，标志着进入了更强大的序数系统。</p>`
+            },
+            { 
+                value: 5, label: 'BMS:(0,0,0)(1,1,1)(2,2,0)', zoomLevel: 0, side: 'top', level: 0, branch: 0,
+                detail: `<h2>Bashicu Matrix System</h2><p>TODO。</p>`
+            },
+            { 
+                value: 6, label: 'BMS极限', zoomLevel: 0, side: 'top', level: 0, branch: 0,
+                detail: `<h2>Bashicu Matrix System</h2><p>一种极其强大的符号系统，能够表示远远超过传统 OCF 的大数。</p>`
+            },
             
-            { value: 1, label: '&omega; + 1', zoomLevel: 0, side: 'top', level: 0 },
-            { value: 1, label: '<a href="https://googology.fandom.com/wiki/Graham%27s_number" target="_blank">葛立恒数</a>', zoomLevel: 0, side: 'bottom', level: 0 },
+            { 
+                value: 2, label: 'Ackermann函数', zoomLevel: 0, side: 'bottom', level: 0, branch: 0,
+                detail: `<h2>Ackermann函数</h2><p>一个递归函数，其增长速度非常快。</p>`
+            },
+            { 
+                value: 2.1, label: '葛立恒数', zoomLevel: 0, side: 'bottom', level: 1, branch: 0,
+                detail: `<h2>葛立恒数</h2><p>来自于拉姆齐理论，曾经作为数学证明中出现的最大数字被载入吉尼斯世界纪录。</p>`
+            },
             
-            { value: 2, label: '&epsilon;<sub>0</sub>', zoomLevel: 0, side: 'top', level: 0 },
-            { value: 2, label: 'f(x)=f(x-f(x-1))/2', zoomLevel: 0, side: 'bottom', level: 0 },
-            { value: 2, label: 'Goodstein序列', zoomLevel: 0, side: 'bottom', level: 1 },
+            { 
+                value: 3, label: 'Goodstein函数', zoomLevel: 0, side: 'bottom', level: 0, branch: 0,
+                detail: `<h2>Goodstein函数</h2><p>一种递归函数，其增长速度非常快。</p>`
+            },
+            { 
+                value: 3, label: '伪燃烧数', zoomLevel: 0, side: 'bottom', level: 1, branch: 0,
+                detail: `<h2>特殊的递归定义</h2><p>f(x)=f(x-f(x-1))/2</p>`
+            },
             
-            { value: 3, label: 'SVO', zoomLevel: 0, side: 'top', level: 0 },
-            { value: 3, label: 'TREE(3)', zoomLevel: 0, side: 'bottom', level: 0 },
-            { value: 3.1, label: 'TREE(n)', zoomLevel: 1, side: 'bottom', level: 0 },
+            { 
+                value: 3.5, label: 'TREE(3)', zoomLevel: 0, side: 'bottom', level: 0, branch: 0,
+                detail: `<h2>TREE(3)</h2><p>来自于 Kruskal 树定理。虽然其定义很简单，但它的大小远超葛立恒数，甚至在 FGH 中也处于极高的位置。</p>`
+            },
+            { 
+                value: 3.55, label: 'TREE(n)', zoomLevel: 1, side: 'bottom', level: 0, branch: 0,
+                detail: `<h2>TREE 函数</h2><p>TREE(1)=1, TREE(2)=3, 而 TREE(3) 已经无法用常规语言描述其巨大。</p>`
+            },
+            { 
+                value: 3.6, label: 'test', zoomLevel: 2, side: 'bottom', level: 0, branch: 0,
+                detail: `<h2>测试项</h2><p>用于验证高缩放级别下的内容显示。</p>`
+            },
+            { 
+                value: 3.65, label: 'test3', zoomLevel: 3, side: 'bottom', level: 0, branch: 0,
+                detail: `<h2>高层级测试</h2><p>仅在极大缩放倍数下可见。</p>`
+            },
 
-            { value: 6, label: '馃槹', zoomLevel: 0, side: 'top', level: 0 },
-            { value: 6, label: '果糕', zoomLevel: 0, side: 'bottom', level: 0 },
-            { value: 6, label: '果糕果糕', zoomLevel: 1, side: 'bottom', level: 1 },
-            { value: 6, label: '果糕果糕果糕果糕', zoomLevel: 2, side: 'bottom', level: 2 },
-            { value: 6, label: '果糕果糕果糕果糕果糕果糕果糕果糕果糕果糕果糕果糕果糕果糕果糕果糕', zoomLevel: 3, side: 'bottom', level: 3 },
+            // 分支 1 示例
+            { 
+                value: RULER_CONFIG.BRANCH_START + 0.0, label: '（待补充）', zoomLevel: 0, side: 'top', level: 0, branch: 1,
+                detail: `<h2>分支 1 待定内容</h2><p>暂时没想好填什么。</p>`
+            },
+            { 
+                value: RULER_CONFIG.BRANCH_START + 0.5, label: 'Y序列极限', zoomLevel: 0, side: 'top', level: 0, branch: 1,
+                detail: `<h2>Y 序列极限</h2><p>Y 序列是一种基于矩阵的大数表示法，其极限非常巨大。</p>`
+            },
+            { 
+                value: RULER_CONFIG.BRANCH_START + 1.5, label: '&omega;-Y序列极限', zoomLevel: 0, side: 'top', level: 0, branch: 1,
+                detail: `<h2>&omega;-Y 序列极限</h2><p>Y 序列的进一步扩展。</p>`
+            },
+            // 分支 2 示例
+            { 
+                value: RULER_CONFIG.BRANCH_START + 0, label: 'iBLP极限', zoomLevel: 0, side: 'top', level: 0, branch: 2,
+                detail: `<h2>iBLP 极限</h2><p>Infinite Basic Laver Patterns 作者为@test_alpha0</p>`
+            },
+            { 
+                value: RULER_CONFIG.BRANCH_START + 0.5, label: 'Laver table', zoomLevel: 0, side: 'top', level: 0, branch: 2,
+                detail: `<h2>Laver table</h2><p>集合论中研究的一类特殊的有限代数结构。</p>`
+            },
+            { 
+                value: RULER_CONFIG.BRANCH_START + 1, label: 'LTY', zoomLevel: 0, side: 'top', level: 0, branch: 2,
+                detail: `<h2>LTY</h2><p>Laver table yarn。</p>`
+            },
+            // 分支 3 示例
+            { 
+                value: RULER_CONFIG.BRANCH_START + 1, label: '(Friedman的那几个没人研究的，待补充)', zoomLevel: 0, side: 'top', level: 0, branch: 3,
+                detail: `<h2>Harvey Friedman 的未定义项</h2><p>这位伟大的数学家提出了许多增长极其迅速但尚未被 googologist 完全消化的概念。</p>`
+            },
+            // 分支 4 示例
+            { 
+                value: RULER_CONFIG.BRANCH_START + 0, label: 'PTO(Z<sub>2</sub>)', zoomLevel: 0, side: 'top', level: 0, branch: 4,
+                detail: `<h2>PTO(Z<sub>2</sub>)</h2><p>Proof-Theoretic Ordinal of Second-order Arithmetic。有可能和BMS极限一样大</p>`
+            },
+            { 
+                value: RULER_CONFIG.BRANCH_START + 0.5, label: 'PTO(Z<sub>&omega;</sub>)', zoomLevel: 0, side: 'top', level: 0, branch: 4,
+                detail: `<h2>PTO(Z<sub>&omega;</sub>)</h2><p>更高级别的证明论序数。</p>`
+            },
+            { 
+                value: RULER_CONFIG.BRANCH_START + 0.5, label: 'Loader数', zoomLevel: 0, side: 'bottom', level: 0, branch: 4,
+                detail: `<h2>Loader 数</h2><p>由程序生成的巨大数字。它的生成逻辑非常简洁但结果极其巨大。</p>`
+            },
+            { 
+                value: RULER_CONFIG.BRANCH_START + 1.5, label: 'PTO(ZFC)', zoomLevel: 0, side: 'top', level: 0, branch: 4,
+                detail: `<h2>PTO(ZFC)</h2><p>现代数学标准公理系统 ZFC 的证明论序数。</p>`
+            },
+            { 
+                value: RULER_CONFIG.BRANCH_START + 2, label: 'PTO(ZFC+I0)', zoomLevel: 0, side: 'top', level: 0, branch: 4,
+                detail: `<h2>PTO(ZFC+I0)</h2><p>带有大基数公理 I0 的 ZFC 系统的序数。</p>`
+            },
+        ];
+
+        // 分支 Y 偏移配置 (相对于屏幕中心)
+        const branchYOffsets = {
+            1: -225,
+            2: -75,
+            3: 75,
+            4: 225
+        };
+
+        // 分支文字配置
+        const branchNames = {
+            1: "Y序列以及变种",
+            2: "Laver table相关",
+            3: "未被研究的内容",
+            4: "PTO系列"
+        };
+
+        // 坐标轴分段颜色和文字配置
+        const axisSegments = [
+            { start: 0, end: 1, text: "现实世界", bg: "#ADD8E6", color: "#000" },      // 浅蓝色
+            { start: 1, end: 2, text: "超运算", bg: "#87CEEB", color: "#000" },      // 天蓝色
+            { start: 2, end: 3, text: "基础FGH", bg: "#90EE90", color: "#000" },      // 浅绿色
+            { start: 3, end: 4, text: "序数坍缩函数（OCF）", bg: "#FFD700", color: "#000" },      // 金黄色
+            { start: 4, end: 5, text: "扩展OCF（谁帮我想想这里填啥）", bg: "#FF6000", color: "#000" },      // 深橙色
+            { start: 5, end: 6.0, text: "（谁帮我想想这里填啥）", bg: "#C00000", color: "#fff" },      // 深红色
+            { start: 6.0, end: 6.75, text: "未知领域，分支间大小顺序未知", bg: "#000", color: "#fff" } // 黑底白字
         ];
 
         function update() {
@@ -240,19 +564,83 @@
         }
 
         function updateRuler() {
+            const container = document.getElementById('app');
+            const svgLayer = document.getElementById('svg-layer');
             const ruler = document.getElementById('ruler-container');
-            const x0 = offsetX;
-            const x6 = offsetX + (6 * pixelsPerUnit * zoom);
-            ruler.style.left = `${x0}px`;
-            ruler.style.width = `${x6 - x0}px`;
+            
+            // 清理旧的分支轴和分段
+            const oldElements = container.querySelectorAll('.branch-axis, .axis-segment');
+            oldElements.forEach(el => el.remove());
+            ruler.innerHTML = ''; // 清空主轴内容
+            
+            // 清理旧的曲线
+            svgLayer.innerHTML = '';
+
+            const unitWidth = pixelsPerUnit * zoom;
+            const x_start = offsetX + (RULER_CONFIG.START * unitWidth);
+            const x_fork = offsetX + (RULER_CONFIG.FORK_X * unitWidth);
+            const x_branch_start = offsetX + (RULER_CONFIG.BRANCH_START * unitWidth);
+            const x_end = offsetX + (RULER_CONFIG.END * unitWidth);
+            
+            // 主轴基础位置
+            ruler.style.left = `${x_start}px`;
+            ruler.style.width = `${x_fork - x_start + 5}px`; // 增加 1px 重叠解决接缝
+
+            // 绘制主轴分段文字和颜色
+            axisSegments.forEach(seg => {
+                const segDiv = document.createElement('div');
+                segDiv.className = 'axis-segment';
+                const segLeft = (seg.start - RULER_CONFIG.START) * unitWidth;
+                const segWidth = (seg.end - seg.start) * unitWidth;
+                segDiv.style.left = `${segLeft}px`;
+                segDiv.style.width = `${segWidth + 5}px`; // 增加 1px 重叠
+                segDiv.style.backgroundColor = seg.bg;
+                segDiv.style.color = seg.color;
+                segDiv.innerText = seg.text;
+                ruler.appendChild(segDiv);
+            });
+
+            const centerY = window.innerHeight / 2;
+
+            // 绘制 4 个分支轴和分叉曲线
+            Object.entries(branchYOffsets).forEach(([branchId, yOffset]) => {
+                // 分支轴 (从 BRANCH_START 到 END)
+                const branchAxis = document.createElement('div');
+                branchAxis.className = 'branch-axis';
+                branchAxis.style.left = `${x_branch_start - 5}px`; // 向左偏移 1px 覆盖接缝
+                branchAxis.style.width = `${x_end - x_branch_start + 5}px`;
+                branchAxis.style.top = `calc(50% + ${yOffset}px)`;
+                branchAxis.style.transform = `translateY(-50%)`;
+                branchAxis.innerText = branchNames[branchId] || "";
+                container.appendChild(branchAxis);
+
+                // 使用 SVG 绘制从 FORK_X 到 BRANCH_START 的平滑贝塞尔曲线
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                path.setAttribute("class", "fork-curve");
+                
+                // 曲线路径两端稍微延长一点点，确保覆盖接缝
+                const startX = x_fork - 0.5;
+                const startY = centerY;
+                const endX = x_branch_start + 0.5;
+                const endY = centerY + yOffset;
+                
+                const cp1x = startX + (endX - startX) * 0.5;
+                const cp1y = startY;
+                const cp2x = startX + (endX - startX) * 0.5;
+                const cp2y = endY;
+
+                const d = `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
+                path.setAttribute("d", d);
+                svgLayer.appendChild(path);
+            });
         }
 
         function renderItems() {
             itemsContainer.innerHTML = '';
             items.forEach(item => {
-                // 视野范围 0 到 6
-                if (item.value < 0 || item.value > 6) return;
-
+                const branchId = item.branch || 0;
+                const yOffset = branchId === 0 ? 0 : branchYOffsets[branchId];
+                
                 // 缩放级别检查
                 const minZ = zoomLevels[item.zoomLevel] || 0;
                 if (zoom < minZ) return;
@@ -264,67 +652,107 @@
                 const x = offsetX + (item.value * pixelsPerUnit * zoom);
                 div.style.left = `${x}px`;
                 
-                // 处理 level 排列
-                // 基础偏移是 40px，每增加一级 level 增加 45px (边框高度+间距)
-                const baseOffset = 40;
-                const levelGap = 45;
+                const baseOffset = 35; // 增加基础偏移，使文字离轴更远
+                const levelGap = 65; // 增加层级间距，支持多行内容
                 const offset = baseOffset + (item.level * levelGap);
                 
                 if (isBottom) {
-                    div.style.top = `calc(50% + ${offset}px)`;
+                    div.style.top = `calc(50% + ${yOffset + offset}px)`;
                     div.style.transform = `translate(-50%, 0)`;
                 } else {
-                    div.style.top = `calc(50% - ${offset}px)`;
+                    div.style.top = `calc(50% + ${yOffset - offset}px)`;
                     div.style.transform = `translate(-50%, -100%)`;
                 }
 
                 div.innerHTML = `<div class="scale-label">${item.label}</div>`;
+                
+                // 添加点击事件显示详情
+                div.querySelector('.scale-label').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (item.detail) {
+                        showModal(item.detail);
+                    }
+                });
+
                 itemsContainer.appendChild(div);
             });
         }
 
+        const modal = document.getElementById('detail-modal');
+        const modalBody = document.getElementById('modal-body');
+        const modalClose = modal.querySelector('.modal-close');
+
+        function showModal(content) {
+            modalBody.innerHTML = content;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
         function renderTicks() {
             ticksContainer.innerHTML = '';
-            
             const visibleWidth = window.innerWidth;
             
-            // 为每个可见的 item 绘制连接到轴的刻度线
             items.forEach(item => {
-                if (item.value < 0 || item.value > 6) return;
-                
-                // 缩放级别检查
+                const branchId = item.branch || 0;
+                const yOffset = branchId === 0 ? 0 : branchYOffsets[branchId];
+
                 const minZ = zoomLevels[item.zoomLevel] || 0;
-                if (zoom < minZ) return;
+                const isShown = zoom >= minZ;
 
                 const x = offsetX + (item.value * pixelsPerUnit * zoom);
                 if (x < -50 || x > visibleWidth + 50) return;
 
-                // 计算线的高度（从轴中心到框的边缘）
-                const baseOffset = 40;
-                const levelGap = 45;
-                const offset = baseOffset + (item.level * levelGap);
-
                 const tick = document.createElement('div');
                 tick.className = 'tick';
                 tick.style.left = `${x}px`;
-                
-                // 设置线的位置和高度
-                tick.style.height = `${offset}px`;
-                if (item.side === 'bottom') {
-                    tick.style.top = '50%';
-                    tick.style.transform = 'none';
+
+                if (isShown) {
+                    // 已显示内容的正常长刻度线
+                    const baseOffset = 35;
+                    const levelGap = 65;
+                    const offset = baseOffset + (item.level * levelGap);
+                    tick.style.height = `${offset}px`;
+                    
+                    if (item.side === 'bottom') {
+                        tick.style.top = `calc(50% + ${yOffset}px)`;
+                    } else {
+                        tick.style.bottom = `calc(100% - (50% + ${yOffset}px))`;
+                        tick.style.top = 'auto';
+                    }
                 } else {
-                    tick.style.bottom = '50%';
-                    tick.style.top = 'auto';
-                    tick.style.transform = 'none';
+                    // 未显示内容的短线提示
+                    // zoomLevel 越高，线越短。0: 12px, 1: 9px, 2: 6px, 3: 3px
+                    const shortTickHeight = Math.max(2, 30 - (item.zoomLevel * 3));
+                    tick.style.height = `${shortTickHeight}px`;
+                    tick.style.backgroundColor = '#666'; // 稍微淡一点的颜色
+
+                    // 短线始终在轴的两侧对称显示，或者根据 side 显示
+                    if (item.side === 'bottom') {
+                        tick.style.top = `calc(50% + ${yOffset}px)`;
+                    } else {
+                        tick.style.bottom = `calc(100% - (50% + ${yOffset}px))`;
+                        tick.style.top = 'auto';
+                    }
                 }
                 
+                tick.style.transform = 'none';
                 ticksContainer.appendChild(tick);
             });
         }
 
         // 滚轮缩放
         app.addEventListener('wheel', (e) => {
+            // 如果按下了 Ctrl 键，则允许浏览器默认的缩放行为
+            if (e.ctrlKey) return;
+
             e.preventDefault();
             const delta = -e.deltaY;
             const factor = 1.1;
