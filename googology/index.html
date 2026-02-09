@@ -350,7 +350,80 @@
         .scale-item.side-bottom.hidden {
             transform: translate(-50%, 0) scale(0.8);
         }
+
+        /* IDE Window Style */
+        .ide-window {
+            background: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin: 20px 0;
+            overflow: hidden;
+            border: 1px solid #333;
+            font-family: 'Cascadia Code', 'Consolas', monospace;
+            text-align: left;
+        }
+
+        .ide-header {
+            background: #2d2d2d;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #1e1e1e;
+        }
+
+        .ide-controls {
+            display: flex;
+            gap: 8px;
+            margin-right: 15px;
+        }
+
+        .ide-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .ide-dot.red { background: #ff5f56; }
+        .ide-dot.yellow { background: #ffbd2e; }
+        .ide-dot.green { background: #27c93f; }
+
+        .ide-title {
+            color: #999;
+            font-size: 13px;
+            flex: 1;
+            text-align: center;
+            margin-right: 55px; /* Balance the controls width */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-weight: 500;
+        }
+
+        .ide-content {
+            padding: 20px !important;
+            margin: 0 !important;
+            overflow-x: auto;
+            color: #d4d4d4;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1e1e1e !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            font-family: 'Cascadia Code', 'Consolas', monospace !important;
+        }
+
+        .ide-content code {
+            font-family: inherit !important;
+            background: transparent !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            color: inherit !important;
+            white-space: pre;
+        }
     </style>
+    <!-- Highlight.js for syntax highlighting -->
+    <link rel="stylesheet" href="lib/atom-one-dark.min.css">
+    <script src="lib/highlight.min.js"></script>
+
 </head>
 <body>
     <div id="app">
@@ -413,9 +486,9 @@
         // 缩放等级预设
         const zoomLevels = {
             0: 0,   // 永远显示
-            1: 5,   // > 2
-            2: 10,   // > 4
-            3: 20   // > 10
+            1: 2,   // > 2
+            2: 4,   // > 4
+            3: 10   // > 10
         };
 
         function clampOffset() {
@@ -471,12 +544,12 @@
                 detail: `<h2>Laver Table 相关</h2><p>源自集合论中的大基数公理，与有限代数结构的组合性质密切相关，其增长速度非常独特。</p>`
             },
             3: { 
-                text: "未被研究的内容", 
-                detail: `<h2>未被研究的内容</h2><p>大数研究领域中尚未被完全形式化或缺乏深入分析的定义。</p>`
-            },
-            4: { 
                 text: "PTO系列", 
                 detail: `<h2>证明论序数 (PTO) 系列</h2><p>衡量数学系统“强度”的标尺。从 ZFC 到带有各种大基数公理的系统，其对应的增长率是目前已知最快的。</p>`
+            },
+            4: { 
+                text: "未被研究的内容", 
+                detail: `<h2>未被研究的内容</h2><p>大数研究领域中尚未被完全形式化或缺乏深入分析的定义。</p>`
             }
         };
 
@@ -503,11 +576,11 @@
                 detail: `<h2>扩展 OCF</h2><p>进一步加强坍缩函数，引入更大的基数（如 &Omega;<sub>&omega;</sub>）来构造更强的序数系统。</p>`
             },
             { 
-                start: 5, end: 6.0, text: "矩阵系统", bg: "#C00000", color: "#fff",
-                detail: `<h2>矩阵系统 (Matrix Systems)</h2><p>如 Bashicu Matrix System (BMS)。通过矩阵索引的方式，表达能力超越了传统的单一变量 OCF。</p>`
+                start: 5, end: 6.0, text: "BMS", bg: "#C00000", color: "#fff",
+                detail: `<h2>Bashicu Matrix System</h2><p>TODO</p>`
             },
             { 
-                start: 6.0, end: 6.75, text: "未知领域", bg: "#000", color: "#fff",
+                start: 6.0, end: 6.75, text: "前沿未知领域", bg: "#000", color: "#fff",
                 detail: `<h2>进入未知领域</h2><p>在这里，各种强大的系统开始交汇，分支之间的大小顺序往往是当前大数研究的前沿课题。</p>`
             },
             // 分叉范围 6.75 - 9.25 不绘制主轴
@@ -706,6 +779,44 @@
 
         function showModal(content) {
             modalBody.innerHTML = content;
+            
+            // 增强代码块显示：将 h3 + code 转换为 IDE 风格窗口
+            const headers = modalBody.querySelectorAll('h3');
+            headers.forEach(header => {
+                const nextElem = header.nextElementSibling;
+                // 检查是否是代码块
+                if (nextElem && (nextElem.tagName === 'CODE' || nextElem.tagName === 'PRE')) {
+                    const lang = header.innerText.trim();
+                    // 处理换行符：将 <br> 替换为 \n
+                    let codeHtml = nextElem.innerHTML.replace(/<br\s*\/?>/gi, '\n');
+                    
+                    const ideWindow = document.createElement('div');
+                    ideWindow.className = 'ide-window';
+                    
+                    ideWindow.innerHTML = `
+                        <div class="ide-header">
+                            <div class="ide-controls">
+                                <div class="ide-dot red"></div>
+                                <div class="ide-dot yellow"></div>
+                                <div class="ide-dot green"></div>
+                            </div>
+                            <div class="ide-title">${lang}</div>
+                        </div>
+                        <pre class="ide-content"><code class="language-${lang.toLowerCase()}">${codeHtml}</code></pre>
+                    `;
+                    
+                    header.replaceWith(ideWindow);
+                    nextElem.remove();
+                }
+            });
+
+            // 应用语法高亮
+            if (window.hljs) {
+                modalBody.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightElement(block);
+                });
+            }
+
             modal.style.display = 'flex';
         }
 
