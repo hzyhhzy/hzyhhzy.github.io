@@ -1,4 +1,4 @@
-const items = [
+const items = [ 
     { 
         value: 0, label: '1', zoomLevel: 0, side: 'top', level: 0, branch: 0,
         detail: `
