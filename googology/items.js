@@ -1,4 +1,4 @@
-const items = [ 
+const items = [
     { 
         value: 0, label: '1', zoomLevel: 0, side: 'top', level: 0, branch: 0,
         detail: `
@@ -96,16 +96,114 @@ n = 10
 print(f(n,n))`
     },
     { 
+        value: 2.1, label: 'f<sub>&omega;+1</sub>(n)', zoomLevel: 2, side: 'top', level: 0, branch: 0,
+        detail: `
+        <h2>f<sub>&omega;+1</sub>(n)</h2>
+        <p>f<sub>&omega;+1</sub>(10)=
+        <br>f<sub>&omega;</sub>(f<sub>&omega;</sub>(f<sub>&omega;</sub>(f<sub>&omega;</sub>(f<sub>&omega;</sub>(f<sub>&omega;</sub>(f<sub>&omega;</sub>(f<sub>&omega;</sub>(f<sub>&omega;</sub>(f<sub>&omega;</sub>(10))))))))))
+        </p>
+        <h3>python</h3>
+<code>def f(n,a): # f_a(n)
+if a == 0:
+    return n + 1
+else:
+    x = n
+    for i in range(n):
+        x = f(x,a - 1)
+    return x
+
+def f_w(n): # f_w(n) = f_n(n)
+    return f(n,n)
+
+n = 64 
+x = n
+for i in range(n):
+    x = f_w(x)
+print(x) # x = f_(w+1)(64), 略大于葛立恒数
+`
+    },
+    { 
+        value: 2.25, label: 'f<sub>&omega;*2</sub>(n)', zoomLevel: 1, side: 'top', level: 0, branch: 0,
+        detail: `
+        <h2>f<sub>&omega;*2</sub>(n)</h2>
+        <p>f<sub>&omega;*2</sub>(10)=
+        <br>f<sub>&omega;+10</sub>(10)=
+        <br>f<sub>&omega;+9</sub>(f<sub>&omega;+9</sub>(f<sub>&omega;+9</sub>(f<sub>&omega;+9</sub>(f<sub>&omega;+9</sub>(f<sub>&omega;+9</sub>(f<sub>&omega;+9</sub>(f<sub>&omega;+9</sub>(f<sub>&omega;+9</sub>(f<sub>&omega;+9</sub>(10))))))))))
+        </p>
+        <h3>python</h3>
+<code>def f1(n,a): # f_a(n)
+    if a == 0:
+        return n + 1
+    else:
+        x = n
+        for i in range(n):
+            x = f1(x,a - 1)
+        return x
+def f2(n,a): # f_(w+a)(n)
+    if a == 0:
+        return f1(n,n)
+    else:
+        x = n
+        for i in range(n):
+            x = f2(x,a - 1)
+        return x
+n = 10
+print(f2(n,n))`
+    },
+    { 
         value: 2.5, label: 'f<sub>&omega;<sup>2</sup></sub>(n)', zoomLevel: 0, side: 'top', level: 0, branch: 0,
         detail: `
         <h2>f<sub>&omega;<sup>2</sup></sub>(n)</h2>
-        <p>(待补充)</p>
-    `
+        <p>f<sub>&omega;<sup>2</sup></sub>(10)=
+        <br>f<sub>&omega;*&omega;</sub>(10)=
+        <br>f<sub>&omega;*10;</sub>(10)=
+        <br>f<sub>&omega;*9+&omega;</sub>(10)=
+        <br>f<sub>&omega;*9+10</sub>(10)=
+        <br>f<sub>&omega;*9+9</sub>(f<sub>&omega;*9+9</sub>(...f<sub>&omega;*9+9</sub>(10)...))
+        </p>
+        
+        <h3>python</h3>
+<code>def f(n,a,b): # f_(w*a+b)(n)
+    if b == 0:
+        if a == 0:
+            return n + 1
+        else:
+            return f(n,a-1,n)
+    else:
+        x = n
+        for i in range(n):
+            x = f(x,a,b-1)
+        return x
+n = 10
+print(f(n,n,0))`
+    
+    },
+    { 
+        value: 2.75, label: 'f<sub>&omega;<sup>&omega;</sup></sub>(n)', zoomLevel: 1, side: 'top', level: 0, branch: 0,
+        detail: `
+        <h2>f<sub>&omega;<sup>&omega;</sup></sub>(n)</h2>
+        <p>f<sub>&omega;<sup>&omega;</sup></sub>(10)=
+        <br>f<sub>&omega;<sup>10</sup></sub>(10)=
+        <br>f<sub>&omega;<sup>9</sup>*10</sub>(10)=
+        <br>f<sub>&omega;<sup>9</sup>*9+&omega;<sup>9</sup></sub>(10)=
+        <br>...
+        </p>
+        <h3>python</h3>
+<code>TODO</code>
+`
+    
     },
     { 
         value: 3, label: 'f<sub>&epsilon;<sub>0</sub></sub>(n)', zoomLevel: 0, side: 'top', level: 0, branch: 0,
         detail: `
         <h2>f<sub>&epsilon;<sub>0</sub></sub>(n)</h2>
+        <p>(待补充)</p>
+    `
+    },
+    { 
+        value: 3.25, label: '&zeta;<sub>0</sub>', zoomLevel: 1, side: 'top', level: 0, branch: 0,
+        detail: `
+        <h2>&Zeta;<sub>0</sub></h2>
         <p>(待补充)</p>
     `
     },
@@ -117,7 +215,29 @@ print(f(n,n))`
     `
     },
     { 
-        value: 3.8, label: '&psi;(&Omega;<sub>2</sub>)', zoomLevel: 1, side: 'top', level: 0, branch: 0,
+        value: 3.65, label: 'SVO', zoomLevel: 1, side: 'top', level: 0, branch: 0,
+        detail: `
+        <h2>SVO</h2>
+        <p>(待补充)</p>
+    `
+    },
+    { 
+        value: 3.7, label: '&phi;(&omega;@&omega;)', zoomLevel: 2, side: 'top', level: 0, branch: 0,
+        detail: `
+        <h2>&phi;(&omega;@&omega;)</h2>
+        <p>TREE在这里</p>
+    `
+    },
+    { 
+        value: 3.75, label: 'LVO', zoomLevel: 2, side: 'top', level: 0, branch: 0,
+        detail: `
+        <h2>LVO</h2>
+        <p>(待补充)</p>
+
+    `
+    },
+    { 
+        value: 3.85, label: '&psi;(&Omega;<sub>2</sub>)', zoomLevel: 1, side: 'top', level: 0, branch: 0,
         detail: `
         <h2>&psi;(&Omega;<sub>2</sub>)</h2>
         <p>(待补充)</p>
@@ -131,6 +251,22 @@ print(f(n,n))`
     `
     },
     { 
+        value: 4.1, label: '&psi;(&Omega;<sub>&omega;+1</sub>)', zoomLevel: 2, side: 'top', level: 0, branch: 0,
+        detail: `
+        <h2>TFB = &psi;(&Omega;<sub>&omega;+1</sub>)</h2>
+        <p>也可以写作&psi;(&epsilon;<sub>&Omega;<sub>&omega;</sub>+1</sub>)
+        <br>Buchholz hydra的极限
+        </p>
+    `
+    },
+    { 
+        value: 4.25, label: '&psi;(I)', zoomLevel: 1, side: 'top', level: 0, branch: 0,
+        detail: `
+        <h2>&psi;(I)</h2>
+        <p>先随便填点</p>
+    `
+    },
+    { 
         value: 4.5, label: 'TODO:写什么合适？', zoomLevel: 0, side: 'top', level: 0, branch: 0,
         detail: `
         <h2>TODO</h2>
@@ -138,18 +274,42 @@ print(f(n,n))`
     `
     },
     { 
-        value: 5, label: 'BMS:(0,0,0)(1,1,1)(2,2,0)<br>TODO:需要一个公认的缩写', zoomLevel: 0, side: 'top', level: 0, branch: 0,
+        value: 5, label: 'SSO', zoomLevel: 0, side: 'top', level: 0, branch: 0,
+        detail: `
+        <h2>BMS:(0,0,0)(1,1,1)(2,2,0)</h2>
+        <p>TODO。</p>
+    `
+    },
+    { 
+        value: 5, label: 'BMS:(0,0,0)(1,1,1)(2,2,0)', zoomLevel: 1, side: 'top', level: 1, branch: 0,
+        detail: `
+        <h2>BMS:(0,0,0)(1,1,1)(2,2,0)</h2>
+        <p>TODO。</p>
+    `
+    },
+    { 
+        value: 5.5, label: 'LRO', zoomLevel: 0, side: 'top', level: 0, branch: 0,
+        detail: `
+        <h2>BMS:(0,0,0)(1,1,1)(2,2,2)</h2>
+        <p>TODO。</p>
+    `
+    },
+    { 
+        value: 5.5, label: 'BMS:(0,0,0)(1,1,1)(2,2,2)', zoomLevel: 1, side: 'top', level: 1, branch: 0,
+        detail: `
+        <h2>BMS:(0,0,0)(1,1,1)(2,2,2)</h2>
+        <p>TODO。</p>
+    `
+    },
+    { 
+        value: 5.75, label: '3行BMS', zoomLevel: 1, side: 'top', level: 0, branch: 0,
         detail: `
         <h2>TODO</h2>
         <p>TODO。</p>
     `
     },
     { 
-        value: 5.5, label: 'BMS:(0,0,0)(1,1,1)(2,2,2)<br>TODO:需要一个公认的缩写', zoomLevel: 0, side: 'top', level: 0, branch: 0,
-        detail: `
-        <h2>TODO</h2>
-        <p>TODO。</p>
-    `
+        value: 5.75, label: 'BMS:(0,0,0,0)(1,1,1,1)', zoomLevel: 1, side: 'top', level: 1, branch: 0,
     },
     { 
         value: 6, label: 'BMS极限', zoomLevel: 0, side: 'top', level: 0, branch: 0,
@@ -157,6 +317,12 @@ print(f(n,n))`
         <h2>Bashicu Matrix System (BMS) 的极限</h2>
         <p>TODO</p>
     `
+    },
+    { 
+        value: 6, label: 'BMS:(0,0,0,...)(1,1,1,...)', zoomLevel: 1, side: 'top', level: 1, branch: 0,
+    },
+    { 
+        value: 6, label: 'Y:(1,3)', zoomLevel: 1, side: 'top', level: 2, branch: 0,
     },
     
     { 
@@ -171,6 +337,22 @@ print(f(n,n))`
         detail: `
         <h2>葛立恒数</h2>
         <p>来自于拉姆齐理论，曾经作为数学证明中出现的最大数字被载入吉尼斯世界纪录。</p>
+        <h3>python</h3>
+    <code>
+    def arr(a,b,k): # knuth_arrow, a ^(k) b
+        if k == 1:
+            return a**b
+        else:
+            if b == 1:
+                return a
+            else:
+                return arr(a,arr(a,b-1,k),k-1)
+
+    G = 4
+    for i in range(64):
+        G = arr(3,3,G)
+    print(G)</code>
+
     `
     },
     
@@ -198,20 +380,27 @@ print(1/f(10))</code>
     },
     
     { 
-        value: 3.6, label: 'TREE(3)', zoomLevel: 0, side: 'bottom', level: 0, branch: 0,
+        value: 3.66, label: 'TREE(3)', zoomLevel: 0, side: 'bottom', level: 0, branch: 0,
         detail: `
         <h2>TREE(3)</h2>
         <p>来自于 Kruskal 树定理。虽然其定义很简单，但它的大小远超葛立恒数，甚至在 FGH 中也处于极高的位置。</p>
     `
     },
     { 
-        value: 3.65, label: 'TREE(n)', zoomLevel: 2, side: 'bottom', level: 0, branch: 0,
+        value: 3.7, label: 'TREE(n)', zoomLevel: 2, side: 'bottom', level: 0, branch: 0,
         detail: `
         <h2>TREE 函数</h2>
         <p>TREE(1)=1, TREE(2)=3, 而 TREE(3) 已经无法用常规语言描述其巨大。</p>
     `
     },
 
+    { 
+        value: 4.05, label: 'SCG(n)', zoomLevel: 0, side: 'bottom', level: 0, branch: 0,
+        detail: `
+        <h2>SCG 函数</h2>
+        <p>另一个著名的大数</p>
+    `
+    },
     // 分支 1 示例
     { 
         value: 7.25 + 0.0, label: 'Y:(1,4)', zoomLevel: 0, side: 'top', level: 0, branch: 1,
@@ -253,8 +442,23 @@ print(1/f(10))</code>
         value: 7.25 + 0.5, label: 'Laver table q(5)', zoomLevel: 0, side: 'top', level: 0, branch: 2,
         detail: `
         <h2>Laver table q(5)</h2>
-        <p>Laver table 周期开始变成2<sup>5</sup>的点</p>
-
+        <p>Laver table 周期开始变成2<sup>5</sup>的点
+        <br>q(0)=0, q(1)=2, q(2)=3, q(3)=5, q(4)=9
+        <br>而q(5)很可能大于目前所有已有序数记号的极限（根据@test_alpha0的分析）
+        </p>
+        <h3>python</h3>
+<code>def lt(x,y,M): # defination of Laver table
+    if y==0:
+        return (x+1) % (2**M)
+    else:
+        return lt(lt(x,y-1,M),x,M)
+M = 1
+while lt(1, 15, M) == 0: 
+    # 15 = 2^(5-1)-1
+    # This will hold true if lt(1,x)'s period <= 2^4
+    # So it will break when M = q(5)
+    M = M + 1
+print(M)</code>
     `
     },
     { 
@@ -262,13 +466,24 @@ print(1/f(10))</code>
         detail: `
         <h2>Laver table</h2>
         <p>集合论中研究的一类特殊的有限代数结构。</p>
+        <h3>python</h3>
+<code>def lt(x,y,M): # defination of Laver table
+    if y==0:
+        return (x+1) % (2**M)
+    else:
+        return lt(lt(x,y-1,M),x,M)
+N = 1000 
+M = 1
+while lt(1, 2**(N-1)-1, M) == 0: 
+    M = M + 1
+print(M) # M = q(N)</code>
     `
     },
     { 
         value: 7.25 + 1.5, label: 'LTY', zoomLevel: 0, side: 'top', level: 0, branch: 2,
         detail: `
-        <h2>LTY</h2>
-        <p>Laver table yarn。</p>
+        <h2>Laver table yarn，"洛天依"</h2>
+        <p>Laver table yarn by @test_alpha0。</p>
     `
     },
     // 分支 4 示例
