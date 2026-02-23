@@ -151,6 +151,7 @@
         }
 
         .scale-label {
+            position: relative;
             font-size: 16px;
             font-weight: 600;
             color: #1a1a1a;
@@ -176,6 +177,82 @@
             background: #fff;
         }
 
+        /* Zoom Level Specific Styles */
+        /* Lower zoom level (more important) gets higher z-index */
+        .scale-item.zoom-level-0 { z-index: 50; }
+        .scale-item.zoom-level-0 .scale-label {
+            font-size: 20px;
+            border: 3px solid #800;
+            font-weight: 700;
+        }
+
+        .scale-item.zoom-level-1 { z-index: 40; }
+        .scale-item.zoom-level-1 .scale-label {
+            font-size: 18px;
+            border: 2px solid #00f;
+            font-weight: 700;
+        }
+
+        .scale-item.zoom-level-2 { z-index: 30; }
+        .scale-item.zoom-level-2 .scale-label {
+            font-size: 16px;
+            border: 1.5px solid #090;
+            font-weight: 600;
+        }
+
+        .scale-item.zoom-level-3 { z-index: 20; }
+        .scale-item.zoom-level-3 .scale-label {
+            font-size: 12px;
+            border: 1px solid #777;
+            font-weight: 400;
+        }
+
+        .info-icon {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 14px;
+            height: 14px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230066cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='12' y1='16' x2='12' y2='12'/%3E%3Cline x1='12' y1='8' x2='12.01' y2='8'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-color: #fff;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .code-icon {
+            position: absolute;
+            top: 10px; /* Positioned below info-icon */
+            right: -6px;
+            width: 14px;
+            height: 14px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2328a745' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='16 18 22 12 16 6'/%3E%3Cpolyline points='8 6 2 12 8 18'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-color: #fff;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .btn-icon {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+            vertical-align: text-bottom;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .btn-icon.info {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230066cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='12' y1='16' x2='12' y2='12'/%3E%3Cline x1='12' y1='8' x2='12.01' y2='8'/%3E%3C/svg%3E");
+        }
+
+        .btn-icon.code {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2328a745' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='16 18 22 12 16 6'/%3E%3Cpolyline points='8 6 2 12 8 18'/%3E%3C/svg%3E");
+        }
+
         /* 弹窗样式 */
         .modal-overlay {
             position: fixed;
@@ -192,7 +269,8 @@
         }
 
         .modal-content {
-            width: 400px;
+            width: 800px;
+            max-width: 90vw;
             height: 80%;
             background: white;
             margin-right: 40px;
@@ -308,6 +386,57 @@
             left: 20px;
             pointer-events: none;
             z-index: 100;
+        }
+
+        #filter-controls {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+        }
+
+        #filter-controls button {
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            background: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        #filter-controls button:hover {
+            background: #f0f0f0;
+        }
+
+        #filter-controls button.active {
+            background: #0066cc;
+            color: white;
+            border-color: #0055aa;
+        }
+
+        #filter-controls label {
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .filter-separator {
+            height: 1px;
+            background: #eee;
+            margin: 2px 0;
         }
 
         h1 {
@@ -445,6 +574,23 @@
         <h1>Googology Scale</h1>
     </div>
 
+    <div id="filter-controls">
+        <button id="btn-show-all" class="active" onclick="setFilter('all')">显示全部</button>
+        <button id="btn-show-info" onclick="setFilter('info')"><span class="btn-icon info"></span>只显示详情</button>
+        <button id="btn-show-code" onclick="setFilter('code')"><span class="btn-icon code"></span>只显示代码</button>
+        <div class="filter-separator"></div>
+        <label><input type="checkbox" id="check-zoom-level" checked> 根据缩放隐藏</label>
+        <div id="zoom-manual-control" style="display: none; padding-top: 8px; border-top: 1px dashed #eee; margin-top: 5px;">
+            <div style="font-size: 12px; margin-bottom: 4px; color: #666;">
+                显示等级: <span id="zoom-slider-value">0</span> (0-3)
+            </div>
+            <input type="range" id="zoom-slider" min="0" max="3" step="1" value="0" style="width: 100%;">
+            <div style="display: flex; justify-content: space-between; font-size: 10px; color: #999;">
+                <span>0</span><span>1</span><span>2</span><span>3</span>
+            </div>
+        </div>
+    </div>
+
     <div id="controls">
         <div class="zoom-info">缩放倍率: <span id="zoom-level">1.0</span>x</div>
         <div class="hint" style="margin-bottom: 10px;">滚轮缩放 / 拖拽移动</div>
@@ -461,6 +607,38 @@
         const itemsContainer = document.getElementById('items-container');
         const ticksContainer = document.getElementById('ticks-container');
         const zoomLevelDisplay = document.getElementById('zoom-level');
+        const checkZoomLevel = document.getElementById('check-zoom-level');
+        const zoomManualControl = document.getElementById('zoom-manual-control');
+        const zoomSlider = document.getElementById('zoom-slider');
+        const zoomSliderValue = document.getElementById('zoom-slider-value');
+
+        let currentFilter = 'all'; // all, info, code
+
+        function setFilter(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('#filter-controls button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            if (filter === 'all') document.getElementById('btn-show-all').classList.add('active');
+            if (filter === 'info') document.getElementById('btn-show-info').classList.add('active');
+            if (filter === 'code') document.getElementById('btn-show-code').classList.add('active');
+            update();
+        }
+
+        checkZoomLevel.addEventListener('change', () => {
+            if (checkZoomLevel.checked) {
+                zoomManualControl.style.display = 'none';
+            } else {
+                zoomManualControl.style.display = 'block';
+                zoomSliderValue.innerText = zoomSlider.value;
+            }
+            update();
+        });
+
+        zoomSlider.addEventListener('input', () => {
+            zoomSliderValue.innerText = zoomSlider.value;
+            update();
+        });
 
         // 刻度尺坐标配置
         const RULER_CONFIG = {
@@ -736,13 +914,26 @@
                 const branchId = item.branch || 0;
                 const yOffset = branchId === 0 ? 0 : branchYOffsets[branchId];
                 
+                // 过滤器检查
+                const hasInfo = !!item.detail;
+                const hasCode = item.detail && (item.detail.includes('<code') || item.detail.includes('<pre'));
+
+                if (currentFilter === 'info' && !hasInfo) return;
+                if (currentFilter === 'code' && !hasCode) return;
+
                 // 缩放级别检查
                 const minZ = zoomLevels[item.zoomLevel] || 0;
-                if (zoom < minZ) return;
+                // 如果开启了缩放过滤，才检查 zoomLevel
+                if (checkZoomLevel.checked) {
+                    if (zoom < minZ) return;
+                } else {
+                    // 手动模式：只显示 zoomLevel <= slider value 的项
+                    if (item.zoomLevel > parseInt(zoomSlider.value)) return;
+                }
 
                 const div = document.createElement('div');
                 const isBottom = item.side === 'bottom';
-                div.className = `scale-item ${isBottom ? 'side-bottom' : ''}`;
+                div.className = `scale-item ${isBottom ? 'side-bottom' : ''} zoom-level-${item.zoomLevel}`;
                 
                 const x = offsetX + (item.value * pixelsPerUnit * zoom);
                 div.style.left = `${x}px`;
@@ -759,7 +950,11 @@
                     div.style.transform = `translate(-50%, -100%)`;
                 }
 
-                div.innerHTML = `<div class="scale-label">${item.label}</div>`;
+                div.innerHTML = `<div class="scale-label">
+                    ${item.label}
+                    ${item.detail ? '<span class="info-icon"></span>' : ''}
+                    ${hasCode ? '<span class="code-icon"></span>' : ''}
+                </div>`;
                 
                 // 添加点击事件显示详情
                 div.querySelector('.scale-label').addEventListener('click', (e) => {
@@ -838,7 +1033,20 @@
                 const yOffset = branchId === 0 ? 0 : branchYOffsets[branchId];
 
                 const minZ = zoomLevels[item.zoomLevel] || 0;
-                const isShown = zoom >= minZ;
+                // 如果 checkZoomLevel 开启，则进行缩放检查；否则视为显示
+                let isShown = false;
+                if (checkZoomLevel.checked) {
+                    isShown = (zoom >= minZ);
+                } else {
+                    isShown = (item.zoomLevel <= parseInt(zoomSlider.value));
+                }
+                
+                // 过滤器检查
+                const hasInfo = !!item.detail;
+                const hasCode = item.detail && (item.detail.includes('<code') || item.detail.includes('<pre'));
+
+                if (currentFilter === 'info' && !hasInfo) return;
+                if (currentFilter === 'code' && !hasCode) return;
 
                 const x = offsetX + (item.value * pixelsPerUnit * zoom);
                 if (x < -50 || x > visibleWidth + 50) return;
@@ -888,6 +1096,13 @@
 
             e.preventDefault();
             const delta = -e.deltaY;
+
+            // 滚轮滚动时，强制开启“根据缩放隐藏”
+            /* if (!checkZoomLevel.checked) {
+                checkZoomLevel.checked = true;
+                zoomManualControl.style.display = 'none';
+            } */
+
             const factor = 1.1;
             
             const oldZoom = zoom;
