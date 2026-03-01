@@ -500,7 +500,6 @@ print(f2(n,n))`
         <h2>”TERR[3]“，注意不是TREE(3)</h2>
         <h4>注意这个词条是玩梗性质的，TERR[3]并不是某种数学上的函数，只是一个错误拼写的梗</h4>
         <p>来源是up主”超级大钢球“2023年11月19日在B站发布的视频<a href="https://www.bilibili.com/video/BV1X94y1n7D1/">BV1X94y1n7D1《TERR[3]究竟比葛立恒数大多少》</a></p>
-        <p>注：据我所知视频作者并不算是营销号，只是年龄小、无法理解大数理论罢了</p>
         <p>视频的原意是TREE(3)，但up主在视频里的分析不仅与TREE(3)毫无关系，还把TREE打成了TERR。</p>
         <p>视频里经过大篇幅的胡乱构造，最终构造出了一个f<sub>&omega;*3</sub>(187196)级别的数字。</p>
         <p>注：“187196”这个数字的来源是n(4) > A<sup>A(187196)</sup>(1)，其中n是<a href="https://googology.fandom.com/wiki/Block_subsequence_theorem">Friedman n函数</a>，A是Ackermann函数，上标代表迭代。</p>
@@ -1118,59 +1117,55 @@ print(g)</code>
         value: 4, label: 'BO=&psi;(&Omega;<sub>&omega;</sub>)', zoomLevel: 0, side: 'top', level: 0, branch: 0,
         detail: `
         <h2>Buchholz ordinal (BO) = &psi;(&Omega;<sub>&omega;</sub>)</h2>
+        <h2>BMS:(0,0,0)(1,1,1) = (0,0)(1,1)(2,2)(3,3)...</h2>
         <p>TODO</p>
     `
     },
     { 
-        value: 4.1, label: '&psi;(&Omega;<sub>&omega;+1</sub>)', zoomLevel: 2, side: 'top', level: 0, branch: 0,
+        value: 4, label: 'BMS:(0,0,0)(1,1,1)', zoomLevel: 0, side: 'top', level: 1, branch: 0,
+    },
+    { 
+        value: 4.25, label: 'TFB = &psi;(&Omega;<sub>&omega;+1</sub>)', zoomLevel: 1, side: 'top', level: 0, branch: 0,
         detail: `
         <h2>TFB = &psi;(&Omega;<sub>&omega;+1</sub>)</h2>
+
         <p>也可以写作&psi;(&epsilon;<sub>&Omega;<sub>&omega;</sub>+1</sub>)
         <br>Buchholz hydra的极限
         </p>
     `
     },
     { 
-        value: 4.25, label: '&psi;(I)', zoomLevel: 1, side: 'top', level: 0, branch: 0,
+        value: 4.5, label: 'EBO', zoomLevel: 0, side: 'top', level: 0, branch: 0,
         detail: `
-        <h2>&psi;(I)</h2>
-        <p>先随便填点</p>
+        <h2>EBO: Extended Buchholz ordinal</h2>
+        <h2>BMS:(0,0,0)(1,1,1)(2,1,1)(3,1,0)(2,0,0)</h2>
+        <p><a href="https://googology.fandom.com/wiki/Extended_Buchholz's_function">Extended Buchholz's function</a> 的极限</p>
     `
     },
     { 
-        value: 4.5, label: 'TODO:写什么合适？', zoomLevel: 0, side: 'top', level: 0, branch: 0,
-        detail: `
-        <h2>TODO</h2>
-        <p>TODO</p>
-    `
+        value: 4.5, label: 'BMS:(0,0,0)(1,1,1)(2,1,1)(3,1,0)(2,0,0)', zoomLevel: 1, side: 'top', level: 1, branch: 0,
     },
     { 
         value: 5, label: 'SSO', zoomLevel: 0, side: 'top', level: 0, branch: 0,
         detail: `
+        <h2>(非正式名字) SSO: Small Stegert ordinal</h2>
         <h2>BMS:(0,0,0)(1,1,1)(2,2,0)</h2>
-        <p>TODO。</p>
+        <h4>此处采用最常见的命名。但有些时候同样的名字也会被用来表示不同的序数，所以建议使用BMS表达式。</h4>
     `
     },
     { 
-        value: 5, label: 'BMS:(0,0,0)(1,1,1)(2,2,0)', zoomLevel: 0, side: 'top', level: 1, branch: 0,
-        detail: `
-        <h2>BMS:(0,0,0)(1,1,1)(2,2,0)</h2>
-        <p>TODO。</p>
-    `
+        value: 5, label: 'BMS:(0,0,0)(1,1,1)(2,2,0)', zoomLevel: 1, side: 'top', level: 1, branch: 0,
     },
     { 
-        value: 5.5, label: 'pLRO', zoomLevel: 0, side: 'top', level: 0, branch: 0,
+        value: 5.5, label: 'LRO', zoomLevel: 0, side: 'top', level: 0, branch: 0,
         detail: `
+        <h2>(非正式名字) LRO: Large Rathjen Ordinal</h2>
         <h2>BMS:(0,0,0)(1,1,1)(2,2,2)</h2>
-        <p>TODO。</p>
+        <h4>此处采用最常见的命名。但有些时候同样的名字也会被用来表示不同的序数，所以建议使用BMS表达式。</h4>
     `
     },
     { 
-        value: 5.5, label: 'BMS:(0,0,0)(1,1,1)(2,2,2)', zoomLevel: 0, side: 'top', level: 1, branch: 0,
-        detail: `
-        <h2>BMS:(0,0,0)(1,1,1)(2,2,2)</h2>
-        <p>TODO。</p>
-    `
+        value: 5.5, label: 'BMS:(0,0,0)(1,1,1)(2,2,2)', zoomLevel: 1, side: 'top', level: 1, branch: 0,
     },
     { 
         value: 5.75, label: '3行BMS', zoomLevel: 1, side: 'top', level: 0, branch: 0,
@@ -1183,10 +1178,11 @@ print(g)</code>
         value: 5.75, label: 'BMS:(0,0,0,0)(1,1,1,1)', zoomLevel: 1, side: 'top', level: 1, branch: 0,
     },
     { 
-        value: 6, label: 'BMS极限', zoomLevel: 0, side: 'top', level: 0, branch: 0,
+        value: 6, label: 'SHO', zoomLevel: 0, side: 'top', level: 0, branch: 0,
         detail: `
-        <h2>Bashicu Matrix System (BMS) 的极限</h2>
-        <p>TODO</p>
+        <h2>SHO: BMS的极限</h2>
+        <h4>"SHO"(Small Hydra Ordinal)通常用来表示<a href="https://googology.fandom.com/wiki/Bashicu_matrix_system">Bashicu Matrix System (BMS)</a>的极限</h4>
+        <p>注：SHO(Small Hydra Ordinal)这个名字显然更适合&epsilon;<sub>0</sub>，因为&epsilon;<sub>0</sub>对应最简单的hydra，而BMS与hydra的关系并不明显。但不知为何，"SHO"阴差阳错地被用来表示BMS的极限，且目前大数圈已经习惯了这个名字。</p>
     `
     },
     { 

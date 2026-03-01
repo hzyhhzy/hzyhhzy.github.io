@@ -31,7 +31,7 @@
         #ruler-container {
             position: absolute;
             top: 50%;
-            height: 30px; /* 加粗轴 */
+            height: 60px; /* 增加容器高度以支持双层轴 */
             /* background: #ccc; 移除背景色，由 axis-segment 自己绘制 */
             transform: translateY(-50%);
             z-index: 10;
@@ -41,14 +41,14 @@
         }
 
         .axis-segment {
-            height: 100%;
+            height: 30px; /* 默认段高度 */
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 14px;
             font-weight: bold;
             white-space: nowrap;
-            padding: 0 10px;
+            padding: 0 5px;
             box-sizing: border-box;
             position: absolute;
             cursor: pointer;
@@ -602,6 +602,7 @@
     </div>
 
     <script src="items.js"></script>
+    <script src="axis_items.js"></script>
     <script>
         const app = document.getElementById('app');
         const itemsContainer = document.getElementById('items-container');
@@ -643,6 +644,7 @@
         // 刻度尺坐标配置
         const RULER_CONFIG = {
             START: 0,           // 主轴起点
+            DOUBLE_AXIS_END: 6.0, // 双层轴结束点
             FORK_X: 6.75,       // 主轴分叉点 (开始弯曲)
             BRANCH_START: 7.25, // 分支轴起点 (变回直线)
             BRANCH_END: 8.85,   // 分支轴终点 (开始合并弯曲)
@@ -711,63 +713,6 @@
             4: 225
         };
 
-        // 分支文字配置
-        const branchNames = {
-            1: { 
-                text: "Y序列以及变种", 
-                detail: `<h2>Y 序列及其变种</h2><p>由多个 googologist 共同开发的矩阵系统扩展，旨在探索 BMS 之后的增长极限。</p>`
-            },
-            2: { 
-                text: "Laver table相关", 
-                detail: `<h2>Laver Table 相关</h2><p>源自集合论中的大基数公理，与有限代数结构的组合性质密切相关，其增长速度非常独特。</p>`
-            },
-            3: { 
-                text: "PTO系列", 
-                detail: `<h2>证明论序数 (PTO) 系列</h2><p>衡量数学系统“强度”的标尺。从 ZFC 到带有各种大基数公理的系统，其对应的增长率是目前已知最快的。</p>`
-            },
-            4: { 
-                text: "未被研究的内容", 
-                detail: `<h2>未被研究的内容</h2><p>大数研究领域中尚未被完全形式化或缺乏深入分析的定义。</p>`
-            }
-        };
-
-        // 坐标轴分段颜色和文字配置
-        const axisSegments = [
-            { 
-                start: 0, end: 1, text: "现实世界", bg: "#ADD8E6", color: "#000",
-                detail: `<h2>现实世界</h2><p>从 0 到 10<sup>10</sup> 左右的范围。包含了人类日常生活中能接触到的所有数字，以及计算机能够处理的基础规模。</p>`
-            },
-            { 
-                start: 1, end: 2, text: "超运算", bg: "#87CEEB", color: "#000",
-                detail: `<h2>超运算</h2><p>进入了指数、泰特劳斯（Tetration）等超运算的领域。葛立恒数等经典大数就在这个阶段的末尾出现。</p>`
-            },
-            { 
-                start: 2, end: 3, text: "基础FGH", bg: "#90EE90", color: "#000",
-                detail: `<h2>基础快速增长层次结构 (FGH)</h2><p>使用序数递归定义的函数系统。从 &omega; 到 &epsilon;<sub>0</sub> 的阶段，涵盖了阿克曼函数、Goodstein 序列等。</p>`
-            },
-            { 
-                start: 3, end: 4, text: "序数坍缩函数（OCF）", bg: "#FFD700", color: "#000",
-                detail: `<h2>序数坍缩函数 (OCF)</h2><p>为了表示更大的序数，引入了坍缩机制。这使得我们能定义出远超皮亚诺算术（PA）强度的增长率。</p>`
-            },
-            { 
-                start: 4, end: 5, text: "扩展OCF", bg: "#FF6000", color: "#000",
-                detail: `<h2>扩展 OCF</h2><p>进一步加强坍缩函数，引入更大的基数（如 &Omega;<sub>&omega;</sub>）来构造更强的序数系统。</p>`
-            },
-            { 
-                start: 5, end: 6.0, text: "BMS", bg: "#C00000", color: "#fff",
-                detail: `<h2>Bashicu Matrix System</h2><p>TODO</p>`
-            },
-            { 
-                start: 6.0, end: 6.75, text: "前沿未知领域", bg: "#000", color: "#fff",
-                detail: `<h2>进入未知领域</h2><p>在这里，各种强大的系统开始交汇，分支之间的大小顺序往往是当前大数研究的前沿课题。</p>`
-            },
-            // 分叉范围 6.75 - 9.25 不绘制主轴
-            {
-                start: RULER_CONFIG.UNCOMPUTABLE_START, end: RULER_CONFIG.END, text: "不可计算函数", bg: "#666", color: "#fff",
-                detail: `<h2>不可计算函数 (Uncomputable Functions)</h2><p>进入了逻辑学与计算理论的极限。这里的增长速度超越了任何算法可以定义的范畴，只有通过逻辑语言或停机问题等非构造性手段才能描述。</p>`
-            }
-        ];
-
         function update() {
             renderItems();
             renderTicks();
@@ -814,6 +759,16 @@
                 segDiv.style.color = seg.color;
                 segDiv.innerText = seg.text;
                 
+                // (0, DOUBLE_AXIS_END) 范围内的段处于上半部分
+                if (seg.end <= RULER_CONFIG.DOUBLE_AXIS_END) {
+                    segDiv.style.top = '0';
+                    segDiv.style.fontSize = '12px';
+                    segDiv.style.zIndex = '30'; // 提高层级，以免被分支遮挡
+                } else {
+                    // 其他段居中显示
+                    segDiv.style.top = '15px';
+                }
+
                 // 添加点击事件显示详情
                 segDiv.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -823,6 +778,34 @@
                 });
                 
                 ruler.appendChild(segDiv);
+            });
+
+            // 添加下半部分细化段 (来自 axisSubSegments)
+            axisSubSegments.forEach(sub => {
+                const subSeg = document.createElement('div');
+                subSeg.className = 'axis-segment sub-segment';
+                const segLeft = (sub.start - RULER_CONFIG.START) * unitWidth;
+                const segWidth = (sub.end - sub.start) * unitWidth;
+                subSeg.style.left = `${segLeft}px`;
+                subSeg.style.width = `${segWidth + 5}px`;
+                subSeg.style.height = '30px';
+                subSeg.style.top = '30px';
+                subSeg.style.zIndex = '30'; // 提高层级
+                subSeg.style.backgroundColor = sub.bg;
+                subSeg.style.color = sub.color || '#333';
+                subSeg.style.fontSize = '11px';
+                subSeg.style.borderTop = '1px solid rgba(0,0,0,0.1)';
+                subSeg.innerText = sub.text;
+
+                // 添加点击事件显示详情（如果有的话）
+                if (sub.detail) {
+                    subSeg.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        showModal(sub.detail);
+                    });
+                }
+                
+                ruler.appendChild(subSeg);
             });
 
             const centerY = window.innerHeight / 2;
@@ -1146,7 +1129,7 @@
             update();
         });
 
-        // 初始化：居中视图
+        // 初始化
         resetView();
     </script>
 </body>
