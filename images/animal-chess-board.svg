@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+<title>Animal Chess Board</title>
+<desc>A textless animal chess style board with red and blue pieces.</desc>
+<rect width="640" height="480" rx="32" fill="#091320"/>
+<rect x="125" y="55" width="390" height="370" rx="24" fill="#d4b07b" stroke="#6b4b27" stroke-width="8"/>
+<g stroke="#6b4b27" stroke-width="4">
+<path d="M168 55v370M211 55v370M254 55v370M297 55v370M340 55v370M383 55v370M426 55v370M469 55v370"/>
+<path d="M125 96h390M125 137h390M125 178h390M125 219h390M125 260h390M125 301h390M125 342h390M125 383h390"/>
+</g>
+<rect x="125" y="178" width="390" height="82" fill="#72bcd4" opacity="0.35"/>
+<g>
+<circle cx="168" cy="96" r="17" fill="#ff7c66"/>
+<circle cx="254" cy="96" r="17" fill="#ff7c66"/>
+<circle cx="340" cy="96" r="17" fill="#ff7c66"/>
+<circle cx="426" cy="96" r="17" fill="#ff7c66"/>
+<circle cx="211" cy="137" r="17" fill="#ff7c66"/>
+<circle cx="383" cy="137" r="17" fill="#ff7c66"/>
+<circle cx="168" cy="383" r="17" fill="#71a7ff"/>
+<circle cx="254" cy="383" r="17" fill="#71a7ff"/>
+<circle cx="340" cy="383" r="17" fill="#71a7ff"/>
+<circle cx="426" cy="383" r="17" fill="#71a7ff"/>
+<circle cx="211" cy="342" r="17" fill="#71a7ff"/>
+<circle cx="383" cy="342" r="17" fill="#71a7ff"/>
+</g>
+<g fill="#0b1a31" opacity="0.55">
+<rect x="154" y="82" width="28" height="28" rx="9"/>
+<rect x="240" y="82" width="28" height="28" rx="9"/>
+<rect x="326" y="82" width="28" height="28" rx="9"/>
+<rect x="412" y="82" width="28" height="28" rx="9"/>
+<rect x="197" y="123" width="28" height="28" rx="9"/>
+<rect x="369" y="123" width="28" height="28" rx="9"/>
+<rect x="154" y="369" width="28" height="28" rx="9"/>
+<rect x="240" y="369" width="28" height="28" rx="9"/>
+<rect x="326" y="369" width="28" height="28" rx="9"/>
+<rect x="412" y="369" width="28" height="28" rx="9"/>
+<rect x="197" y="328" width="28" height="28" rx="9"/>
+<rect x="369" y="328" width="28" height="28" rx="9"/>
+</g>
+</svg>

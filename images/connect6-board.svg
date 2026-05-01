@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">六子棋棋盘示意图</title>
+  <desc id="desc">展示六子棋双落子节奏和开局库概念的示意图。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#12253f"/>
+      <stop offset="100%" stop-color="#09111d"/>
+    </linearGradient>
+    <linearGradient id="board" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#edd5a3"/>
+      <stop offset="100%" stop-color="#d09c54"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" rx="36" fill="url(#bg)"/>
+  <rect x="120" y="42" width="400" height="396" rx="22" fill="url(#board)" stroke="#f3e3c3" stroke-width="3"/>
+  <g stroke="#6d4a20" stroke-width="2.2" opacity="0.78">
+    <g>
+      <line x1="152" y1="74" x2="152" y2="406"/>
+      <line x1="188" y1="74" x2="188" y2="406"/>
+      <line x1="224" y1="74" x2="224" y2="406"/>
+      <line x1="260" y1="74" x2="260" y2="406"/>
+      <line x1="296" y1="74" x2="296" y2="406"/>
+      <line x1="332" y1="74" x2="332" y2="406"/>
+      <line x1="368" y1="74" x2="368" y2="406"/>
+      <line x1="404" y1="74" x2="404" y2="406"/>
+      <line x1="440" y1="74" x2="440" y2="406"/>
+      <line x1="476" y1="74" x2="476" y2="406"/>
+    </g>
+    <g>
+      <line x1="152" y1="74" x2="488" y2="74"/>
+      <line x1="152" y1="110" x2="488" y2="110"/>
+      <line x1="152" y1="146" x2="488" y2="146"/>
+      <line x1="152" y1="182" x2="488" y2="182"/>
+      <line x1="152" y1="218" x2="488" y2="218"/>
+      <line x1="152" y1="254" x2="488" y2="254"/>
+      <line x1="152" y1="290" x2="488" y2="290"/>
+      <line x1="152" y1="326" x2="488" y2="326"/>
+      <line x1="152" y1="362" x2="488" y2="362"/>
+      <line x1="152" y1="398" x2="488" y2="398"/>
+    </g>
+  </g>
+  <g fill="#151a22">
+    <circle cx="260" cy="182" r="15"/>
+    <circle cx="296" cy="218" r="15"/>
+    <circle cx="332" cy="254" r="15"/>
+    <circle cx="368" cy="290" r="15"/>
+  </g>
+  <g fill="#f8fbff">
+    <circle cx="224" cy="218" r="15"/>
+    <circle cx="260" cy="254" r="15"/>
+    <circle cx="404" cy="182" r="15"/>
+    <circle cx="440" cy="218" r="15"/>
+  </g>
+  <g stroke="#81f2a5" stroke-width="8" stroke-linecap="round" opacity="0.85">
+    <line x1="242" y1="200" x2="278" y2="236"/>
+    <line x1="386" y1="164" x2="422" y2="200"/>
+  </g>
+  <path d="M214 324 C272 298, 332 299, 438 328" fill="none" stroke="#7ad8ff" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+</svg>

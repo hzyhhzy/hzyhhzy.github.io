@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+<title>Math Problems Graphic</title>
+<desc>A textless mathematical board style graphic with grids and paths.</desc>
+<rect width="640" height="480" rx="32" fill="#091320"/>
+<rect x="90" y="90" width="460" height="300" rx="24" fill="#101d30" stroke="#6fd8ff" stroke-width="4"/>
+<g stroke="#28496b" stroke-width="2">
+<path d="M140 110v260M190 110v260M240 110v260M290 110v260M340 110v260M390 110v260M440 110v260M490 110v260"/>
+<path d="M110 140h420M110 190h420M110 240h420M110 290h420M110 340h420"/>
+</g>
+<g fill="none" stroke="#8ef0a8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M140 340L190 290L240 290L290 240L340 240L390 190L440 190"/>
+</g>
+<g fill="#ffcf66">
+<circle cx="140" cy="340" r="11"/>
+<circle cx="240" cy="290" r="11"/>
+<circle cx="340" cy="240" r="11"/>
+<circle cx="440" cy="190" r="11"/>
+</g>
+<g fill="#7ad8ff">
+<circle cx="190" cy="290" r="11"/>
+<circle cx="290" cy="240" r="11"/>
+<circle cx="390" cy="190" r="11"/>
+</g>
+<g fill="none" stroke="#d6a7ff" stroke-width="5">
+<path d="M470 330c-10-46 8-82 50-100"/>
+<path d="M470 330c-32-16-54-46-58-88"/>
+</g>
+</svg>

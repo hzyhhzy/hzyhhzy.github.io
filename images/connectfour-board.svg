@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+<title>Connect Four Board</title>
+<desc>A textless connect four board with red and yellow pieces.</desc>
+<defs>
+<linearGradient id="cf-bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#173f8c"/>
+<stop offset="100%" stop-color="#0b1f4e"/>
+</linearGradient>
+</defs>
+<rect width="640" height="480" rx="32" fill="#0a1324"/>
+<rect x="120" y="70" width="400" height="320" rx="28" fill="url(#cf-bg)" stroke="#6aa2ff" stroke-width="6"/>
+<g fill="#091221">
+<circle cx="170" cy="130" r="26"/><circle cx="230" cy="130" r="26"/><circle cx="290" cy="130" r="26"/><circle cx="350" cy="130" r="26"/><circle cx="410" cy="130" r="26"/><circle cx="470" cy="130" r="26"/>
+<circle cx="170" cy="190" r="26"/><circle cx="230" cy="190" r="26"/><circle cx="290" cy="190" r="26"/><circle cx="350" cy="190" r="26"/><circle cx="410" cy="190" r="26"/><circle cx="470" cy="190" r="26"/>
+<circle cx="170" cy="250" r="26"/><circle cx="230" cy="250" r="26"/><circle cx="290" cy="250" r="26"/><circle cx="350" cy="250" r="26"/><circle cx="410" cy="250" r="26"/><circle cx="470" cy="250" r="26"/>
+<circle cx="170" cy="310" r="26"/><circle cx="230" cy="310" r="26"/><circle cx="290" cy="310" r="26"/><circle cx="350" cy="310" r="26"/><circle cx="410" cy="310" r="26"/><circle cx="470" cy="310" r="26"/>
+</g>
+<g>
+<circle cx="170" cy="310" r="22" fill="#ff5a52"/>
+<circle cx="230" cy="310" r="22" fill="#ffd35c"/>
+<circle cx="290" cy="310" r="22" fill="#ff5a52"/>
+<circle cx="350" cy="310" r="22" fill="#ffd35c"/>
+<circle cx="410" cy="310" r="22" fill="#ff5a52"/>
+<circle cx="230" cy="250" r="22" fill="#ffd35c"/>
+<circle cx="290" cy="250" r="22" fill="#ff5a52"/>
+<circle cx="350" cy="250" r="22" fill="#ffd35c"/>
+<circle cx="410" cy="250" r="22" fill="#ff5a52"/>
+<circle cx="290" cy="190" r="22" fill="#ff5a52"/>
+<circle cx="350" cy="190" r="22" fill="#ffd35c"/>
+<circle cx="410" cy="190" r="22" fill="#ff5a52"/>
+<circle cx="350" cy="130" r="22" fill="#ffd35c"/>
+</g>
+</svg>

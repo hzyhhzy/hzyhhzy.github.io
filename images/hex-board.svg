@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">Hex 棋盘示意图</title>
+  <desc id="desc">由六边形网格构成的 Hex 棋盘风格插图。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#112642"/>
+      <stop offset="100%" stop-color="#09111d"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" rx="36" fill="url(#bg)"/>
+  <g transform="translate(172 88)">
+    <g fill="none" stroke="#7ba5d3" stroke-width="4" opacity="0.9">
+      <polygon points="60,0 105,26 105,78 60,104 15,78 15,26"/>
+      <polygon points="150,0 195,26 195,78 150,104 105,78 105,26"/>
+      <polygon points="240,0 285,26 285,78 240,104 195,78 195,26"/>
+      <polygon points="15,78 60,104 60,156 15,182 -30,156 -30,104"/>
+      <polygon points="105,78 150,104 150,156 105,182 60,156 60,104"/>
+      <polygon points="195,78 240,104 240,156 195,182 150,156 150,104"/>
+      <polygon points="285,78 330,104 330,156 285,182 240,156 240,104"/>
+      <polygon points="60,156 105,182 105,234 60,260 15,234 15,182"/>
+      <polygon points="150,156 195,182 195,234 150,260 105,234 105,182"/>
+      <polygon points="240,156 285,182 285,234 240,260 195,234 195,182"/>
+    </g>
+    <g fill="#81f2a5">
+      <polygon points="60,0 105,26 105,78 60,104 15,78 15,26"/>
+      <polygon points="150,156 195,182 195,234 150,260 105,234 105,182"/>
+    </g>
+    <g fill="#7ad8ff">
+      <polygon points="240,0 285,26 285,78 240,104 195,78 195,26"/>
+      <polygon points="105,78 150,104 150,156 105,182 60,156 60,104"/>
+      <polygon points="240,156 285,182 285,234 240,260 195,234 195,182"/>
+    </g>
+  </g>
+  <path d="M148 120 C182 102, 225 98, 262 112 C301 127, 338 164, 392 232 C423 271, 462 304, 504 320" fill="none" stroke="#81f2a5" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+  <path d="M454 104 C412 122, 382 142, 346 182 C311 220, 286 253, 234 308 C212 331, 180 349, 138 362" fill="none" stroke="#7ad8ff" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+</svg>

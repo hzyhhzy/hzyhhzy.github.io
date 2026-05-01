@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+<title>Other Games Board</title>
+<desc>A textless collage of abstract board game motifs.</desc>
+<rect width="640" height="480" rx="32" fill="#091320"/>
+<rect x="70" y="70" width="220" height="150" rx="24" fill="#18355a" stroke="#6fd8ff" stroke-width="4"/>
+<rect x="350" y="70" width="220" height="150" rx="24" fill="#243a2a" stroke="#8ef0a8" stroke-width="4"/>
+<rect x="70" y="260" width="220" height="150" rx="24" fill="#3a2b1e" stroke="#ffd36f" stroke-width="4"/>
+<rect x="350" y="260" width="220" height="150" rx="24" fill="#2e2244" stroke="#d3a8ff" stroke-width="4"/>
+<g stroke="#8bb2d8" stroke-width="3">
+<path d="M110 110h140M110 150h140M110 190h140M150 90v110M190 90v110M230 90v110"/>
+</g>
+<g>
+<circle cx="150" cy="110" r="12" fill="#ff745c"/>
+<circle cx="190" cy="150" r="12" fill="#ffd36f"/>
+<circle cx="230" cy="190" r="12" fill="#7ad8ff"/>
+</g>
+<g fill="none" stroke="#9fe0b1" stroke-width="8" stroke-linecap="round">
+<path d="M395 190c28-62 94-62 130 0"/>
+<path d="M395 100c28 62 94 62 130 0"/>
+</g>
+<g fill="#9fe0b1">
+<circle cx="420" cy="145" r="10"/>
+<circle cx="470" cy="145" r="10"/>
+<circle cx="520" cy="145" r="10"/>
+</g>
+<g stroke="#f1cf8b" stroke-width="4">
+<path d="M110 300h140M110 340h140M150 280v120M190 280v120M230 280v120"/>
+</g>
+<g fill="#f1cf8b">
+<rect x="136" y="286" width="28" height="28" rx="8"/>
+<rect x="176" y="326" width="28" height="28" rx="8"/>
+<rect x="216" y="366" width="28" height="28" rx="8"/>
+</g>
+<g stroke="#cda6ff" stroke-width="4" fill="none">
+<circle cx="460" cy="335" r="58"/>
+<path d="M402 335h116M460 277v116M418 293l84 84M502 293l-84 84"/>
+</g>
+<g fill="#cda6ff">
+<circle cx="460" cy="335" r="10"/>
+<circle cx="418" cy="293" r="8"/>
+<circle cx="502" cy="377" r="8"/>
+</g>
+</svg>

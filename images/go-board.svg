@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">围棋棋盘角部示意图</title>
+  <desc id="desc">显示棋盘左下角局部，以及按指定坐标摆放的黑白棋子。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#10233a"/>
+      <stop offset="100%" stop-color="#09121f"/>
+    </linearGradient>
+    <linearGradient id="board" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ead097"/>
+      <stop offset="100%" stop-color="#c99650"/>
+    </linearGradient>
+    <radialGradient id="blackStone" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#4a4f57"/>
+      <stop offset="100%" stop-color="#11151b"/>
+    </radialGradient>
+    <radialGradient id="whiteStone" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#dfe5ee"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="480" rx="36" fill="url(#bg)"/>
+  <rect x="105" y="22" width="470" height="416" fill="url(#board)"/>
+  <g stroke="#533717" stroke-width="3" opacity="0.9">
+    <line x1="125" y1="410" x2="125" y2="22"/>
+    <line x1="185" y1="410" x2="185" y2="22"/>
+    <line x1="245" y1="410" x2="245" y2="22"/>
+    <line x1="305" y1="410" x2="305" y2="22"/>
+    <line x1="365" y1="410" x2="365" y2="22"/>
+    <line x1="425" y1="410" x2="425" y2="22"/>
+    <line x1="485" y1="410" x2="485" y2="22"/>
+    <line x1="545" y1="410" x2="545" y2="22"/>
+    <line x1="125" y1="410" x2="575" y2="410"/>
+    <line x1="125" y1="350" x2="575" y2="350"/>
+    <line x1="125" y1="290" x2="575" y2="290"/>
+    <line x1="125" y1="230" x2="575" y2="230"/>
+    <line x1="125" y1="170" x2="575" y2="170"/>
+    <line x1="125" y1="110" x2="575" y2="110"/>
+    <line x1="125" y1="50" x2="575" y2="50"/>
+  </g>
+  <g fill="#4c3314">
+    <circle cx="245" cy="290" r="5"/>
+  </g>
+  <g>
+    <circle cx="305" cy="230" r="24" fill="url(#blackStone)"/>
+    <circle cx="245" cy="230" r="24" fill="url(#blackStone)"/>
+    <circle cx="365" cy="230" r="24" fill="url(#blackStone)"/>
+    <circle cx="365" cy="290" r="24" fill="url(#blackStone)"/>
+    <circle cx="305" cy="350" r="24" fill="url(#blackStone)"/>
+    <circle cx="245" cy="350" r="24" fill="url(#blackStone)"/>
+
+    <circle cx="245" cy="290" r="24" fill="url(#whiteStone)"/>
+    <circle cx="305" cy="290" r="24" fill="url(#whiteStone)"/>
+    <circle cx="365" cy="350" r="24" fill="url(#whiteStone)"/>
+    <circle cx="425" cy="290" r="24" fill="url(#whiteStone)"/>
+    <circle cx="425" cy="410" r="24" fill="url(#whiteStone)"/>
+    <circle cx="485" cy="350" r="24" fill="url(#whiteStone)"/>
+  </g>
+</svg>

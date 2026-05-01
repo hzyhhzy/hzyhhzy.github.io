@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+<title>Chinese Checkers Board</title>
+<desc>A textless chinese checkers style board with clustered marbles.</desc>
+<rect width="640" height="480" rx="32" fill="#091320"/>
+<polygon points="320,70 382,178 500,178 412,260 454,380 320,308 186,380 228,260 140,178 258,178" fill="#17354f" stroke="#78d7ff" stroke-width="6"/>
+<g fill="#0f2235" stroke="#6aa2c7" stroke-width="2">
+<circle cx="320" cy="110" r="11"/>
+<circle cx="298" cy="148" r="11"/><circle cx="342" cy="148" r="11"/>
+<circle cx="276" cy="186" r="11"/><circle cx="320" cy="186" r="11"/><circle cx="364" cy="186" r="11"/>
+<circle cx="232" cy="186" r="11"/><circle cx="408" cy="186" r="11"/>
+<circle cx="210" cy="224" r="11"/><circle cx="254" cy="224" r="11"/><circle cx="298" cy="224" r="11"/><circle cx="342" cy="224" r="11"/><circle cx="386" cy="224" r="11"/><circle cx="430" cy="224" r="11"/>
+<circle cx="188" cy="262" r="11"/><circle cx="232" cy="262" r="11"/><circle cx="276" cy="262" r="11"/><circle cx="320" cy="262" r="11"/><circle cx="364" cy="262" r="11"/><circle cx="408" cy="262" r="11"/><circle cx="452" cy="262" r="11"/>
+<circle cx="232" cy="300" r="11"/><circle cx="276" cy="300" r="11"/><circle cx="320" cy="300" r="11"/><circle cx="364" cy="300" r="11"/><circle cx="408" cy="300" r="11"/>
+<circle cx="276" cy="338" r="11"/><circle cx="320" cy="338" r="11"/><circle cx="364" cy="338" r="11"/>
+</g>
+<g>
+<circle cx="320" cy="110" r="9" fill="#ff8a5f"/>
+<circle cx="298" cy="148" r="9" fill="#ff8a5f"/>
+<circle cx="342" cy="148" r="9" fill="#ff8a5f"/>
+<circle cx="276" cy="186" r="9" fill="#ff8a5f"/>
+<circle cx="364" cy="186" r="9" fill="#ff8a5f"/>
+<circle cx="320" cy="338" r="9" fill="#6de0ff"/>
+<circle cx="276" cy="338" r="9" fill="#6de0ff"/>
+<circle cx="364" cy="338" r="9" fill="#6de0ff"/>
+<circle cx="320" cy="300" r="9" fill="#6de0ff"/>
+<circle cx="276" cy="300" r="9" fill="#6de0ff"/>
+</g>
+</svg>
