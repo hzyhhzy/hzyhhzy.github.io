@@ -119,7 +119,6 @@
                     <img src="images/go-board.svg" alt="围棋训练与围棋变种专题示意图">
                     <div class="topic-card-body">
                     <h3>1. 围棋训练与围棋变种</h3>
-                    <p>把围棋训练路线与 README 里的各种围棋变种拆开整理，既保留主线模型，也保留规则实验。主页这里先把训练改进、公开变种和可直接点击的仓库入口一起挂出来。</p>
                     <div class="subtopic-list">
                         <div class="subtopic-item">
                             <h4>1.1 训练相关改进</h4>
@@ -134,7 +133,7 @@
                         </div>
                         <div class="subtopic-item">
                             <h4>1.2 围棋变种</h4>
-                            <p>包括 Capture Go、Kill-all Go、Hex Go、加权面积围棋等，更多变种见详情页与其他小众棋种总表。</p>
+                            <p>包括 Capture Go、Kill-all Go、Hex Go、禁邻手、Hex 棋盘吃子棋、加权面积围棋等。</p>
                             <div class="compact-table compact-table-tight">
                                 <div class="compact-row header">
                                     <div>变种</div>
@@ -157,14 +156,34 @@
                                     <div><span>暂无</span></div>
                                 </div>
                                 <div class="compact-row">
+                                    <div>禁止在上一手旁边</div>
+                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/GoModify2a" target="_blank" rel="noreferrer">GoModify2a</a></div>
+                                    <div><span>暂无</span></div>
+                                </div>
+                                <div class="compact-row">
+                                    <div>Hex棋盘吃子棋</div>
+                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/HexCaptureGo" target="_blank" rel="noreferrer">HexCaptureGo</a></div>
+                                    <div><span>暂无</span></div>
+                                </div>
+                                <div class="compact-row">
                                     <div>加权面积围棋</div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/weightGo" target="_blank" rel="noreferrer">weightGo</a></div>
                                     <div><span>暂无</span></div>
                                 </div>
                                 <div class="compact-row">
-                                    <div>...</div>
-                                    <div><span>...</span></div>
-                                    <div><span>...</span></div>
+                                    <div>没气先吃自己的棋子</div>
+                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/FirstCaptureMe" target="_blank" rel="noreferrer">FirstCaptureMe</a></div>
+                                    <div><span>暂无</span></div>
+                                </div>
+                                <div class="compact-row">
+                                    <div>一子千金：吃1子4目</div>
+                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/yiziqianjin" target="_blank" rel="noreferrer">yiziqianjin</a></div>
+                                    <div><span>暂无</span></div>
+                                </div>
+                                <div class="compact-row">
+                                    <div>谁先没地方走谁输</div>
+                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/yiziqianjin" target="_blank" rel="noreferrer">yiziqianjin</a></div>
+                                    <div><span>暂无</span></div>
                                 </div>
                             </div>
                             <div class="link-row">
@@ -179,11 +198,12 @@
                     <img src="images/gomoku-board.svg" alt="五子棋与变种专题示意图">
                     <div class="topic-card-body">
                     <h3>2. 五子棋与变种</h3>
-                    <p>五子棋主线与各种规则改造分开整理，主线突出 KataGomo 本体，变种部分突出 README 中的分支族谱。首页直接把主线 branch 和最新公开 release 挂出来，方便直接点。</p>
                     <div class="subtopic-list">
                         <div class="subtopic-item">
                             <h4>2.1 KataGomo：最强五子棋 AI</h4>
                             <p>覆盖无禁手、无禁手六不胜、有禁手和 Caro 规则。感谢智子围棋提供训练算力。</p>
+                            <p>智子版最近更新：2026.04.04</p>
+                            <p>公开版最近更新：2025.02.06</p>
                             <div class="link-row">
                                 <a class="resource-link download-link" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Gomoku_20250206" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>KataGomo下载（电脑版，单机版+智子）</a>
                                 <a class="resource-link download-link" href="http://zhizigomoku.com/" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>智子五子棋手机版下载</a>
@@ -192,8 +212,16 @@
                             </div>
                         </div>
                         <div class="subtopic-item">
-                            <h4>2.2 五子棋变种</h4>
-                            <p>根据 README 稍微归纳 Caro、禁点五子棋、吃子五子棋、莫棋、等差连六等。</p>
+                            <h4>2.2 五子棋NNUE</h4>
+                            <p>Rapfi（第二强五子棋AI、CPU上最强五子棋AI）的NNUE网络的前身。</p>
+                            <div class="link-row">
+                                <a class="resource-link" href="https://github.com/hzyhhzy/gomoku_nnue" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
+                                <a class="resource-link dataset-link" href="https://arxiv.org/abs/2503.13178" target="_blank" rel="noreferrer"><span class="resource-icon dataset" aria-hidden="true"></span>论文</a>
+                            </div>
+                        </div>
+                        <div class="subtopic-item">
+                            <h4>2.3 五子棋变种</h4>
+                            <p>包括 Caro、Pente、3D 五子棋、禁点五子棋、连五末手规则、双线五子棋、莫棋、连五计数、吃子五子棋、等差数列六子棋等。</p>
                             <div class="compact-table compact-table-tight">
                                 <div class="compact-row header">
                                     <div>变种</div>
@@ -206,13 +234,38 @@
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Gomoku_20250206" target="_blank" rel="noreferrer">Gomoku_20250206</a></div>
                                 </div>
                                 <div class="compact-row">
+                                    <div>Pente</div>
+                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Pente2025" target="_blank" rel="noreferrer">Pente2025</a></div>
+                                    <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Pente_20250726" target="_blank" rel="noreferrer">Pente_20250726</a></div>
+                                </div>
+                                <div class="compact-row">
+                                    <div>3D五子棋</div>
+                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/3d_gomoku" target="_blank" rel="noreferrer">3d_gomoku</a></div>
+                                    <div><span>暂无</span></div>
+                                </div>
+                                <div class="compact-row">
                                     <div>禁点五子棋</div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/GomBanLoc" target="_blank" rel="noreferrer">GomBanLoc</a></div>
                                     <div><span>暂无</span></div>
                                 </div>
                                 <div class="compact-row">
+                                    <div>连五的最后一手要在两端</div>
+                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/GomNewRule1" target="_blank" rel="noreferrer">GomNewRule1</a> / <a href="https://github.com/hzyhhzy/KataGomo/tree/GomNewRule2" target="_blank" rel="noreferrer">GomNewRule2</a></div>
+                                    <div><span>暂无</span></div>
+                                </div>
+                                <div class="compact-row">
+                                    <div>双线五子棋</div>
+                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_DifLineGomoku" target="_blank" rel="noreferrer">newgame_DifLineGomoku</a></div>
+                                    <div><span>暂无</span></div>
+                                </div>
+                                <div class="compact-row">
                                     <div>莫棋</div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_MoQiGomoku" target="_blank" rel="noreferrer">newgame_MoQiGomoku</a></div>
+                                    <div><span>暂无</span></div>
+                                </div>
+                                <div class="compact-row">
+                                    <div>连五计数</div>
+                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/fiveCount" target="_blank" rel="noreferrer">fiveCount</a></div>
                                     <div><span>暂无</span></div>
                                 </div>
                                 <div class="compact-row">
@@ -238,10 +291,10 @@
                     <img src="images/hex-board.svg" alt="Hex 棋专题示意图">
                     <div class="topic-card-body">
                     <h3>3. Hex 棋</h3>
-                    <p>一条线介绍 KataHex 本身，另一条线单独介绍 <code>HexTemplate</code> 分支里的特定局面分析。首页这里把主线分支、研究分支和当前主 release 都直接列出。</p>
                     <div class="subtopic-list">
                         <div class="subtopic-item">
                             <h4>3.1 KataHex：最强 Hex 棋 AI</h4>
+                            <p>最近更新：2025.01.31</p>
                             <div class="link-row">
                                 <a class="resource-link download-link" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Hex_20250131" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>软件下载</a>
                                 <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/Hex2024" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
@@ -251,7 +304,6 @@
                         </div>
                         <div class="subtopic-item">
                             <h4>3.2 特定局面分析</h4>
-                            <p>集中介绍 <code>HexTemplate</code> 分支与模板化特殊局面的研究。</p>
                             <div class="link-row">
                                 <a href="games/hex-template.html">详情页</a>
                             </div>
@@ -268,8 +320,9 @@
                     <div class="subtopic-list">
                         <div class="subtopic-item">
                             <h4>4.1 KataConnect6：最强六子棋 AI</h4>
+                            <p>最近更新：2026.04.06</p>
                             <div class="link-row">
-                                <a class="resource-link download-link" href="https://github.com/hzyhhzy/KataGomo/releases/tag/ConnectSix_20250505" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>Kata-Connect6以及开局库下载</a>
+                                <a class="resource-link download-link" href="https://github.com/hzyhhzy/KataGomo/releases/tag/ConnectSix_20260406" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>Kata-Connect6以及开局库下载</a>
                                 <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/ConnectSix2024" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
                                 <a href="games/connect6.html">详情页</a>
                             </div>
@@ -297,7 +350,7 @@
                     <div class="topic-card-body">
                     <h3>5. Ataxx</h3>
                     <p><strong>KataAtaxx：最强 Ataxx 棋 AI</strong></p>
-                    <p>这一条线的信息最完整，首页直接给出分支、release、数据集和一个最醒目的结论。当前已公开的数据集还包括 Hex、NoGo、斗兽棋和智子围棋自对弈训练集，所以这一页不再是唯一的数据集入口。</p>
+                    <p>最近更新：2026.05.01</p>
                     <div class="link-row">
                         <a class="resource-link download-link" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Ataxx_20260501" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>软件下载</a>
                         <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/Ataxx-onnx" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
@@ -312,13 +365,17 @@
                     <img src="images/connectfour-board.svg" alt="重力四子棋专题示意图">
                     <div class="topic-card-body">
                     <h3>6. 重力四子棋</h3>
-                    <p>当前主页先保留最关键的两个入口：主分支和 release。不同棋盘尺寸的结论则继续放在详情页里慢慢补完整。</p>
+                    <p><strong>最强重力四子棋 AI</strong></p>
+                    <p>最近更新：2024.10.19</p>
                     <div class="link-row">
                         <a class="resource-link download-link" href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/ConnectFour_20241019" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>软件下载</a>
                         <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/ConnectFour2024" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
                         <a href="games/connectfour.html">详情页</a>
                     </div>
-                    <p>对各种棋盘尺寸的结论见详情页。</p>
+                    <figure class="topic-inline-figure">
+                        <img src="games/connect4_results.png" alt="四子棋小于等于20x20棋盘的结论图">
+                        <figcaption>四子棋小于等于20x20棋盘的结论</figcaption>
+                    </figure>
                     </div>
                 </article>
 
@@ -327,10 +384,11 @@
                     <div class="topic-card-body">
                     <h3>7. 斗兽棋</h3>
                     <p><strong>最强斗兽棋 AI</strong></p>
-                    <p>主页这里直接保留公开可点的 branch 和 release，并在一句话里突出目前最重要的判断：斗兽棋几乎必和棋。</p>
+                    <p>最近更新（AI引擎）：2025.02.16</p>
+                    <p>最近更新（界面）：2026.03.07</p>
                     <div class="link-row">
-                        <a class="resource-link download-link" href="https://github.com/lxsgx23/Dandelion-Chess/releases/tag/v3.1" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>Kata-Animalchess(Dandelion)下载</a>
-                        <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/AnimalChess2025" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
+                        <a class="resource-link download-link" href="https://github.com/lxsgx23/Dandelion-Chess/releases/tag/v3.1" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>界面下载（Dandelion）</a>
+                        <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/AnimalChess2025" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>AI引擎源代码</a>
                         <a class="resource-link dataset-link" href="https://www.modelscope.cn/datasets/sigmoid/katago-animalchess-2025" target="_blank" rel="noreferrer"><span class="resource-icon dataset" aria-hidden="true"></span>数据集</a>
                         <a href="games/animal-chess.html">详情页</a>
                     </div>
@@ -343,7 +401,7 @@
                     <div class="topic-card-body">
                     <h3>8. 中国跳棋</h3>
                     <p><strong>最强跳棋 AI</strong></p>
-                    <p>这一条和斗兽棋一样，先在首页保留最关键的仓库分支和 release 入口，同时把“几乎必和棋”的结论直接写在卡片上。</p>
+                    <p>最近更新：2024.04.06</p>
                     <div class="link-row">
                         <a class="resource-link download-link" href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/20240406" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>软件下载</a>
                         <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/tiaoqi" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
@@ -353,11 +411,24 @@
                     </div>
                 </article>
 
+                <article class="topic-card">
+                    <img src="images/math-problems.svg" alt="数学问题专题示意图">
+                    <div class="topic-card-body">
+                    <h3>9. 数学问题</h3>
+                    <div class="link-row">
+                        <span class="resource-note"><span class="resource-icon download" aria-hidden="true"></span>软件下载：暂无公开版本</span>
+                        <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/AngelProblem" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
+                        <a href="games/math-problems.html">详情页</a>
+                        <a href="googology/index.html">Googology</a>
+                    </div>
+                    <p>包括 Angel Problem、七连珠证明尝试、Dawson Chess 和 Escape Go。</p>
+                    </div>
+                </article>
+
                 <article class="topic-card topic-card-wide">
                     <img src="images/other-games-board.svg" alt="其他小众棋种专题示意图">
                     <div class="topic-card-body">
-                    <h3>9. 其他小众棋种</h3>
-                    <p>KataGomo 在以下的这些棋种中，目前也没有找到对手。这里把规则入口、代码、AI 下载、数据集下载和补充说明统一整理成一张总表。</p>
+                    <h3>10. 其他小众棋种</h3>
                     <div class="compact-table compact-table-six">
                         <div class="compact-row header">
                             <div>棋种名称</div>
@@ -368,7 +439,7 @@
                             <div>说明</div>
                         </div>
                         <div class="compact-row">
-                            <div>NoGo</div>
+                            <div>不围棋(NoGo)</div>
                             <div><a href="https://en.wikipedia.org/wiki/NoGo" target="_blank" rel="noreferrer">Wikipedia</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Nogo2025" target="_blank" rel="noreferrer">Nogo2025</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Nogo20250219" target="_blank" rel="noreferrer">Nogo20250219</a></div>
@@ -376,7 +447,7 @@
                             <div>围棋变种，已公开数据集</div>
                         </div>
                         <div class="compact-row">
-                            <div>Amazons</div>
+                            <div>亚马逊棋(Amazons)</div>
                             <div><a href="https://en.wikipedia.org/wiki/Game_of_the_Amazons" target="_blank" rel="noreferrer">Wikipedia</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Amazons" target="_blank" rel="noreferrer">Amazons</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/20240406" target="_blank" rel="noreferrer">20240406</a></div>
@@ -384,7 +455,7 @@
                             <div>经典抽象策略棋</div>
                         </div>
                         <div class="compact-row">
-                            <div>Breakthrough</div>
+                            <div>突破棋(Breakthrough)</div>
                             <div><a href="https://en.wikipedia.org/wiki/Breakthrough_(board_game)" target="_blank" rel="noreferrer">Wikipedia</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/breakthrough" target="_blank" rel="noreferrer">breakthrough</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/20240406" target="_blank" rel="noreferrer">20240406</a></div>
@@ -392,7 +463,7 @@
                             <div>兵种突破类规则</div>
                         </div>
                         <div class="compact-row">
-                            <div>Reversi</div>
+                            <div>黑白棋(Reversi)</div>
                             <div><a href="https://en.wikipedia.org/wiki/Reversi" target="_blank" rel="noreferrer">Wikipedia</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Reversi2023" target="_blank" rel="noreferrer">Reversi2023</a></div>
                             <div><span>暂无</span></div>
@@ -400,7 +471,7 @@
                             <div>黑白翻转棋</div>
                         </div>
                         <div class="compact-row">
-                            <div>Ultimate Tic-tac-toe</div>
+                            <div>终极井字棋(Ultimate Tic-tac-toe)</div>
                             <div><a href="https://en.wikipedia.org/wiki/Ultimate_tic-tac-toe" target="_blank" rel="noreferrer">Wikipedia</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/UltimateTictactoe2024" target="_blank" rel="noreferrer">UltimateTictactoe2024</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/UltimateTictactoe_20241101" target="_blank" rel="noreferrer">UltimateTictactoe_20241101</a></div>
@@ -408,7 +479,7 @@
                             <div>井字棋扩展版</div>
                         </div>
                         <div class="compact-row">
-                            <div>ScoreFour / ConnectFour3D</div>
+                            <div>三维连四(ScoreFour / ConnectFour3D)</div>
                             <div><a href="https://en.wikipedia.org/wiki/Score_Four" target="_blank" rel="noreferrer">Wikipedia</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/ConnectFour3d" target="_blank" rel="noreferrer">ConnectFour3d</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/ScoreFour_20250510" target="_blank" rel="noreferrer">ScoreFour_20250510</a></div>
@@ -416,7 +487,7 @@
                             <div>三维连四</div>
                         </div>
                         <div class="compact-row">
-                            <div>Dots and Boxes</div>
+                            <div>点格棋(Dots and Boxes)</div>
                             <div><a href="https://en.wikipedia.org/wiki/Dots_and_Boxes" target="_blank" rel="noreferrer">Wikipedia</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/DotsAndBoxes" target="_blank" rel="noreferrer">DotsAndBoxes</a></div>
                             <div><span>暂无</span></div>
@@ -424,7 +495,7 @@
                             <div>画线成格</div>
                         </div>
                         <div class="compact-row">
-                            <div>Quoridor</div>
+                            <div>步步为营(Quoridor)</div>
                             <div><a href="https://en.wikipedia.org/wiki/Quoridor" target="_blank" rel="noreferrer">Wikipedia</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Quoridor2024" target="_blank" rel="noreferrer">Quoridor2024</a></div>
                             <div><span>暂无</span></div>
@@ -432,7 +503,7 @@
                             <div>挡板竞速棋</div>
                         </div>
                         <div class="compact-row">
-                            <div>Surakarta</div>
+                            <div>回战棋(Surakarta)</div>
                             <div><a href="https://en.wikipedia.org/wiki/Surakarta_(game)" target="_blank" rel="noreferrer">Wikipedia</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Surakarta" target="_blank" rel="noreferrer">Surakarta</a></div>
                             <div><span>暂无</span></div>
@@ -440,30 +511,72 @@
                             <div>印尼传统棋</div>
                         </div>
                         <div class="compact-row">
-                            <div>Clobber</div>
+                            <div>撞子棋(Clobber)</div>
                             <div><a href="https://en.wikipedia.org/wiki/Clobber" target="_blank" rel="noreferrer">Wikipedia</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Clobber2023" target="_blank" rel="noreferrer">Clobber2023</a></div>
                             <div><span>暂无</span></div>
                             <div><span>暂无</span></div>
                             <div>组合博弈常见示例</div>
                         </div>
+                        <div class="compact-row">
+                            <div>反五/四/三子棋(AntiGomoku/AntiConnectN)</div>
+                            <div><span>自定义规则</span></div>
+                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Caro2024" target="_blank" rel="noreferrer">Caro2024</a></div>
+                            <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Gomoku_20250206" target="_blank" rel="noreferrer">Gomoku_20250206</a></div>
+                            <div><span>暂无</span></div>
+                            <div>先连成目标方反而判负</div>
+                        </div>
+                        <div class="compact-row">
+                            <div>震棋(Zhen Qi / Quake Gomoku)</div>
+                            <div><span>自定义规则</span></div>
+                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/ZhenQi" target="_blank" rel="noreferrer">ZhenQi</a></div>
+                            <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Zhenqi20250218" target="_blank" rel="noreferrer">Zhenqi20250218</a></div>
+                            <div><span>暂无</span></div>
+                            <div>逆界系原创棋种</div>
+                        </div>
+                        <div class="compact-row">
+                            <div>形棋(Xing Qi / Symmetry Game)</div>
+                            <div><span>自定义规则</span></div>
+                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_XingQi" target="_blank" rel="noreferrer">newgame_XingQi</a></div>
+                            <div><span>暂无</span></div>
+                            <div><span>暂无</span></div>
+                            <div>逆界系原创棋种</div>
+                        </div>
+                        <div class="compact-row">
+                            <div>王步四子棋(King's move Connect 4)</div>
+                            <div><span>自定义规则</span></div>
+                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/con4type1" target="_blank" rel="noreferrer">con4type1</a></div>
+                            <div><span>暂无</span></div>
+                            <div><span>暂无</span></div>
+                            <div>王步移动规则的四子棋</div>
+                        </div>
+                        <div class="compact-row">
+                            <div>逆界反五子棋(Nijie's AntiGomoku)</div>
+                            <div><span>自定义规则</span></div>
+                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_gomokuamazons" target="_blank" rel="noreferrer">newgame_gomokuamazons</a></div>
+                            <div><span>暂无</span></div>
+                            <div><span>暂无</span></div>
+                            <div>逆界系原创反五子棋</div>
+                        </div>
+                        <div class="compact-row">
+                            <div>中国象棋(Chinese Chess)</div>
+                            <div><a href="https://en.wikipedia.org/wiki/Xiangqi" target="_blank" rel="noreferrer">Wikipedia</a></div>
+                            <div><span>未开源</span></div>
+                            <div><span>暂无</span></div>
+                            <div><span>暂无</span></div>
+                            <div>README 标注 PX0 明显更强</div>
+                        </div>
+                        <div class="compact-row">
+                            <div>国际象棋(Chess)</div>
+                            <div><a href="https://en.wikipedia.org/wiki/Chess" target="_blank" rel="noreferrer">Wikipedia</a></div>
+                            <div><span>分支丢失</span></div>
+                            <div><span>暂无</span></div>
+                            <div><span>暂无</span></div>
+                            <div>早期小规模测试</div>
+                        </div>
                     </div>
                     <div class="link-row" style="margin-top:18px;">
                         <a href="games/other-games.html">共用详情页</a>
-                    </div>
-                    </div>
-                </article>
-
-                <article class="topic-card">
-                    <img src="images/math-problems.svg" alt="数学问题专题示意图">
-                    <div class="topic-card-body">
-                    <h3>10. 数学问题</h3>
-                    <p>根据 README 先整理 Angel Problem、七连珠证明尝试、Dawson Chess 和 Escape Go 等问题，不提 Hex 相关那条。这里没有统一 release，所以主页直接挂代表性 branch，并明确写出 release 暂无。</p>
-                    <div class="link-row">
-                        <span class="resource-note"><span class="resource-icon download" aria-hidden="true"></span>软件下载：暂无公开版本</span>
-                        <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/AngelProblem" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
-                        <a href="games/math-problems.html">详情页</a>
-                        <a href="googology/index.html">Googology</a>
                     </div>
                     </div>
                 </article>
@@ -481,10 +594,21 @@
             <div class="two-grid">
                 <article class="cta-card">
                     <h3>Googology</h3>
-                    <p>当前数学板块先链接到已有的 googology 页面，作为后续扩展的入口。</p>
-                    <div class="card-actions">
-                        <a class="button" href="googology/">打开页面</a>
-                        <a class="ghost-button" href="games/math-problems.html">数学问题专题</a>
+                    <div class="subtopic-list">
+                        <div class="subtopic-item">
+                            <h4>大数标尺</h4>
+                            <p>Googology按大小排序的标尺，包含一些内容的介绍以及编程代码。。。</p>
+                            <div class="card-actions">
+                                <a class="button" href="googology/index.html">打开页面</a>
+                            </div>
+                        </div>
+                        <div class="subtopic-item">
+                            <h4>自动馃槹机</h4>
+                            <p>自动找序数记号无穷降链的程序，内含 y 序列的 C++ 展开器。</p>
+                            <div class="card-actions">
+                                <a class="ghost-button" href="https://github.com/hzyhhzy/AutoGuogaoMachine" target="_blank" rel="noreferrer">源代码</a>
+                            </div>
+                        </div>
                     </div>
                 </article>
                 <article class="placeholder-card">
