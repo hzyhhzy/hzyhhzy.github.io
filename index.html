@@ -115,7 +115,7 @@
             </div>
 
             <div class="topic-grid">
-                <article class="topic-card">
+                <article class="topic-card topic-card-wide">
                     <img src="images/go-board.svg" alt="围棋训练与围棋变种专题示意图">
                     <div class="topic-card-body">
                     <h3>1. 围棋训练与围棋变种</h3>
@@ -134,56 +134,94 @@
                         <div class="subtopic-item">
                             <h4>1.2 围棋变种</h4>
                             <p>包括 Capture Go、Kill-all Go、Hex Go、禁邻手、Hex 棋盘吃子棋、加权面积围棋等。</p>
-                            <div class="compact-table compact-table-tight">
+                            <div class="compact-table compact-table-six compact-table-tight">
                                 <div class="compact-row header">
-                                    <div>变种</div>
-                                    <div>源代码</div>
-                                    <div>软件下载</div>
+                                    <div>变种名称</div>
+                                    <div>规则</div>
+                                    <div>代码</div>
+                                    <div>AI下载</div>
+                                    <div>数据集下载</div>
+                                    <div>结论</div>
                                 </div>
                                 <div class="compact-row">
                                     <div>吃子棋（Capture Go）</div>
+                                    <div><span>先吃到对方棋子者胜</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/CaptureGo2024" target="_blank" rel="noreferrer">CaptureGo2024</a></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/CaptureGo_20250509" target="_blank" rel="noreferrer">CaptureGo_20250509</a></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>围棋变种主线之一</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>死活对局(Kill-all Go)</div>
+                                    <div><span>以整块杀棋为目标</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/LifeGo2024" target="_blank" rel="noreferrer">LifeGo2024</a></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/LifeGo_20241025" target="_blank" rel="noreferrer">LifeGo_20241025</a></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>偏死活与攻杀分析</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>六角格围棋、棱棋(Hex Go)</div>
+                                    <div><span>在六角格棋盘上进行围棋对局</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/HexGo2024" target="_blank" rel="noreferrer">HexGo2024</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>围棋与 Hex 风格结合</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>禁止在上一手旁边</div>
+                                    <div><span>不能落在上一手相邻处</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/GoModify2a" target="_blank" rel="noreferrer">GoModify2a</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>限制局部贴身应对</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>Hex棋盘吃子棋</div>
+                                    <div><span>在 Hex 棋盘上玩吃子棋</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/HexCaptureGo" target="_blank" rel="noreferrer">HexCaptureGo</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>六角格吃子实验</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>加权面积围棋</div>
+                                    <div><span>不同区域或子力计分加权</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/weightGo" target="_blank" rel="noreferrer">weightGo</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>计分规则改造</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>没气先吃自己的棋子</div>
+                                    <div><span>无气时先移除己方棋子</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/FirstCaptureMe" target="_blank" rel="noreferrer">FirstCaptureMe</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>提子顺序被反转</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>一子千金：吃1子4目</div>
+                                    <div><span>单颗提子价值显著提高</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/yiziqianjin" target="_blank" rel="noreferrer">yiziqianjin</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>提子收益远大于常规围棋</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>谁先没地方走谁输</div>
+                                    <div><span>无合法着法者判负</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/yiziqianjin" target="_blank" rel="noreferrer">yiziqianjin</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>终局条件改成着法耗尽</span></div>
+                                </div>
+                                <div class="compact-row">
+                                    <div>活棋胜（aliveWin）</div>
+                                    <div><span>白棋吃到黑棋一子即胜；若黑棋活成一整块且全连通则黑棋胜，黑棋除第一手外可 pass</span></div>
+                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/aliveWin" target="_blank" rel="noreferrer">aliveWin</a></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>README 结论：黑棋不难活，首手宜下三三或更高</span></div>
                                 </div>
                             </div>
                             <div class="link-row">
@@ -194,7 +232,7 @@
                     </div>
                 </article>
 
-                <article class="topic-card">
+                <article class="topic-card topic-card-wide">
                     <img src="images/gomoku-board.svg" alt="五子棋与变种专题示意图">
                     <div class="topic-card-body">
                     <h3>2. 五子棋与变种</h3>
@@ -222,61 +260,102 @@
                         <div class="subtopic-item">
                             <h4>2.3 五子棋变种</h4>
                             <p>包括 Caro、Pente、3D 五子棋、禁点五子棋、连五末手规则、双线五子棋、莫棋、连五计数、吃子五子棋、等差数列六子棋等。</p>
-                            <div class="compact-table compact-table-tight">
+                            <div class="compact-table compact-table-six compact-table-tight">
                                 <div class="compact-row header">
-                                    <div>变种</div>
-                                    <div>源代码</div>
-                                    <div>软件下载</div>
+                                    <div>变种名称</div>
+                                    <div>规则</div>
+                                    <div>代码</div>
+                                    <div>AI下载</div>
+                                    <div>数据集下载</div>
+                                    <div>结论</div>
                                 </div>
                                 <div class="compact-row">
                                     <div>Caro</div>
+                                    <div><span>Caro 规则</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Caro2024" target="_blank" rel="noreferrer">Caro2024</a></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Gomoku_20250206" target="_blank" rel="noreferrer">Gomoku_20250206</a></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>主线公开版支持</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>Pente</div>
+                                    <div><span>五连或吃子取胜</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Pente2025" target="_blank" rel="noreferrer">Pente2025</a></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Pente_20250726" target="_blank" rel="noreferrer">Pente_20250726</a></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>最新公开变种之一</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>3D五子棋</div>
+                                    <div><span>三维空间中的连子规则</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/3d_gomoku" target="_blank" rel="noreferrer">3d_gomoku</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>三维扩展实验</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>禁点五子棋</div>
+                                    <div><span>部分点位禁止落子</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/GomBanLoc" target="_blank" rel="noreferrer">GomBanLoc</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>可行着法受局面限制</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>连五的最后一手要在两端</div>
+                                    <div><span>成五末手必须落在端点</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/GomNewRule1" target="_blank" rel="noreferrer">GomNewRule1</a> / <a href="https://github.com/hzyhhzy/KataGomo/tree/GomNewRule2" target="_blank" rel="noreferrer">GomNewRule2</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>终局判定被重新约束</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>双线五子棋</div>
+                                    <div><span>围绕双线结构进行连子</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_DifLineGomoku" target="_blank" rel="noreferrer">newgame_DifLineGomoku</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>连线判定与普通五子棋不同</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>莫棋</div>
+                                    <div><span>原创规则五子棋变体</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_MoQiGomoku" target="_blank" rel="noreferrer">newgame_MoQiGomoku</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>规则实验分支</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>连五计数</div>
+                                    <div><span>按形成五连的数量计分</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/fiveCount" target="_blank" rel="noreferrer">fiveCount</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>目标从单次成五改成累计</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>吃子五子棋</div>
+                                    <div><span>吃子机制加入五子棋</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/capture_gomoku" target="_blank" rel="noreferrer">capture_gomoku</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>结合连子与提子目标</span></div>
                                 </div>
                                 <div class="compact-row">
                                     <div>等差连六</div>
+                                    <div><span>等差位置组成六连</span></div>
                                     <div><a href="https://github.com/hzyhhzy/KataGomo/tree/EquDifGomoku" target="_blank" rel="noreferrer">EquDifGomoku</a></div>
                                     <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>目标形状不是普通连续五连</span></div>
+                                </div>
+                                <div class="compact-row">
+                                    <div>直四棋</div>
+                                    <div><span>直线连四获胜，斜线无效</span></div>
+                                    <div><span>找不到了</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>暂无</span></div>
+                                    <div><span>先手简单必胜，但特定开局下仍有较高复杂度</span></div>
                                 </div>
                             </div>
                             <div class="link-row">
@@ -387,7 +466,7 @@
                     <p>最近更新（AI引擎）：2025.02.16</p>
                     <p>最近更新（界面）：2026.03.07</p>
                     <div class="link-row">
-                        <a class="resource-link download-link" href="https://github.com/lxsgx23/Dandelion-Chess/releases/tag/v3.1" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>界面下载（Dandelion）</a>
+                        <a class="resource-link download-link" href="https://github.com/lxsgx23/Dandelion-Chess/releases/tag/v3.1" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>界面+AI下载（Dandelion）</a>
                         <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/AnimalChess2025" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>AI引擎源代码</a>
                         <a class="resource-link dataset-link" href="https://www.modelscope.cn/datasets/sigmoid/katago-animalchess-2025" target="_blank" rel="noreferrer"><span class="resource-icon dataset" aria-hidden="true"></span>数据集</a>
                         <a href="games/animal-chess.html">详情页</a>
@@ -436,15 +515,18 @@
                             <div>代码</div>
                             <div>AI下载</div>
                             <div>数据集下载</div>
-                            <div>说明</div>
+                            <div>结论</div>
                         </div>
                         <div class="compact-row">
                             <div>不围棋(NoGo)</div>
-                            <div><a href="https://en.wikipedia.org/wiki/NoGo" target="_blank" rel="noreferrer">Wikipedia</a></div>
+                            <div><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-nogo">查看规则</button></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Nogo2025" target="_blank" rel="noreferrer">Nogo2025</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Nogo20250219" target="_blank" rel="noreferrer">Nogo20250219</a></div>
                             <div><a href="https://www.modelscope.cn/datasets/sigmoid/katago-nogo-2025" target="_blank" rel="noreferrer">katago-nogo-2025</a></div>
-                            <div>围棋变种，已公开数据集</div>
+                            <div class="table-note-stack">
+                                <span>9x9棋盘先手胜率90%</span>
+                                <button class="rule-popup-trigger" type="button" data-rule-dialog="conclusion-nogo">其他棋盘尺寸</button>
+                            </div>
                         </div>
                         <div class="compact-row">
                             <div>亚马逊棋(Amazons)</div>
@@ -452,15 +534,18 @@
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Amazons" target="_blank" rel="noreferrer">Amazons</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/20240406" target="_blank" rel="noreferrer">20240406</a></div>
                             <div><span>暂无</span></div>
-                            <div>经典抽象策略棋</div>
+                            <div>10x10棋盘先手胜率70%</div>
                         </div>
                         <div class="compact-row">
                             <div>突破棋(Breakthrough)</div>
                             <div><a href="https://en.wikipedia.org/wiki/Breakthrough_(board_game)" target="_blank" rel="noreferrer">Wikipedia</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/breakthrough" target="_blank" rel="noreferrer">breakthrough</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/20240406" target="_blank" rel="noreferrer">20240406</a></div>
+                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Breakthrough2025" target="_blank" rel="noreferrer">Breakthrough2025</a></div>
+                            <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Breakthrough_20250616" target="_blank" rel="noreferrer">Breakthrough_20250616</a></div>
                             <div><span>暂无</span></div>
-                            <div>兵种突破类规则</div>
+                            <div class="table-note-stack">
+                                <span>8x8棋盘先手接近必胜</span>
+                                <button class="rule-popup-trigger" type="button" data-rule-dialog="conclusion-breakthrough">其他棋盘尺寸</button>
+                            </div>
                         </div>
                         <div class="compact-row">
                             <div>黑白棋(Reversi)</div>
@@ -468,15 +553,18 @@
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Reversi2023" target="_blank" rel="noreferrer">Reversi2023</a></div>
                             <div><span>暂无</span></div>
                             <div><span>暂无</span></div>
-                            <div>黑白翻转棋</div>
+                            <div>黑白棋不适合AlphaZero系AI，是少数KataGo打不过传统软件的棋类之一</div>
                         </div>
                         <div class="compact-row">
                             <div>终极井字棋(Ultimate Tic-tac-toe)</div>
                             <div><a href="https://en.wikipedia.org/wiki/Ultimate_tic-tac-toe" target="_blank" rel="noreferrer">Wikipedia</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/UltimateTictactoe2024" target="_blank" rel="noreferrer">UltimateTictactoe2024</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/UltimateTictactoe_20241101" target="_blank" rel="noreferrer">UltimateTictactoe_20241101</a></div>
+                            <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/UltimateTictactoe_20250616" target="_blank" rel="noreferrer">UltimateTictactoe_20250616</a></div>
                             <div><span>暂无</span></div>
-                            <div>井字棋扩展版</div>
+                            <div class="table-note-stack">
+                                <span>不使用Tiebreaker规则大概率和棋（先手胜21%，后手胜2%，和棋77%）</span>
+                                <span>使用Tiebreaker规则先手大优（先手胜78%，后手胜4%，和棋18%）</span>
+                            </div>
                         </div>
                         <div class="compact-row">
                             <div>三维连四(ScoreFour / ConnectFour3D)</div>
@@ -520,15 +608,15 @@
                         </div>
                         <div class="compact-row">
                             <div>反五/四/三子棋(AntiGomoku/AntiConnectN)</div>
-                            <div><span>自定义规则</span></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Caro2024" target="_blank" rel="noreferrer">Caro2024</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Gomoku_20250206" target="_blank" rel="noreferrer">Gomoku_20250206</a></div>
+                            <div><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-anti-connect">查看规则</button></div>
+                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/AntiConnectN2025" target="_blank" rel="noreferrer">AntiConnectN2025</a></div>
+                            <div><span>暂无</span></div>
                             <div><span>暂无</span></div>
                             <div>先连成目标方反而判负</div>
                         </div>
                         <div class="compact-row">
                             <div>震棋(Zhen Qi / Quake Gomoku)</div>
-                            <div><span>自定义规则</span></div>
+                            <div><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-zhenqi">查看规则</button></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/ZhenQi" target="_blank" rel="noreferrer">ZhenQi</a></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Zhenqi20250218" target="_blank" rel="noreferrer">Zhenqi20250218</a></div>
                             <div><span>暂无</span></div>
@@ -536,7 +624,7 @@
                         </div>
                         <div class="compact-row">
                             <div>形棋(Xing Qi / Symmetry Game)</div>
-                            <div><span>自定义规则</span></div>
+                            <div><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-xingqi">查看规则</button></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_XingQi" target="_blank" rel="noreferrer">newgame_XingQi</a></div>
                             <div><span>暂无</span></div>
                             <div><span>暂无</span></div>
@@ -544,7 +632,7 @@
                         </div>
                         <div class="compact-row">
                             <div>王步四子棋(King's move Connect 4)</div>
-                            <div><span>自定义规则</span></div>
+                            <div><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-king-connect4">查看规则</button></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/con4type1" target="_blank" rel="noreferrer">con4type1</a></div>
                             <div><span>暂无</span></div>
                             <div><span>暂无</span></div>
@@ -552,11 +640,19 @@
                         </div>
                         <div class="compact-row">
                             <div>逆界反五子棋(Nijie's AntiGomoku)</div>
-                            <div><span>自定义规则</span></div>
+                            <div><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-nijie-anti">查看规则</button></div>
                             <div><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_gomokuamazons" target="_blank" rel="noreferrer">newgame_gomokuamazons</a></div>
                             <div><span>暂无</span></div>
                             <div><span>暂无</span></div>
                             <div>逆界系原创反五子棋</div>
+                        </div>
+                        <div class="compact-row">
+                            <div>星域(StarsZone)</div>
+                            <div><span>自定义规则</span></div>
+                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/StarsZone" target="_blank" rel="noreferrer">StarsZone</a></div>
+                            <div><span>暂无</span></div>
+                            <div><span>暂无</span></div>
+                            <div>其他原创棋种分支</div>
                         </div>
                         <div class="compact-row">
                             <div>中国象棋(Chinese Chess)</div>
@@ -652,11 +748,154 @@
         </section>
     </main>
 
+    <dialog class="rule-dialog" id="rule-nogo">
+        <form method="dialog" class="rule-dialog-card">
+            <div class="rule-dialog-head">
+                <h3>不围棋（NoGo）</h3>
+                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
+            </div>
+            <div class="rule-dialog-body">
+                <p>不围棋沿用围棋的落子方式，但任何一手都不允许提子，也不允许自杀。</p>
+                <p>也可以把它理解成吃子棋（Capture Go）的“反棋”：吃子棋里以先吃到子为目标，而不围棋里凡是会产生提子的着法都直接禁止。</p>
+                <p>如果某一步会让对方棋块被提走，或者让己方棋块无气，那么这一步就是非法着。</p>
+                <p>通常以“谁先没有合法着法谁负”作为胜负条件。</p>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog class="rule-dialog" id="rule-anti-connect">
+        <form method="dialog" class="rule-dialog-card">
+            <div class="rule-dialog-head">
+                <h3>反五 / 四 / 三子棋</h3>
+                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
+            </div>
+            <div class="rule-dialog-body">
+                <p>这一类规则把通常的“先连成目标方获胜”反过来处理。</p>
+                <p>例如反五子棋里，谁先形成五连反而判负；反四子棋和反三子棋同理，只是目标长度不同。</p>
+                <p>也可以把它理解成 AntiConnectN：先被迫连成指定长度的一方输。</p>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog class="rule-dialog" id="rule-zhenqi">
+        <form method="dialog" class="rule-dialog-card">
+            <div class="rule-dialog-head">
+                <h3>震棋（Zhen Qi / Quake Gomoku）</h3>
+                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
+            </div>
+            <div class="rule-dialog-body">
+                <p>震棋是逆界系原创棋种，可以理解成带有“震动扰动”效果的五子棋变体。</p>
+                <p>落子后，棋局不会像普通五子棋那样完全静止，局面会因为规则触发而发生额外变化。</p>
+                <p>这里先给出站内简述；更细的判定细节建议结合对应分支实现查看。</p>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog class="rule-dialog" id="rule-xingqi">
+        <form method="dialog" class="rule-dialog-card">
+            <div class="rule-dialog-head">
+                <h3>形棋（Xing Qi / Symmetry Game）</h3>
+                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
+            </div>
+            <div class="rule-dialog-body">
+                <p>形棋是逆界系原创棋种，核心想法与“图形关系 / 对称结构”有关。</p>
+                <p>它不是直接照搬标准五子棋或围棋规则，而是围绕局面形状本身来定义目标与约束。</p>
+                <p>首页这里先提供简短说明，具体判定仍以分支中的实现为准。</p>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog class="rule-dialog" id="rule-king-connect4">
+        <form method="dialog" class="rule-dialog-card">
+            <div class="rule-dialog-head">
+                <h3>王步四子棋（King's move Connect 4）</h3>
+                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
+            </div>
+            <div class="rule-dialog-body">
+                <p>这是一个把“王步移动”概念引入四子棋目标的变体。</p>
+                <p>规则重点不再是普通重力四子棋的落子方式，而是围绕王步邻接关系来形成四连。</p>
+                <p>因此它和标准 Connect Four 的空间结构、战术重点都不一样。</p>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog class="rule-dialog" id="rule-nijie-anti">
+        <form method="dialog" class="rule-dialog-card">
+            <div class="rule-dialog-head">
+                <h3>逆界反五子棋（Nijie's AntiGomoku）</h3>
+                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
+            </div>
+            <div class="rule-dialog-body">
+                <p>这是逆界系原创的反五子棋分支，整体思想仍然是“先连成五子的一方反而输”。</p>
+                <p>和普通 AntiGomoku 相比，这一条线加入了逆界系自己的规则设计与实现细节。</p>
+                <p>首页先给出区分性的简述，完整细节仍建议查看对应分支代码。</p>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog class="rule-dialog" id="conclusion-nogo">
+        <form method="dialog" class="rule-dialog-card">
+            <div class="rule-dialog-head">
+                <h3>不围棋结论</h3>
+                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
+            </div>
+            <div class="rule-dialog-body">
+                <p>不围棋 13x13 及以下棋盘的初始先手胜率如下图所示。</p>
+                <figure class="rule-dialog-figure">
+                    <img src="games/nogo_20250209.png" alt="不围棋小于等于13x13棋盘的初始先手胜率">
+                    <figcaption>不围棋 &lt;=13x13 棋盘的初始先手胜率</figcaption>
+                </figure>
+                <p>图例：红色先手优势，蓝色后手优势。</p>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog class="rule-dialog" id="conclusion-breakthrough">
+        <form method="dialog" class="rule-dialog-card">
+            <div class="rule-dialog-head">
+                <h3>突破棋结论</h3>
+                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
+            </div>
+            <div class="rule-dialog-body">
+                <p>突破棋 10x10 及以下棋盘的初始先手胜率如下图所示。</p>
+                <figure class="rule-dialog-figure">
+                    <img src="games/breakthrough_20250616.png" alt="突破棋小于等于10x10棋盘的初始先手胜率">
+                    <figcaption>breakthrough &lt;=10x10 棋盘的初始先手胜率</figcaption>
+                </figure>
+                <p>图例：红色先手优势，蓝色后手优势。</p>
+            </div>
+        </form>
+    </dialog>
+
     <footer class="site-footer">
         <div class="footer-card">
             <h3>站点说明</h3>
             <p>当前主页已经恢复成三大版块结构，并把棋类 AI 板块内部拆成 10 个带配图的专题。后续如果你要继续加中英双语、博客列表或更多分支页，可以直接在这个骨架上继续扩。</p>
         </div>
     </footer>
+    <script>
+        document.querySelectorAll(".rule-popup-trigger").forEach((button) => {
+            button.addEventListener("click", () => {
+                const dialog = document.getElementById(button.dataset.ruleDialog);
+                if (dialog) {
+                    dialog.showModal();
+                }
+            });
+        });
+
+        document.querySelectorAll(".rule-dialog").forEach((dialog) => {
+            dialog.addEventListener("click", (event) => {
+                const rect = dialog.getBoundingClientRect();
+                const inside =
+                    event.clientX >= rect.left &&
+                    event.clientX <= rect.right &&
+                    event.clientY >= rect.top &&
+                    event.clientY <= rect.bottom;
+                if (!inside) {
+                    dialog.close();
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -701,6 +701,118 @@ p {
   color: var(--muted);
 }
 
+.compact-table-six .compact-row > :last-child,
+.compact-table-six .compact-row > :last-child span {
+  color: var(--text);
+}
+
+.table-note-stack {
+  display: grid;
+  gap: 8px;
+  align-items: start;
+}
+
+.table-note-stack .rule-popup-trigger {
+  justify-self: start;
+}
+
+.rule-popup-trigger {
+  appearance: none;
+  border: 1px solid rgba(122, 216, 255, 0.22);
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: rgba(122, 216, 255, 0.1);
+  color: var(--accent);
+  font: inherit;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.rule-popup-trigger:hover {
+  background: rgba(122, 216, 255, 0.16);
+  color: #dff2ff;
+}
+
+.rule-dialog {
+  width: min(640px, calc(100vw - 32px));
+  max-width: 100%;
+  padding: 0;
+  border: 1px solid rgba(157, 182, 221, 0.18);
+  border-radius: 24px;
+  background: rgba(8, 16, 28, 0.96);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.36);
+  color: var(--text);
+}
+
+.rule-dialog::backdrop {
+  background: rgba(4, 10, 18, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.rule-dialog-card {
+  margin: 0;
+}
+
+.rule-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 22px 14px;
+  border-bottom: 1px solid rgba(157, 182, 221, 0.12);
+}
+
+.rule-dialog-head h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.rule-dialog-close {
+  appearance: none;
+  border: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  font: inherit;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.rule-dialog-body {
+  padding: 18px 22px 22px;
+}
+
+.rule-dialog-body p {
+  margin: 0;
+  line-height: 1.75;
+}
+
+.rule-dialog-body p + p {
+  margin-top: 10px;
+}
+
+.rule-dialog-figure {
+  margin: 14px 0 0;
+}
+
+.rule-dialog-figure img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(157, 182, 221, 0.14);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.rule-dialog-figure figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 .highlight-link {
   color: var(--accent-3);
   font-weight: 700;
@@ -896,6 +1008,10 @@ p {
 
   .compact-row {
     grid-template-columns: 1fr;
+  }
+
+  .rule-dialog {
+    width: min(100vw - 24px, 640px);
   }
 
   .nav-links {
