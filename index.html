@@ -8,31 +8,40 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="site-header">
-        <nav class="nav">
-            <a class="brand" href="index.html">
-                <span class="brand-badge">H</span>
-                <span>hzyhhzy</span>
-            </a>
-            <div class="nav-links">
-                <a href="#boardgames">棋类 AI</a>
-                <a href="#overview">站点入口</a>
-                <a href="#contact">联系方式</a>
+    <header class="page-header">
+        <div class="page-header-inner">
+            <div class="page-header-left">
+                <nav class="page-breadcrumb" aria-label="面包屑">
+                    <span class="page-breadcrumb-current">主页</span>
+                </nav>
             </div>
-        </nav>
+            <div class="page-header-right">
+                <div class="page-header-group">
+                    <button class="page-header-menu-toggle" type="button">相关链接</button>
+                    <div class="page-header-menu-panel">
+                        <a href="boardgames/index.html">KataGomo Project</a>
+                        <a href="boardgames/games.html">已训练的棋类ai</a>
+                        <a href="boardgame-ai-experience.html">训练经验</a>
+                        <a href="boardgame-training.html">训练指南</a>
+                    </div>
+                </div>
+                <div class="page-header-group">
+                    <button class="page-header-menu-toggle" type="button">联系方式</button>
+                    <div class="page-header-menu-panel">
+                        <a href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub: hzyhhzy</a>
+                        <a href="mailto:2658628026@qq.com">邮箱: 2658628026@qq.com</a>
+                        <span class="page-header-menu-note">QQ: 2658628026</span>
+                        <span class="page-header-menu-note">Discord: hzy_sigmoid</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
-
     <main>
         <section class="hero">
             <div class="hero-panel">
-                <div class="eyebrow">Personal Homepage</div>
-                <h1>Sigmoid的个人主页</h1>
+                <h1>SigmoidHZY的个人主页</h1>
                 <p class="hero-note"><strong>注：目前还在补充内容中，部分AI生成内容还有待核实</strong></p>
-                <div class="hero-actions">
-                    <a class="button" href="boardgames/index.html">棋类 AI 专题</a>
-                    <a class="ghost-button" href="#boardgames">首页重点</a>
-                    <a class="ghost-button" href="googology/index.html">数学相关</a>
-                </div>
             </div>
             <aside class="hero-side">
                 <div class="mini-list">
@@ -70,169 +79,18 @@
 
         <section class="section" id="boardgames">
             <div class="section-head">
-                <div>
-                    <div class="eyebrow">Board Game AI</div>
-                    <h2>KataGomo Project: 高效通用棋类AI框架</h2>
-                </div>
-            </div>
-            <div class="boardgames-summary-grid">
-                <article class="feature-card feature-card-wide repo-card">
-                    <div class="feature-card-head">
-                        <div>
-                            <h3>KataGomo 主仓库</h3>
-                        </div>
+                <div class="project-head-stack">
+                    <div class="project-title-row">
+                        <h2>KataGomo Project: 高效通用棋类AI框架</h2>
+                        <a class="button project-detail-button project-large-button" href="boardgames/index.html">详情页</a>
                     </div>
-                    <div class="repo-link-row">
-                        <p><a class="inline-link" href="https://github.com/hzyhhzy/KataGomo" target="_blank" rel="noreferrer">https://github.com/hzyhhzy/KataGomo</a></p>
-                        <a class="button" href="https://github.com/hzyhhzy/KataGomo" target="_blank" rel="noreferrer">GitHub 仓库</a>
-                    </div>
-                    <div class="repo-link-row">
-                        <a class="button" href="boardgames/index.html">AI下载专题页（含五子棋、Hex棋等几十种棋）</a>
-                    </div>
-                    <div class="repo-link-row">
-                        <p><a class="inline-link" href="https://www.modelscope.cn/profile/sigmoid" target="_blank" rel="noreferrer">https://www.modelscope.cn/profile/sigmoid</a></p>
-                        <a class="button" href="https://www.modelscope.cn/profile/sigmoid" target="_blank" rel="noreferrer">相关数据集</a>
-                    </div>
-                    <div class="repo-card-copy">
-                        <p>基于 <a class="inline-link" href="https://github.com/lightvector/KataGo" target="_blank" rel="noreferrer">KataGo</a> 的多棋种 AI 框架</p>
-                        <p>AlphaZero 算法的高效工程实现</p>
-                    </div>
-                </article>
-
-                <article class="feature-card">
-                    <h3>最强五子棋、Hex、六子棋、斗兽棋... 的AI，没有之一</h3>
-                    <p class="feature-title-like">"终结"了六子棋、不围棋、breakthrough...</p>
-                    <p class="highlight-line">六子棋疑似黑必胜！</p>
-                    <div class="board-link-grid">
-                        <a class="tag board-link" href="boardgames/index.html#topic-gomoku">五子棋</a>
-                        <a class="tag board-link" href="boardgames/index.html#topic-hex">Hex 棋</a>
-                        <a class="tag board-link" href="boardgames/index.html#topic-connect6">六子棋</a>
-                        <a class="tag board-link" href="boardgames/index.html#topic-ataxx">Ataxx</a>
-                        <a class="tag board-link" href="boardgames/index.html#topic-animal-chess">斗兽棋</a>
-                        <a class="tag board-link" href="boardgames/index.html#topic-chinese-checkers">中国跳棋</a>
-                        <a class="tag board-link" href="boardgames/index.html#topic-other-games">亚马逊棋</a>
-                        <a class="tag board-link" href="boardgames/index.html#topic-other-games">突破棋</a>
-                        <a class="tag board-link" href="boardgames/index.html#topic-other-games">不围棋</a>
-                        <a class="tag board-link" href="boardgames/index.html#topic-other-games">终极井字棋</a>
-                        <a class="tag board-link" href="boardgames/index.html#topic-other-games">其他...</a>
-                    </div>
-                    <div class="card-actions">
-                        <a class="button large-cta" href="boardgames/index.html">查看完整专题页</a>
-                    </div>
-                </article>
-
-                <article class="feature-card">
-                    <h3>低成本训练大部分棋类</h3>
-                    <div class="training-copy">
-                        <p>只需知道规则即可开始训练，AI自己探索下法</p>
-                        <p>支持大多数 二人+无随机+无隐藏信息 的棋类</p>
-                        <p>典型实验成本通常低于 100 元</p>
-                    </div>
-                    <div class="link-row training-link-row">
-                        <a class="inline-link" href="https://github.com/hzyhhzy/KataGomo/tree/AntiConnectN2025" target="_blank" rel="noreferrer">反五子棋</a>
-                        <a class="inline-link" href="https://github.com/hzyhhzy/KataGomo/tree/ZhenQi" target="_blank" rel="noreferrer">逆界震棋</a>
-                        <a class="inline-link" href="https://github.com/hzyhhzy/KataGomo/tree/AngelProblem" target="_blank" rel="noreferrer">Angel Problem</a>
-                        <a class="inline-link" href="boardgames/index.html#topic-other-games">其他...</a>
-                    </div>
-                    <div class="card-actions">
-                        <a class="button large-cta" href="boardgame-training.html">如何修改规则与训练KataGomo</a>
-                        <a class="button large-cta" href="boardgame-ai-experience.html">训练一个强棋类 AI 的经验</a>
-                    </div>
-                </article>
-
-                <article class="feature-card feature-card-wide">
-                    <h3>最新动态</h3>
-                    <div class="compact-table latest-table">
-                        <div class="compact-row header">
-                            <div>日期</div>
-                            <div>类别</div>
-                            <div>标题</div>
-                            <div>相关链接</div>
-                        </div>
-                        <div class="compact-row">
-                            <div><span>2026-05-02</span></div>
-                            <div><span>围棋</span></div>
-                            <div><span>公开最新版b40c768nbt模型“fdx6d”，水平达到14480ELO</span></div>
-                            <div><a class="button" href="https://katagotraining.org/" target="_blank" rel="noreferrer">官网</a></div>
-                        </div>
-                        <div class="compact-row">
-                            <div><span>2026-05-01</span></div>
-                            <div><span>Ataxx</span></div>
-                            <div><span>发布新版Transformer模型，提升200ELO</span></div>
-                            <div><a class="button" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Ataxx_20260501" target="_blank" rel="noreferrer">Release页</a></div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="section" id="overview">
-            <div class="section-head">
-                <div>
-                    <div class="eyebrow">Overview</div>
-                    <h2>站点入口</h2>
-                </div>
-                <p class="section-note">其他入口。</p>
-            </div>
-            <div class="three-grid">
-                <article class="cta-card">
-                    <h3>棋类 AI 专题</h3>
-                    <p>完整内容集中在 <code>boardgames/</code>。</p>
-                    <div class="card-actions">
-                        <a class="button" href="boardgames/index.html">打开专题页</a>
-                    </div>
-                </article>
-                <article class="cta-card">
-                    <h3>数学相关</h3>
-                    <p>当前主入口是 Googology。</p>
-                    <div class="card-actions">
-                        <a class="button" href="googology/index.html">打开 Googology</a>
-                        <a class="ghost-button" href="https://github.com/hzyhhzy/AutoGuogaoMachine" target="_blank" rel="noreferrer">相关源码</a>
-                    </div>
-                </article>
-                <article class="placeholder-card">
-                    <h3>个人博客</h3>
-                    <p>后续可放项目日志、训练记录和笔记。</p>
-                    <ul class="list">
-                        <li>棋类 AI 训练记录</li>
-                        <li>规则变体与结论更新</li>
-                        <li>数学问题笔记</li>
-                    </ul>
-                </article>
-            </div>
-        </section>
-
-        <section class="contact-strip" id="contact">
-            <div class="contact-banner">
-                <div class="eyebrow">Contact</div>
-                <h2>联系方式</h2>
-                <p>如果你想交流棋类 AI、规则变种、训练数据、数学问题或项目合作，可以直接通过下面这些方式联系我。</p>
-                <div class="contact-grid">
-                    <div class="contact-item">
-                        <strong>GitHub</strong>
-                        <a href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">https://github.com/hzyhhzy</a>
-                    </div>
-                    <div class="contact-item">
-                        <strong>QQ</strong>
-                        <span>2658628026</span>
-                    </div>
-                    <div class="contact-item">
-                        <strong>Discord</strong>
-                        <span>hzy_sigmoid</span>
-                    </div>
-                    <div class="contact-item">
-                        <strong>邮箱</strong>
-                        <a href="mailto:2658628026@qq.com">2658628026@qq.com</a>
+                    <div class="project-subtitle-row">
+                        <p class="project-subtitle">五子棋、Hex棋、六子棋等多种棋类的目前最强的AI</p>
+                        <a class="button project-list-button project-large-button" href="boardgames/games.html">已训练的棋种列表与下载链接</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
-    <footer class="site-footer">
-        <div class="footer-card">
-            <p>完整棋类 AI 内容见 <code>boardgames/index.html</code>。</p>
-        </div>
-    </footer>
 </body>
 </html>

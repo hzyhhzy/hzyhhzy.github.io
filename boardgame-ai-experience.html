@@ -8,32 +8,47 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="site-header">
-        <nav class="nav">
-            <a class="brand" href="index.html">
-                <span class="brand-badge">H</span>
-                <span>hzyhhzy</span>
-            </a>
-            <div class="nav-links">
-                <a href="index.html#boardgames">首页重点</a>
-                <a href="boardgames/index.html">完整专题</a>
-                <a href="index.html#contact">联系方式</a>
+    <header class="page-header">
+        <div class="page-header-inner">
+            <div class="page-header-left">
+                <nav class="page-breadcrumb" aria-label="面包屑">
+                    <a href="index.html">主页</a>
+                    <span class="page-breadcrumb-sep">&gt;</span>
+                    <span class="page-breadcrumb-current">训练一个强棋类 AI 的经验</span>
+                </nav>
             </div>
-        </nav>
+            <div class="page-header-right">
+                <div class="page-header-group">
+                    <button class="page-header-menu-toggle" type="button">相关链接</button>
+                    <div class="page-header-menu-panel">
+                        <a href="boardgames/index.html">KataGomo Project</a>
+                        <a href="boardgames/games.html">已训练的棋类ai</a>
+                        <a href="boardgame-training.html">训练指南</a>
+                    </div>
+                </div>
+                <div class="page-header-group">
+                    <button class="page-header-menu-toggle" type="button">联系方式</button>
+                    <div class="page-header-menu-panel">
+                        <a href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub: hzyhhzy</a>
+                        <a href="mailto:2658628026@qq.com">邮箱: 2658628026@qq.com</a>
+                        <span class="page-header-menu-note">QQ: 2658628026</span>
+                        <span class="page-header-menu-note">Discord: hzy_sigmoid</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
-
     <main>
         <section class="page-hero">
             <div class="page-hero-card">
                 <div>
-                    <div class="eyebrow">Experience</div>
                     <h1>训练一个强棋类 AI 的经验</h1>
                     <p class="page-note"><strong>注：目前还在补充内容中，部分AI生成内容还有待核实</strong></p>
                     <p>下面这些结论不是抽象口号，而是从多棋种训练、迁移和工程实现里反复得到的经验。</p>
                     <p>如果目标是“尽快做出一个真正强、还能继续提升的棋类 AI”，通常先把路线选对，比一开始抠局部技巧更重要。</p>
                     <div class="hero-actions">
-                        <a class="button" href="index.html#boardgames">返回首页</a>
-                        <a class="ghost-button" href="boardgames/index.html">查看完整专题</a>
+                        <a class="button" href="index.html">返回首页</a>
+                        <a class="ghost-button" href="boardgames/games.html">已训练的棋类ai</a>
                     </div>
                 </div>
             </div>
@@ -42,7 +57,6 @@
         <section class="page-section">
             <div class="section-head">
                 <div>
-                    <div class="eyebrow">Route</div>
                     <h2>1. 顶级棋类 AI 基本只有两条路线：AlphaZero vs NNUE</h2>
                 </div>
             </div>
@@ -66,7 +80,6 @@
         <section class="page-section">
             <div class="section-head">
                 <div>
-                    <div class="eyebrow">Engine</div>
                     <h2>2. KataGo 是AlphaZero的高效工程实现</h2>
                 </div>
             </div>
@@ -89,7 +102,6 @@
         <section class="page-section">
             <div class="section-head">
                 <div>
-                    <div class="eyebrow">Generalization</div>
                     <h2>3. KataGo不限于交替落子的棋</h2>
                 </div>
             </div>
@@ -103,7 +115,6 @@
         <section class="page-section">
             <div class="section-head">
                 <div>
-                    <div class="eyebrow">Scale</div>
                     <h2>4. Money Is All You Need</h2>
                 </div>
             </div>
@@ -117,7 +128,7 @@
 
     <footer class="site-footer">
         <div class="footer-card">
-            <p>如果只看首页，请返回 <code>index.html#boardgames</code>；如果想看具体棋种和结论，请进入 <code>boardgames/index.html</code>。</p>
+            <p>如果只看首页，请返回 <code>index.html</code>；如果想看具体棋种和结论，请进入 <code>boardgames/games.html</code>。</p>
         </div>
     </footer>
 </body>

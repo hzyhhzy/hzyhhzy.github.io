@@ -8,31 +8,46 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="site-header">
-        <nav class="nav">
-            <a class="brand" href="index.html">
-                <span class="brand-badge">H</span>
-                <span>hzyhhzy</span>
-            </a>
-            <div class="nav-links">
-                <a href="index.html#boardgames">首页重点</a>
-                <a href="boardgames/index.html">完整专题</a>
-                <a href="index.html#contact">联系方式</a>
+    <header class="page-header">
+        <div class="page-header-inner">
+            <div class="page-header-left">
+                <nav class="page-breadcrumb" aria-label="面包屑">
+                    <a href="index.html">主页</a>
+                    <span class="page-breadcrumb-sep">&gt;</span>
+                    <span class="page-breadcrumb-current">如何训练这类棋类 AI</span>
+                </nav>
             </div>
-        </nav>
+            <div class="page-header-right">
+                <div class="page-header-group">
+                    <button class="page-header-menu-toggle" type="button">相关链接</button>
+                    <div class="page-header-menu-panel">
+                        <a href="boardgames/index.html">KataGomo Project</a>
+                        <a href="boardgames/games.html">已训练的棋类ai</a>
+                        <a href="boardgame-ai-experience.html">训练经验</a>
+                    </div>
+                </div>
+                <div class="page-header-group">
+                    <button class="page-header-menu-toggle" type="button">联系方式</button>
+                    <div class="page-header-menu-panel">
+                        <a href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub: hzyhhzy</a>
+                        <a href="mailto:2658628026@qq.com">邮箱: 2658628026@qq.com</a>
+                        <span class="page-header-menu-note">QQ: 2658628026</span>
+                        <span class="page-header-menu-note">Discord: hzy_sigmoid</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
-
     <main>
         <section class="page-hero">
             <div class="page-hero-card">
                 <div>
-                    <div class="eyebrow">Training Guide</div>
                     <h1>如何训练这类棋类 AI</h1>
                     <p>这一页计划专门介绍：如何基于 KataGo / KataGomo 框架，快速、低成本地把一种棋类或一种原创规则训练到较高水平。</p>
                     <p>后续会补充数据生成、规则接入、网络选择、训练参数、成本估算、推理与发布等内容。</p>
                     <div class="hero-actions">
-                        <a class="button" href="index.html#boardgames">返回首页</a>
-                        <a class="ghost-button" href="boardgames/index.html">查看完整专题</a>
+                        <a class="button" href="index.html">返回首页</a>
+                        <a class="ghost-button" href="boardgames/games.html">已训练的棋类ai</a>
                     </div>
                 </div>
                 <aside class="page-side-note">
@@ -46,7 +61,6 @@
         <section class="page-section">
             <div class="section-head">
                 <div>
-                    <div class="eyebrow">Outline</div>
                     <h2>预留提纲</h2>
                 </div>
                 <p class="section-note">先保留结构，方便后续直接往里填。</p>
