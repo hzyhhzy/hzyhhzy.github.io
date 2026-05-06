@@ -104,6 +104,10 @@ code {
   border-radius: 999px;
   padding: 10px 16px;
   transition: 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
 }
 
 .nav-links a {
@@ -117,14 +121,20 @@ code {
 }
 
 .button {
-  background: linear-gradient(135deg, var(--accent), #9cc7ff);
+  background: linear-gradient(135deg, #9aeaff, #c9dcff);
   color: #07111f;
   font-weight: 700;
-  box-shadow: 0 10px 24px rgba(122, 216, 255, 0.28);
+  box-shadow: 0 12px 28px rgba(154, 234, 255, 0.34);
 }
 
 .button:hover {
   transform: translateY(-1px);
+}
+
+.large-cta {
+  font-size: 1.5rem;
+  padding: 16px 26px;
+  min-height: 62px;
 }
 
 .ghost-button {
@@ -158,6 +168,7 @@ code {
 .info-card,
 .detail-card,
 .cta-card,
+.feature-card,
 .timeline-item,
 .placeholder-card,
 .contact-banner,
@@ -199,6 +210,28 @@ h3 {
 h1 {
   font-size: clamp(2.2rem, 5vw, 4.4rem);
   margin-bottom: 18px;
+}
+
+.hero-note {
+  color: var(--accent-3);
+  font-size: clamp(2.2rem, 5vw, 4.4rem);
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+
+.hero-note strong {
+  font-weight: 800;
+}
+
+.page-note {
+  color: var(--accent-3);
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+
+.page-note strong {
+  font-weight: 800;
 }
 
 h2 {
@@ -334,10 +367,17 @@ p {
   align-items: end;
   gap: 18px;
   margin-bottom: 22px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
 }
 
 .section-note {
   max-width: 760px;
+  font-size: 1.02rem;
+  margin-bottom: 0;
 }
 
 .cards,
@@ -429,10 +469,158 @@ p {
 .info-card,
 .detail-card,
 .cta-card,
+.feature-card,
 .timeline-item,
 .placeholder-card,
 .table-card {
   padding: 24px;
+}
+
+.boardgames-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  display: grid;
+  gap: 14px;
+  padding: 28px;
+}
+
+.feature-card-wide {
+  grid-column: 1 / -1;
+}
+
+.feature-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 18px;
+}
+
+.feature-card h3 {
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  margin-bottom: 0;
+}
+
+.feature-title-like {
+  font-size: clamp(1.4rem, 2vw, 1.9rem) !important;
+  line-height: 1.3 !important;
+  color: var(--text) !important;
+  margin-bottom: 0 !important;
+}
+
+.highlight-line {
+  font-size: 1.3rem !important;
+  line-height: 1.4 !important;
+  color: var(--accent-3) !important;
+  font-weight: 700;
+  margin-bottom: 0 !important;
+}
+
+.feature-card p,
+.feature-card li {
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.training-copy p {
+  font-size: 1.62rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.training-copy p + p {
+  margin-top: 8px;
+}
+
+.training-link-row .inline-link {
+  font-size: 1.28rem;
+}
+
+.feature-card .kicker {
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.repo-card h3 {
+  font-size: clamp(2.1rem, 3vw, 2.85rem);
+}
+
+.repo-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.repo-link-row p {
+  margin: 0;
+}
+
+.repo-row-label {
+  font-size: 1.55rem;
+  color: var(--text);
+}
+
+.repo-link-row .inline-link {
+  font-size: 1.55rem;
+}
+
+.repo-card .button {
+  font-size: 1.5rem;
+  padding: 14px 22px;
+}
+
+.repo-card-copy p {
+  font-size: 2.16rem;
+  line-height: 1.45;
+  margin-bottom: 0;
+}
+
+.repo-card-copy p + p {
+  margin-top: 10px;
+}
+
+.repo-card-copy .inline-link {
+  font-size: inherit;
+}
+
+.inline-link {
+  color: var(--accent);
+  word-break: break-all;
+  font-size: 1.02rem;
+}
+
+.inline-link:hover {
+  color: #d4f5ff;
+}
+
+.board-link-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.board-link {
+  color: #dff2ff;
+  font-size: 1.35rem;
+  padding: 10px 18px;
+}
+
+.board-link:hover {
+  background: rgba(122, 216, 255, 0.18);
+}
+
+.insight-list {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.insight-list li + li {
+  margin-top: 10px;
 }
 
 .topic-card-body {
@@ -687,6 +875,20 @@ p {
   grid-template-columns: minmax(120px, 1.1fr) minmax(120px, 1fr) minmax(120px, 0.95fr) minmax(120px, 0.95fr) minmax(120px, 0.95fr) minmax(160px, 1.2fr);
 }
 
+.latest-table .compact-row {
+  grid-template-columns: 120px 88px minmax(0, 1fr) 140px;
+}
+
+.latest-table .compact-row > :last-child {
+  justify-self: start;
+}
+
+.latest-table .button {
+  background: linear-gradient(135deg, #b8ffb8, #e2ffd0);
+  color: #000000;
+  box-shadow: 0 12px 28px rgba(184, 255, 184, 0.32);
+}
+
 .compact-row.header {
   color: var(--accent);
   font-weight: 700;
@@ -926,7 +1128,8 @@ p {
 
 @media (max-width: 980px) {
   .hero,
-  .page-hero-card {
+  .page-hero-card,
+  .boardgames-summary-grid {
     grid-template-columns: 1fr;
   }
 
@@ -955,6 +1158,7 @@ p {
   .info-card,
   .detail-card,
   .cta-card,
+  .feature-card,
   .timeline-item,
   .placeholder-card,
   .table-card,
@@ -964,8 +1168,18 @@ p {
     padding: 20px;
   }
 
+  .section-head,
+  .page-head {
+    padding: 18px 20px;
+    align-items: start;
+  }
+
   .topic-grid {
     grid-template-columns: 1fr;
+  }
+
+  .feature-card-head {
+    flex-direction: column;
   }
 
   .topic-card {

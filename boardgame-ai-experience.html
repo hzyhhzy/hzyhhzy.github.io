@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>训练强棋类 AI 的经验 | hzyhhzy</title>
+    <meta name="description" content="关于如何训练强棋类 AI 的经验总结：AlphaZero、NNUE、KataGo、Transformer 与训练规模。">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav">
+            <a class="brand" href="index.html">
+                <span class="brand-badge">H</span>
+                <span>hzyhhzy</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#boardgames">首页重点</a>
+                <a href="boardgames/index.html">完整专题</a>
+                <a href="index.html#contact">联系方式</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="page-hero-card">
+                <div>
+                    <div class="eyebrow">Experience</div>
+                    <h1>训练一个强棋类 AI 的经验</h1>
+                    <p class="page-note"><strong>注：目前还在补充内容中，部分AI生成内容还有待核实</strong></p>
+                    <p>下面这些结论不是抽象口号，而是从多棋种训练、迁移和工程实现里反复得到的经验。</p>
+                    <p>如果目标是“尽快做出一个真正强、还能继续提升的棋类 AI”，通常先把路线选对，比一开始抠局部技巧更重要。</p>
+                    <div class="hero-actions">
+                        <a class="button" href="index.html#boardgames">返回首页</a>
+                        <a class="ghost-button" href="boardgames/index.html">查看完整专题</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-section">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">Route</div>
+                    <h2>1. 顶级棋类 AI 基本只有两条路线：AlphaZero vs NNUE</h2>
+                </div>
+            </div>
+            <div class="two-grid">
+                <article class="detail-card">
+                    <h3>AlphaZero</h3>
+                    <p>这条路线使用较大的神经网络配合搜索，愿意牺牲一部分速度来换更高的表达能力和更稳定的上限。</p>
+                    <p>它最大的优点是通用。只要规则能接入，几乎任何二人零和棋类都可以沿着同一套范式训练出有竞争力的结果。</p>
+                </article>
+                <article class="detail-card">
+                    <h3>NNUE</h3>
+                    <p>NNUE 更偏向“小网络 + 极快评估”，靠速度、特征设计和搜索工程去追求强度。</p>
+                    <p>它在少数成熟棋种上很强，但通用性较差，迁移到新棋种时往往需要更多手工设计和更大的工程量。</p>
+                </article>
+            </div>
+            <article class="detail-card">
+                <p>如果你不是在某个单一棋种上做极致 CPU 软件，而是想覆盖大量棋种、规则变体甚至原创规则，AlphaZero 通常是最通用、最稳妥的路线，整体工程量也经常小于 NNUE。</p>
+            </article>
+        </section>
+
+        <section class="page-section">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">Engine</div>
+                    <h2>2. KataGo 是AlphaZero的高效工程实现</h2>
+                </div>
+            </div>
+            <div class="detail-grid">
+                <article class="detail-card">
+                    <h3>为什么重要</h3>
+                <p>很多人理解了 AlphaZero 思想，但从零实现时会在自对弈、并行、样本利用率、训练管线和推理效率上损失大量性能。</p>
+                </article>
+                <article class="detail-card">
+                    <h3>实际差距</h3>
+                    <p>KataGo 在工程上已经把很多细节打磨得非常成熟。和多数人自己从零写的 AlphaZero 相比，效率高 10 到 1000 倍并不夸张，差多少主要取决于写代码的人水平。</p>
+                </article>
+                <article class="detail-card">
+                    <h3>直接收益</h3>
+                    <p>这意味着你可以把更多精力放在规则设计、数据质量、网络结构和算力投入上，而不是先花很久重造一遍基础设施。</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="page-section">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">Generalization</div>
+                    <h2>3. KataGo不限于交替落子的棋</h2>
+                </div>
+            </div>
+            <article class="detail-card">
+                <p>KataGo 并不只适用于“黑白双方轮流往空点落子”这种最标准的棋类。像象棋、国际象棋这类一步里同时包含“选择棋子”和“决定落点”的游戏，也可以用类似框架处理。</p>
+                <p>最偷懒、最实用的实现方式，是把原本的一步拆成两步：先选要动的棋子，再选它的落点。这个拆法不保证在理论上最优，但通常不会弱太多，而且能显著降低接入门槛。</p>
+                <p>如果目标是快速验证一类规则或者快速做出原型，这种做法非常值得用。</p>
+            </article>
+        </section>
+
+        <section class="page-section">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">Scale</div>
+                    <h2>4. Money Is All You Need</h2>
+                </div>
+            </div>
+            <article class="detail-card">
+                <p>棋力水平通常随着训练量的对数增长。这句话的意思不是“越练越没用”，而是说每翻倍一次训练量，通常仍然能涨分，只是单位投入带来的提升会逐渐变小。</p>
+                <p>对大多数尚未被破解的棋种来说，这条曲线几乎没有真正意义上的终点。只要棋本身还有复杂度、数据还在变好、搜索与网络还在提升，ELO 就还能继续涨。</p>
+                <p>所以很多时候，真正决定上限的不是某个花哨技巧，而是你是否选对路线、是否用了高效实现，以及是否愿意持续投入训练量。</p>
+            </article>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-card">
+            <p>如果只看首页，请返回 <code>index.html#boardgames</code>；如果想看具体棋种和结论，请进入 <code>boardgames/index.html</code>。</p>
+        </div>
+    </footer>
+</body>
+</html>
