@@ -1,146 +1,290 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="en" data-language="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KataGomo Project | hzyhhzy</title>
-    <meta name="description" content="KataGomo Project：高效通用棋类AI框架，包含仓库、AI下载、数据集、已训练棋类与最新动态。">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title data-en="KataGomo / Board-game AI Research Archive | hzyhhzy" data-zh="KataGomo / 棋类 AI 研究档案 | hzyhhzy">KataGomo / Board-game AI Research Archive | hzyhhzy</title>
+    <meta name="description" content="KataGomo is a board-game AI research project covering rule implementation, self-play training, models, datasets, experimental branches, and release records." data-i18n-content="metaDescription">
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <header class="page-header">
-        <div class="page-header-inner">
-            <div class="page-header-left">
-                <nav class="page-breadcrumb" aria-label="面包屑">
-                    <a href="../index.html">主页</a>
-                    <span class="page-breadcrumb-sep">&gt;</span>
-                    <span class="page-breadcrumb-current">KataGomo Project</span>
-                </nav>
-            </div>
-            <div class="page-header-right">
-                <div class="page-header-group">
-                    <button class="page-header-menu-toggle" type="button">相关链接</button>
-                    <div class="page-header-menu-panel">
-                        <a href="games.html">已训练的棋类ai</a>
-                        <a href="../boardgame-ai-experience.html">训练经验</a>
-                        <a href="../boardgame-training.html">训练指南</a>
-                    </div>
-                </div>
-                <div class="page-header-group">
-                    <button class="page-header-menu-toggle" type="button">联系方式</button>
-                    <div class="page-header-menu-panel">
-                        <a href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub: hzyhhzy</a>
-                        <a href="mailto:2658628026@qq.com">邮箱: 2658628026@qq.com</a>
-                        <span class="page-header-menu-note">QQ: 2658628026</span>
-                        <span class="page-header-menu-note">Discord: hzy_sigmoid</span>
-                    </div>
+    <a class="skip-link" href="#main-content" data-en="Skip to main content" data-zh="跳到主要内容">Skip to main content</a>
+
+    <header class="content-header">
+        <div class="content-container header-inner">
+            <a class="content-brand" href="../index.html" aria-label="Back to hzyhhzy projects" data-i18n-aria-label="brandLabel">
+                <span aria-hidden="true">σ</span>
+                <span>
+                    <strong>hzyhhzy</strong>
+                    <small data-en="Computational research archive" data-zh="计算研究档案">Computational research archive</small>
+                </span>
+            </a>
+
+            <div class="header-actions">
+                <a class="content-github" href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">
+                    GitHub <span aria-hidden="true">↗</span>
+                </a>
+                <div class="language-switcher" role="group" aria-label="Language" data-i18n-aria-label="languageControl">
+                    <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
+                    <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
                 </div>
             </div>
+
+            <nav class="content-nav" aria-label="Page navigation" data-i18n-aria-label="pageNavigation">
+                <a href="#overview" data-en="Overview" data-zh="概览">Overview</a>
+                <a href="#experiments" data-en="Experiments" data-zh="实验">Experiments</a>
+                <a href="#resources" data-en="Resources" data-zh="资源">Resources</a>
+                <a href="#updates" data-en="Updates" data-zh="动态">Updates</a>
+            </nav>
         </div>
     </header>
-    <main>
-        <section class="section">
-            <div class="section-head">
-                <div>
-                    <h2>KataGomo Project: 高效通用棋类AI框架</h2>
+
+    <main class="content-main" id="main-content">
+        <div class="content-container">
+            <nav class="breadcrumb" aria-label="Breadcrumb" data-i18n-aria-label="breadcrumb">
+                <a href="../index.html" data-en="Projects" data-zh="项目">Projects</a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page">KataGomo</span>
+            </nav>
+
+            <section class="content-hero" aria-labelledby="page-title">
+                <p class="page-eyebrow" data-en="Project / Board-game AI archive" data-zh="项目 / 棋类 AI 档案">Project / Board-game AI archive</p>
+                <h1 id="page-title">KataGomo</h1>
+                <p class="content-lead" data-en="A multi-game AI engineering project built from KataGo. It connects rule implementation, search, and self-play training, then publishes reproducible experiments as models, datasets, and release records." data-zh="一个基于 KataGo 扩展的多棋种 AI 工程：将规则实现、搜索与自对弈训练连接起来，并把可复现实验整理为模型、数据和发布记录。">A multi-game AI engineering project built from KataGo. It connects rule implementation, search, and self-play training, then publishes reproducible experiments as models, datasets, and release records.</p>
+
+                <div class="hero-actions">
+                    <a class="button button-primary" href="https://github.com/hzyhhzy/KataGomo" target="_blank" rel="noreferrer"><span data-en="Source code" data-zh="查看源代码">Source code</span> <span aria-hidden="true">↗</span></a>
+                    <a class="button button-secondary" href="games-table-prototype.html" data-en="Games, models &amp; downloads" data-zh="棋种、模型与下载">Games, models &amp; downloads</a>
+                </div>
+
+                <ul class="tag-list" aria-label="Project attributes" data-i18n-aria-label="projectAttributes">
+                    <li><span class="tag">AlphaZero</span></li>
+                    <li><span class="tag">C++</span></li>
+                    <li><span class="tag" data-en="Self-play" data-zh="自对弈">Self-play</span></li>
+                    <li><span class="tag" data-en="Multi-game" data-zh="多棋种">Multi-game</span></li>
+                    <li><span class="tag" data-en="Open source" data-zh="开源">Open source</span></li>
+                </ul>
+            </section>
+        </div>
+
+        <section class="content-section" id="overview" aria-labelledby="overview-title">
+            <div class="content-container">
+                <header class="section-heading">
+                    <p data-en="Research scope" data-zh="研究范围">Research scope</p>
+                    <h2 id="overview-title" data-en="From a ruleset to a trainable, testable system" data-zh="从一套棋类规则，到可训练、可评测的系统">From a ruleset to a trainable, testable system</h2>
+                    <p data-lang-content="en">KataGomo studies the complete engineering path, not just the result of a single match. Built on <a href="https://github.com/lightvector/KataGo" target="_blank" rel="noreferrer">KataGo</a>, it extends AlphaZero-style methods to different boards, action spaces, and terminal conditions.</p>
+                    <p data-lang-content="zh" lang="zh-CN" hidden>KataGomo 关注的是完整工程链路，而不只是某一次对局的结果。项目基于 <a href="https://github.com/lightvector/KataGo" target="_blank" rel="noreferrer">KataGo</a>，将 AlphaZero 方法扩展到不同棋盘、行动空间与终局条件。</p>
+                </header>
+
+                <div class="card-grid">
+                    <article class="content-card">
+                        <p aria-hidden="true" data-en="01 / Rules" data-zh="01 / 规则">01 / Rules</p>
+                        <h3 data-en="Rules engineering" data-zh="规则工程">Rules engineering</h3>
+                        <p data-en="Implement board state, legal actions, game end, and scoring, then define stable neural-network inputs and outputs. The approach is best suited to deterministic, two-player, perfect-information games and their variants." data-zh="实现棋盘状态、合法行动、终局与计分，并为神经网络准备稳定的输入、输出表示。适合研究二人、确定性、完全信息棋类及其规则变体。">Implement board state, legal actions, game end, and scoring, then define stable neural-network inputs and outputs. The approach is best suited to deterministic, two-player, perfect-information games and their variants.</p>
+                    </article>
+
+                    <article class="content-card">
+                        <p aria-hidden="true" data-en="02 / Self-play" data-zh="02 / 自对弈">02 / Self-play</p>
+                        <h3 data-en="Search and self-play" data-zh="搜索与自对弈">Search and self-play</h3>
+                        <p data-en="Reuse mature search and training infrastructure so a new ruleset can generate data through self-play. Each game still needs its exploration efficiency, sample distribution, and hyperparameters checked independently." data-zh="复用成熟的搜索和训练基础设施，让新规则通过自对弈产生数据。不同棋种仍需要分别检查探索效率、样本分布与超参数。">Reuse mature search and training infrastructure so a new ruleset can generate data through self-play. Each game still needs its exploration efficiency, sample distribution, and hyperparameters checked independently.</p>
+                    </article>
+
+                    <article class="content-card">
+                        <p aria-hidden="true" data-en="03 / Release" data-zh="03 / 发布">03 / Release</p>
+                        <h3 data-en="Models and datasets" data-zh="模型与数据发布">Models and datasets</h3>
+                        <p data-en="Selected models, runnable releases, and datasets are public. Strength and win/loss statements on this site always belong to a specified ruleset, version, and evaluation setup; they are not unconditional claims across platforms or variants." data-zh="已公开部分模型、可运行版本和数据集。页面中的强度与胜负结论都对应特定规则、版本及评测设置，不作为对所有平台或规则变体的无条件结论。">Selected models, runnable releases, and datasets are public. Strength and win/loss statements on this site always belong to a specified ruleset, version, and evaluation setup; they are not unconditional claims across platforms or variants.</p>
+                    </article>
                 </div>
             </div>
-            <div class="boardgames-summary-grid">
-                <article class="feature-card feature-card-wide repo-card">
-                    <div class="feature-card-head">
-                        <div>
-                            <h3>KataGomo 主仓库</h3>
-                        </div>
-                    </div>
-                    <div class="repo-link-row">
-                        <p><a class="inline-link" href="https://github.com/hzyhhzy/KataGomo" target="_blank" rel="noreferrer">https://github.com/hzyhhzy/KataGomo</a></p>
-                        <a class="button" href="https://github.com/hzyhhzy/KataGomo" target="_blank" rel="noreferrer">GitHub 仓库</a>
-                    </div>
-                    <div class="repo-link-row">
-                        <a class="button" href="games.html">AI下载专题页（含五子棋、Hex棋等几十种棋）</a>
-                    </div>
-                    <div class="repo-link-row">
-                        <p><a class="inline-link" href="https://www.modelscope.cn/profile/sigmoid" target="_blank" rel="noreferrer">https://www.modelscope.cn/profile/sigmoid</a></p>
-                        <a class="button" href="https://www.modelscope.cn/profile/sigmoid" target="_blank" rel="noreferrer">相关数据集</a>
-                    </div>
-                    <div class="repo-card-copy">
-                        <p>基于 <a class="inline-link" href="https://github.com/lightvector/KataGo" target="_blank" rel="noreferrer">KataGo</a> 的多棋种 AI 框架</p>
-                        <p>AlphaZero 算法的高效工程实现</p>
-                    </div>
-                </article>
+        </section>
 
-                <article class="feature-card">
-                    <h3>最强五子棋、Hex、六子棋、斗兽棋... 的AI，没有之一</h3>
-                    <p class="feature-title-like">"终结"了六子棋、不围棋、breakthrough...</p>
-                    <p class="highlight-line">六子棋疑似黑必胜！</p>
-                    <div class="board-link-grid">
-                        <a class="tag board-link" href="games.html#topic-gomoku">五子棋</a>
-                        <a class="tag board-link" href="games.html#topic-hex">Hex 棋</a>
-                        <a class="tag board-link" href="games.html#topic-connect6">六子棋</a>
-                        <a class="tag board-link" href="games.html#topic-ataxx">Ataxx</a>
-                        <a class="tag board-link" href="games.html#topic-animal-chess">斗兽棋</a>
-                        <a class="tag board-link" href="games.html#topic-chinese-checkers">中国跳棋</a>
-                        <a class="tag board-link" href="games.html#topic-other-games">亚马逊棋</a>
-                        <a class="tag board-link" href="games.html#topic-other-games">突破棋</a>
-                        <a class="tag board-link" href="games.html#topic-other-games">不围棋</a>
-                        <a class="tag board-link" href="games.html#topic-other-games">终极井字棋</a>
-                        <a class="tag board-link" href="games.html#topic-other-games">其他...</a>
-                    </div>
-                    <div class="card-actions">
-                        <a class="button large-cta" href="games.html">已训练的棋类ai</a>
-                    </div>
-                </article>
+        <section class="content-section" id="experiments" aria-labelledby="experiments-title">
+            <div class="content-container">
+                <header class="section-heading">
+                    <p data-en="Published experiments" data-zh="已发布实验">Published experiments</p>
+                    <h2 id="experiments-title" data-en="Games covered and the limits of the evidence" data-zh="已覆盖的棋种与实验边界">Games covered and the limits of the evidence</h2>
+                    <p data-en="Public artifacts cover dozens of games and rule variants. Gomoku, Hex, Connect6, Ataxx, Animal Chess, and Chinese Checkers are among the areas with downloadable models or experiment records." data-zh="公开产物覆盖数十种棋类及规则变体。五子棋、Hex、六子棋、Ataxx、斗兽棋与中国跳棋等方向已有可下载模型或实验记录。">Public artifacts cover dozens of games and rule variants. Gomoku, Hex, Connect6, Ataxx, Animal Chess, and Chinese Checkers are among the areas with downloadable models or experiment records.</p>
+                </header>
 
-                <article class="feature-card">
-                    <h3>低成本训练大部分棋类</h3>
-                    <div class="training-copy">
-                        <p>只需知道规则即可开始训练，AI自己探索下法</p>
-                        <p>支持大多数 二人+无随机+无隐藏信息 的棋类</p>
-                        <p>典型实验成本通常低于 100 元</p>
-                    </div>
-                    <div class="link-row training-link-row">
-                        <a class="inline-link" href="https://github.com/hzyhhzy/KataGomo/tree/AntiConnectN2025" target="_blank" rel="noreferrer">反五子棋</a>
-                        <a class="inline-link" href="https://github.com/hzyhhzy/KataGomo/tree/ZhenQi" target="_blank" rel="noreferrer">逆界震棋</a>
-                        <a class="inline-link" href="https://github.com/hzyhhzy/KataGomo/tree/AngelProblem" target="_blank" rel="noreferrer">Angel Problem</a>
-                        <a class="inline-link" href="games.html#topic-other-games">其他...</a>
-                    </div>
-                    <div class="card-actions">
-                        <a class="button large-cta" href="../boardgame-training.html">如何修改规则与训练KataGomo</a>
-                        <a class="button large-cta" href="../boardgame-ai-experience.html">训练一个强棋类 AI 的经验</a>
-                    </div>
-                </article>
+                <div class="card-grid">
+                    <article class="content-card">
+                        <h3 data-en="Game index" data-zh="棋种索引">Game index</h3>
+                        <p data-en="Open a game to find its models, version notes, and download links." data-zh="按棋种查看模型、版本说明与下载入口。">Open a game to find its models, version notes, and download links.</p>
+                        <ul class="tag-list">
+                            <li><a class="tag" href="games-table-prototype.html#topic-gomoku" data-en="Gomoku" data-zh="五子棋">Gomoku</a></li>
+                            <li><a class="tag" href="games-table-prototype.html#topic-hex">Hex</a></li>
+                            <li><a class="tag" href="games-table-prototype.html#entry-kataconnect6" data-en="Connect6" data-zh="六子棋">Connect6</a></li>
+                            <li><a class="tag" href="games-table-prototype.html#entry-kataataxx">Ataxx</a></li>
+                            <li><a class="tag" href="games-table-prototype.html#entry-animal-chess-ai" data-en="Animal Chess" data-zh="斗兽棋">Animal Chess</a></li>
+                            <li><a class="tag" href="games-table-prototype.html#entry-chinese-checkers-ai" data-en="Chinese Checkers" data-zh="中国跳棋">Chinese Checkers</a></li>
+                            <li><a class="tag" href="games-table-prototype.html#independent-featured" data-en="Other games &amp; variants" data-zh="其他棋种与变体">Other games &amp; variants</a></li>
+                        </ul>
+                    </article>
 
-                <article class="feature-card feature-card-wide">
-                    <h3>最新动态</h3>
-                    <div class="compact-table latest-table">
-                        <div class="compact-row header">
-                            <div>日期</div>
-                            <div>类别</div>
-                            <div>标题</div>
-                            <div>相关链接</div>
-                        </div>
-                        <div class="compact-row">
-                            <div><span>2026-05-02</span></div>
-                            <div><span>围棋</span></div>
-                            <div><span>公开最新版b40c768nbt模型“fdx6d”，水平达到14480ELO</span></div>
-                            <div><a class="button" href="https://katagotraining.org/" target="_blank" rel="noreferrer">官网</a></div>
-                        </div>
-                        <div class="compact-row">
-                            <div><span>2026-05-01</span></div>
-                            <div><span>Ataxx</span></div>
-                            <div><span>发布新版Transformer模型，提升200ELO</span></div>
-                            <div><a class="button" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Ataxx_20260501" target="_blank" rel="noreferrer">Release页</a></div>
-                        </div>
-                    </div>
-                </article>
+                    <article class="content-card">
+                        <h3 data-en="Interim findings" data-zh="阶段性结果">Interim findings</h3>
+                        <p data-en="Some public models achieved strong playing results under the project's test settings. Experiments in Connect6, NoGo, Breakthrough, and other games also produced trends worth further verification." data-zh="部分公开模型在项目采用的测试设置中取得了较高对弈强度；六子棋、不围棋和突破棋等实验也产生了值得继续验证的胜负趋势。">Some public models achieved strong playing results under the project's test settings. Experiments in Connect6, NoGo, Breakthrough, and other games also produced trends worth further verification.</p>
+                        <p data-en="For example, Connect6 self-play showed a first-player advantage, but whether that amounts to a forced win still depends on the exact rules, search budget, and stricter independent verification." data-zh="例如，六子棋自对弈曾观察到黑方优势，但是否构成必胜仍取决于规则版本、搜索预算与更严格的独立验证。">For example, Connect6 self-play showed a first-player advantage, but whether that amounts to a forced win still depends on the exact rules, search budget, and stricter independent verification.</p>
+                    </article>
+
+                    <article class="content-card">
+                        <h3 data-en="Cost and applicability" data-zh="成本与适用条件">Cost and applicability</h3>
+                        <p data-en="Small-network smoke tests can often reuse existing hardware, but full training has no universal price. Record the GPU model, GPU hours, self-play game count, and search budget, then estimate cost from the actual electricity or cloud-compute rate." data-zh="小网络冒烟测试通常可以复用已有硬件，但正式训练没有通用的价格结论。项目记录 GPU 型号、GPU 小时、自对弈局数与搜索预算，再按实际电价或云算力单价估算成本。">Small-network smoke tests can often reuse existing hardware, but full training has no universal price. Record the GPU model, GPU hours, self-play game count, and search budget, then estimate cost from the actual electricity or cloud-compute rate.</p>
+                        <p data-en="The project does not assume that implementing rules automatically produces a strong model; training stability and result quality still require case-by-case evaluation." data-zh="项目不假定“只写规则就必然得到强模型”；训练稳定性与结果质量仍需逐项评测。">The project does not assume that implementing rules automatically produces a strong model; training stability and result quality still require case-by-case evaluation.</p>
+                    </article>
+                </div>
+
+                <div class="card-grid" aria-label="Experimental branches" data-i18n-aria-label="experimentBranches">
+                    <article class="content-card">
+                        <h3 data-en="Rules experiments" data-zh="规则实验分支">Rules experiments</h3>
+                        <ul class="resource-list">
+                            <li class="resource-item">
+                                <a href="https://github.com/hzyhhzy/KataGomo/tree/AntiConnectN2025" target="_blank" rel="noreferrer">
+                                    <span>AntiConnectN2025</span>
+                                    <strong><span data-en="Anti-Gomoku" data-zh="反五子棋">Anti-Gomoku</span> <span aria-hidden="true">↗</span></strong>
+                                </a>
+                            </li>
+                            <li class="resource-item">
+                                <a href="https://github.com/hzyhhzy/KataGomo/tree/ZhenQi" target="_blank" rel="noreferrer">
+                                    <span>ZhenQi</span>
+                                    <strong><span data-en="Zhen Qi" data-zh="震棋（Zhen Qi）">Zhen Qi</span> <span aria-hidden="true">↗</span></strong>
+                                </a>
+                            </li>
+                            <li class="resource-item">
+                                <a href="https://github.com/hzyhhzy/KataGomo/tree/AngelProblem" target="_blank" rel="noreferrer">
+                                    <span>AngelProblem</span>
+                                    <strong>Angel Problem <span aria-hidden="true">↗</span></strong>
+                                </a>
+                            </li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="resources" aria-labelledby="resources-title">
+            <div class="content-container">
+                <header class="section-heading">
+                    <p data-en="Archive index" data-zh="档案索引">Archive index</p>
+                    <h2 id="resources-title" data-en="Code, models, data, and engineering notes" data-zh="代码、模型、数据与工程笔记">Code, models, data, and engineering notes</h2>
+                    <p data-en="Choose the material by task. The download catalog centralizes published games instead of treating repository folders as documentation." data-zh="按任务进入对应资料；下载页面集中列出已发布棋种，不把仓库目录当作文档索引。">Choose the material by task. The download catalog centralizes published games instead of treating repository folders as documentation.</p>
+                </header>
+
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <a href="https://github.com/hzyhhzy/KataGomo" target="_blank" rel="noreferrer">
+                            <span data-en="Repository" data-zh="仓库">Repository</span>
+                            <strong>KataGomo <span data-en="main repository" data-zh="主仓库">main repository</span> <span aria-hidden="true">↗</span></strong>
+                            <small data-en="Source code, branches, and release records" data-zh="源代码、分支与发布记录">Source code, branches, and release records</small>
+                        </a>
+                    </li>
+                    <li class="resource-item">
+                        <a href="games-table-prototype.html">
+                            <span data-en="Catalog" data-zh="目录">Catalog</span>
+                            <strong data-en="Games, models, and downloads" data-zh="棋种、模型与下载">Games, models, and downloads</strong>
+                            <small data-en="Published artifacts for Gomoku, Hex, Connect6, and more" data-zh="五子棋、Hex、六子棋等公开产物">Published artifacts for Gomoku, Hex, Connect6, and more</small>
+                        </a>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.modelscope.cn/profile/sigmoid" target="_blank" rel="noreferrer">
+                            <span data-en="Datasets" data-zh="数据集">Datasets</span>
+                            <strong><span data-en="ModelScope data profile" data-zh="ModelScope 数据主页">ModelScope data profile</span> <span aria-hidden="true">↗</span></strong>
+                            <small data-en="Related public datasets" data-zh="已公开的相关数据集">Related public datasets</small>
+                        </a>
+                    </li>
+                    <li class="resource-item">
+                        <a href="../boardgame-training.html">
+                            <span data-en="Guide" data-zh="指南">Guide</span>
+                            <strong data-en="Training AI for a game you invented" data-zh="如何训练自己发明的新棋">Training AI for a game you invented</strong>
+                            <small data-en="Branch selection, builds, checks, and training scale" data-zh="分支选择、编译、自测与训练规模">Branch selection, builds, checks, and training scale</small>
+                        </a>
+                    </li>
+                    <li class="resource-item">
+                        <a href="../boardgame-rule-implementation.html">
+                            <span data-en="Reference" data-zh="参考">Reference</span>
+                            <strong data-en="C++ rules integration" data-zh="C++ 规则接入细节">C++ rules integration</strong>
+                            <small data-en="State, actions, terminal conditions, and network inputs" data-zh="状态、行动、终局与网络输入">State, actions, terminal conditions, and network inputs</small>
+                        </a>
+                    </li>
+                    <li class="resource-item">
+                        <a href="../boardgame-ai-experience.html">
+                            <span data-en="Field note" data-zh="经验笔记">Field note</span>
+                            <strong data-en="Engineering experience in board-game AI" data-zh="训练棋类 AI 的工程经验">Engineering experience in board-game AI</strong>
+                            <small data-en="Search efficiency, model architecture, and training judgment" data-zh="搜索效率、模型结构与训练判断">Search efficiency, model architecture, and training judgment</small>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section" id="updates" aria-labelledby="updates-title">
+            <div class="content-container">
+                <header class="section-heading">
+                    <p data-en="Release log" data-zh="发布记录">Release log</p>
+                    <h2 id="updates-title" data-en="Recent updates" data-zh="最新动态">Recent updates</h2>
+                    <p data-en="Recent public records as of July 13, 2026. KataGo network ratings change as game statistics accumulate; use the linked source for the current status." data-zh="截至 2026-07-13 的近期公开记录。KataGo 网络评级会随对局统计更新，最新状态以来源页为准。">Recent public records as of July 13, 2026. KataGo network ratings change as game statistics accumulate; use the linked source for the current status.</p>
+                </header>
+
+                <div class="table-wrap" role="region" aria-label="Recent public updates as of July 13, 2026" data-i18n-aria-label="updatesTable" tabindex="0">
+                    <table class="data-table">
+                        <caption data-en="Recent public updates as of July 13, 2026" data-zh="截至 2026-07-13 的近期公开更新">Recent public updates as of July 13, 2026</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col" data-en="Date" data-zh="日期">Date</th>
+                                <th scope="col" data-en="Category" data-zh="类别">Category</th>
+                                <th scope="col" data-en="Record" data-zh="记录">Record</th>
+                                <th scope="col" data-en="Source" data-zh="来源">Source</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"><time datetime="2026-06-19">2026-06-19</time></th>
+                                <td data-en="3D connection games" data-zh="3D 连子棋">3D connection games</td>
+                                <td data-en="Released the Lizzie3D interface and models for four three-dimensional connection rulesets. Ordinary 3D Gomoku was not included in this release." data-zh="发布 Lizzie3D 界面与四套三维连子规则模型；普通 3D 五子棋未收入该版本。">Released the Lizzie3D interface and models for four three-dimensional connection rulesets. Ordinary 3D Gomoku was not included in this release.</td>
+                                <td><a class="button button-secondary" href="https://github.com/hzyhhzy/KataGomo/releases/tag/3d_gomoku_20260620" target="_blank" rel="noreferrer"><span data-en="3D games release" data-zh="3D 连子棋 Release">3D games release</span> <span aria-hidden="true">↗</span></a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><time datetime="2026-06-07">2026-06-07</time></th>
+                                <td data-en="Go networks" data-zh="围棋网络">Go networks</td>
+                                <td data-en="The training site listed a b28c512nbt network as the latest upload; its strongest confidently rated network was a b40c768nbt version uploaded on June 6." data-zh="训练站将 b28c512nbt 网络列为最新网络；最高可信评级网络为 6 月 6 日上传的 b40c768nbt 版本。">The training site listed a b28c512nbt network as the latest upload; its strongest confidently rated network was a b40c768nbt version uploaded on June 6.</td>
+                                <td><ul class="resource-list"><li><a href="https://katagotraining.org/networks/" target="_blank" rel="noreferrer" data-en="Network list" data-zh="网络列表">Network list</a></li><li><a href="https://katagotraining.org/" target="_blank" rel="noreferrer" data-en="Training home" data-zh="训练主页">Training home</a></li></ul></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><time datetime="2026-05-01">2026-05-01</time></th>
+                                <td>Ataxx</td>
+                                <td data-en="Released a new Transformer model. The release notes report a 200 Elo improvement over the preceding version." data-zh="发布新版 Transformer 模型；发布记录报告相对上一版本提升 200 Elo。">Released a new Transformer model. The release notes report a 200 Elo improvement over the preceding version.</td>
+                                <td><a class="button button-secondary" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Ataxx_20260501" target="_blank" rel="noreferrer">Ataxx Release <span aria-hidden="true">↗</span></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-card">
-            <p>完整棋种列表与下载入口见 <code>games.html</code>。</p>
+    <footer class="content-footer">
+        <div class="content-container footer-inner">
+            <p><span aria-hidden="true">σ</span> <span data-en="hzyhhzy / KataGomo research archive" data-zh="hzyhhzy / KataGomo 研究档案">hzyhhzy / KataGomo research archive</span></p>
+            <p><a href="games-table-prototype.html" data-en="Full games, models &amp; downloads catalog" data-zh="完整棋种、模型与下载">Full games, models &amp; downloads catalog</a></p>
+            <p><span data-en="Contact:" data-zh="交流：">Contact:</span> <a href="mailto:2658628026@qq.com">2658628026@qq.com</a></p>
         </div>
     </footer>
+
+    <script type="application/json" id="page-i18n">
+    {
+      "zh": {
+        "metaDescription": "KataGomo 棋类 AI 项目的研究档案：规则接入、自对弈训练、模型与数据发布、实验分支及更新记录。",
+        "brandLabel": "返回 hzyhhzy 项目主页",
+        "languageControl": "语言",
+        "pageNavigation": "页面导航",
+        "breadcrumb": "面包屑",
+        "projectAttributes": "项目属性",
+        "experimentBranches": "实验分支",
+        "updatesTable": "截至 2026-07-13 的近期公开更新"
+      }
+    }
+    </script>
+    <script src="../site.js" defer></script>
 </body>
 </html>

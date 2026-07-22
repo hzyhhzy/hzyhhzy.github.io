@@ -1,91 +1,307 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="en" data-language="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>如何训练棋类 AI | hzyhhzy</title>
-    <meta name="description" content="基于 KataGo / KataGomo 框架训练棋类 AI 的说明页，当前内容待补充。">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title data-en="Training AI for a Game You Invented | hzyhhzy" data-zh="如何训练自己发明的新棋 | hzyhhzy">Training AI for a Game You Invented | hzyhhzy</title>
+    <meta name="description" content="A practical KataGomo workflow from rules implementation and compilation to self-play configuration, training, evaluation, and release." data-i18n-content="metaDescription">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="page-header">
-        <div class="page-header-inner">
-            <div class="page-header-left">
-                <nav class="page-breadcrumb" aria-label="面包屑">
-                    <a href="index.html">主页</a>
-                    <span class="page-breadcrumb-sep">&gt;</span>
-                    <span class="page-breadcrumb-current">如何训练这类棋类 AI</span>
-                </nav>
-            </div>
-            <div class="page-header-right">
-                <div class="page-header-group">
-                    <button class="page-header-menu-toggle" type="button">相关链接</button>
-                    <div class="page-header-menu-panel">
-                        <a href="boardgames/index.html">KataGomo Project</a>
-                        <a href="boardgames/games.html">已训练的棋类ai</a>
-                        <a href="boardgame-ai-experience.html">训练经验</a>
-                    </div>
-                </div>
-                <div class="page-header-group">
-                    <button class="page-header-menu-toggle" type="button">联系方式</button>
-                    <div class="page-header-menu-panel">
-                        <a href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub: hzyhhzy</a>
-                        <a href="mailto:2658628026@qq.com">邮箱: 2658628026@qq.com</a>
-                        <span class="page-header-menu-note">QQ: 2658628026</span>
-                        <span class="page-header-menu-note">Discord: hzy_sigmoid</span>
-                    </div>
+    <a class="skip-link" href="#main-content" data-en="Skip to main content" data-zh="跳到主要内容">Skip to main content</a>
+
+    <header class="content-header">
+        <div class="content-container header-inner">
+            <a class="content-brand" href="index.html" aria-label="Back to hzyhhzy projects" data-i18n-aria-label="brandLabel">
+                <span aria-hidden="true">σ</span>
+                <strong>hzyhhzy</strong>
+            </a>
+            <div class="header-actions">
+                <a class="content-github" href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+                <div class="language-switcher" role="group" aria-label="Language" data-i18n-aria-label="languageControl">
+                    <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
+                    <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
                 </div>
             </div>
+            <nav class="content-nav" aria-label="Primary navigation" data-i18n-aria-label="primaryNavigation">
+                <a href="index.html" data-en="Projects" data-zh="项目">Projects</a>
+                <a href="boardgame-ai-experience.html" data-en="AI notes" data-zh="AI 经验">AI notes</a>
+                <a href="boardgame-training.html" aria-current="page" data-en="Training" data-zh="训练指南">Training</a>
+                <a href="boardgame-rule-implementation.html" data-en="Rules" data-zh="规则接入">Rules</a>
+            </nav>
         </div>
     </header>
-    <main>
-        <section class="page-hero">
-            <div class="page-hero-card">
-                <div>
-                    <h1>如何训练这类棋类 AI</h1>
-                    <p>这一页计划专门介绍：如何基于 KataGo / KataGomo 框架，快速、低成本地把一种棋类或一种原创规则训练到较高水平。</p>
-                    <p>后续会补充数据生成、规则接入、网络选择、训练参数、成本估算、推理与发布等内容。</p>
-                    <div class="hero-actions">
-                        <a class="button" href="index.html">返回首页</a>
-                        <a class="ghost-button" href="boardgames/games.html">已训练的棋类ai</a>
-                    </div>
-                </div>
-                <aside class="page-side-note">
-                    <strong>当前状态</strong>
-                    <p>内容待补充。</p>
-                    <p>你之后可以直接在这一页继续填写训练细节和示例流程。</p>
-                </aside>
-            </div>
-        </section>
 
-        <section class="page-section">
-            <div class="section-head">
-                <div>
-                    <h2>预留提纲</h2>
+    <main class="content-main" id="main-content">
+        <div class="content-container">
+            <nav class="breadcrumb" aria-label="Breadcrumb" data-i18n-aria-label="breadcrumb">
+                <a href="index.html" data-en="Projects" data-zh="项目">Projects</a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page" data-en="Training a new game" data-zh="训练自己发明的新棋">Training a new game</span>
+            </nav>
+
+            <section class="content-hero article-hero" aria-labelledby="page-title">
+                <p class="page-eyebrow" data-en="KataGomo training guide" data-zh="KataGomo 训练指南">KataGomo training guide</p>
+                <h1 id="page-title" data-en="How to train AI for a game you invented" data-zh="如何训练自己发明的新棋">How to train AI for a game you invented</h1>
+                <p class="content-lead" data-en="Implement the rules in the engine, prove the self-play and training loop with a small network, then scale the data and model to fit the budget. This is a practical route from an original ruleset to a usable board-game AI." data-zh="把规则写进引擎，用小网络跑通自对弈与训练闭环，再按预算扩大数据和模型。这是一条从原创规则走到可用棋类 AI 的实操路线。">Implement the rules in the engine, prove the self-play and training loop with a small network, then scale the data and model to fit the budget. This is a practical route from an original ruleset to a usable board-game AI.</p>
+                <p data-en="KataGomo is a multi-game AlphaZero-style framework derived from KataGo. If a game is approximately two-player, board-based, deterministic, and perfect-information, the engine can first learn its rules and then explore it through self-play." data-zh="KataGomo 是从 KataGo 改造出的多棋种 AlphaZero 类框架。只要游戏接近“二人、棋盘、无随机、无隐藏信息”，就可以先让引擎理解规则，再让 AI 通过自对弈探索新游戏。">KataGomo is a multi-game AlphaZero-style framework derived from KataGo. If a game is approximately two-player, board-based, deterministic, and perfect-information, the engine can first learn its rules and then explore it through self-play.</p>
+                <div class="hero-actions">
+                    <a class="button" href="https://github.com/hzyhhzy/KataGomo" target="_blank" rel="noreferrer"><span data-en="KataGomo repository" data-zh="KataGomo 仓库">KataGomo repository</span> <span aria-hidden="true">↗</span></a>
+                    <a class="ghost-button" href="https://github.com/hzyhhzy/KataGomo/blob/master/training.md" target="_blank" rel="noreferrer"><span data-en="Read training.md" data-zh="阅读 training.md">Read training.md</span> <span aria-hidden="true">↗</span></a>
                 </div>
-                <p class="section-note">先保留结构，方便后续直接往里填。</p>
+            </section>
+
+            <div class="article-layout">
+                <aside class="article-toc" aria-label="On this page" data-i18n-aria-label="tableOfContents">
+                    <p data-en="On this page" data-zh="本文目录">On this page</p>
+                    <ol>
+                        <li><a href="#fit" data-en="Fit" data-zh="适用范围">Fit</a></li>
+                        <li><a href="#rules-to-training" data-en="Rules to engine" data-zh="规则到训练">Rules to engine</a></li>
+                        <li><a href="#scripts" data-en="Scripts" data-zh="训练脚本">Scripts</a></li>
+                        <li><a href="#parameters" data-en="Parameters" data-zh="常改参数">Parameters</a></li>
+                        <li><a href="#network-route" data-en="Network route" data-zh="网络路线">Network route</a></li>
+                        <li><a href="#selfplay-ratio" data-en="Data ratio" data-zh="数据比例">Data ratio</a></li>
+                        <li><a href="#large-board" data-en="Large boards" data-zh="大棋盘">Large boards</a></li>
+                        <li><a href="#roadmap" data-en="Roadmap" data-zh="执行路线">Roadmap</a></li>
+                        <li><a href="#pitfalls" data-en="Pitfalls" data-zh="常见坑">Pitfalls</a></li>
+                    </ol>
+                </aside>
+
+                <article class="article-body">
+                    <section class="article-section" id="fit">
+                        <p class="page-eyebrow" data-en="01 / Fit" data-zh="01 / 适用性">01 / Fit</p>
+                        <h2 data-en="First decide whether the game fits KataGomo" data-zh="先判断新棋是否适合 KataGomo">First decide whether the game fits KataGomo</h2>
+                        <p data-en="Checking the fit before tuning saves a great deal of wasted work. The framework is not limited to games such as Go, Gomoku, and Hex that place directly on empty points. It can also handle multi-part moves in Xiangqi, Ataxx, or Amazons by splitting one move into stages—for example, selecting a piece and then its destination." data-zh="先判断问题是否适合这套框架，能省掉大量无效调参。它不只适合围棋、五子棋、Hex 这类“直接往空点落子”的游戏，也适合象棋、Ataxx、亚马逊棋这类一步棋包含多个选择的游戏；工程上可以把一步拆成多步，例如先选棋子，再选落点。">Checking the fit before tuning saves a great deal of wasted work. The framework is not limited to games such as Go, Gomoku, and Hex that place directly on empty points. It can also handle multi-part moves in Xiangqi, Ataxx, or Amazons by splitting one move into stages—for example, selecting a piece and then its destination.</p>
+                        <div class="card-grid">
+                            <article class="content-card">
+                                <h3 data-en="Best fit" data-zh="最适合">Best fit</h3>
+                                <p data-en="Two-player play on a two-dimensional board, with perfect information and no randomness, where the state determines a result or score. Gomoku variants, Hex variants, connection games, and Go variants usually fit naturally." data-zh="二人对弈、二维棋盘、完美信息、无随机，胜负或分数由棋局状态决定。五子棋变体、Hex 变体、连接类游戏、围棋变体通常比较自然。">Two-player play on a two-dimensional board, with perfect information and no randomness, where the state determines a result or score. Gomoku variants, Hex variants, connection games, and Go variants usually fit naturally.</p>
+                            </article>
+                            <article class="content-card">
+                                <h3 data-en="Also a good fit" data-zh="也很适合">Also a good fit</h3>
+                                <p data-en="Games that move pieces—Xiangqi, chess, Ataxx, Amazons, Breakthrough, and others—can also be integrated. A common approach splits a compound action into stages so the policy head selects only one board point at a time." data-zh="象棋、国际象棋、Ataxx、亚马逊棋、突破棋等“移动棋子”的游戏也可以接入。常见做法是把一个复合行动拆成若干阶段，让策略头每次只选择一个棋盘点。">Games that move pieces—Xiangqi, chess, Ataxx, Amazons, Breakthrough, and others—can also be integrated. A common approach splits a compound action into stages so the policy head selects only one board point at a time.</p>
+                            </article>
+                            <article class="content-card">
+                                <h3 data-en="Avoid for a first integration" data-zh="不建议第一次就做">Avoid for a first integration</h3>
+                                <p data-en="Randomness, hidden information, and multiplayer games are not fundamentally impossible, but they require much larger changes to KataGo/KataGomo. For a first game, choose a two-player, zero-sum, perfect-information ruleset." data-zh="随机、隐藏信息或多人博弈并非算法绝对不能处理，但对 KataGo/KataGomo 的工程改造会大很多。第一次接入新棋时，建议先选完美信息二人零和游戏。">Randomness, hidden information, and multiplayer games are not fundamentally impossible, but they require much larger changes to KataGo/KataGomo. For a first game, choose a two-player, zero-sum, perfect-information ruleset.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="rules-to-training">
+                        <p class="page-eyebrow" data-en="02 / Engine" data-zh="02 / 引擎">02 / Engine</p>
+                        <h2 data-en="Turn the rules into a trainable engine" data-zh="从规则走到可训练引擎">Turn the rules into a trainable engine</h2>
+                        <p data-en="The first task is not tuning a neural network; it is telling the engine exactly what the game is." data-zh="核心不是先调神经网络，而是先把“这个游戏是什么”精确交给引擎。">The first task is not tuning a neural network; it is telling the engine exactly what the game is.</p>
+                        <div class="card-grid">
+                            <article class="content-card">
+                                <h3 data-en="1. Choose a nearby branch" data-zh="1. 选一个相近分支">1. Choose a nearby branch</h3>
+                                <p data-en="Do not begin from an empty project. Find a KataGomo branch whose mechanics resemble the new game: start near Gomoku or Connect6 for connection games, or near a Go variant for capture-based rules." data-zh="不要从空白工程开始。先在 KataGomo 的分支里找最像新棋的规则，例如连接类选五子棋/六子棋附近，围棋吃子类选围棋变体附近。">Do not begin from an empty project. Find a KataGomo branch whose mechanics resemble the new game: start near Gomoku or Connect6 for connection games, or near a Go variant for capture-based rules.</p>
+                                <p data-en="Prefer a branch from 2023 or later, because its scripts and project structure are usually closer to the current version." data-zh="优先选 2023 年之后的分支，因为训练脚本和工程结构通常更接近当前版本。">Prefer a branch from 2023 or later, because its scripts and project structure are usually closer to the current version.</p>
+                            </article>
+                            <article class="content-card">
+                                <h3 data-en="2. Implement the C++ rules" data-zh="2. 修改 C++ 规则">2. Implement the C++ rules</h3>
+                                <p data-lang-content="en">The main locations include <code>board.h/cpp</code>, <code>boardhistory.h/cpp</code>, and <code>nninputs.cpp</code>. The engine needs legal moves, terminal conditions, wins or scoring, repetition, board size, and neural-network inputs.</p>
+                                <p data-lang-content="zh" lang="zh-CN" hidden>主要看 <code>board.h/cpp</code>、<code>boardhistory.h/cpp</code>、<code>nninputs.cpp</code> 等位置。你需要让引擎知道合法落子、终局、胜负/计分、重复局面、棋盘大小与神经网络输入。</p>
+                                <p data-en="The Python/PyTorch training code usually does not need changes. If the board lacks all eight rotation/reflection symmetries, inspect and modify the augmentation logic." data-zh="通常 Python/PyTorch 训练代码不用改；如果棋盘没有 8 个对称变换，需要检查并修改数据增强相关逻辑。">The Python/PyTorch training code usually does not need changes. If the board lacks all eight rotation/reflection symmetries, inspect and modify the augmentation logic.</p>
+                                <p><a href="boardgame-rule-implementation.html" data-en="Open the rules integration reference →" data-zh="查看规则接入细节 →">Open the rules integration reference →</a></p>
+                            </article>
+                            <article class="content-card">
+                                <h3 data-en="3. Build and check" data-zh="3. 编译并自测">3. Build and check</h3>
+                                <p data-en="Linux and Windows are both supported. Build the engine using the KataGo workflow, then test the rules on small boards, short games, random positions, and hand-authored positions. Check for crashes and correct game termination." data-zh="Linux 和 Windows 都可以。先按 KataGo 的编译方式得到可执行引擎，再用小棋盘、小步数、随机/人工局面测试规则是否会崩、是否能正确终局。">Linux and Windows are both supported. Build the engine using the KataGo workflow, then test the rules on small boards, short games, random positions, and hand-authored positions. Check for crashes and correct game termination.</p>
+                                <p data-en="Spend time here. Self-play magnifies a rules bug without limit, and the strength of a model trained on that bug is meaningless." data-zh="这一步最好多花一点时间。规则 bug 会被自对弈无限放大，后面训练出来的强度也没有意义。">Spend time here. Self-play magnifies a rules bug without limit, and the strength of a model trained on that bug is meaningless.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="scripts">
+                        <p class="page-eyebrow" data-en="03 / Pipeline" data-zh="03 / 流水线">03 / Pipeline</p>
+                        <h2 data-en="Arrange the scripts, then start the loop" data-zh="摆好训练脚本，再启动闭环">Arrange the scripts, then start the loop</h2>
+                        <p data-lang-content="en">The standard <code>training.md</code> entry point puts the compiled engine in the scripts directory and runs the training loop. A branch usually keeps its scripts under <code>./scripts</code>. Place the engine at <code>./engine/katago</code>; on Linux make the required <code>.so</code> files discoverable, and on Windows do the same for the matching <code>.dll</code> files.</p>
+                        <p data-lang-content="zh" lang="zh-CN" hidden><code>training.md</code> 的标准入口是把编译好的引擎放进脚本目录，然后运行训练循环。训练脚本通常在对应分支的 <code>./scripts</code> 目录；把引擎放到 <code>./engine/katago</code>，Linux 还要让需要的 <code>.so</code> 能被找到，Windows 则要处理好对应 <code>.dll</code>。</p>
+                        <p data-lang-content="en">Install PyTorch; on Windows, Git Bash is recommended. After editing the parameters, run <code>run_train.sh</code> or the similarly named script in that branch.</p>
+                        <p data-lang-content="zh" lang="zh-CN" hidden>安装 PyTorch，Windows 下建议准备 Git Bash。参数改完后，运行 <code>run_train.sh</code> 或类似名称的脚本。</p>
+                        <pre class="code-block" role="region" aria-label="Example training-script directory" data-i18n-aria-label="scriptExample" tabindex="0"><code>./scripts
+  ./engine/katago        # compiled engine with the new rules
+  ./selfplay.cfg         # self-play GPU, board, and search settings
+  ./run_train.sh         # self-play + train entry point for each generation
+  ./train/train.sh       # training parameters
+  ./train/shuffle.sh     # data shuffling and retention</code></pre>
+                    </section>
+
+                    <section class="article-section" id="parameters">
+                        <p class="page-eyebrow" data-en="04 / Parameters" data-zh="04 / 参数">04 / Parameters</p>
+                        <h2 data-en="Parameters you will change most often" data-zh="最常改的参数">Parameters you will change most often</h2>
+                        <p data-en="Use a small model to verify the rules, scripts, and data flow before increasing the budget." data-zh="先用小模型把规则、脚本和数据流调通，再扩大预算。">Use a small model to verify the rules, scripts, and data flow before increasing the budget.</p>
+                        <h3 data-en="Model size" data-zh="模型规模">Model size</h3>
+                        <div class="table-wrap" role="region" aria-label="Common KataGomo model sizes and stages" data-i18n-aria-label="modelTable" tabindex="0">
+                            <table class="data-table">
+                                <caption data-en="Common KataGomo model sizes and suitable training stages" data-zh="KataGomo 训练中常用的模型规模与适用阶段">Common KataGomo model sizes and suitable training stages</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col" data-en="Size" data-zh="规模">Size</th>
+                                        <th scope="col" data-en="Purpose" data-zh="用途">Purpose</th>
+                                        <th scope="col" data-en="Typical use" data-zh="大致场景">Typical use</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><th scope="row"><code>b6c96</code> / <code>b10c128</code></th><td data-en="Fast debug" data-zh="快速 debug">Fast debug</td><td data-en="Verify rules, scripts, and data flow" data-zh="确认规则、脚本、数据流都能跑通">Verify rules, scripts, and data flow</td></tr>
+                                    <tr><th scope="row"><code>b10c256nbt</code></th><td data-en="Short run" data-zh="短跑">Short run</td><td data-en="Roughly 1–5 RTX 4090-days and about one million self-play games" data-zh="约 1–5 个 RTX 4090 日，约百万级自对弈">Roughly 1–5 RTX 4090-days and about one million self-play games</td></tr>
+                                    <tr><th scope="row"><code>b10c384nbt</code></th><td data-en="Medium run" data-zh="中等训练">Medium run</td><td data-en="Roughly 5–20 RTX 4090-days and several million self-play games" data-zh="约 5–20 个 RTX 4090 日，约数百万局自对弈">Roughly 5–20 RTX 4090-days and several million self-play games</td></tr>
+                                    <tr><th scope="row"><code>b18c384nbt</code> <span data-en="or larger" data-zh="以上">or larger</span></th><td data-en="Long run" data-zh="长跑">Long run</td><td data-en="Consider only after the rules are stable and a strong model is the goal" data-zh="规则已稳定、目标是强模型时再考虑">Consider only after the rules are stable and a strong model is the goal</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p data-lang-content="en">Specify the model name and architecture in the <code>train.sh</code> call inside <code>run_train.sh</code>. Architectures are defined in <code>train/modelconfigs.py</code>. A commonly used suffix is <code>-fson-mish-rvglr-bnh</code>.</p>
+                        <p data-lang-content="zh" lang="zh-CN" hidden>模型名和结构在 <code>run_train.sh</code> 的 <code>train.sh</code> 调用里指定，结构定义在 <code>train/modelconfigs.py</code>。常用后缀可用 <code>-fson-mish-rvglr-bnh</code>。</p>
+
+                        <h3 data-en="GPUs and board size" data-zh="GPU 与棋盘">GPUs and board size</h3>
+                        <ul class="content-list" data-lang-content="en">
+                            <li>Set <code>batchsize</code> by available memory: small networks can use larger batches; large networks need smaller ones.</li>
+                            <li><code>-multi-gpus 0,1</code> selects training GPUs. Use <code>0</code> or omit it for one GPU.</li>
+                            <li><code>CUDA_VISIBLE_DEVICES</code> selects the GPUs visible to the process.</li>
+                            <li><code>numNNServerThreadsPerModel</code>, <code>gpuToUseThread0</code>, and related entries in <code>selfplay.cfg</code> control the self-play GPUs.</li>
+                            <li><code>-pos-len</code> must match <code>dataBoardLen</code> in <code>selfplay.cfg</code>, or the data dimensions will differ.</li>
+                        </ul>
+                        <ul class="content-list" data-lang-content="zh" lang="zh-CN" hidden>
+                            <li><code>batchsize</code> 按显存调，小网络可以更大，大网络要更小。</li>
+                            <li><code>-multi-gpus 0,1</code> 指定训练使用的 GPU；单卡可写 <code>0</code> 或去掉。</li>
+                            <li><code>CUDA_VISIBLE_DEVICES</code> 用来选择实际可见的 GPU。</li>
+                            <li><code>selfplay.cfg</code> 里的 <code>numNNServerThreadsPerModel</code> 和 <code>gpuToUseThread0</code> 等项控制自对弈使用哪些 GPU。</li>
+                            <li><code>-pos-len</code> 要和 <code>selfplay.cfg</code> 的 <code>dataBoardLen</code> 对齐，否则数据尺寸会不一致。</li>
+                        </ul>
+                    </section>
+
+                    <section class="article-section" id="network-route">
+                        <p class="page-eyebrow" data-en="05 / Network" data-zh="05 / 网络">05 / Network</p>
+                        <h2 data-en="A route through neural-network training" data-zh="神经网络训练路线">A route through neural-network training</h2>
+                        <p data-en="Optimize for stability on a short run; evaluate a more ambitious training branch only for the long run." data-zh="短跑先求稳，长跑再换更强的训练分支。">Optimize for stability on a short run; evaluate a more ambitious training branch only for the long run.</p>
+                        <div class="card-grid">
+                            <article class="content-card">
+                                <h3 data-en="Short run: default CNN + SGD" data-zh="短跑：默认 CNN + SGD">Short run: default CNN + SGD</h3>
+                                <p data-en="When a game is newly integrated, the default CNN + SGD scripts are safer. The engineering path is mature, so a failure is easier to attribute to a rules bug, a data bug, or unsuitable training parameters." data-zh="新棋刚接入时，默认训练脚本里的 CNN + SGD 更保险。它的工程路径成熟，出问题时更容易判断是规则 bug、数据 bug，还是训练参数不合适。">When a game is newly integrated, the default CNN + SGD scripts are safer. The engineering path is mature, so a failure is easier to attribute to a rules bug, a data bug, or unsuitable training parameters.</p>
+                            </article>
+                            <article class="content-card">
+                                <h3 data-en="The key: iterative self-play" data-zh="关键：自对弈迭代强化">The key: iterative self-play</h3>
+                                <p data-en="The decisive factor is not one round of supervised fitting. It is the loop in which the model plays, generates stronger data, and trains its successor. Stabilize that loop during the short run." data-zh="真正起决定性作用的不是某一轮监督拟合，而是模型不断参与自对弈、生成更强数据、再训练下一代模型的迭代过程。短跑阶段先把这个闭环跑稳定。">The decisive factor is not one round of supervised fitting. It is the loop in which the model plays, generates stronger data, and trains its successor. Stabilize that loop during the short run.</p>
+                            </article>
+                            <article class="content-card">
+                                <h3 data-en="Long run: Transformer + Muon" data-zh="长跑：Transformer + Muon">Long run: Transformer + Muon</h3>
+                                <p data-lang-content="en">For a long run, evaluate <a href="https://github.com/hzyhhzy/KataGo_Transformer" target="_blank" rel="noreferrer">KataGo_Transformer <span aria-hidden="true">↗</span></a>. It uses a Transformer model and the Muon optimizer. It outperformed CNN + SGD in some of this project's long runs, but a new game still needs a paired comparison with equal data, search budget, and match settings.</p>
+                                <p data-lang-content="zh" lang="zh-CN" hidden>长跑时可以评测 <a href="https://github.com/hzyhhzy/KataGo_Transformer" target="_blank" rel="noreferrer">KataGo_Transformer <span aria-hidden="true">↗</span></a>。该分支使用 Muon 优化器与 Transformer 模型；它在项目的部分长期训练中优于 CNN + SGD，但新棋仍应使用相同数据量、搜索预算和对局设置做配对验证。</p>
+                            </article>
+                        </div>
+                        <div class="callout">
+                            <h3 data-en="Why late-stage long runs resemble quasi-supervised learning" data-zh="为什么长跑后期像“准监督学习”">Why late-stage long runs resemble quasi-supervised learning</h3>
+                            <p data-en="Late in training, the AI's move distribution may stop changing in a statistically significant way, and self-play increasingly samples near a high-quality policy. Training can then be approximated as quasi-supervised learning: architecture, optimizer, and sample efficiency matter more, making any advantage of Transformer + Muon easier to observe." data-zh="训练到后期后，AI 的招法分布往往不会再发生统计显著的变化，自对弈数据更像是在高质量策略附近持续采样。此时可以把训练近似看成“准监督学习”：模型结构、优化器和样本效率会变得更加关键，Transformer + Muon 的优势也更容易体现。">Late in training, the AI's move distribution may stop changing in a statistically significant way, and self-play increasingly samples near a high-quality policy. Training can then be approximated as quasi-supervised learning: architecture, optimizer, and sample efficiency matter more, making any advantage of Transformer + Muon easier to observe.</p>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="selfplay-ratio">
+                        <p class="page-eyebrow" data-en="06 / Data" data-zh="06 / 数据">06 / Data</p>
+                        <h2 data-en="The ratio of self-play to training" data-zh="自对弈与训练比例">The ratio of self-play to training</h2>
+                        <p data-en="For a new game, begin with a stable ratio, watch for overfitting, and scale gradually." data-zh="新棋最推荐先用稳定比例，观察是否过拟合，再逐步扩大规模。">For a new game, begin with a stable ratio, watch for overfitting, and scale gradually.</p>
+                        <div class="card-grid">
+                            <article class="content-card">
+                                <h3 data-en="Starting point" data-zh="推荐起点">Starting point</h3>
+                                <p data-lang-content="en">For a new game, try <code>-max-games-total 10000</code> and <code>-samples-per-epoch 1000000</code>: generate 10,000 self-play games per generation, then train on 1,000,000 samples.</p>
+                                <p data-lang-content="zh" lang="zh-CN" hidden>新游戏可以先用 <code>-max-games-total 10000</code> 和 <code>-samples-per-epoch 1000000</code>。也就是每一代先自对弈 10000 局，再训练 1000000 个样本。</p>
+                                <p data-lang-content="en"><code>samples-per-epoch / max-games-total</code> roughly determines how many times each unit of self-play data is trained. Too high risks overfitting; too low wastes the main cost, self-play.</p>
+                                <p data-lang-content="zh" lang="zh-CN" hidden><code>samples-per-epoch / max-games-total</code> 近似决定每份自对弈数据被训练多少遍。太高容易过拟合，太低则浪费主要成本：自对弈。</p>
+                            </article>
+                            <article class="content-card">
+                                <h3 data-en="Overfitting check" data-zh="过拟合检查">Overfitting check</h3>
+                                <p data-lang-content="en">When changing <code>-samples-per-epoch</code>, also adjust <code>-keep-target-rows</code> in <code>shuffle.sh</code>; it should usually be slightly larger than <code>-samples-per-epoch</code>.</p>
+                                <p data-lang-content="zh" lang="zh-CN" hidden>改 <code>-samples-per-epoch</code> 时，也要同步改 <code>shuffle.sh</code> 中的 <code>-keep-target-rows</code>，一般略大于 <code>-samples-per-epoch</code>。</p>
+                                <p data-lang-content="en">Watch <code>vloss</code>. The documentation recommends <code>vloss_val - vloss_train &lt; 0.05</code>. If the gap is too large, generate more self-play games or reduce samples trained per generation.</p>
+                                <p data-lang-content="zh" lang="zh-CN" hidden>重点盯 <code>vloss</code>。文档建议让 <code>vloss_val - vloss_train &lt; 0.05</code>；如果差距太大，就增加自对弈局数或减少每代训练样本数。</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="large-board">
+                        <p class="page-eyebrow" data-en="07 / Board size" data-zh="07 / 棋盘尺寸">07 / Board size</p>
+                        <h2 data-en="For a large board, start small" data-zh="大棋盘先从小盘开始">For a large board, start small</h2>
+                        <p data-en="As the board grows, training cost can rise far faster than linearly." data-zh="棋盘越大，训练开销不是线性变大，而是非常快地膨胀。">As the board grows, training cost can rise far faster than linearly.</p>
+                        <div class="card-grid">
+                            <article class="content-card">
+                                <h3 data-en="Why not start on the largest board" data-zh="为什么不要直接上大棋盘">Why not start on the largest board</h3>
+                                <p data-en="For conservative planning I separate three effects: network inference grows with area, games usually become longer, and the search per move may need to grow to preserve move quality. Together they can make cost rise much faster than board width. This is a planning heuristic, not a fixed power law for every game." data-zh="作为项目预算的保守估算，我会把大棋盘成本拆成三部分：单次网络推理随面积增长、每局步数通常增长、为了维持落子质量每步搜索量也可能增长。三项叠加后，成本会远快于边长线性上升；这是一种规划启发式，不是所有棋种都满足的固定幂律。">For conservative planning I separate three effects: network inference grows with area, games usually become longer, and the search per move may need to grow to preserve move quality. Together they can make cost rise much faster than board width. This is a planning heuristic, not a fixed power law for every game.</p>
+                                <p data-en="Before scaling from 13×13 to 19×19, measure moves per game, visits per move, and GPU throughput on a small number of games, then decide whether to expand the training budget." data-zh="因此从 13×13 放大到 19×19 前，先用少量对局实测每局步数、每步访问数和 GPU 吞吐，再决定是否扩大训练预算。">Before scaling from 13×13 to 19×19, measure moves per game, visits per move, and GPU throughput on a small number of games, then decide whether to expand the training budget.</p>
+                            </article>
+                            <article class="content-card">
+                                <h3 data-en="Recommended: pretrain small, fine-tune large" data-zh="推荐：小盘预训练，大盘微调">Recommended: pretrain small, fine-tune large</h3>
+                                <p data-en="Train first on a smaller board such as 13×13. After the model reaches a useful level, continue briefly at 19×19 as a fine-tuning stage." data-zh="先在较小棋盘训练，例如 13×13，训练到有一定水平后，再拿到 19×19 棋盘继续训练一小段时间，相当于微调。">Train first on a smaller board such as 13×13. After the model reaches a useful level, continue briefly at 19×19 as a fine-tuning stage.</p>
+                                <p data-en="Some fully convolutional networks in the project can initialize 19×19 training from 13×13 weights, but strength and strategy are not guaranteed to transfer. After changing size, first check input dimensions, legal moves, game end, and inference stability; then use target-size self-play and paired matches to decide whether continued training is worthwhile." data-zh="项目实践中，部分全卷积网络可以把 13×13 权重作为 19×19 的初始化，但这不保证棋力或策略能直接迁移。切换棋盘后应先检查输入尺寸、合法着、终局与推理稳定性，再用目标尺寸自对弈和配对赛确认是否值得继续训练。">Some fully convolutional networks in the project can initialize 19×19 training from 13×13 weights, but strength and strategy are not guaranteed to transfer. After changing size, first check input dimensions, legal moves, game end, and inference stability; then use target-size self-play and paired matches to decide whether continued training is worthwhile.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="roadmap">
+                        <p class="page-eyebrow" data-en="08 / Roadmap" data-zh="08 / 路线图">08 / Roadmap</p>
+                        <h2 data-en="An executable roadmap" data-zh="一条可执行路线">An executable roadmap</h2>
+                        <p data-en="Split trainability into small, testable stages, so a failure tells you where to return." data-zh="把“能训练”拆成几个可验收的小阶段，失败时才知道该回哪一步修。">Split trainability into small, testable stages, so a failure tells you where to return.</p>
+                        <ol class="content-list" data-lang-content="en">
+                            <li><strong>Stage 0: freeze the rules.</strong> Specify the board, turns, legal moves, wins, draws or loops, forbidden moves, and scoring. For an original game, add hand-authored test positions.</li>
+                            <li><strong>Stage 1: small-network smoke test.</strong> Use <code>b6c96</code> or <code>b10c128</code> for limited self-play. Verify only that the engine, data, training, model saving, and next-generation loading all work.</li>
+                            <li><strong>Stage 2: short run for trends.</strong> Move to <code>b10c256nbt</code> with a declared GPU-hour and game budget. Use fixed-search paired matches to examine strength, first-player effects, and obvious rules flaws. Results depend on the game and hardware; if rules need changes, retrain early.</li>
+                            <li><strong>Stage 3: medium run for strength.</strong> Increase self-play and test whether trends from the short run reproduce with a new model and a higher search budget. Win rates may widen, converge, or reverse, so report game count, confidence intervals, color swaps, and model versions.</li>
+                            <li><strong>Stage 4: release a reproducible experiment.</strong> Save the model, configuration, rules branch, training logs, and evaluation notes so others can reproduce it and you can continue iterating.</li>
+                        </ol>
+                        <ol class="content-list" data-lang-content="zh" lang="zh-CN" hidden>
+                            <li><strong>第 0 阶段：规则冻结。</strong> 写清楚棋盘、回合、合法着法、胜负、和棋/循环、禁手、计分。原创棋在这里最好先补几个手工测试局面。</li>
+                            <li><strong>第 1 阶段：小网络冒烟测试。</strong> 用 <code>b6c96</code> 或 <code>b10c128</code> 跑少量自对弈，只验证引擎、数据、训练、模型保存和下一代加载都通。</li>
+                            <li><strong>第 2 阶段：短跑看趋势。</strong> 换到 <code>b10c256nbt</code> 做一轮有明确 GPU 小时和对局数的短跑，用固定搜索预算的配对赛观察棋力趋势、先后手差异和明显规则漏洞。达到什么水平取决于棋种与硬件；发现规则要改，就尽早重训。</li>
+                            <li><strong>第 3 阶段：中跑追求更强棋力。</strong> 进一步扩大自对弈，主要是追求更高棋力，并检验短跑观察到的规则趋势能否在新模型和更高搜索预算下复现。胜率可能扩大、收敛甚至反转，所以应同时报告对局数、置信区间、先后手交换与模型版本。</li>
+                            <li><strong>第 4 阶段：发布与复现实验。</strong> 保存模型、配置、规则分支、训练日志和评测说明。之后别人才能复现，也方便你继续迭代规则。</li>
+                        </ol>
+                    </section>
+
+                    <section class="article-section" id="pitfalls">
+                        <p class="page-eyebrow" data-en="09 / Pitfalls" data-zh="09 / 常见坑">09 / Pitfalls</p>
+                        <h2 data-en="Common pitfalls" data-zh="常见坑">Common pitfalls</h2>
+                        <div class="card-grid">
+                            <article class="content-card"><h3 data-en="Incomplete rules" data-zh="规则没写全">Incomplete rules</h3><p data-en="Miss one boundary case—legal moves, game end, repetition, no legal move, or a forbidden move—and the AI will treat it as a tactic. Test rules before spending GPU time." data-zh="合法着法、终局判定、重复局面、无棋可下、禁手等边界条件漏一个，AI 就会把它当成“战术”。先测规则，再烧 GPU。">Miss one boundary case—legal moves, game end, repetition, no legal move, or a forbidden move—and the AI will treat it as a tactic. Test rules before spending GPU time.</p></article>
+                            <article class="content-card"><h3 data-en="Wrong board symmetries" data-zh="棋盘对称性不匹配">Wrong board symmetries</h3><p data-en="If the game lacks rotation or reflection symmetry but training still applies all eight augmentations, inequivalent positions are mixed together. Modify the data pipeline." data-zh="如果新棋没有旋转/翻转对称性，却沿用 8 对称数据增强，训练会把不等价局面混在一起，需要改数据处理。">If the game lacks rotation or reflection symmetry but training still applies all eight augmentations, inequivalent positions are mixed together. Modify the data pipeline.</p></article>
+                            <article class="content-card"><h3 data-en="Training outruns data" data-zh="训练过快超过数据">Training outruns data</h3><p data-en="Too many samples per generation overfit value loss first. When validation loss separates, generate more self-play or reduce training volume." data-zh="每代训练样本太多会让 value loss 先过拟合。看到验证 loss 拉开时，优先增大自对弈或降低训练量。">Too many samples per generation overfit value loss first. When validation loss separates, generate more self-play or reduce training volume.</p></article>
+                        </div>
+                        <div class="callout">
+                            <p data-lang-content="en">Sources: <a href="https://github.com/hzyhhzy/KataGomo/blob/master/README.md" target="_blank" rel="noreferrer">KataGomo README.md <span aria-hidden="true">↗</span></a> and <a href="https://github.com/hzyhhzy/KataGomo/blob/master/training.md" target="_blank" rel="noreferrer">training.md <span aria-hidden="true">↗</span></a>. During an actual run, also open the scripts in the selected branch and verify each setting.</p>
+                            <p data-lang-content="zh" lang="zh-CN" hidden>资料依据：<a href="https://github.com/hzyhhzy/KataGomo/blob/master/README.md" target="_blank" rel="noreferrer">KataGomo README.md <span aria-hidden="true">↗</span></a> 与 <a href="https://github.com/hzyhhzy/KataGomo/blob/master/training.md" target="_blank" rel="noreferrer">training.md <span aria-hidden="true">↗</span></a>。实际训练时仍建议打开对应分支的脚本逐项核对。</p>
+                        </div>
+                    </section>
+                </article>
             </div>
-            <div class="three-grid">
-                <article class="cta-card">
-                    <h3>1. 规则接入</h3>
-                    <p>如何把一种已有棋类或一种自己设计的新规则接进框架。</p>
-                </article>
-                <article class="cta-card">
-                    <h3>2. 训练流程</h3>
-                    <p>如何准备自对弈、网络配置、训练调度、评测与选模。</p>
-                </article>
-                <article class="cta-card">
-                    <h3>3. 成本控制</h3>
-                    <p>如何用尽可能低的算力和预算快速得到可用结果。</p>
-                </article>
-            </div>
-        </section>
+        </div>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-card">
-            <p>这一页目前是占位页，后续可继续补成完整训练教程。</p>
+    <footer class="content-footer">
+        <div class="content-container footer-inner">
+            <p data-en="KataGomo practical guide · QQ 2658628026 · Discord hzy_sigmoid" data-zh="KataGomo 实操指南 · QQ 2658628026 · Discord hzy_sigmoid">KataGomo practical guide · QQ 2658628026 · Discord hzy_sigmoid</p>
+            <nav class="footer-links" aria-label="Footer navigation" data-i18n-aria-label="footerNavigation">
+                <a href="mailto:2658628026@qq.com" data-en="Email" data-zh="邮件联系">Email</a>
+                <a href="boardgames/index.html">KataGomo</a>
+                <a href="boardgames/games-table-prototype.html" data-en="Games and resources" data-zh="棋种与资源">Games and resources</a>
+                <a href="boardgame-rule-implementation.html" data-en="Continue: rules integration →" data-zh="继续阅读规则接入细节 →">Continue: rules integration →</a>
+            </nav>
         </div>
     </footer>
+
+    <script type="application/json" id="page-i18n">
+    {
+      "zh": {
+        "metaDescription": "依据 KataGomo README 与 training.md，总结从规则实现、编译、训练脚本配置到自对弈调参的原创棋类 AI 训练流程。",
+        "brandLabel": "返回 hzyhhzy 项目主页",
+        "languageControl": "语言",
+        "primaryNavigation": "主导航",
+        "breadcrumb": "面包屑",
+        "tableOfContents": "本文目录",
+        "scriptExample": "训练脚本目录结构示例",
+        "modelTable": "KataGomo 训练中常用的模型规模与适用阶段",
+        "footerNavigation": "页脚导航"
+      }
+    }
+    </script>
+    <script src="site.js" defer></script>
 </body>
 </html>

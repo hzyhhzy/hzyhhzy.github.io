@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" data-language="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title data-en="QLizzie — Qt board-game AI analysis | hzyhhzy" data-zh="QLizzie — Qt 棋类 AI 分析界面 | hzyhhzy">QLizzie — Qt board-game AI analysis | hzyhhzy</title>
+    <meta name="description" content="QLizzie is a Qt 6 desktop analysis interface for Go, Gomoku, Hex, and related games using KataGo/KataGomo-compatible engines.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="qlizzie.css?v=20260723-1">
+    <script src="site.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main-content" data-en="Skip to content" data-zh="跳到正文">Skip to content</a>
+
+    <header class="content-header">
+        <div class="content-container header-inner">
+            <a class="content-brand" href="index.html" aria-label="hzyhhzy home">
+                <span aria-hidden="true">σ</span>
+                <span><strong>hzyhhzy</strong><small data-en="Projects and notes" data-zh="项目与博客">Projects and notes</small></span>
+            </a>
+            <div class="header-actions">
+                <a class="content-github" href="https://github.com/hzyhhzy/QLizzie" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+                <div class="language-switcher" role="group" aria-label="Language">
+                    <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
+                    <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
+                </div>
+            </div>
+            <nav class="content-nav" aria-label="Page navigation">
+                <a href="#overview" data-en="Overview" data-zh="概览">Overview</a>
+                <a href="#screenshots" data-en="Screenshots" data-zh="界面">Screenshots</a>
+                <a href="#download" data-en="Download" data-zh="下载">Download</a>
+                <a href="boardgames/games-table-prototype.html" data-en="Games &amp; resources" data-zh="棋种与资源">Games &amp; resources</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-main" id="main-content">
+        <div class="content-container">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html" data-en="Home" data-zh="主页">Home</a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page">QLizzie</span>
+            </nav>
+
+            <section class="content-hero" aria-labelledby="page-title">
+                <p class="page-eyebrow" data-en="Project / Analysis interface" data-zh="项目 / 分析界面">Project / Analysis interface</p>
+                <h1 id="page-title">QLizzie</h1>
+                <p class="content-lead" data-en="A Qt 6 desktop analysis interface for Go, Gomoku, Hex, and related board games. It connects to KataGo/KataGomo-compatible GTP engines and keeps analysis, candidate moves, variations, and the game tree in one workspace." data-zh="面向围棋、五子棋、Hex 等棋类的 Qt 6 桌面分析界面。它连接兼容 KataGo/KataGomo 的 GTP 引擎，在同一工作区展示分析结果、候选点、变化图与棋谱树。">A Qt 6 desktop analysis interface for Go, Gomoku, Hex, and related board games. It connects to KataGo/KataGomo-compatible GTP engines and keeps analysis, candidate moves, variations, and the game tree in one workspace.</p>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="https://github.com/hzyhhzy/QLizzie/releases/latest" target="_blank" rel="noreferrer"><span data-en="Download latest release" data-zh="下载最新版本">Download latest release</span> <span aria-hidden="true">↗</span></a>
+                    <a class="button button-secondary" href="https://github.com/hzyhhzy/QLizzie" target="_blank" rel="noreferrer"><span data-en="Source repository" data-zh="源代码仓库">Source repository</span> <span aria-hidden="true">↗</span></a>
+                </div>
+                <ul class="tag-list" aria-label="Project attributes">
+                    <li><span class="tag">Qt 6</span></li>
+                    <li><span class="tag">C++17</span></li>
+                    <li><span class="tag">GTP</span></li>
+                    <li><span class="tag">KataGo / KataGomo</span></li>
+                    <li><span class="tag" data-en="English / Chinese" data-zh="中英双语">English / Chinese</span></li>
+                </ul>
+            </section>
+        </div>
+
+        <section class="content-section" id="overview" aria-labelledby="overview-title">
+            <div class="content-container">
+                <header class="section-heading">
+                    <p data-en="What it does" data-zh="主要功能">What it does</p>
+                    <h2 id="overview-title" data-en="One analysis board for several games" data-zh="用同一套分析界面查看多种棋">One analysis board for several games</h2>
+                </header>
+                <div class="card-grid">
+                    <article class="content-card">
+                        <h3 data-en="Board and candidates" data-zh="棋盘与候选点">Board and candidates</h3>
+                        <p data-en="Scalable boards, coordinates, move numbers, candidate markers, win rates, visits, scores, draw rates, and variation previews." data-zh="可缩放棋盘、坐标、手数、候选点，以及胜率、访问数、分数、和棋率与变化图预览。">Scalable boards, coordinates, move numbers, candidate markers, win rates, visits, scores, draw rates, and variation previews.</p>
+                    </article>
+                    <article class="content-card">
+                        <h3 data-en="Game tree" data-zh="棋谱树">Game tree</h3>
+                        <p data-en="Navigate branches, delete nodes, load and save SGF files, and keep per-node analysis cached while reviewing variations." data-zh="浏览分支、删除节点、读写 SGF，并在复盘变化时保留每个节点的分析缓存。">Navigate branches, delete nodes, load and save SGF files, and keep per-node analysis cached while reviewing variations.</p>
+                    </article>
+                    <article class="content-card">
+                        <h3 data-en="Multi-game display" data-zh="多棋种显示">Multi-game display</h3>
+                        <p data-en="Supports Go, Gomoku, Hex, Connect6, Reversi, Ataxx, Breakthrough, hexagonal Go variants, and free-grid analysis modes." data-zh="支持围棋、五子棋、Hex、六子棋、黑白棋、Ataxx、突破棋、六角围棋变体与自由网格分析模式。">Supports Go, Gomoku, Hex, Connect6, Reversi, Ataxx, Breakthrough, hexagonal Go variants, and free-grid analysis modes.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="screenshots" aria-labelledby="screenshots-title">
+            <div class="content-container">
+                <header class="section-heading">
+                    <p data-en="Interface" data-zh="界面">Interface</p>
+                    <h2 id="screenshots-title" data-en="Go and Hex analysis" data-zh="围棋与 Hex 分析">Go and Hex analysis</h2>
+                </header>
+                <div class="qlizzie-screenshots">
+                    <figure>
+                        <img src="https://raw.githubusercontent.com/hzyhhzy/QLizzie/master/docs/images/screenshot-go.png" alt="QLizzie showing a Go analysis position" loading="lazy" decoding="async">
+                        <figcaption data-en="Go analysis with candidate moves and the game tree." data-zh="带候选点和棋谱树的围棋分析。">Go analysis with candidate moves and the game tree.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="https://raw.githubusercontent.com/hzyhhzy/QLizzie/master/docs/images/screenshot-hex.png" alt="QLizzie showing a Hex analysis position" loading="lazy" decoding="async">
+                        <figcaption data-en="Hex analysis using the dedicated hex-board display." data-zh="使用六角棋盘显示模式进行 Hex 分析。">Hex analysis using the dedicated hex-board display.</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="download" aria-labelledby="download-title">
+            <div class="content-container">
+                <header class="section-heading">
+                    <p data-en="Run it" data-zh="使用">Run it</p>
+                    <h2 id="download-title" data-en="Download the interface, then add your own engine and model" data-zh="下载界面，再配置自己的引擎和模型">Download the interface, then add your own engine and model</h2>
+                    <p data-en="The release package contains QLizzie itself. It does not bundle a KataGo/KataGomo engine or neural-network model; configure those through an engine preset before starting analysis." data-zh="发布包只包含 QLizzie 本身，不附带 KataGo/KataGomo 引擎或神经网络模型；开始分析前需要在引擎预设中自行配置。">The release package contains QLizzie itself. It does not bundle a KataGo/KataGomo engine or neural-network model; configure those through an engine preset before starting analysis.</p>
+                </header>
+                <ul class="resource-list">
+                    <li class="resource-item"><a href="https://github.com/hzyhhzy/QLizzie/releases/latest" target="_blank" rel="noreferrer"><span data-en="Release" data-zh="发布版">Release</span><strong data-en="Latest Windows package ↗" data-zh="最新 Windows 程序包 ↗">Latest Windows package ↗</strong></a></li>
+                    <li class="resource-item"><a href="https://github.com/hzyhhzy/QLizzie#readme" target="_blank" rel="noreferrer"><span data-en="Documentation" data-zh="文档">Documentation</span><strong data-en="README and build instructions ↗" data-zh="README 与编译说明 ↗">README and build instructions ↗</strong></a></li>
+                    <li class="resource-item"><a href="boardgames/games-table-prototype.html"><span data-en="Engines and models" data-zh="引擎与模型">Engines and models</span><strong data-en="Board-game AI catalog" data-zh="棋类 AI 资源目录">Board-game AI catalog</strong></a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="content-footer">
+        <div class="content-container footer-inner">
+            <p>hzyhhzy / QLizzie</p>
+            <p><a href="index.html" data-en="Back to projects" data-zh="返回项目主页">Back to projects</a></p>
+            <p><a href="mailto:2658628026@qq.com">2658628026@qq.com</a></p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,96 +1,226 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="en" data-language="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hzyhhzy | 个人主页</title>
-    <meta name="description" content="hzyhhzy 的个人主页，展示棋类 AI 专题、数学相关入口与联系方式。">
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#f6f5f0" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#111719" media="(prefers-color-scheme: dark)">
+    <title data-en="HZY / Sigmoid — Projects and notes" data-zh="HZY / Sigmoid — 项目与博客">HZY / Sigmoid — Projects and notes</title>
+    <meta name="description" content="HZY (hzyhhzy / Sigmoid): board-game AI, analysis interfaces, solvers, simulators, repositories, and technical notes.">
+    <link rel="canonical" href="https://hzyhhzy.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="HZY / Sigmoid — Projects and notes">
+    <meta property="og:description" content="Board-game AI, analysis interfaces, solvers, simulators, repositories, and technical notes.">
+    <meta property="og:url" content="https://hzyhhzy.github.io/">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="home-profile.css?v=20260723-1">
+    <script src="site.js" defer></script>
 </head>
 <body>
-    <header class="page-header">
-        <div class="page-header-inner">
-            <div class="page-header-left">
-                <nav class="page-breadcrumb" aria-label="面包屑">
-                    <span class="page-breadcrumb-current">主页</span>
-                </nav>
+    <a class="skip-link" href="#main-content" data-en="Skip to content" data-zh="跳到正文">Skip to content</a>
+
+    <header class="profile-header">
+        <div class="page-shell profile-layout">
+            <img class="profile-avatar" src="https://avatars.githubusercontent.com/u/41548394?v=4" alt="HZY's GitHub avatar" width="96" height="96">
+
+            <div class="profile-copy">
+                <p class="profile-name">HZY <span aria-hidden="true">/</span> <span>Sigmoid</span></p>
+                <h1><a href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">@hzyhhzy</a></h1>
+                <p class="profile-summary" data-en="Open-source board-game AI, analysis interfaces, solvers, simulators, and technical notes." data-zh="开源棋类 AI、分析界面、求解器、模拟工具与技术记录。">Open-source board-game AI, analysis interfaces, solvers, simulators, and technical notes.</p>
             </div>
-            <div class="page-header-right">
-                <div class="page-header-group">
-                    <button class="page-header-menu-toggle" type="button">相关链接</button>
-                    <div class="page-header-menu-panel">
-                        <a href="boardgames/index.html">KataGomo Project</a>
-                        <a href="boardgames/games.html">已训练的棋类ai</a>
-                        <a href="boardgame-ai-experience.html">训练经验</a>
-                        <a href="boardgame-training.html">训练指南</a>
-                    </div>
+
+            <div class="profile-tools">
+                <div class="language-control" role="group" aria-label="Language">
+                    <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
+                    <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
                 </div>
-                <div class="page-header-group">
-                    <button class="page-header-menu-toggle" type="button">联系方式</button>
-                    <div class="page-header-menu-panel">
-                        <a href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub: hzyhhzy</a>
-                        <a href="mailto:2658628026@qq.com">邮箱: 2658628026@qq.com</a>
-                        <span class="page-header-menu-note">QQ: 2658628026</span>
-                        <span class="page-header-menu-note">Discord: hzy_sigmoid</span>
-                    </div>
-                </div>
+                <a class="all-repos-link" href="https://github.com/hzyhhzy?tab=repositories" target="_blank" rel="noreferrer"><span data-en="All repositories" data-zh="全部仓库">All repositories</span> <span aria-hidden="true">↗</span></a>
             </div>
+
+            <dl class="profile-contact">
+                <div>
+                    <dt>GitHub</dt>
+                    <dd><a href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">hzyhhzy ↗</a></dd>
+                </div>
+                <div>
+                    <dt>Email</dt>
+                    <dd><a href="mailto:2658628026@qq.com">2658628026@qq.com</a></dd>
+                </div>
+                <div>
+                    <dt>QQ</dt>
+                    <dd>2658628026</dd>
+                </div>
+                <div>
+                    <dt>Discord</dt>
+                    <dd>hzy_sigmoid</dd>
+                </div>
+            </dl>
+
+            <nav class="profile-links" aria-label="Profile links">
+                <a href="https://www.modelscope.cn/profile/sigmoid" target="_blank" rel="noreferrer">ModelScope ↗</a>
+                <a href="https://www.zhihu.com/people/hzy-99-36" target="_blank" rel="noreferrer">知乎 ↗</a>
+                <a href="https://space.bilibili.com/470535769" target="_blank" rel="noreferrer">Bilibili ↗</a>
+                <a href="https://mathoverflow.net/users/527311/hzy" target="_blank" rel="noreferrer">MathOverflow ↗</a>
+                <a href="https://dev.to/hzyhhzy" target="_blank" rel="noreferrer">DEV ↗</a>
+            </nav>
         </div>
     </header>
-    <main>
-        <section class="hero">
-            <div class="hero-panel">
-                <h1>SigmoidHZY的个人主页</h1>
-                <p class="hero-note"><strong>注：目前还在补充内容中，部分AI生成内容还有待核实</strong></p>
+
+    <nav class="section-nav" aria-label="Page sections">
+        <div class="page-shell">
+            <a href="#board-game-ai"><span>01</span> <span data-en="Board-game AI" data-zh="棋类 AI">Board-game AI</span></a>
+            <a href="#misc"><span>02</span> <span data-en="Miscellaneous" data-zh="杂项">Miscellaneous</span></a>
+            <a href="#blog"><span>03</span> <span data-en="Blog" data-zh="博客">Blog</span></a>
+        </div>
+    </nav>
+
+    <main id="main-content" class="page-shell">
+        <section class="home-section" id="board-game-ai" aria-labelledby="board-game-ai-title">
+            <header class="section-heading">
+                <p>01</p>
+                <h2 id="board-game-ai-title" data-en="Board-game AI" data-zh="棋类 AI">Board-game AI</h2>
+            </header>
+
+            <div class="project-list">
+                <article class="project-row">
+                    <h3>KataGo / KataGomo</h3>
+                    <p data-en="KataGomo extends KataGo's self-play training and analysis system to Gomoku, Renju, Hex, Connect6, Go variants, and many other board games." data-zh="KataGomo 将 KataGo 的自对弈训练与分析系统扩展到五子棋、连珠、Hex、六子棋、围棋变体及更多棋类。">KataGomo extends KataGo's self-play training and analysis system to Gomoku, Renju, Hex, Connect6, Go variants, and many other board games.</p>
+                    <div class="row-links">
+                        <a href="boardgames/index.html" data-en="Introduction" data-zh="项目介绍">Introduction</a>
+                        <a href="boardgames/games-table-prototype.html" data-en="Games &amp; downloads" data-zh="棋种与下载">Games &amp; downloads</a>
+                        <a href="https://github.com/hzyhhzy/KataGomo" target="_blank" rel="noreferrer"><span data-en="KataGomo repository" data-zh="KataGomo 仓库">KataGomo repository</span> ↗</a>
+                        <a href="https://github.com/lightvector/KataGo" target="_blank" rel="noreferrer">KataGo ↗</a>
+                    </div>
+                </article>
+
+                <article class="project-row">
+                    <h3>QLizzie</h3>
+                    <p data-en="A Qt 6 desktop analysis interface for Go, Gomoku, Hex, and related games, built around KataGo/KataGomo-compatible engines." data-zh="面向 KataGo/KataGomo 引擎的 Qt 6 桌面分析界面，支持围棋、五子棋、Hex 等棋类。">A Qt 6 desktop analysis interface for Go, Gomoku, Hex, and related games, built around KataGo/KataGomo-compatible engines.</p>
+                    <div class="row-links">
+                        <a href="qlizzie.html" data-en="Introduction" data-zh="项目介绍">Introduction</a>
+                        <a href="https://github.com/hzyhhzy/QLizzie/releases/latest" target="_blank" rel="noreferrer"><span data-en="Download" data-zh="下载">Download</span> ↗</a>
+                        <a href="https://github.com/hzyhhzy/QLizzie" target="_blank" rel="noreferrer"><span data-en="Repository" data-zh="仓库">Repository</span> ↗</a>
+                    </div>
+                </article>
             </div>
-            <aside class="hero-side">
-                <div class="mini-list">
-                    <article class="mini-item">
-                        <div class="mini-icon">@</div>
-                        <div>
-                            <strong>Github</strong>
-                            <p><a href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">https://github.com/hzyhhzy</a></p>
-                        </div>
-                    </article>
-                    <article class="mini-item">
-                        <div class="mini-icon">Q</div>
-                        <div>
-                            <strong>QQ</strong>
-                            <p>2658628026</p>
-                        </div>
-                    </article>
-                    <article class="mini-item">
-                        <div class="mini-icon">D</div>
-                        <div>
-                            <strong>Discord</strong>
-                            <p>hzy_sigmoid</p>
-                        </div>
-                    </article>
-                    <article class="mini-item">
-                        <div class="mini-icon">E</div>
-                        <div>
-                            <strong>邮箱</strong>
-                            <p><a href="mailto:2658628026@qq.com">2658628026@qq.com</a></p>
-                        </div>
-                    </article>
-                </div>
-            </aside>
         </section>
 
-        <section class="section" id="boardgames">
-            <div class="section-head">
-                <div class="project-head-stack">
-                    <div class="project-title-row">
-                        <h2>KataGomo Project: 高效通用棋类AI框架</h2>
-                        <a class="button project-detail-button project-large-button" href="boardgames/index.html">详情页</a>
-                    </div>
-                    <div class="project-subtitle-row">
-                        <p class="project-subtitle">五子棋、Hex棋、六子棋等多种棋类的目前最强的AI</p>
-                        <a class="button project-list-button project-large-button" href="boardgames/games.html">已训练的棋种列表与下载链接</a>
-                    </div>
-                </div>
+        <section class="home-section" id="misc" aria-labelledby="misc-title">
+            <header class="section-heading">
+                <p>02</p>
+                <h2 id="misc-title" data-en="Miscellaneous" data-zh="杂项">Miscellaneous</h2>
+            </header>
+
+            <div class="repo-list">
+                <article class="repo-row">
+                    <h3>UmaAi</h3>
+                    <p data-en="An Umamusume scenario simulator." data-zh="赛马娘育成场景模拟器。">An Umamusume scenario simulator.</p>
+                    <a href="https://github.com/hzyhhzy/UmaAi" target="_blank" rel="noreferrer">GitHub ↗</a>
+                </article>
+                <article class="repo-row">
+                    <h3>Elytra Strategy Lab</h3>
+                    <p data-en="Minecraft elytra flight simulation, route optimization, visual analysis, and mod tools." data-zh="Minecraft 鞘翅飞行模拟、路线优化、可视化分析与模组工具集。">Minecraft elytra flight simulation, route optimization, visual analysis, and mod tools.</p>
+                    <div class="compact-links"><a href="elytra_simulator/index.html" data-en="Demo" data-zh="演示">Demo</a><a href="https://github.com/hzyhhzy/elytra-strategy-lab" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+                </article>
+                <article class="repo-row">
+                    <h3>minecraft-auto-tas</h3>
+                    <p data-en="Physics-accurate Minecraft input search, route optimization, macro generation, and client validation." data-zh="基于精确物理的 Minecraft 输入搜索、路线优化、宏生成与客户端验证。">Physics-accurate Minecraft input search, route optimization, macro generation, and client validation.</p>
+                    <a href="https://github.com/hzyhhzy/minecraft-auto-tas" target="_blank" rel="noreferrer">GitHub ↗</a>
+                </article>
+                <article class="repo-row">
+                    <h3>codex-minecraft-seed-methodology</h3>
+                    <p data-en="A Codex-oriented methodology and worked examples for Minecraft Java seed filtering." data-zh="使用 Codex 研究 Minecraft Java 种子筛选器的方法与实例。">A Codex-oriented methodology and worked examples for Minecraft Java seed filtering.</p>
+                    <a href="https://github.com/hzyhhzy/codex-minecraft-seed-methodology" target="_blank" rel="noreferrer">GitHub ↗</a>
+                </article>
+                <article class="repo-row">
+                    <h3>godot-ballance</h3>
+                    <p data-en="An extensible recreation of Ballance built with Godot." data-zh="使用 Godot 构建的可扩展 Ballance 重制项目。">An extensible recreation of Ballance built with Godot.</p>
+                    <a href="https://github.com/hzyhhzy/godot-ballance" target="_blank" rel="noreferrer">GitHub ↗</a>
+                </article>
+                <article class="repo-row">
+                    <h3>BallanceContactStabilizer</h3>
+                    <p data-en="A Ballance contact-order stabilizer for deterministic TAS playback." data-zh="为确定性 TAS 回放稳定 Ballance 接触顺序的工具。">A Ballance contact-order stabilizer for deterministic TAS playback.</p>
+                    <a href="https://github.com/hzyhhzy/BallanceContactStabilizer" target="_blank" rel="noreferrer">GitHub ↗</a>
+                </article>
+                <article class="repo-row">
+                    <h3>AutoDenxiMachine</h3>
+                    <p data-en="Codex-assisted analysis of googology and ordinal notations." data-zh="使用 Codex 自动分析大数与序数记号。">Codex-assisted analysis of googology and ordinal notations.</p>
+                    <a href="https://github.com/hzyhhzy/AutoDenxiMachine" target="_blank" rel="noreferrer">GitHub ↗</a>
+                </article>
+                <article class="repo-row">
+                    <h3>AutoGuogaoMachine</h3>
+                    <p data-en="A C++ toolkit for googology notation experiments." data-zh="用于大数记号实验的 C++ 工具。">A C++ toolkit for googology notation experiments.</p>
+                    <a href="https://github.com/hzyhhzy/AutoGuogaoMachine" target="_blank" rel="noreferrer">GitHub ↗</a>
+                </article>
+                <article class="repo-row">
+                    <h3>Googology Scale</h3>
+                    <p data-en="An interactive browser for large-number and ordinal notations." data-zh="用于浏览大数与序数记号的交互式标尺。">An interactive browser for large-number and ordinal notations.</p>
+                    <div class="compact-links"><a href="googology/index.html" data-en="Open" data-zh="打开">Open</a><a href="https://github.com/hzyhhzy/hzyhhzy.github.io/tree/main/googology" target="_blank" rel="noreferrer">Source ↗</a></div>
+                </article>
+                <article class="repo-row">
+                    <h3>hex_langton_ant</h3>
+                    <p data-en="Langton's ant on a hexagonal grid." data-zh="六角网格上的兰顿蚂蚁实验。">Langton's ant on a hexagonal grid.</p>
+                    <a href="https://github.com/hzyhhzy/hex_langton_ant" target="_blank" rel="noreferrer">GitHub ↗</a>
+                </article>
+                <article class="repo-row">
+                    <h3>tiaoqimeiju</h3>
+                    <p data-en="An exhaustive shortest-solution search for peg solitaire." data-zh="穷举单人跳棋最短解。">An exhaustive shortest-solution search for peg solitaire.</p>
+                    <a href="https://github.com/hzyhhzy/tiaoqimeiju" target="_blank" rel="noreferrer">GitHub ↗</a>
+                </article>
+                <article class="repo-row">
+                    <h3>ShiBuWanDu</h3>
+                    <p data-en="An exhaustive solver for the Ten Moves, Ten Thousand Degrees puzzle." data-zh="“十步万度”穷举求解器。">An exhaustive solver for the Ten Moves, Ten Thousand Degrees puzzle.</p>
+                    <a href="https://github.com/hzyhhzy/ShiBuWanDu" target="_blank" rel="noreferrer">GitHub ↗</a>
+                </article>
+                <article class="repo-row">
+                    <h3>huarongdao</h3>
+                    <p data-en="An exhaustive solver for the Huarong Dao sliding-block puzzle." data-zh="华容道滑块谜题穷举程序。">An exhaustive solver for the Huarong Dao sliding-block puzzle.</p>
+                    <a href="https://github.com/hzyhhzy/huarongdao" target="_blank" rel="noreferrer">GitHub ↗</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="home-section" id="blog" aria-labelledby="blog-title">
+            <header class="section-heading">
+                <p>03</p>
+                <h2 id="blog-title" data-en="Blog" data-zh="博客">Blog</h2>
+            </header>
+
+            <div class="blog-list">
+                <a class="blog-row" href="boardgame-training.html">
+                    <span class="row-index">01</span>
+                    <span class="blog-copy">
+                        <strong data-en="Training AI for a board game you invented" data-zh="如何训练自己发明的新棋 AI">Training AI for a board game you invented</strong>
+                        <small data-en="Rules, builds, self-play configuration, model size, evaluation, and release." data-zh="从规则、编译、自对弈配置和模型规模，到评测与发布。">Rules, builds, self-play configuration, model size, evaluation, and release.</small>
+                    </span>
+                    <span aria-hidden="true">→</span>
+                </a>
+                <a class="blog-row" href="boardgame-rule-implementation.html">
+                    <span class="row-index">02</span>
+                    <span class="blog-copy">
+                        <strong data-en="Integrating a new ruleset into KataGomo" data-zh="把一套新规则接进 KataGomo">Integrating a new ruleset into KataGomo</strong>
+                        <small data-en="Board state, legal actions, terminal conditions, history, network inputs, and compound moves." data-zh="棋盘状态、合法行动、终局、历史、网络输入与复合行动。">Board state, legal actions, terminal conditions, history, network inputs, and compound moves.</small>
+                    </span>
+                    <span aria-hidden="true">→</span>
+                </a>
+                <a class="blog-row" href="boardgame-ai-experience.html">
+                    <span class="row-index">03</span>
+                    <span class="blog-copy">
+                        <strong data-en="Engineering lessons from strong board-game AI" data-zh="训练强棋类 AI 的工程经验">Engineering lessons from strong board-game AI</strong>
+                        <small data-en="Practical notes on AlphaZero, NNUE, KataGo, search efficiency, and training scale." data-zh="关于 AlphaZero、NNUE、KataGo、搜索效率与训练规模的实践记录。">Practical notes on AlphaZero, NNUE, KataGo, search efficiency, and training scale.</small>
+                    </span>
+                    <span aria-hidden="true">→</span>
+                </a>
             </div>
         </section>
     </main>
+
+    <footer class="site-footer">
+        <div class="page-shell">
+            <p>© 2026 HZY / Sigmoid</p>
+            <a href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">github.com/hzyhhzy ↗</a>
+        </div>
+    </footer>
 </body>
 </html>

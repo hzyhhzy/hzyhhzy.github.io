@@ -1,135 +1,160 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="en" data-language="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>训练强棋类 AI 的经验 | hzyhhzy</title>
-    <meta name="description" content="关于如何训练强棋类 AI 的经验总结：AlphaZero、NNUE、KataGo、Transformer 与训练规模。">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title data-en="Engineering Strong Board-game AI | hzyhhzy" data-zh="训练强棋类 AI 的经验 | hzyhhzy">Engineering Strong Board-game AI | hzyhhzy</title>
+    <meta name="description" content="Personal engineering notes on training strong board-game AI with AlphaZero, NNUE, KataGo, and deliberate scaling." data-i18n-content="metaDescription">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="page-header">
-        <div class="page-header-inner">
-            <div class="page-header-left">
-                <nav class="page-breadcrumb" aria-label="面包屑">
-                    <a href="index.html">主页</a>
-                    <span class="page-breadcrumb-sep">&gt;</span>
-                    <span class="page-breadcrumb-current">训练一个强棋类 AI 的经验</span>
-                </nav>
-            </div>
-            <div class="page-header-right">
-                <div class="page-header-group">
-                    <button class="page-header-menu-toggle" type="button">相关链接</button>
-                    <div class="page-header-menu-panel">
-                        <a href="boardgames/index.html">KataGomo Project</a>
-                        <a href="boardgames/games.html">已训练的棋类ai</a>
-                        <a href="boardgame-training.html">训练指南</a>
-                    </div>
-                </div>
-                <div class="page-header-group">
-                    <button class="page-header-menu-toggle" type="button">联系方式</button>
-                    <div class="page-header-menu-panel">
-                        <a href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub: hzyhhzy</a>
-                        <a href="mailto:2658628026@qq.com">邮箱: 2658628026@qq.com</a>
-                        <span class="page-header-menu-note">QQ: 2658628026</span>
-                        <span class="page-header-menu-note">Discord: hzy_sigmoid</span>
-                    </div>
+    <a class="skip-link" href="#main-content" data-en="Skip to main content" data-zh="跳到主要内容">Skip to main content</a>
+
+    <header class="content-header">
+        <div class="content-container header-inner">
+            <a class="content-brand" href="index.html" aria-label="Back to hzyhhzy projects" data-i18n-aria-label="brandLabel">
+                <span aria-hidden="true">σ</span>
+                <strong>hzyhhzy</strong>
+            </a>
+            <div class="header-actions">
+                <a class="content-github" href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+                <div class="language-switcher" role="group" aria-label="Language" data-i18n-aria-label="languageControl">
+                    <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
+                    <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
                 </div>
             </div>
+            <nav class="content-nav" aria-label="Primary navigation" data-i18n-aria-label="primaryNavigation">
+                <a href="index.html" data-en="Projects" data-zh="项目">Projects</a>
+                <a href="boardgame-ai-experience.html" aria-current="page" data-en="AI notes" data-zh="AI 经验">AI notes</a>
+                <a href="boardgame-training.html" data-en="Training" data-zh="训练指南">Training</a>
+                <a href="boardgame-rule-implementation.html" data-en="Rules" data-zh="规则接入">Rules</a>
+            </nav>
         </div>
     </header>
-    <main>
-        <section class="page-hero">
-            <div class="page-hero-card">
-                <div>
-                    <h1>训练一个强棋类 AI 的经验</h1>
-                    <p class="page-note"><strong>注：目前还在补充内容中，部分AI生成内容还有待核实</strong></p>
-                    <p>下面这些结论不是抽象口号，而是从多棋种训练、迁移和工程实现里反复得到的经验。</p>
-                    <p>如果目标是“尽快做出一个真正强、还能继续提升的棋类 AI”，通常先把路线选对，比一开始抠局部技巧更重要。</p>
-                    <div class="hero-actions">
-                        <a class="button" href="index.html">返回首页</a>
-                        <a class="ghost-button" href="boardgames/games.html">已训练的棋类ai</a>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="page-section">
-            <div class="section-head">
-                <div>
-                    <h2>1. 顶级棋类 AI 基本只有两条路线：AlphaZero vs NNUE</h2>
-                </div>
-            </div>
-            <div class="two-grid">
-                <article class="detail-card">
-                    <h3>AlphaZero</h3>
-                    <p>这条路线使用较大的神经网络配合搜索，愿意牺牲一部分速度来换更高的表达能力和更稳定的上限。</p>
-                    <p>它最大的优点是通用。只要规则能接入，几乎任何二人零和棋类都可以沿着同一套范式训练出有竞争力的结果。</p>
-                </article>
-                <article class="detail-card">
-                    <h3>NNUE</h3>
-                    <p>NNUE 更偏向“小网络 + 极快评估”，靠速度、特征设计和搜索工程去追求强度。</p>
-                    <p>它在少数成熟棋种上很强，但通用性较差，迁移到新棋种时往往需要更多手工设计和更大的工程量。</p>
-                </article>
-            </div>
-            <article class="detail-card">
-                <p>如果你不是在某个单一棋种上做极致 CPU 软件，而是想覆盖大量棋种、规则变体甚至原创规则，AlphaZero 通常是最通用、最稳妥的路线，整体工程量也经常小于 NNUE。</p>
-            </article>
-        </section>
+    <main class="content-main" id="main-content">
+        <div class="content-container">
+            <nav class="breadcrumb" aria-label="Breadcrumb" data-i18n-aria-label="breadcrumb">
+                <a href="index.html" data-en="Projects" data-zh="项目">Projects</a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page" data-en="Board-game AI field notes" data-zh="训练强棋类 AI 的经验">Board-game AI field notes</span>
+            </nav>
 
-        <section class="page-section">
-            <div class="section-head">
-                <div>
-                    <h2>2. KataGo 是AlphaZero的高效工程实现</h2>
+            <section class="content-hero article-hero" aria-labelledby="page-title">
+                <p class="page-eyebrow" data-en="Board-game AI field notes" data-zh="棋类 AI 工程笔记">Board-game AI field notes</p>
+                <h1 id="page-title" data-en="Building strong board-game AI: my engineering judgment" data-zh="训练一个强棋类 AI：我的工程判断">Building strong board-game AI: my engineering judgment</h1>
+                <p class="content-lead" data-en="These conclusions come from recurring problems in my multi-game training, transfer, and implementation work. They are not universal theorems, but a personal route for reaching strong play quickly without closing off room for further improvement." data-zh="这些结论来自我做多棋种训练、迁移和工程实现时反复遇到的问题。它们不是普遍定理，而是一套用来尽快做出强棋类 AI、并保留继续提升空间的个人路线判断。">These conclusions come from recurring problems in my multi-game training, transfer, and implementation work. They are not universal theorems, but a personal route for reaching strong play quickly without closing off room for further improvement.</p>
+                <div class="hero-actions">
+                    <a class="button" href="boardgame-training.html" data-en="Open the training guide" data-zh="进入训练指南">Open the training guide</a>
+                    <a class="ghost-button" href="boardgames/games-table-prototype.html" data-en="Browse games and resources" data-zh="查看棋种与资源">Browse games and resources</a>
                 </div>
-            </div>
-            <div class="detail-grid">
-                <article class="detail-card">
-                    <h3>为什么重要</h3>
-                <p>很多人理解了 AlphaZero 思想，但从零实现时会在自对弈、并行、样本利用率、训练管线和推理效率上损失大量性能。</p>
-                </article>
-                <article class="detail-card">
-                    <h3>实际差距</h3>
-                    <p>KataGo 在工程上已经把很多细节打磨得非常成熟。和多数人自己从零写的 AlphaZero 相比，效率高 10 到 1000 倍并不夸张，差多少主要取决于写代码的人水平。</p>
-                </article>
-                <article class="detail-card">
-                    <h3>直接收益</h3>
-                    <p>这意味着你可以把更多精力放在规则设计、数据质量、网络结构和算力投入上，而不是先花很久重造一遍基础设施。</p>
-                </article>
-            </div>
-        </section>
+            </section>
 
-        <section class="page-section">
-            <div class="section-head">
-                <div>
-                    <h2>3. KataGo不限于交替落子的棋</h2>
-                </div>
-            </div>
-            <article class="detail-card">
-                <p>KataGo 并不只适用于“黑白双方轮流往空点落子”这种最标准的棋类。像象棋、国际象棋这类一步里同时包含“选择棋子”和“决定落点”的游戏，也可以用类似框架处理。</p>
-                <p>最偷懒、最实用的实现方式，是把原本的一步拆成两步：先选要动的棋子，再选它的落点。这个拆法不保证在理论上最优，但通常不会弱太多，而且能显著降低接入门槛。</p>
-                <p>如果目标是快速验证一类规则或者快速做出原型，这种做法非常值得用。</p>
-            </article>
-        </section>
+            <div class="article-layout">
+                <aside class="article-toc" aria-label="On this page" data-i18n-aria-label="tableOfContents">
+                    <p data-en="On this page" data-zh="本文目录">On this page</p>
+                    <ol>
+                        <li><a href="#routes" data-en="Choosing a route" data-zh="路线选择">Choosing a route</a></li>
+                        <li><a href="#katago" data-en="Why KataGo" data-zh="KataGo 的价值">Why KataGo</a></li>
+                        <li><a href="#compound-actions" data-en="Compound actions" data-zh="复合行动拆步">Compound actions</a></li>
+                        <li><a href="#scale" data-en="Training scale" data-zh="训练规模">Training scale</a></li>
+                    </ol>
+                </aside>
 
-        <section class="page-section">
-            <div class="section-head">
-                <div>
-                    <h2>4. Money Is All You Need</h2>
-                </div>
+                <article class="article-body">
+                    <section class="article-section" id="routes">
+                        <p class="page-eyebrow" data-en="01 / Route" data-zh="01 / 路线">01 / Route</p>
+                        <h2 data-en="For my projects, compare AlphaZero and NNUE first" data-zh="在我的项目里，先比较 AlphaZero 与 NNUE">For my projects, compare AlphaZero and NNUE first</h2>
+                        <p data-en="If the goal is to build an AI that is genuinely strong, arrives quickly, and can keep improving, my experience says that choosing the right route matters more than polishing local tricks at the start. In the projects I have worked on, the first comparison worth making is usually an AlphaZero-style route versus an NNUE-style route." data-zh="如果目标是“尽快做出一个真正强、还能继续提升的棋类 AI”，我的经验是先把路线选对，通常比一开始抠局部技巧更重要。就我接触的项目而言，最值得先比较的是 AlphaZero 类路线和 NNUE 类路线。">If the goal is to build an AI that is genuinely strong, arrives quickly, and can keep improving, my experience says that choosing the right route matters more than polishing local tricks at the start. In the projects I have worked on, the first comparison worth making is usually an AlphaZero-style route versus an NNUE-style route.</p>
+
+                        <div class="card-grid">
+                            <article class="content-card">
+                                <h3>AlphaZero</h3>
+                                <p data-en="This route pairs a relatively large neural network with search, accepting some loss of speed in exchange for higher representational capacity and a more dependable ceiling." data-zh="这条路线使用较大的神经网络配合搜索，愿意牺牲一部分速度来换更高的表达能力和更稳定的上限。">This route pairs a relatively large neural network with search, accepting some loss of speed in exchange for higher representational capacity and a more dependable ceiling.</p>
+                                <p data-en="I value its generality: once the rules can be integrated, many two-player zero-sum games can be trained competitively with the same overall paradigm." data-zh="我看重它的通用性：只要规则能够接入，许多二人零和棋类都可以沿着同一套范式训练出有竞争力的结果。">I value its generality: once the rules can be integrated, many two-player zero-sum games can be trained competitively with the same overall paradigm.</p>
+                            </article>
+                            <article class="content-card">
+                                <h3>NNUE</h3>
+                                <p data-en="NNUE leans toward a small network with extremely fast evaluation, pursuing strength through speed, feature design, and search engineering." data-zh="NNUE 更偏向“小网络 + 极快评估”，靠速度、特征设计和搜索工程去追求强度。">NNUE leans toward a small network with extremely fast evaluation, pursuing strength through speed, feature design, and search engineering.</p>
+                                <p data-en="It is very strong in some mature games. In my transfer experience, however, a new game usually calls for more hand-designed features and search work." data-zh="它在一些成熟棋种上很强；但按我的迁移经验，面对新棋种时通常需要更多手工特征设计和搜索工程。">It is very strong in some mature games. In my transfer experience, however, a new game usually calls for more hand-designed features and search work.</p>
+                            </article>
+                        </div>
+
+                        <div class="callout">
+                            <p><strong data-en="My choice:" data-zh="我的选择：">My choice:</strong> <span data-en="unless I am optimizing CPU software for one game, I usually prefer AlphaZero when the aim is to cover many games, variants, or original rules. For those goals it has been more general and dependable in my projects, and the total engineering work is often lower than designing a separate NNUE pipeline for every game." data-zh="如果不是在单一棋种上做极致 CPU 软件，而是要覆盖大量棋种、规则变体甚至原创规则，我通常会优先采用 AlphaZero。对这类目标，它在我的项目中更通用、更稳妥，整体工程量也往往小于重新为每个棋种设计 NNUE 管线。">unless I am optimizing CPU software for one game, I usually prefer AlphaZero when the aim is to cover many games, variants, or original rules. For those goals it has been more general and dependable in my projects, and the total engineering work is often lower than designing a separate NNUE pipeline for every game.</span></p>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="katago">
+                        <p class="page-eyebrow" data-en="02 / Infrastructure" data-zh="02 / 基础设施">02 / Infrastructure</p>
+                        <h2 data-en="KataGo is my preferred efficient AlphaZero foundation" data-zh="KataGo 是我偏好的高效 AlphaZero 工程底座">KataGo is my preferred efficient AlphaZero foundation</h2>
+                        <p data-en="Understanding AlphaZero does not give you an efficient implementation. When building from scratch, any weakness in self-play, parallelism, sample efficiency, the training pipeline, or inference can consume a large amount of performance." data-zh="理解 AlphaZero 的思想并不等于拥有高效实现。从零实现时，自对弈、并行、样本利用率、训练管线和推理效率中的任何一处，都可能吞掉大量性能。">Understanding AlphaZero does not give you an efficient implementation. When building from scratch, any weakness in self-play, parallelism, sample efficiency, the training pipeline, or inference can consume a large amount of performance.</p>
+
+                        <div class="card-grid">
+                            <article class="content-card">
+                                <h3 data-en="Why it matters" data-zh="为什么重要">Why it matters</h3>
+                                <p data-en="KataGo has already refined many engineering details, making it possible to reuse mature search, self-play, and training infrastructure." data-zh="KataGo 已经把许多工程细节打磨得很成熟，能够直接复用搜索、自对弈和训练基础设施。">KataGo has already refined many engineering details, making it possible to reuse mature search, self-play, and training infrastructure.</p>
+                            </article>
+                            <article class="content-card">
+                                <h3 data-en="The difference I observe" data-zh="我观察到的差距">The difference I observe</h3>
+                                <p data-en="Compared with a basic AlphaZero implementation built from scratch, KataGo often removes a great deal of search, self-play, and training overhead. The difference still depends on the game, hardware, search budget, and target strength. A fair efficiency comparison should record GPU hours required to reach equal strength on the same hardware and evaluation set." data-zh="与从零搭建的基础 AlphaZero 实现相比，KataGo 往往能省下大量搜索、自对弈和训练工程开销。不过差距取决于棋种、硬件、搜索预算与目标棋力；要比较效率，应在同一硬件和评测集上记录达到同等棋力所需的 GPU 小时。">Compared with a basic AlphaZero implementation built from scratch, KataGo often removes a great deal of search, self-play, and training overhead. The difference still depends on the game, hardware, search budget, and target strength. A fair efficiency comparison should record GPU hours required to reach equal strength on the same hardware and evaluation set.</p>
+                            </article>
+                            <article class="content-card">
+                                <h3 data-en="Immediate benefit" data-zh="直接收益">Immediate benefit</h3>
+                                <p data-en="Reusing this foundation lets me spend more time on rules, data quality, network architecture, and compute instead of rebuilding infrastructure first." data-zh="复用这套底座后，我可以把更多精力放在规则设计、数据质量、网络结构和算力投入上，而不是先花很久重造基础设施。">Reusing this foundation lets me spend more time on rules, data quality, network architecture, and compute instead of rebuilding infrastructure first.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="compound-actions">
+                        <p class="page-eyebrow" data-en="03 / Representation" data-zh="03 / 表示">03 / Representation</p>
+                        <h2 data-en="KataGo is not limited to alternating placements" data-zh="KataGo 不限于交替落子的棋">KataGo is not limited to alternating placements</h2>
+                        <p data-en="KataGo is not restricted to the standard form in which two players alternate placing stones on empty points. Games such as Xiangqi and chess, where one move includes both selecting a piece and choosing its destination, can also be handled with a similar framework." data-zh="KataGo 并不只适用于“黑白双方轮流往空点落子”这种标准形式。像象棋、国际象棋这类一步里同时包含“选择棋子”和“决定落点”的游戏，也可以用类似框架处理。">KataGo is not restricted to the standard form in which two players alternate placing stones on empty points. Games such as Xiangqi and chess, where one move includes both selecting a piece and choosing its destination, can also be handled with a similar framework.</p>
+                        <p data-en="For prototypes, my most common and least expensive approach is to split one move into two steps: select the piece, then select its destination. This decomposition is not guaranteed to be theoretically optimal. In my experience, it usually keeps the strength loss acceptable while lowering the integration barrier substantially." data-zh="我做原型时最常用、也最省工程量的方式，是把原本的一步拆成两步：先选要动的棋子，再选它的落点。这个拆法不保证理论最优；以我的实践看，它通常能把强度损失控制在可接受范围内，同时显著降低接入门槛。">For prototypes, my most common and least expensive approach is to split one move into two steps: select the piece, then select its destination. This decomposition is not guaranteed to be theoretically optimal. In my experience, it usually keeps the strength loss acceptable while lowering the integration barrier substantially.</p>
+                        <div class="callout">
+                            <p data-lang-content="en">When the goal is to validate a family of rules or build a prototype quickly, I think decomposition is well worth using. See <a href="boardgame-rule-implementation.html">rules integration</a> for the concrete state representation and network inputs.</p>
+                            <p data-lang-content="zh" lang="zh-CN" hidden>当目标是快速验证一类规则或尽快做出原型时，我认为拆步非常值得采用。具体状态表示和网络输入做法见<a href="boardgame-rule-implementation.html">规则接入细节</a>。</p>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="scale">
+                        <p class="page-eyebrow" data-en="04 / Scaling" data-zh="04 / 规模扩展">04 / Scaling</p>
+                        <h2 data-en="Money Is All You Need—but returns diminish" data-zh="Money Is All You Need——但回报会递减">Money Is All You Need—but returns diminish</h2>
+                        <p data-en="In my training experiments, playing strength often grows approximately logarithmically with training volume. This does not mean that further training is useless: doubling the training volume can still add rating, but the improvement per unit of compute gradually falls." data-zh="在我的训练实验里，棋力常常表现为随训练量近似对数增长。这里的意思不是“越练越没用”，而是每翻倍一次训练量通常仍能涨分，只是单位投入带来的提升会逐渐变小。">In my training experiments, playing strength often grows approximately logarithmically with training volume. This does not mean that further training is useless: doubling the training volume can still add rating, but the improvement per unit of compute gradually falls.</p>
+                        <p data-en="For many complex games that remain unsolved, I have not observed a clear practical endpoint. While the data, search, and network keep improving, Elo often has room to rise. This is an empirical trend, not a promise for every game and training configuration." data-zh="对许多尚未被破解、复杂度仍高的棋种，我没有观察到一条清晰的实用终点：只要数据还在变好，搜索与网络仍能提升，Elo 往往还有继续上涨的空间。这是经验趋势，不是对所有棋种和训练配置的保证。">For many complex games that remain unsolved, I have not observed a clear practical endpoint. While the data, search, and network keep improving, Elo often has room to rise. This is an empirical trend, not a promise for every game and training configuration.</p>
+                        <p data-en="My engineering judgment is therefore that the ceiling is usually determined less by one clever trick than by whether the route is appropriate, the implementation is efficient, and the project can sustain continued training." data-zh="因此在我的工程判断里，决定上限的往往不是某个花哨技巧，而是路线是否合适、实现是否高效，以及是否愿意持续投入训练量。">My engineering judgment is therefore that the ceiling is usually determined less by one clever trick than by whether the route is appropriate, the implementation is efficient, and the project can sustain continued training.</p>
+                    </section>
+                </article>
             </div>
-            <article class="detail-card">
-                <p>棋力水平通常随着训练量的对数增长。这句话的意思不是“越练越没用”，而是说每翻倍一次训练量，通常仍然能涨分，只是单位投入带来的提升会逐渐变小。</p>
-                <p>对大多数尚未被破解的棋种来说，这条曲线几乎没有真正意义上的终点。只要棋本身还有复杂度、数据还在变好、搜索与网络还在提升，ELO 就还能继续涨。</p>
-                <p>所以很多时候，真正决定上限的不是某个花哨技巧，而是你是否选对路线、是否用了高效实现，以及是否愿意持续投入训练量。</p>
-            </article>
-        </section>
+        </div>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-card">
-            <p>如果只看首页，请返回 <code>index.html</code>；如果想看具体棋种和结论，请进入 <code>boardgames/games.html</code>。</p>
+    <footer class="content-footer">
+        <div class="content-container footer-inner">
+            <p data-en="Personal board-game AI engineering notes · QQ 2658628026 · Discord hzy_sigmoid" data-zh="个人棋类 AI 工程笔记 · QQ 2658628026 · Discord hzy_sigmoid">Personal board-game AI engineering notes · QQ 2658628026 · Discord hzy_sigmoid</p>
+            <nav class="footer-links" aria-label="Footer navigation" data-i18n-aria-label="footerNavigation">
+                <a href="mailto:2658628026@qq.com" data-en="Email" data-zh="邮件联系">Email</a>
+                <a href="boardgames/index.html">KataGomo</a>
+                <a href="boardgames/games-table-prototype.html" data-en="Games and resources" data-zh="棋种与资源">Games and resources</a>
+                <a href="boardgame-training.html" data-en="Next: train a game you invented →" data-zh="下一篇：训练自己发明的新棋 →">Next: train a game you invented →</a>
+            </nav>
         </div>
     </footer>
+
+    <script type="application/json" id="page-i18n">
+    {
+      "zh": {
+        "metaDescription": "关于如何训练强棋类 AI 的个人工程经验：AlphaZero、NNUE、KataGo 与训练规模。",
+        "brandLabel": "返回 hzyhhzy 项目主页",
+        "languageControl": "语言",
+        "primaryNavigation": "主导航",
+        "breadcrumb": "面包屑",
+        "tableOfContents": "本文目录",
+        "footerNavigation": "页脚导航"
+      }
+    }
+    </script>
+    <script src="site.js" defer></script>
 </body>
 </html>

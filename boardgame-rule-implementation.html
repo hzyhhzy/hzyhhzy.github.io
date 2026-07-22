@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en" data-language="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title data-en="Integrating New Rules into KataGomo | hzyhhzy" data-zh="KataGomo 规则接入细节 | hzyhhzy">Integrating New Rules into KataGomo | hzyhhzy</title>
+    <meta name="description" content="A C++ integration checklist for original games and variants in KataGomo: board state, legal moves, terminal conditions, history, network inputs, and staged compound actions." data-i18n-content="metaDescription">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content" data-en="Skip to main content" data-zh="跳到主要内容">Skip to main content</a>
+
+    <header class="content-header">
+        <div class="content-container header-inner">
+            <a class="content-brand" href="index.html" aria-label="Back to hzyhhzy projects" data-i18n-aria-label="brandLabel">
+                <span aria-hidden="true">σ</span>
+                <strong>hzyhhzy</strong>
+            </a>
+            <div class="header-actions">
+                <a class="content-github" href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+                <div class="language-switcher" role="group" aria-label="Language" data-i18n-aria-label="languageControl">
+                    <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
+                    <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
+                </div>
+            </div>
+            <nav class="content-nav" aria-label="Primary navigation" data-i18n-aria-label="primaryNavigation">
+                <a href="index.html" data-en="Projects" data-zh="项目">Projects</a>
+                <a href="boardgame-ai-experience.html" data-en="AI notes" data-zh="AI 经验">AI notes</a>
+                <a href="boardgame-training.html" data-en="Training" data-zh="训练指南">Training</a>
+                <a href="boardgame-rule-implementation.html" aria-current="page" data-en="Rules" data-zh="规则接入">Rules</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-main" id="main-content">
+        <div class="content-container">
+            <nav class="breadcrumb" aria-label="Breadcrumb" data-i18n-aria-label="breadcrumb">
+                <a href="index.html" data-en="Projects" data-zh="项目">Projects</a>
+                <span aria-hidden="true">/</span>
+                <a href="boardgame-training.html" data-en="Training a new game" data-zh="训练自己发明的新棋">Training a new game</a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page" data-en="Rules integration" data-zh="规则接入细节">Rules integration</span>
+            </nav>
+
+            <section class="content-hero article-hero" aria-labelledby="page-title">
+                <p class="page-eyebrow" data-en="KataGomo rule implementation" data-zh="KataGomo 规则实现">KataGomo rule implementation</p>
+                <h1 id="page-title" data-en="Integrating a new ruleset into KataGomo" data-zh="把一套新规则接进 KataGomo">Integrating a new ruleset into KataGomo</h1>
+                <p class="content-lead" data-en="Make the engine answer four questions completely: what the current state is, which actions are legal, how an action changes the state, and when the game ends and who wins." data-zh="让引擎完整回答四个问题：当前局面是什么、哪些行动合法、行动后局面怎样变化、什么时候结束以及谁赢。">Make the engine answer four questions completely: what the current state is, which actions are legal, how an action changes the state, and when the game ends and who wins.</p>
+                <p data-lang-content="en">Filenames vary slightly between branches, but most changes are concentrated in <code>cpp/game</code>, <code>cpp/neuralnet</code>, <code>cpp/dataio</code>, and a small number of search and command-line entry points.</p>
+                <p data-lang-content="zh" lang="zh-CN" hidden>不同分支的文件名可能略有差异，但大多数改动会集中在 <code>cpp/game</code>、<code>cpp/neuralnet</code>、<code>cpp/dataio</code> 和少量搜索、命令行入口附近。</p>
+                <div class="hero-actions">
+                    <a class="button" href="boardgame-training.html" data-en="Back to the training guide" data-zh="返回训练指南">Back to the training guide</a>
+                    <a class="ghost-button" href="https://github.com/hzyhhzy/KataGomo" target="_blank" rel="noreferrer"><span data-en="KataGomo repository" data-zh="KataGomo 仓库">KataGomo repository</span> <span aria-hidden="true">↗</span></a>
+                </div>
+            </section>
+
+            <div class="article-layout">
+                <aside class="article-toc" aria-label="On this page" data-i18n-aria-label="tableOfContents">
+                    <p data-en="On this page" data-zh="本文目录">On this page</p>
+                    <ol>
+                        <li><a href="#action-model" data-en="Action model" data-zh="行动表示">Action model</a></li>
+                        <li><a href="#core-files" data-en="Core files" data-zh="核心文件">Core files</a></li>
+                        <li><a href="#staged-moves" data-en="Staged moves" data-zh="拆步实现">Staged moves</a></li>
+                        <li><a href="#verification" data-en="Verification" data-zh="自测清单">Verification</a></li>
+                    </ol>
+                </aside>
+
+                <article class="article-body">
+                    <section class="article-section" id="action-model">
+                        <p class="page-eyebrow" data-en="01 / Action model" data-zh="01 / 行动模型">01 / Action model</p>
+                        <h2 data-en="Choose the action representation first" data-zh="先定行动表示">Choose the action representation first</h2>
+                        <p data-en="A KataGo-style policy head most naturally outputs one selected point, so a complex move can be decomposed into several selections." data-zh="KataGo 风格的策略头最自然的输出是“选择一个点”，所以复杂一步可以拆成多次选择。">A KataGo-style policy head most naturally outputs one selected point, so a complex move can be decomposed into several selections.</p>
+                        <div class="card-grid">
+                            <article class="content-card">
+                                <h3 data-en="Placement games" data-zh="落子型">Placement games</h3>
+                                <p data-en="Gomoku, Hex, and Go variants are usually simplest: an action selects one empty point. Policy output, legal moves, and board state are almost one-to-one." data-zh="五子棋、Hex、围棋变体通常最简单：一次行动就是选择一个空点。策略输出、合法着法和棋盘状态之间几乎是一一对应。">Gomoku, Hex, and Go variants are usually simplest: an action selects one empty point. Policy output, legal moves, and board state are almost one-to-one.</p>
+                            </article>
+                            <article class="content-card">
+                                <h3 data-en="Movement games" data-zh="移动型">Movement games</h3>
+                                <p data-en="Xiangqi, Ataxx, and Amazons can be split into selecting a piece and selecting its destination. Amazons adds a third selection for the arrow square. Every stage still chooses one position on the board." data-zh="象棋、Ataxx、亚马逊棋可以拆成“先选棋子，再选落点”。亚马逊棋还可以继续拆出“再选射箭点”。每个阶段仍然只选择棋盘上的一个位置。">Xiangqi, Ataxx, and Amazons can be split into selecting a piece and selecting its destination. Amazons adds a third selection for the arrow square. Every stage still chooses one position on the board.</p>
+                            </article>
+                            <article class="content-card">
+                                <h3 data-en="Cost of decomposition" data-zh="拆步代价">Cost of decomposition</h3>
+                                <p data-en="Staging makes one move deeper in the search tree, so state must record the current stage and previously selected points. The benefit is a simpler integration without redesigning the network output as a huge action table." data-zh="拆步会让一手棋在搜索树里变深，所以要在状态里记录“当前处于第几阶段”和“已经选了哪些点”。好处是接入简单，神经网络输出也不用重做成巨大动作表。">Staging makes one move deeper in the search tree, so state must record the current stage and previously selected points. The benefit is a simpler integration without redesigning the network output as a huge action table.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="core-files">
+                        <p class="page-eyebrow" data-en="02 / File map" data-zh="02 / 文件地图">02 / File map</p>
+                        <h2 data-en="Core-file checklist" data-zh="核心文件清单">Core-file checklist</h2>
+                        <p data-en="These are the most common modification points. In a specific branch, search for the same filenames or equivalent responsibilities." data-zh="下面是最常见的修改位置；具体分支可按同名文件或近似职责搜索。">These are the most common modification points. In a specific branch, search for the same filenames or equivalent responsibilities.</p>
+                        <div class="table-wrap" role="region" aria-label="Common KataGomo files and checks for a rules integration" data-i18n-aria-label="coreFilesTable" tabindex="0">
+                            <table class="data-table data-table-wide">
+                                <caption data-en="Common KataGomo files and checks for a rules integration" data-zh="KataGomo 规则接入时常见的核心文件与检查点">Common KataGomo files and checks for a rules integration</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col" data-en="Module" data-zh="模块">Module</th>
+                                        <th scope="col" data-en="Common files" data-zh="常见文件">Common files</th>
+                                        <th scope="col" data-en="Change" data-zh="要改什么">Change</th>
+                                        <th scope="col" data-en="Checks" data-zh="检查点">Checks</th>
+                                        <th scope="col" data-en="Games" data-zh="适用棋类">Games</th>
+                                        <th scope="col" data-en="Notes" data-zh="备注">Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" data-en="Board state" data-zh="棋盘状态">Board state</th>
+                                        <td><code>cpp/game/board.h</code><br><code>cpp/game/board.cpp</code></td>
+                                        <td data-en="Board dimensions, point contents, move execution, first-pass legality, and terminal helpers" data-zh="棋盘尺寸、格点内容、行动执行、合法性初筛、终局辅助函数">Board dimensions, point contents, move execution, first-pass legality, and terminal helpers</td>
+                                        <td data-en="Random play does not crash; piece counts and boundaries remain correct" data-zh="随机走子不崩、棋子数量正确、边界不越界">Random play does not crash; piece counts and boundaries remain correct</td>
+                                        <td data-en="All games" data-zh="所有棋">All games</td>
+                                        <td data-en="Movement games must retain origin, destination, and stage" data-zh="移动型棋要能记录起点、终点和阶段信息">Movement games must retain origin, destination, and stage</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" data-en="Game history" data-zh="对局历史">Game history</th>
+                                        <td><code>cpp/game/boardhistory.h</code><br><code>cpp/game/boardhistory.cpp</code></td>
+                                        <td data-en="Turn progression, result, repetition, pass/no legal move, score" data-zh="回合推进、胜负判定、重复局面、pass/无子可走、分数或结果">Turn progression, result, repetition, pass/no legal move, score</td>
+                                        <td data-en="Terminal results remain stable and loop rules match the design" data-zh="终局能稳定返回胜负，循环规则符合设计">Terminal results remain stable and loop rules match the design</td>
+                                        <td data-en="All games" data-zh="所有棋">All games</td>
+                                        <td data-en="Many rules bugs hide in history and terminal logic" data-zh="很多规则 bug 会藏在历史和终局逻辑里">Many rules bugs hide in history and terminal logic</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" data-en="Rules options" data-zh="规则选项">Rules options</th>
+                                        <td><code>cpp/game/rules.h</code><br><code>cpp/game/rules.cpp</code></td>
+                                        <td data-en="Rules enums, komi/scoring parameters, variant switches, configuration parsing" data-zh="规则枚举、贴目/计分参数、变体开关、命令行或配置读取">Rules enums, komi/scoring parameters, variant switches, configuration parsing</td>
+                                        <td data-en="Configurations do not leak into one another" data-zh="不同规则配置不会互相污染">Configurations do not leak into one another</td>
+                                        <td data-en="Multi-rules branches" data-zh="多规则分支">Multi-rules branches</td>
+                                        <td data-en="For one original ruleset, configuration can initially stay minimal" data-zh="如果只有一种原创规则，可以先少做配置化">For one original ruleset, configuration can initially stay minimal</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" data-en="Coordinates &amp; size" data-zh="坐标与尺寸">Coordinates &amp; size</th>
+                                        <td><code>cpp/game/loc.h</code><br><code>cpp/game/board.h</code></td>
+                                        <td data-en="Maximum board, coordinate conversion, special locations such as pass/resign" data-zh="最大棋盘、坐标转换、pass/resign 等特殊位置">Maximum board, coordinate conversion, special locations such as pass/resign</td>
+                                        <td data-en="Readable GTP/log coordinates and correct rectangular boards" data-zh="GTP/日志里坐标可读，矩形棋盘不写错">Readable GTP/log coordinates and correct rectangular boards</td>
+                                        <td data-en="Non-standard boards" data-zh="非标准棋盘">Non-standard boards</td>
+                                        <td data-en="Rectangular boards need extra attention to network input dimensions" data-zh="长方形棋盘要特别留意神经网络输入尺寸">Rectangular boards need extra attention to network input dimensions</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" data-en="Network inputs" data-zh="神经网络输入">Network inputs</th>
+                                        <td><code>cpp/neuralnet/nninputs.cpp</code><br><code>cpp/neuralnet/nninputs.h</code></td>
+                                        <td data-en="Board and global features, history planes, current stage, previous selections" data-zh="棋盘特征面、全局特征、历史面、当前阶段、上一步选择点">Board and global features, history planes, current stage, previous selections</td>
+                                        <td data-en="Input dimensions match model configuration and agree in training and inference" data-zh="输入维度和模型配置一致，训练与推理一致">Input dimensions match model configuration and agree in training and inference</td>
+                                        <td data-en="All games" data-zh="所有棋">All games</td>
+                                        <td data-en="Staged games must expose the stage to the network" data-zh="拆步棋一定要把阶段信息喂给网络">Staged games must expose the stage to the network</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" data-en="Action mapping" data-zh="动作映射">Action mapping</th>
+                                        <td><code>cpp/neuralnet/nninputs.cpp</code><br><code>cpp/search</code> <span data-en="files" data-zh="相关文件">files</span></td>
+                                        <td data-en="Map policy points to legal actions; handle pass and resign" data-zh="策略输出点位如何对应合法行动，pass/resign 如何处理">Map policy points to legal actions; handle pass and resign</td>
+                                        <td data-en="Search samples no illegal points and omits no legal point" data-zh="非法点不会被搜索采样，合法点不会被漏掉">Search samples no illegal points and omits no legal point</td>
+                                        <td data-en="Staged games" data-zh="拆步棋">Staged games</td>
+                                        <td data-en="Each stage has a different legal set and needs a staged mask" data-zh="每个阶段的合法点集合不同，需要分阶段 mask">Each stage has a different legal set and needs a staged mask</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" data-en="I/O formats" data-zh="输入输出格式">I/O formats</th>
+                                        <td><code>cpp/dataio</code><br><code>cpp/command</code><br><code>cpp/program</code></td>
+                                        <td data-en="Position text, SGF/game records, GTP commands, debug output" data-zh="局面文本、SGF/记录格式、GTP 命令、调试打印">Position text, SGF/game records, GTP commands, debug output</td>
+                                        <td data-en="Replay games, load test positions, and understand logs" data-zh="能复盘、能加载测试局面、能看懂日志">Replay games, load test positions, and understand logs</td>
+                                        <td data-en="Games intended for release" data-zh="需要发布的棋">Games intended for release</td>
+                                        <td data-en="A prototype can simplify this, but long training must be reproducible" data-zh="原型期可以简化，但长期训练必须可复现">A prototype can simplify this, but long training must be reproducible</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="staged-moves">
+                        <p class="page-eyebrow" data-en="03 / State machine" data-zh="03 / 状态机">03 / State machine</p>
+                        <h2 data-en="Implementing staged moves" data-zh="拆步棋怎么写">Implementing staged moves</h2>
+                        <p data-en="For a move that first selects a piece and then a destination, a state machine is usually more robust than one monolithic action table." data-zh="以“先选棋子，再选落点”为例，状态机会比一次性动作表更稳。">For a move that first selects a piece and then a destination, a state machine is usually more robust than one monolithic action table.</p>
+                        <ol class="content-list" data-lang-content="en">
+                            <li><strong>Add a stage field.</strong> Record a stage such as <code>select_piece</code>, <code>select_destination</code>, or <code>select_arrow</code> in board or history state, together with selected origin and intermediate points.</li>
+                            <li><strong>Generate legal points by stage.</strong> The first stage selects only movable friendly pieces; the second only destinations legal for that piece; an Amazons third stage only reachable arrow squares. Every stage returns a set of board points.</li>
+                            <li><strong>Change player only after the complete action.</strong> Do not switch players or perform a full result check during an intermediate stage. After every sub-step, update the board, clear temporary fields, switch turns, and check the result.</li>
+                            <li><strong>Expose the stage to the network.</strong> Add a stage plane or global feature in <code>nninputs.cpp</code>, and encode selected origin/intermediate points as board planes. Otherwise the network cannot distinguish selecting a piece from selecting a destination.</li>
+                            <li><strong>Adapt records and replay.</strong> Prefer human-readable complete actions such as <code>a1-c3</code> or <code>d1-d4-a4</code> in logs, while internal training data can retain the staged sequence.</li>
+                        </ol>
+                        <ol class="content-list" data-lang-content="zh" lang="zh-CN" hidden>
+                            <li><strong>增加阶段字段。</strong> 在棋盘或历史状态里记录当前阶段，例如 <code>select_piece</code>、<code>select_destination</code>、<code>select_arrow</code>。同时记录已经选中的起点或中间点。</li>
+                            <li><strong>分阶段生成合法点。</strong> 第一阶段只允许选择己方可动棋子；第二阶段只允许该棋子的合法落点；亚马逊棋第三阶段只允许射箭可达点。每个阶段都返回一个棋盘点集合。</li>
+                            <li><strong>只有完整行动才换手。</strong> 中间阶段不要切换玩家，也不要把半步当成完整胜负判断。等所有子步骤完成后，再更新棋盘、清空临时字段、切换回合并检查终局。</li>
+                            <li><strong>给网络看见阶段。</strong> 在 <code>nninputs.cpp</code> 里加入阶段平面或全局特征，并把已选起点/中间点编码成棋盘平面。否则网络无法区分“现在该选棋子”还是“现在该选落点”。</li>
+                            <li><strong>调整记录与复盘。</strong> 日志里最好仍把完整行动打印成人能读懂的一步，例如 <code>a1-c3</code> 或 <code>d1-d4-a4</code>，但内部训练数据可以继续按拆步序列保存。</li>
+                        </ol>
+                    </section>
+
+                    <section class="article-section" id="verification">
+                        <p class="page-eyebrow" data-en="04 / Verification" data-zh="04 / 验证">04 / Verification</p>
+                        <h2 data-en="Verification checklist" data-zh="自测清单">Verification checklist</h2>
+                        <div class="card-grid">
+                            <article class="content-card">
+                                <h3 data-en="Rules checks" data-zh="规则测试">Rules checks</h3>
+                                <ul class="content-list" data-lang-content="en"><li>The empty position has the correct number of legal moves.</li><li>Edges, corners, captures, blocking, forbidden moves, pass, and no-move cases are covered.</li><li>The winner does not fluctuate after the game has ended.</li></ul>
+                                <ul class="content-list" data-lang-content="zh" lang="zh-CN" hidden><li>空局面合法着法数量正确。</li><li>边角、吃子、阻挡、禁手、pass 或无路可走都覆盖到。</li><li>终局后一方胜负不会反复变化。</li></ul>
+                            </article>
+                            <article class="content-card">
+                                <h3 data-en="Training checks" data-zh="训练测试">Training checks</h3>
+                                <ul class="content-list" data-lang-content="en"><li>Self-play continuously produces data without illegal-move errors.</li><li>Training reads the data, exports a model, and the next generation loads it.</li><li>The policy does not put substantial probability on points that are always illegal.</li></ul>
+                                <ul class="content-list" data-lang-content="zh" lang="zh-CN" hidden><li>自对弈能连续生成数据，没有非法招法报错。</li><li>训练能读入数据，模型能导出，下一代自对弈能加载。</li><li>策略分布里没有大量概率压在永远非法的位置上。</li></ul>
+                            </article>
+                            <article class="content-card">
+                                <h3 data-en="Reproducibility checks" data-zh="复现测试">Reproducibility checks</h3>
+                                <ul class="content-list" data-lang-content="en"><li>Save the rules branch, configuration, board size, and training parameters.</li><li>A complete game can be replayed from logs or a game record.</li><li>After changing rules, train from scratch; do not mix old-rules data.</li></ul>
+                                <ul class="content-list" data-lang-content="zh" lang="zh-CN" hidden><li>保存规则分支、配置、棋盘尺寸和训练脚本参数。</li><li>能从日志或棋谱复盘一局完整对局。</li><li>改规则后要从头训练，不要混用旧规则数据。</li></ul>
+                            </article>
+                        </div>
+                        <div class="callout">
+                            <p data-lang-content="en">This checklist covers engineering integration. For the complete data and model route, see <a href="boardgame-training.html">training AI for a game you invented</a>. Treat the scripts in the selected KataGomo branch as the final authority for concrete parameters.</p>
+                            <p data-lang-content="zh" lang="zh-CN" hidden>这份清单解决的是工程接入；完整的数据和模型训练路线见<a href="boardgame-training.html">训练自己发明的新棋</a>。具体参数仍以对应 KataGomo 分支的脚本为准。</p>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="content-footer">
+        <div class="content-container footer-inner">
+            <p data-en="KataGomo rules-engineering checklist · QQ 2658628026 · Discord hzy_sigmoid" data-zh="KataGomo 规则工程清单 · QQ 2658628026 · Discord hzy_sigmoid">KataGomo rules-engineering checklist · QQ 2658628026 · Discord hzy_sigmoid</p>
+            <nav class="footer-links" aria-label="Footer navigation" data-i18n-aria-label="footerNavigation">
+                <a href="mailto:2658628026@qq.com" data-en="Email" data-zh="邮件联系">Email</a>
+                <a href="boardgames/index.html">KataGomo</a>
+                <a href="boardgames/games-table-prototype.html" data-en="Games and resources" data-zh="棋种与资源">Games and resources</a>
+                <a href="boardgame-training.html" data-en="Back to the complete training route →" data-zh="返回完整训练路线 →">Back to the complete training route →</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script type="application/json" id="page-i18n">
+    {
+      "zh": {
+        "metaDescription": "面向原创棋和棋类变体的 KataGomo C++ 规则接入清单：棋盘、合法着法、终局、历史、神经网络输入与复合行动拆步。",
+        "brandLabel": "返回 hzyhhzy 项目主页",
+        "languageControl": "语言",
+        "primaryNavigation": "主导航",
+        "breadcrumb": "面包屑",
+        "tableOfContents": "本文目录",
+        "coreFilesTable": "KataGomo 规则接入时常见的核心文件与检查点",
+        "footerNavigation": "页脚导航"
+      }
+    }
+    </script>
+    <script src="site.js" defer></script>
+</body>
+</html>

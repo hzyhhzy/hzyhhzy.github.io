@@ -1,775 +1,872 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en" data-language="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>已训练的棋类ai | hzyhhzy</title>
-    <meta name="description" content="已训练的棋类ai：整理多棋种项目、结论、分支、release 与训练入口。">
+    <meta name="color-scheme" content="light dark">
+    <title data-i18n="meta.title">Board-game AI archive &amp; downloads | hzyhhzy</title>
+    <meta name="description" content="A bilingual research archive and download desk for dozens of board-game AI projects, releases, source branches, datasets, and reproducible findings." data-i18n-attr="content:meta.description">
     <link rel="stylesheet" href="../styles.css">
+    <script src="../site.js" defer></script>
 </head>
 <body>
-    <header class="page-header">
-        <div class="page-header-inner">
-            <div class="page-header-left">
-                <nav class="page-breadcrumb" aria-label="面包屑">
-                    <a href="../index.html">主页</a>
-                    <span class="page-breadcrumb-sep">&gt;</span>
-                    <a href="index.html">KataGomo Project</a>
-                    <span class="page-breadcrumb-sep">&gt;</span>
-                    <span class="page-breadcrumb-current">已训练的棋类ai</span>
-                </nav>
-            </div>
-            <div class="page-header-right">
-                <div class="page-header-group">
-                    <button class="page-header-menu-toggle" type="button">相关链接</button>
-                    <div class="page-header-menu-panel">
-                        <a href="index.html">KataGomo Project</a>
-                        <a href="../boardgame-ai-experience.html">训练经验</a>
-                        <a href="../boardgame-training.html">训练指南</a>
-                    </div>
-                </div>
-                <div class="page-header-group">
-                    <button class="page-header-menu-toggle" type="button">联系方式</button>
-                    <div class="page-header-menu-panel">
-                        <a href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub: hzyhhzy</a>
-                        <a href="mailto:2658628026@qq.com">邮箱: 2658628026@qq.com</a>
-                        <span class="page-header-menu-note">QQ: 2658628026</span>
-                        <span class="page-header-menu-note">Discord: hzy_sigmoid</span>
-                    </div>
+    <a class="skip-link" href="#main-content" data-i18n="skip">Skip to content</a>
+
+    <header class="content-header">
+        <div class="content-container header-inner">
+            <a class="content-brand" href="../index.html" aria-label="hzyhhzy home" data-i18n-attr="aria-label:brand.homeLabel">
+                <span aria-hidden="true">σ</span>
+                <span><strong>hzyhhzy</strong><small data-i18n="brand.subtitle">Board-game AI archive</small></span>
+            </a>
+            <div class="header-actions">
+                <a class="content-github" href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+                <div class="language-switcher" data-language-switcher role="group" aria-label="Language" data-i18n-attr="aria-label:nav.languageLabel">
+                    <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
+                    <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
                 </div>
             </div>
+            <nav class="content-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.primaryLabel">
+                <a href="../index.html" data-i18n="nav.home">Home</a>
+                <a href="index.html">KataGomo</a>
+                <a href="games.html" aria-current="page" data-i18n="nav.archive">Games &amp; downloads</a>
+                <a href="../boardgame-training.html" data-i18n="nav.training">Training guide</a>
+                <a href="../boardgame-rule-implementation.html" data-i18n="nav.rules">Rule integration</a>
+            </nav>
         </div>
     </header>
-    <main>
-        <section class="hero">
-            <div class="hero-panel">
-                <div class="eyebrow">Board Game AI</div>
-                <h1>已训练的棋类ai</h1>
-                <div class="hero-actions topic-directory">
-                    <div class="topic-directory-item"><a class="ghost-button" href="#topic-go">1. 围棋训练与围棋变种：</a><span>KataGo Transformer模型训练与改进，以及多种围棋变种的研究</span></div>
-                    <div class="topic-directory-item"><a class="ghost-button" href="#topic-gomoku">2. 五子棋与变种：</a><span>最强五子棋软件KataGomo、NNUE设计，以及多种五子棋规则变体的研究</span></div>
-                    <div class="topic-directory-item"><a class="ghost-button" href="#topic-hex">3. Hex 棋：</a><span>最强Hex棋软件KataHex，以及部分局面分析</span></div>
-                    <div class="topic-directory-item"><a class="ghost-button" href="#topic-connect6">4. 六子棋：</a><span>最强六子棋软件、得出了六子棋黑棋几乎必胜的结论</span></div>
-                    <div class="topic-directory-item"><a class="ghost-button" href="#topic-ataxx">5. Ataxx：</a><span>(可能)最强Ataxx棋软件KataAtaxx、以及数据集</span></div>
-                    <div class="topic-directory-item"><a class="ghost-button" href="#topic-connectfour">6. 重力四子棋：</a><span>(可能)最强四子棋软件、支持最大20x20棋盘。得出了关于各种棋盘大小谁必胜的初步结论</span></div>
-                    <div class="topic-directory-item"><a class="ghost-button" href="#topic-animal-chess">7. 斗兽棋：</a><span>最强斗兽棋AI，得出了斗兽棋几乎必和的结论</span></div>
-                    <div class="topic-directory-item"><a class="ghost-button" href="#topic-chinese-checkers">8. 中国跳棋：</a><span>最强中国跳棋AI，得出了中国跳棋几乎必和的结论</span></div>
-                    <div class="topic-directory-item"><a class="ghost-button" href="#topic-math-problems">9. 数学问题：</a><span>使用KataGo研究Angel Problem等数学问题</span></div>
-                    <div class="topic-directory-item"><a class="ghost-button" href="#topic-other-games">10. 其他小众棋种：</a><span>NoGo（不围棋）、Amazons（亚马逊棋）、Breakthrough、逆界震棋等项目合集</span></div>
+
+    <main class="content-main" id="main-content">
+        <div class="content-container">
+            <nav class="breadcrumb" aria-label="Breadcrumb" data-i18n-attr="aria-label:breadcrumb.label">
+                <a href="../index.html" data-i18n="nav.home">Home</a><span aria-hidden="true">/</span>
+                <a href="index.html">KataGomo</a><span aria-hidden="true">/</span>
+                <span aria-current="page" data-i18n="page.title">Games, research &amp; downloads</span>
+            </nav>
+
+            <section class="content-hero catalog-hero" id="board-ai" aria-labelledby="page-title">
+                <p class="page-eyebrow" data-i18n="eyebrow.hero">Board-game AI / Research archive / Download desk</p>
+                <h1 id="page-title" data-i18n="page.title">Games, research &amp; downloads</h1>
+                <p class="content-lead" data-i18n="hero.lead">A working archive for dozens of trained games and rule experiments. Findings stay separate from files: each entry tells you what is known, what can be downloaded, where the exact source lives, and whether models, datasets, rules, or clients are public.</p>
+                <div class="hero-actions">
+                    <a class="button" href="#release-shelf" data-i18n="hero.downloads">Browse published builds</a>
+                    <a class="button button-secondary" href="#catalog" data-i18n="hero.catalog">Search the full archive</a>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section" id="board-ai">
-            <div class="topic-grid">
-                <article class="topic-card topic-card-wide" id="topic-go">
-                    <img src="images/go-board.svg" alt="围棋训练与围棋变种专题示意图">
-                    <div class="topic-card-body">
-                    <h3>1. 围棋训练与围棋变种</h3>
-                    <div class="subtopic-list">
-                        <div class="subtopic-item">
-                            <h4>1.1 训练相关改进</h4>
-                            <p>目前重点放最强围棋 CNN 模型 <code>fdx6d</code> 与 Transformer 模型。感谢智子围棋提供训练算力。</p>
-                            <div class="link-row">
-                                <a class="resource-link download-link" href="https://www.modelscope.cn/models/sigmoid/KataGo_models_collections/" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>模型下载</a>
-                                <a class="resource-link" href="https://github.com/hzyhhzy/KataGo_Transformer" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
-                                <a class="resource-link dataset-link" href="https://www.modelscope.cn/datasets/sigmoid/KataGo_ZhiziGo_selfplay" target="_blank" rel="noreferrer"><span class="resource-icon dataset" aria-hidden="true"></span>智子数据集</a>
-                                <a class="resource-link" href="https://github.com/doomoooo/KataGomo_fork/tree/onnx-trt-clean" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>KataGo ONNX引擎</a>
-                                <a aria-disabled="true">详情页(TODO)</a>
-                            </div>
-                        </div>
-                        <div class="subtopic-item">
-                            <h4>1.2 围棋变种</h4>
-                            <p>包括 Capture Go、Kill-all Go、Hex Go、禁邻手、Hex 棋盘吃子棋、加权面积围棋等。</p>
-                            <div class="compact-table compact-table-six compact-table-tight">
-                                <div class="compact-row header">
-                                    <div>变种名称</div>
-                                    <div>规则</div>
-                                    <div>代码</div>
-                                    <div>AI下载</div>
-                                    <div>数据集下载</div>
-                                    <div>结论</div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>吃子棋（Capture Go）</div>
-                                    <div><span>先吃到对方棋子者胜</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/CaptureGo2024" target="_blank" rel="noreferrer">CaptureGo2024</a></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/CaptureGo_20250509" target="_blank" rel="noreferrer">CaptureGo_20250509</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>围棋变种主线之一</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>死活对局(Kill-all Go)</div>
-                                    <div><span>以整块杀棋为目标</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/LifeGo2024" target="_blank" rel="noreferrer">LifeGo2024</a></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/LifeGo_20241025" target="_blank" rel="noreferrer">LifeGo_20241025</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>偏死活与攻杀分析</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>六角格围棋、棱棋(Hex Go)</div>
-                                    <div><span>在六角格棋盘上进行围棋对局</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/HexGo2024" target="_blank" rel="noreferrer">HexGo2024</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>围棋与 Hex 风格结合</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>禁止在上一手旁边</div>
-                                    <div><span>不能落在上一手相邻处</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/GoModify2a" target="_blank" rel="noreferrer">GoModify2a</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>限制局部贴身应对</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>Hex棋盘吃子棋</div>
-                                    <div><span>在 Hex 棋盘上玩吃子棋</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/HexCaptureGo" target="_blank" rel="noreferrer">HexCaptureGo</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>六角格吃子实验</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>加权面积围棋</div>
-                                    <div><span>不同区域或子力计分加权</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/weightGo" target="_blank" rel="noreferrer">weightGo</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>计分规则改造</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>没气先吃自己的棋子</div>
-                                    <div><span>无气时先移除己方棋子</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/FirstCaptureMe" target="_blank" rel="noreferrer">FirstCaptureMe</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>提子顺序被反转</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>一子千金：吃1子4目</div>
-                                    <div><span>单颗提子价值显著提高</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/yiziqianjin" target="_blank" rel="noreferrer">yiziqianjin</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>提子收益远大于常规围棋</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>谁先没地方走谁输</div>
-                                    <div><span>无合法着法者判负</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/yiziqianjin" target="_blank" rel="noreferrer">yiziqianjin</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>终局条件改成着法耗尽</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>活棋胜（aliveWin）</div>
-                                    <div><span>白棋吃到黑棋一子即胜；若黑棋活成一整块且全连通则黑棋胜，黑棋除第一手外可 pass</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/aliveWin" target="_blank" rel="noreferrer">aliveWin</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>README 结论：黑棋不难活，首手宜下三三或更高</span></div>
-                                </div>
-                            </div>
-                            <div class="link-row">
-                                <a aria-disabled="true">详情页(TODO)</a>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </article>
+            <section class="content-section archive-guide" aria-labelledby="archive-guide-title">
+                <header class="section-heading">
+                    <p class="page-eyebrow" data-i18n="eyebrow.guide">Archive key</p>
+                    <h2 id="archive-guide-title" data-i18n="guide.title">Five columns, five different promises</h2>
+                    <p data-i18n="guide.lead">A source branch is not automatically a downloadable product, and a self-play result is not a proof. The archive keeps those distinctions visible.</p>
+                </header>
+                <dl class="resource-legend">
+                    <div data-resource-kind="results"><dt data-i18n="legend.results">Finding / status</dt><dd data-i18n="legend.results.desc">What current experiments support, with uncertainty stated where needed.</dd></div>
+                    <div data-resource-kind="release"><dt data-i18n="legend.release">Download / release</dt><dd data-i18n="legend.release.desc">A packaged engine, model, client, or bundle that can be downloaded.</dd></div>
+                    <div data-resource-kind="source"><dt data-i18n="legend.source">Source</dt><dd data-i18n="legend.source.desc">The exact repository or branch used for this game.</dd></div>
+                    <div data-resource-kind="dataset"><dt data-i18n="legend.dataset">Dataset / model</dt><dd data-i18n="legend.dataset.desc">Published training data or model collections.</dd></div>
+                    <div data-resource-kind="notes"><dt data-i18n="legend.notes">Rules / paper / play</dt><dd data-i18n="legend.notes.desc">Rule references, papers, interfaces, and related notes.</dd></div>
+                </dl>
+            </section>
 
-                <article class="topic-card topic-card-wide" id="topic-gomoku">
-                    <img src="images/gomoku-board.svg" alt="五子棋与变种专题示意图">
-                    <div class="topic-card-body">
-                    <h3>2. 五子棋与变种</h3>
-                    <div class="subtopic-list">
-                        <div class="subtopic-item">
-                            <h4>2.1 KataGomo：最强五子棋 AI</h4>
-                            <p>覆盖无禁手、无禁手六不胜、有禁手和 Caro 规则。感谢智子围棋提供训练算力。</p>
-                            <p>智子版最近更新：2026.04.04</p>
-                            <p>公开版最近更新：2025.02.06</p>
-                            <div class="link-row">
-                                <a class="resource-link download-link" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Gomoku_20250206" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>KataGomo下载（电脑版，单机版+智子）</a>
-                                <a class="resource-link download-link" href="http://zhizigomoku.com/" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>智子五子棋手机版下载</a>
-                                <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/Gom2024" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
-                                <a aria-disabled="true">详情页(TODO)</a>
-                            </div>
-                        </div>
-                        <div class="subtopic-item">
-                            <h4>2.2 五子棋NNUE</h4>
-                            <p>Rapfi（第二强五子棋AI、CPU上最强五子棋AI）的NNUE网络的前身。</p>
-                            <div class="link-row">
-                                <a class="resource-link" href="https://github.com/hzyhhzy/gomoku_nnue" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
-                                <a class="resource-link dataset-link" href="https://arxiv.org/abs/2503.13178" target="_blank" rel="noreferrer"><span class="resource-icon dataset" aria-hidden="true"></span>论文</a>
-                            </div>
-                        </div>
-                        <div class="subtopic-item">
-                            <h4>2.3 五子棋变种</h4>
-                            <p>包括 Caro、Pente、3D 五子棋、禁点五子棋、连五末手规则、双线五子棋、莫棋、连五计数、吃子五子棋、等差数列六子棋等。</p>
-                            <div class="compact-table compact-table-six compact-table-tight">
-                                <div class="compact-row header">
-                                    <div>变种名称</div>
-                                    <div>规则</div>
-                                    <div>代码</div>
-                                    <div>AI下载</div>
-                                    <div>数据集下载</div>
-                                    <div>结论</div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>Caro</div>
-                                    <div><span>Caro 规则</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Caro2024" target="_blank" rel="noreferrer">Caro2024</a></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Gomoku_20250206" target="_blank" rel="noreferrer">Gomoku_20250206</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>主线公开版支持</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>Pente</div>
-                                    <div><span>五连或吃子取胜</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Pente2025" target="_blank" rel="noreferrer">Pente2025</a></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Pente_20250726" target="_blank" rel="noreferrer">Pente_20250726</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>最新公开变种之一</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>3D五子棋</div>
-                                    <div><span>三维空间中的连子规则</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/3d_gomoku" target="_blank" rel="noreferrer">3d_gomoku</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>三维扩展实验</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>禁点五子棋</div>
-                                    <div><span>部分点位禁止落子</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/GomBanLoc" target="_blank" rel="noreferrer">GomBanLoc</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>可行着法受局面限制</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>连五的最后一手要在两端</div>
-                                    <div><span>成五末手必须落在端点</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/GomNewRule1" target="_blank" rel="noreferrer">GomNewRule1</a> / <a href="https://github.com/hzyhhzy/KataGomo/tree/GomNewRule2" target="_blank" rel="noreferrer">GomNewRule2</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>终局判定被重新约束</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>双线五子棋</div>
-                                    <div><span>围绕双线结构进行连子</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_DifLineGomoku" target="_blank" rel="noreferrer">newgame_DifLineGomoku</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>连线判定与普通五子棋不同</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>莫棋</div>
-                                    <div><span>原创规则五子棋变体</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_MoQiGomoku" target="_blank" rel="noreferrer">newgame_MoQiGomoku</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>规则实验分支</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>连五计数</div>
-                                    <div><span>按形成五连的数量计分</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/fiveCount" target="_blank" rel="noreferrer">fiveCount</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>目标从单次成五改成累计</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>吃子五子棋</div>
-                                    <div><span>吃子机制加入五子棋</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/capture_gomoku" target="_blank" rel="noreferrer">capture_gomoku</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>结合连子与提子目标</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>等差连六</div>
-                                    <div><span>等差位置组成六连</span></div>
-                                    <div><a href="https://github.com/hzyhhzy/KataGomo/tree/EquDifGomoku" target="_blank" rel="noreferrer">EquDifGomoku</a></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>目标形状不是普通连续五连</span></div>
-                                </div>
-                                <div class="compact-row">
-                                    <div>直四棋</div>
-                                    <div><span>直线连四获胜，斜线无效</span></div>
-                                    <div><span>找不到了</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>暂无</span></div>
-                                    <div><span>先手简单必胜，但特定开局下仍有较高复杂度</span></div>
-                                </div>
-                            </div>
-                            <div class="link-row">
-                                <a aria-disabled="true">详情页(TODO)</a>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </article>
+            <section class="content-section release-shelf" id="release-shelf" aria-labelledby="release-shelf-title">
+                <header class="section-heading">
+                    <p class="page-eyebrow" data-i18n="eyebrow.release">Download first</p>
+                    <h2 id="release-shelf-title" data-i18n="release.title">Current published builds</h2>
+                    <p data-i18n="release.lead">Use this shelf when you want something runnable. The detailed catalog below adds source, data, rule notes, and research findings.</p>
+                </header>
+                <div class="release-grid">
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Gomoku_20250206" target="_blank" rel="noreferrer"><strong>KataGomo</strong><small>Gomoku_20250206</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo/releases/tag/3d_gomoku_20260620" target="_blank" rel="noreferrer"><strong data-i18n="game.3d">3D Connect-N</strong><small>3d_gomoku_20260620</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo/releases/tag/3d_go_20260620" target="_blank" rel="noreferrer"><strong data-i18n="game.3dGo">3D Go / Lizzie3D</strong><small>3d_go_20260620</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Pente_20250726" target="_blank" rel="noreferrer"><strong>Pente</strong><small>Pente_20250726</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Hex_20250131" target="_blank" rel="noreferrer"><strong>KataHex</strong><small>Hex_20250131</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo/releases/tag/ConnectSix_20260406" target="_blank" rel="noreferrer"><strong>KataConnect6</strong><small>ConnectSix_20260406</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Ataxx_20260501" target="_blank" rel="noreferrer"><strong>KataAtaxx</strong><small>Ataxx_20260501</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/ConnectFour_20241019" target="_blank" rel="noreferrer"><strong data-i18n="game.connectFour">Connect Four</strong><small>ConnectFour_20241019</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/lxsgx23/Dandelion-Chess/releases/tag/v3.1" target="_blank" rel="noreferrer"><strong data-i18n="game.animal">Animal Chess</strong><small>Dandelion v3.1</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/20240406" target="_blank" rel="noreferrer"><strong data-i18n="game.checkersAmazons">Chinese Checkers / Amazons</strong><small>20240406</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo/releases/tag/CaptureGo_20250509" target="_blank" rel="noreferrer"><strong data-i18n="game.captureGo">Capture Go</strong><small>CaptureGo_20250509</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/LifeGo_20241025" target="_blank" rel="noreferrer"><strong data-i18n="game.killAll">Kill-all Go</strong><small>LifeGo_20241025</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Nogo20250219" target="_blank" rel="noreferrer"><strong data-i18n="game.nogo">NoGo</strong><small>Nogo20250219</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Breakthrough_20250616" target="_blank" rel="noreferrer"><strong data-i18n="game.breakthrough">Breakthrough</strong><small>Breakthrough_20250616</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo/releases/tag/UltimateTictactoe_20250616" target="_blank" rel="noreferrer"><strong data-i18n="game.ultimate">Ultimate Tic-tac-toe</strong><small>UltimateTictactoe_20250616</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo/releases/tag/ScoreFour_20250510" target="_blank" rel="noreferrer"><strong data-i18n="game.scoreFour">Score Four</strong><small>ScoreFour_20250510</small></a>
+                    <a class="release-item" data-resource-kind="release" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Zhenqi20250218" target="_blank" rel="noreferrer"><strong data-i18n="game.zhen">Zhen Qi</strong><small>Zhenqi20250218</small></a>
+                </div>
+                <p class="section-note" data-i18n="release.note">“Current” means the latest public build recorded here as of July 13, 2026. Open the tag page for packaged files and release-specific notes.</p>
+            </section>
 
-                <article class="topic-card" id="topic-hex">
-                    <img src="images/hex-board.svg" alt="Hex 棋专题示意图">
-                    <div class="topic-card-body">
-                    <h3>3. Hex 棋</h3>
-                    <div class="subtopic-list">
-                        <div class="subtopic-item">
-                            <h4>3.1 KataHex：最强 Hex 棋 AI</h4>
-                            <p>最近更新：2025.01.31</p>
-                            <div class="link-row">
-                                <a class="resource-link download-link" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Hex_20250131" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>软件下载</a>
-                                <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/Hex2024" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
-                                <a class="resource-link dataset-link" href="https://www.modelscope.cn/datasets/sigmoid/KataHex_2024" target="_blank" rel="noreferrer"><span class="resource-icon dataset" aria-hidden="true"></span>数据集</a>
-                                <a aria-disabled="true">详情页(TODO)</a>
-                            </div>
-                        </div>
-                        <div class="subtopic-item">
-                            <h4>3.2 特定局面分析</h4>
-                            <div class="link-row">
-                                <a aria-disabled="true">详情页(TODO)</a>
-                            </div>
-                        </div>
+            <section class="content-section catalog-controls" id="catalog" aria-labelledby="catalog-title">
+                <header class="section-heading">
+                    <p class="page-eyebrow" data-i18n="eyebrow.catalog">Full archive</p>
+                    <h2 id="catalog-title" data-i18n="catalog.title">Find a game or a kind of resource</h2>
+                </header>
+                <div class="catalog-toolbar">
+                    <label class="catalog-search">
+                        <span data-i18n="catalog.search.label">Search by game, branch, or finding</span>
+                        <input type="search" data-catalog-search autocomplete="off" placeholder="Try NoGo, Transformer, dataset…" data-i18n-attr="placeholder:catalog.search.placeholder">
+                    </label>
+                    <div class="catalog-filters" role="group" aria-label="Filter by resource type" data-i18n-attr="aria-label:catalog.filter.label">
+                        <button type="button" data-catalog-filter="all" aria-pressed="true" data-i18n="filter.all">All</button>
+                        <button type="button" data-catalog-filter="release" aria-pressed="false" data-i18n="filter.release">Downloads</button>
+                        <button type="button" data-catalog-filter="source" aria-pressed="false" data-i18n="filter.source">Source</button>
+                        <button type="button" data-catalog-filter="dataset" aria-pressed="false" data-i18n="filter.dataset">Datasets</button>
+                        <button type="button" data-catalog-filter="results" aria-pressed="false" data-i18n="filter.results">Results</button>
                     </div>
+                    <p class="catalog-count" aria-live="polite"><span data-catalog-count>50</span> <span data-i18n="catalog.count">entries shown</span></p>
+                </div>
+                <p class="catalog-empty" data-catalog-empty hidden data-i18n="catalog.empty">No entries match this search and filter.</p>
+                <noscript>
+                    <div class="callout">
+                        <p>JavaScript is disabled, so language switching, search filters, and pop-up dialogs are hidden. The default English archive and all 50 resource entries remain available below.</p>
+                        <p><a href="#no-script-rules">Jump to the no-JavaScript rule and result summaries</a>.</p>
                     </div>
-                </article>
+                </noscript>
+            </section>
 
-                <article class="topic-card" id="topic-connect6">
-                    <img src="images/connect6-board.svg" alt="六子棋专题示意图">
-                    <div class="topic-card-body">
-                    <h3>4. 六子棋</h3>
-                    <p><span class="highlight-link"><strong>六子棋疑似黑棋必胜！</strong></span></p>
-                    <div class="subtopic-list">
-                        <div class="subtopic-item">
-                            <h4>4.1 KataConnect6：最强六子棋 AI</h4>
-                            <p>最近更新：2026.04.06</p>
-                            <div class="link-row">
-                                <a class="resource-link download-link" href="https://github.com/hzyhhzy/KataGomo/releases/tag/ConnectSix_20260406" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>Kata-Connect6以及开局库下载</a>
-                                <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/ConnectSix2024" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
-                                <a aria-disabled="true">详情页(TODO)</a>
-                            </div>
-                        </div>
-                        <div class="subtopic-item">
-                            <h4>4.2 六子棋 NNUE</h4>
-                            <div class="link-row">
-                                <a class="resource-link" href="https://github.com/hzyhhzy/gomoku_nnue/tree/connectsix_kata" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
-                                <a aria-disabled="true">详情页(TODO)</a>
-                            </div>
-                        </div>
-                        <div class="subtopic-item">
-                            <h4>4.3 六子棋结论</h4>
-                            <p>19x19 棋盘疑似 55 步必胜，25x25 棋盘疑似 45 步必胜。</p>
-                            <div class="link-row">
-                                <a aria-disabled="true">详情页(TODO)</a>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </article>
+            <nav class="directory-nav" data-catalog-directory aria-label="Game families" data-i18n-attr="aria-label:directory.label">
+                <ol>
+                    <li><a href="#topic-go"><span>01</span><strong data-i18n="directory.go">Go &amp; variants</strong><small data-i18n="directory.go.desc">models, data, rule research</small></a></li>
+                    <li><a href="#topic-gomoku"><span>02</span><strong data-i18n="directory.gomoku">Gomoku &amp; variants</strong><small data-i18n="directory.gomoku.desc">builds, NNUE, original rules</small></a></li>
+                    <li><a href="#topic-hex"><span>03</span><strong>Hex</strong><small data-i18n="directory.hex.desc">engine, source, dataset</small></a></li>
+                    <li><a href="#topic-connect6"><span>04</span><strong>Connect6</strong><small data-i18n="directory.connect6.desc">build, opening book, NNUE</small></a></li>
+                    <li><a href="#topic-ataxx"><span>05</span><strong>Ataxx</strong><small data-i18n="directory.ataxx.desc">ONNX, Transformer, data</small></a></li>
+                    <li><a href="#topic-connectfour"><span>06</span><strong data-i18n="game.connectFour">Connect Four</strong><small data-i18n="directory.connectfour.desc">build and board-size results</small></a></li>
+                    <li><a href="#topic-animal-chess"><span>07</span><strong data-i18n="game.animal">Animal Chess</strong><small data-i18n="directory.animal.desc">engine, interface, data</small></a></li>
+                    <li><a href="#topic-chinese-checkers"><span>08</span><strong data-i18n="game.checkers">Chinese Checkers</strong><small data-i18n="directory.checkers.desc">build and research status</small></a></li>
+                    <li><a href="#topic-math-problems"><span>09</span><strong data-i18n="directory.math">Mathematical games</strong><small data-i18n="directory.math.desc">Angel Problem and related work</small></a></li>
+                    <li><a href="#topic-other-games"><span>10</span><strong data-i18n="directory.more">More games</strong><small data-i18n="directory.more.desc">NoGo, Amazons, original games…</small></a></li>
+                </ol>
+            </nav>
 
-                <article class="topic-card" id="topic-ataxx">
-                    <img src="images/ataxx-board.svg" alt="Ataxx 专题示意图">
-                    <div class="topic-card-body">
-                    <h3>5. Ataxx</h3>
-                    <p><strong>KataAtaxx：最强 Ataxx 棋 AI</strong></p>
-                    <p>最近更新：2026.05.01</p>
-                    <div class="link-row">
-                        <a class="resource-link download-link" href="https://github.com/hzyhhzy/KataGomo/releases/tag/Ataxx_20260501" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>软件下载</a>
-                        <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/Ataxx-onnx" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
-                        <a class="resource-link dataset-link" href="https://www.modelscope.cn/datasets/sigmoid/KataGo_Ataxx_202604" target="_blank" rel="noreferrer"><span class="resource-icon dataset" aria-hidden="true"></span>数据集</a>
-                        <a aria-disabled="true">详情页(TODO)</a>
-                    </div>
-                    <p>7x7 棋盘先手胜率 57%。</p>
-                    </div>
-                </article>
+            <section class="content-section topic-section catalog-section" id="topic-go" aria-labelledby="topic-go-title" data-catalog-section>
+                <header class="section-heading">
+                    <p class="page-eyebrow" data-i18n="eyebrow.go">01 / Go</p>
+                    <h2 id="topic-go-title" data-i18n="go.title">Go training &amp; rule variants</h2>
+                    <p data-i18n="go.lead">The main line covers CNN and Transformer training, inference, public models, and self-play data. The remaining rows isolate rule experiments from downloadable builds.</p>
+                </header>
+                <div class="table-wrap catalog-table-wrap" role="region" aria-label="Go projects and resources" data-i18n-attr="aria-label:go.tableLabel" tabindex="0">
+                    <table class="data-table catalog-table">
+                        <caption data-i18n="go.caption">Go projects: findings, releases, source, data, and references</caption>
+                        <thead><tr>
+                            <th scope="col" data-i18n="table.game">Game / project</th>
+                            <th scope="col" data-i18n="table.finding">Finding / status</th>
+                            <th scope="col" data-i18n="table.release">Download / release</th>
+                            <th scope="col" data-i18n="table.source">Source</th>
+                            <th scope="col" data-i18n="table.dataset">Dataset / model</th>
+                            <th scope="col" data-i18n="table.notes">Rules / notes / play</th>
+                        </tr></thead>
+                        <tbody>
+                            <tr data-catalog-item data-resource-types="source dataset results">
+                                <th scope="row" data-i18n="game.goTraining">Go training line</th>
+                                <td><span class="status-tag" data-i18n="status.active">Active research line</span><p data-i18n="finding.goTraining">CNN and Transformer training plus an ONNX / TensorRT inference path.</p></td>
+                                <td><span class="resource-empty">—</span></td>
+                                <td><ul class="resource-list"><li><a href="https://github.com/hzyhhzy/KataGo_Transformer" target="_blank" rel="noreferrer">KataGo Transformer</a></li><li><a href="https://github.com/doomoooo/KataGomo_fork/tree/onnx-trt-clean" target="_blank" rel="noreferrer">ONNX / TensorRT</a></li></ul></td>
+                                <td><ul class="resource-list"><li><a href="https://www.modelscope.cn/models/sigmoid/KataGo_models_collections/" target="_blank" rel="noreferrer" data-i18n="link.goModels">Model collection</a></li><li><a href="https://www.modelscope.cn/datasets/sigmoid/KataGo_ZhiziGo_selfplay" target="_blank" rel="noreferrer" data-i18n="link.goData">ZhiziGo self-play data</a></li></ul></td>
+                                <td><span class="resource-empty">—</span></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="release source results">
+                                <th scope="row" data-i18n="game.3dGo">3D Go / Lizzie3D</th>
+                                <td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.3dGo">Supports 5×5×5 and 7×7×7. Release notes say whole-board seki is common and current testing places balanced komi around 1; these are observations, not solved-game results.</p></td>
+                                <td><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/3d_go_20260620" target="_blank" rel="noreferrer">3d_go_20260620</a></td>
+                                <td><ul class="resource-list"><li><a href="https://github.com/hzyhhzy/KataGomo/tree/3d_go" target="_blank" rel="noreferrer">3d_go</a></li><li><a href="https://github.com/hzyhhzy/Lizzie3D" target="_blank" rel="noreferrer">Lizzie3D</a></li></ul></td>
+                                <td><span class="resource-empty">—</span></td>
+                                <td data-i18n="note.3dGo">The package includes the ONNX-DirectML engine, model, and a matching Lizzie3D workflow; a TensorRT build can be compiled separately.</td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="release source">
+                                <th scope="row" data-i18n="game.captureGo">Capture Go</th>
+                                <td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.captureGo">The first player to capture an opposing stone wins.</p></td>
+                                <td><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/CaptureGo_20250509" target="_blank" rel="noreferrer">CaptureGo_20250509</a></td>
+                                <td><a href="https://github.com/hzyhhzy/KataGomo/tree/CaptureGo2024" target="_blank" rel="noreferrer">CaptureGo2024</a></td>
+                                <td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="release source">
+                                <th scope="row" data-i18n="game.killAll">Kill-all Go</th>
+                                <td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.killAll">A life-and-death variant centered on killing the target group.</p></td>
+                                <td><a href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/LifeGo_20241025" target="_blank" rel="noreferrer">LifeGo_20241025</a></td>
+                                <td><a href="https://github.com/hzyhhzy/KataGomo/tree/LifeGo2024" target="_blank" rel="noreferrer">LifeGo2024</a></td>
+                                <td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.hexGo">Hex Go</th>
+                                <td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.hexGo">Go rules on a hexagonal grid.</p></td>
+                                <td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/HexGo2024" target="_blank" rel="noreferrer">HexGo2024</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.noAdjacent">No-adjacent move Go</th>
+                                <td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.noAdjacent">A move cannot be played next to the immediately previous move.</p></td>
+                                <td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/GoModify2a" target="_blank" rel="noreferrer">GoModify2a</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.hexCapture">Hex Capture Go</th>
+                                <td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.hexCapture">Capture Go on a hexagonal grid.</p></td>
+                                <td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/HexCaptureGo" target="_blank" rel="noreferrer">HexCaptureGo</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.weightGo">Weighted-area Go</th>
+                                <td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.weightGo">Areas or stones use different scoring weights.</p></td>
+                                <td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/weightGo" target="_blank" rel="noreferrer">weightGo</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.reverseCapture">Reverse capture</th>
+                                <td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.reverseCapture">When a group has no liberties, the current player's stones are removed first.</p></td>
+                                <td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/FirstCaptureMe" target="_blank" rel="noreferrer">FirstCaptureMe</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source results">
+                                <th scope="row" data-i18n="game.yiziqianjin">Four points per capture</th>
+                                <td><span class="status-tag" data-i18n="status.research">Research branch</span><p data-i18n="finding.yiziqianjin">One captured stone scores four points, making captures much more valuable than in ordinary Go.</p></td>
+                                <td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/yiziqianjin" target="_blank" rel="noreferrer">yiziqianjin</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.noMoveLoses">No legal move loses</th>
+                                <td><span class="status-tag" data-i18n="status.research">Research branch</span><p data-i18n="finding.noMoveLoses">A related scoring experiment can be read as no pass: the first player without a legal move loses.</p></td>
+                                <td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/yiziqianjin" target="_blank" rel="noreferrer" data-i18n="link.sameBranch">Same branch notes</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source results">
+                                <th scope="row" data-i18n="game.aliveWin">aliveWin</th>
+                                <td><span class="status-tag" data-i18n="status.research">Research branch</span><p data-i18n="finding.aliveWin">White wins after capturing one black stone; Black wins when one fully connected group is alive. Branch notes suggest Black can often live.</p></td>
+                                <td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/aliveWin" target="_blank" rel="noreferrer">aliveWin</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-                <article class="topic-card" id="topic-connectfour">
-                    <img src="images/connectfour-board.svg" alt="重力四子棋专题示意图">
-                    <div class="topic-card-body">
-                    <h3>6. 重力四子棋</h3>
-                    <p><strong>最强重力四子棋 AI</strong></p>
-                    <p>最近更新：2024.10.19</p>
-                    <div class="link-row">
-                        <a class="resource-link download-link" href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/ConnectFour_20241019" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>软件下载</a>
-                        <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/ConnectFour2024" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
-                        <a aria-disabled="true">详情页(TODO)</a>
-                    </div>
-                    <figure class="topic-inline-figure">
-                        <img src="pages/connect4_results.png" alt="四子棋小于等于20x20棋盘的结论图">
-                        <figcaption>四子棋小于等于20x20棋盘的结论</figcaption>
-                    </figure>
-                    </div>
-                </article>
+            <section class="content-section topic-section catalog-section" id="topic-gomoku" aria-labelledby="topic-gomoku-title" data-catalog-section>
+                <header class="section-heading">
+                    <p class="page-eyebrow" data-i18n="eyebrow.gomoku">02 / Gomoku</p>
+                    <h2 id="topic-gomoku-title" data-i18n="gomoku.title">Gomoku, NNUE &amp; rule variants</h2>
+                    <p data-i18n="gomoku.lead">KataGomo is the main packaged line in this family. NNUE work, three-dimensional games, and exploratory rules remain independently traceable.</p>
+                </header>
+                <div class="table-wrap catalog-table-wrap" role="region" aria-label="Gomoku projects and resources" data-i18n-attr="aria-label:gomoku.tableLabel" tabindex="0">
+                    <table class="data-table catalog-table">
+                        <caption data-i18n="gomoku.caption">Gomoku projects: findings, releases, source, data, and references</caption>
+                        <thead><tr><th scope="col" data-i18n="table.game">Game / project</th><th scope="col" data-i18n="table.finding">Finding / status</th><th scope="col" data-i18n="table.release">Download / release</th><th scope="col" data-i18n="table.source">Source</th><th scope="col" data-i18n="table.dataset">Dataset / model</th><th scope="col" data-i18n="table.notes">Rules / notes / play</th></tr></thead>
+                        <tbody>
+                            <tr data-catalog-item data-resource-types="release source results">
+                                <th scope="row">KataGomo</th>
+                                <td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.katagomo">Supports freestyle, overline-does-not-win, Renju, and Caro rules. Public desktop build dated 2025-02-06.</p></td>
+                                <td><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Gomoku_20250206" target="_blank" rel="noreferrer">Gomoku_20250206</a></td>
+                                <td><a href="https://github.com/hzyhhzy/KataGomo/tree/Gom2024" target="_blank" rel="noreferrer">Gom2024</a></td>
+                                <td><span class="resource-empty">—</span></td>
+                                <td><a href="http://zhizigomoku.com/" target="_blank" rel="noreferrer" data-i18n="link.mobileGomoku">Zhizi Gomoku mobile client</a></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source results">
+                                <th scope="row" data-i18n="game.gomokuNnue">Gomoku NNUE</th>
+                                <td><span class="status-tag" data-i18n="status.research">Research branch</span><p data-i18n="finding.nnue">An early design in the line that led toward Rapfi NNUE, focused on efficient CPU inference.</p></td>
+                                <td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/gomoku_nnue" target="_blank" rel="noreferrer">gomoku_nnue</a></td><td><span class="resource-empty">—</span></td><td><a href="https://arxiv.org/abs/2503.13178" target="_blank" rel="noreferrer" data-i18n="link.nnuePaper">NNUE paper</a></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="release source">
+                                <th scope="row">Caro</th><td><span class="status-tag" data-i18n="status.inMainBuild">Included in main build</span><p data-i18n="finding.caro">Caro win rules are included in the public KataGomo package.</p></td><td><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Gomoku_20250206" target="_blank" rel="noreferrer">Gomoku_20250206</a></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/Caro2024" target="_blank" rel="noreferrer">Caro2024</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="release source">
+                                <th scope="row">Pente</th><td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.pente">Win by making five or by meeting the capture condition.</p></td><td><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Pente_20250726" target="_blank" rel="noreferrer">Pente_20250726</a></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/Pente2025" target="_blank" rel="noreferrer">Pente2025</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="release source">
+                                <th scope="row" data-i18n="game.3dFull">3D Connect-N / Lizzie3D</th><td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.3d">Includes connect-six, exact-six, connect-seven, and axis-only connect-five on 11³ or 13³ boards. Ordinary 3D Gomoku is not in this release.</p></td><td><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/3d_gomoku_20260620" target="_blank" rel="noreferrer">3d_gomoku_20260620</a></td><td><ul class="resource-list"><li><a href="https://github.com/hzyhhzy/KataGomo/tree/3d_gomoku" target="_blank" rel="noreferrer">3d_gomoku</a></li><li><a href="https://github.com/hzyhhzy/Lizzie3D" target="_blank" rel="noreferrer">Lizzie3D</a></li></ul></td><td><span class="resource-empty">—</span></td><td data-i18n="note.3d">ONNX-DirectML engine, models, and a matching 3D interface are packaged together.</td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source"><th scope="row" data-i18n="game.bannedPoints">Banned-point Gomoku</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.bannedPoints">Some intersections are unavailable for play.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/GomBanLoc" target="_blank" rel="noreferrer">GomBanLoc</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td></tr>
+                            <tr data-catalog-item data-resource-types="source"><th scope="row" data-i18n="game.endpointFive">Endpoint-five Gomoku</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branches</span><p data-i18n="finding.endpointFive">The move completing five must land at an endpoint of the line.</p></td><td><span class="resource-empty">—</span></td><td><ul class="resource-list"><li><a href="https://github.com/hzyhhzy/KataGomo/tree/GomNewRule1" target="_blank" rel="noreferrer">GomNewRule1</a></li><li><a href="https://github.com/hzyhhzy/KataGomo/tree/GomNewRule2" target="_blank" rel="noreferrer">GomNewRule2</a></li></ul></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td></tr>
+                            <tr data-catalog-item data-resource-types="source"><th scope="row" data-i18n="game.doubleLine">Double-line Gomoku</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.doubleLine">Uses a nonstandard two-line connection structure.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_DifLineGomoku" target="_blank" rel="noreferrer">newgame_DifLineGomoku</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td></tr>
+                            <tr data-catalog-item data-resource-types="source"><th scope="row" data-i18n="game.moqi">Mo Qi</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.moqi">After two free moves, legal points depend on the odd/even count of black stones along rows, columns, or diagonals; five wins.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_MoQiGomoku" target="_blank" rel="noreferrer">newgame_MoQiGomoku</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td></tr>
+                            <tr data-catalog-item data-resource-types="source"><th scope="row" data-i18n="game.fiveCount">Five-line counting</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.fiveCount">Scores the number of completed five-in-a-row lines instead of ending at the first one.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/fiveCount" target="_blank" rel="noreferrer">fiveCount</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td></tr>
+                            <tr data-catalog-item data-resource-types="source"><th scope="row" data-i18n="game.captureGomoku">Capture Gomoku</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.captureGomoku">Combines connection and capture objectives.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/capture_gomoku" target="_blank" rel="noreferrer">capture_gomoku</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td></tr>
+                            <tr data-catalog-item data-resource-types="source"><th scope="row" data-i18n="game.arithmeticSix">Arithmetic-progression six</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.arithmeticSix">The six target stones occupy an arithmetic progression rather than consecutive points.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/EquDifGomoku" target="_blank" rel="noreferrer">EquDifGomoku</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td></tr>
+                            <tr data-catalog-item data-resource-types="results"><th scope="row" data-i18n="game.orthogonalFour">Orthogonal connect four</th><td><span class="status-tag" data-i18n="status.unavailable">Historical branch unavailable</span><p data-i18n="finding.orthogonalFour">Only horizontal or vertical four counts. First player has a simple win, although selected openings remain nontrivial.</p></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-                <article class="topic-card" id="topic-animal-chess">
-                    <img src="images/animal-chess-board.svg" alt="斗兽棋专题示意图">
-                    <div class="topic-card-body">
-                    <h3>7. 斗兽棋</h3>
-                    <p><strong>最强斗兽棋 AI</strong></p>
-                    <p>最近更新（AI引擎）：2025.02.16</p>
-                    <p>最近更新（界面）：2026.03.07</p>
-                    <div class="link-row">
-                        <a class="resource-link download-link" href="https://github.com/lxsgx23/Dandelion-Chess/releases/tag/v3.1" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>界面+AI下载（Dandelion）</a>
-                        <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/AnimalChess2025" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>AI引擎源代码</a>
-                        <a class="resource-link dataset-link" href="https://www.modelscope.cn/datasets/sigmoid/katago-animalchess-2025" target="_blank" rel="noreferrer"><span class="resource-icon dataset" aria-hidden="true"></span>数据集</a>
-                        <a aria-disabled="true">详情页(TODO)</a>
-                    </div>
-                    <p>斗兽棋几乎必和棋。</p>
-                    </div>
-                </article>
+            <section class="content-section topic-section catalog-section" id="topic-hex" aria-labelledby="topic-hex-title" data-catalog-section>
+                <header class="section-heading"><p class="page-eyebrow">03 / Hex</p><h2 id="topic-hex-title">Hex</h2><p data-i18n="hex.lead">KataHex has a runnable package, its exact training branch, and a public dataset.</p></header>
+                <div class="table-wrap catalog-table-wrap" role="region" aria-label="Hex project resources" data-i18n-attr="aria-label:hex.tableLabel" tabindex="0"><table class="data-table catalog-table">
+                    <caption data-i18n="hex.caption">Hex release, source, data, and status</caption>
+                    <thead><tr><th scope="col" data-i18n="table.game">Game / project</th><th scope="col" data-i18n="table.finding">Finding / status</th><th scope="col" data-i18n="table.release">Download / release</th><th scope="col" data-i18n="table.source">Source</th><th scope="col" data-i18n="table.dataset">Dataset / model</th><th scope="col" data-i18n="table.notes">Rules / notes / play</th></tr></thead>
+                    <tbody><tr data-catalog-item data-resource-types="release source dataset"><th scope="row">KataHex</th><td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.hex">Public build dated 2025-01-31.</p></td><td><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Hex_20250131" target="_blank" rel="noreferrer">Hex_20250131</a></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/Hex2024" target="_blank" rel="noreferrer">Hex2024</a></td><td><a href="https://www.modelscope.cn/datasets/sigmoid/KataHex_2024" target="_blank" rel="noreferrer">KataHex_2024</a></td><td><span class="resource-empty">—</span></td></tr></tbody>
+                </table></div>
+            </section>
 
-                <article class="topic-card" id="topic-chinese-checkers">
-                    <img src="images/chinese-checkers-board.svg" alt="中国跳棋专题示意图">
-                    <div class="topic-card-body">
-                    <h3>8. 中国跳棋</h3>
-                    <p><strong>最强跳棋 AI</strong></p>
-                    <p>最近更新：2024.04.06</p>
-                    <div class="link-row">
-                        <a class="resource-link download-link" href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/20240406" target="_blank" rel="noreferrer"><span class="resource-icon download" aria-hidden="true"></span>软件下载</a>
-                        <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/tiaoqi" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
-                        <a aria-disabled="true">详情页(TODO)</a>
-                    </div>
-                    <p>跳棋几乎必和棋。</p>
-                    </div>
-                </article>
+            <section class="content-section topic-section catalog-section" id="topic-connect6" aria-labelledby="topic-connect6-title" data-catalog-section>
+                <header class="section-heading"><p class="page-eyebrow" data-i18n="eyebrow.connect6">04 / Connect6</p><h2 id="topic-connect6-title">Connect6</h2><p data-i18n="connect6.lead">The package includes KataConnect6 and an opening book; the source and NNUE experiments are linked separately.</p></header>
+                <div class="table-wrap catalog-table-wrap" role="region" aria-label="Connect6 project resources" data-i18n-attr="aria-label:connect6.tableLabel" tabindex="0"><table class="data-table catalog-table">
+                    <caption data-i18n="connect6.caption">Connect6 release, source, NNUE, and current findings</caption>
+                    <thead><tr><th scope="col" data-i18n="table.game">Game / project</th><th scope="col" data-i18n="table.finding">Finding / status</th><th scope="col" data-i18n="table.release">Download / release</th><th scope="col" data-i18n="table.source">Source</th><th scope="col" data-i18n="table.dataset">Dataset / model</th><th scope="col" data-i18n="table.notes">Rules / notes / play</th></tr></thead>
+                    <tbody><tr data-catalog-item data-resource-types="release source results"><th scope="row">KataConnect6</th><td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.connect6">Current models suggest Black is likely winning: a win within 55 moves on 19×19 and within 45 moves on 25×25. These are model-based findings, not solved-game proofs.</p></td><td><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/ConnectSix_20260406" target="_blank" rel="noreferrer">ConnectSix_20260406</a></td><td><ul class="resource-list"><li><a href="https://github.com/hzyhhzy/KataGomo/tree/ConnectSix2024" target="_blank" rel="noreferrer">ConnectSix2024</a></li><li><a href="https://github.com/hzyhhzy/gomoku_nnue/tree/connectsix_kata" target="_blank" rel="noreferrer">connectsix_kata NNUE</a></li></ul></td><td><span class="resource-empty">—</span></td><td data-i18n="note.connect6">The release includes the opening book.</td></tr></tbody>
+                </table></div>
+            </section>
 
-                <article class="topic-card" id="topic-math-problems">
-                    <img src="images/math-problems.svg" alt="数学问题专题示意图">
-                    <div class="topic-card-body">
-                    <h3>9. 数学问题</h3>
-                    <div class="link-row">
-                        <span class="resource-note"><span class="resource-icon download" aria-hidden="true"></span>软件下载：暂无公开版本</span>
-                        <a class="resource-link" href="https://github.com/hzyhhzy/KataGomo/tree/AngelProblem" target="_blank" rel="noreferrer"><span class="resource-icon code" aria-hidden="true"></span>源代码</a>
-                        <a aria-disabled="true">详情页(TODO)</a>
-                        <a href="../googology/index.html">Googology</a>
-                    </div>
-                    <p>包括 Angel Problem、七连珠证明尝试、Dawson Chess 和 Escape Go。</p>
-                    </div>
-                </article>
+            <section class="content-section topic-section catalog-section" id="topic-ataxx" aria-labelledby="topic-ataxx-title" data-catalog-section>
+                <header class="section-heading"><p class="page-eyebrow">05 / Ataxx</p><h2 id="topic-ataxx-title">Ataxx</h2><p data-i18n="ataxx.lead">KataAtaxx publishes the ONNX engine, Transformer model line, and training data as distinct resources.</p></header>
+                <div class="table-wrap catalog-table-wrap" role="region" aria-label="Ataxx project resources" data-i18n-attr="aria-label:ataxx.tableLabel" tabindex="0"><table class="data-table catalog-table">
+                    <caption data-i18n="ataxx.caption">Ataxx release, source, data, and current findings</caption>
+                    <thead><tr><th scope="col" data-i18n="table.game">Game / project</th><th scope="col" data-i18n="table.finding">Finding / status</th><th scope="col" data-i18n="table.release">Download / release</th><th scope="col" data-i18n="table.source">Source</th><th scope="col" data-i18n="table.dataset">Dataset / model</th><th scope="col" data-i18n="table.notes">Rules / notes / play</th></tr></thead>
+                    <tbody><tr data-catalog-item data-resource-types="release source dataset results"><th scope="row">KataAtaxx</th><td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.ataxx">In recorded 7×7 model self-play, the first-player win rate is about 57%.</p></td><td><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Ataxx_20260501" target="_blank" rel="noreferrer">Ataxx_20260501</a></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/Ataxx-onnx" target="_blank" rel="noreferrer">Ataxx-onnx</a></td><td><a href="https://www.modelscope.cn/datasets/sigmoid/KataGo_Ataxx_202604" target="_blank" rel="noreferrer">KataGo_Ataxx_202604</a></td><td><span class="resource-empty">—</span></td></tr></tbody>
+                </table></div>
+            </section>
 
-                <article class="topic-card topic-card-wide" id="topic-other-games">
-                    <img src="images/other-games-board.svg" alt="其他小众棋种专题示意图">
-                    <div class="topic-card-body">
-                    <h3>10. 其他小众棋种</h3>
-                    <div class="compact-table compact-table-six">
-                        <div class="compact-row header">
-                            <div>棋种名称</div>
-                            <div>规则</div>
-                            <div>代码</div>
-                            <div>AI下载</div>
-                            <div>数据集下载</div>
-                            <div>结论</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>不围棋(NoGo)</div>
-                            <div><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-nogo">查看规则</button></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Nogo2025" target="_blank" rel="noreferrer">Nogo2025</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Nogo20250219" target="_blank" rel="noreferrer">Nogo20250219</a></div>
-                            <div><a href="https://www.modelscope.cn/datasets/sigmoid/katago-nogo-2025" target="_blank" rel="noreferrer">katago-nogo-2025</a></div>
-                            <div class="table-note-stack">
-                                <span>9x9棋盘先手胜率90%</span>
-                                <button class="rule-popup-trigger" type="button" data-rule-dialog="conclusion-nogo">其他棋盘尺寸</button>
-                            </div>
-                        </div>
-                        <div class="compact-row">
-                            <div>亚马逊棋(Amazons)</div>
-                            <div><a href="https://en.wikipedia.org/wiki/Game_of_the_Amazons" target="_blank" rel="noreferrer">Wikipedia</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Amazons" target="_blank" rel="noreferrer">Amazons</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/20240406" target="_blank" rel="noreferrer">20240406</a></div>
-                            <div><span>暂无</span></div>
-                            <div>10x10棋盘先手胜率70%</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>突破棋(Breakthrough)</div>
-                            <div><a href="https://en.wikipedia.org/wiki/Breakthrough_(board_game)" target="_blank" rel="noreferrer">Wikipedia</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Breakthrough2025" target="_blank" rel="noreferrer">Breakthrough2025</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Breakthrough_20250616" target="_blank" rel="noreferrer">Breakthrough_20250616</a></div>
-                            <div><span>暂无</span></div>
-                            <div class="table-note-stack">
-                                <span>8x8棋盘先手接近必胜</span>
-                                <button class="rule-popup-trigger" type="button" data-rule-dialog="conclusion-breakthrough">其他棋盘尺寸</button>
-                            </div>
-                        </div>
-                        <div class="compact-row">
-                            <div>黑白棋(Reversi)</div>
-                            <div><a href="https://en.wikipedia.org/wiki/Reversi" target="_blank" rel="noreferrer">Wikipedia</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Reversi2023" target="_blank" rel="noreferrer">Reversi2023</a></div>
-                            <div><span>暂无</span></div>
-                            <div><span>暂无</span></div>
-                            <div>黑白棋不适合AlphaZero系AI，是少数KataGo打不过传统软件的棋类之一</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>终极井字棋(Ultimate Tic-tac-toe)</div>
-                            <div><a href="https://en.wikipedia.org/wiki/Ultimate_tic-tac-toe" target="_blank" rel="noreferrer">Wikipedia</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/UltimateTictactoe2024" target="_blank" rel="noreferrer">UltimateTictactoe2024</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/UltimateTictactoe_20250616" target="_blank" rel="noreferrer">UltimateTictactoe_20250616</a></div>
-                            <div><span>暂无</span></div>
-                            <div class="table-note-stack">
-                                <span>不使用Tiebreaker规则大概率和棋（先手胜21%，后手胜2%，和棋77%）</span>
-                                <span>使用Tiebreaker规则先手大优（先手胜78%，后手胜4%，和棋18%）</span>
-                            </div>
-                        </div>
-                        <div class="compact-row">
-                            <div>三维连四(ScoreFour / ConnectFour3D)</div>
-                            <div><a href="https://en.wikipedia.org/wiki/Score_Four" target="_blank" rel="noreferrer">Wikipedia</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/ConnectFour3d" target="_blank" rel="noreferrer">ConnectFour3d</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/ScoreFour_20250510" target="_blank" rel="noreferrer">ScoreFour_20250510</a></div>
-                            <div><span>暂无</span></div>
-                            <div>三维连四</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>点格棋(Dots and Boxes)</div>
-                            <div><a href="https://en.wikipedia.org/wiki/Dots_and_Boxes" target="_blank" rel="noreferrer">Wikipedia</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/DotsAndBoxes" target="_blank" rel="noreferrer">DotsAndBoxes</a></div>
-                            <div><span>暂无</span></div>
-                            <div><span>暂无</span></div>
-                            <div>画线成格</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>步步为营(Quoridor)</div>
-                            <div><a href="https://en.wikipedia.org/wiki/Quoridor" target="_blank" rel="noreferrer">Wikipedia</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Quoridor2024" target="_blank" rel="noreferrer">Quoridor2024</a></div>
-                            <div><span>暂无</span></div>
-                            <div><span>暂无</span></div>
-                            <div>挡板竞速棋</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>回战棋(Surakarta)</div>
-                            <div><a href="https://en.wikipedia.org/wiki/Surakarta_(game)" target="_blank" rel="noreferrer">Wikipedia</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Surakarta" target="_blank" rel="noreferrer">Surakarta</a></div>
-                            <div><span>暂无</span></div>
-                            <div><span>暂无</span></div>
-                            <div>印尼传统棋</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>撞子棋(Clobber)</div>
-                            <div><a href="https://en.wikipedia.org/wiki/Clobber" target="_blank" rel="noreferrer">Wikipedia</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/Clobber2023" target="_blank" rel="noreferrer">Clobber2023</a></div>
-                            <div><span>暂无</span></div>
-                            <div><span>暂无</span></div>
-                            <div>组合博弈常见示例</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>反五/四/三子棋(AntiGomoku/AntiConnectN)</div>
-                            <div><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-anti-connect">查看规则</button></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/AntiConnectN2025" target="_blank" rel="noreferrer">AntiConnectN2025</a></div>
-                            <div><span>暂无</span></div>
-                            <div><span>暂无</span></div>
-                            <div>先连成目标方反而判负</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>震棋(Zhen Qi / Quake Gomoku)</div>
-                            <div><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-zhenqi">查看规则</button></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/ZhenQi" target="_blank" rel="noreferrer">ZhenQi</a></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Zhenqi20250218" target="_blank" rel="noreferrer">Zhenqi20250218</a></div>
-                            <div><span>暂无</span></div>
-                            <div>逆界系原创棋种</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>形棋(Xing Qi / Symmetry Game)</div>
-                            <div><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-xingqi">查看规则</button></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_XingQi" target="_blank" rel="noreferrer">newgame_XingQi</a></div>
-                            <div><span>暂无</span></div>
-                            <div><span>暂无</span></div>
-                            <div>逆界系原创棋种</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>王步四子棋(King's move Connect 4)</div>
-                            <div><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-king-connect4">查看规则</button></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/con4type1" target="_blank" rel="noreferrer">con4type1</a></div>
-                            <div><span>暂无</span></div>
-                            <div><span>暂无</span></div>
-                            <div>王步移动规则的四子棋</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>逆界反五子棋(Nijie's AntiGomoku)</div>
-                            <div><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-nijie-anti">查看规则</button></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_gomokuamazons" target="_blank" rel="noreferrer">newgame_gomokuamazons</a></div>
-                            <div><span>暂无</span></div>
-                            <div><span>暂无</span></div>
-                            <div>逆界系原创反五子棋</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>星域(StarsZone)</div>
-                            <div><span>自定义规则</span></div>
-                            <div><a href="https://github.com/hzyhhzy/KataGomo/tree/StarsZone" target="_blank" rel="noreferrer">StarsZone</a></div>
-                            <div><span>暂无</span></div>
-                            <div><span>暂无</span></div>
-                            <div>其他原创棋种分支</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>中国象棋(Chinese Chess)</div>
-                            <div><a href="https://en.wikipedia.org/wiki/Xiangqi" target="_blank" rel="noreferrer">Wikipedia</a></div>
-                            <div><span>未开源</span></div>
-                            <div><span>暂无</span></div>
-                            <div><span>暂无</span></div>
-                            <div>README 标注 PX0 明显更强</div>
-                        </div>
-                        <div class="compact-row">
-                            <div>国际象棋(Chess)</div>
-                            <div><a href="https://en.wikipedia.org/wiki/Chess" target="_blank" rel="noreferrer">Wikipedia</a></div>
-                            <div><span>分支丢失</span></div>
-                            <div><span>暂无</span></div>
-                            <div><span>暂无</span></div>
-                            <div>早期小规模测试</div>
-                        </div>
-                    </div>
-                    <div class="link-row" style="margin-top:18px;">
-                        <a aria-disabled="true">详情页(TODO)</a>
-                    </div>
-                    </div>
-                </article>
-            </div>
-        </section>
+            <section class="content-section topic-section catalog-section" id="topic-connectfour" aria-labelledby="topic-connectfour-title" data-catalog-section>
+                <header class="section-heading"><p class="page-eyebrow" data-i18n="eyebrow.connectFour">06 / Connect Four</p><h2 id="topic-connectfour-title" data-i18n="game.connectFour">Connect Four</h2><p data-i18n="connectfour.lead">The runnable build and exact source are separated from the board-size outcome matrix.</p></header>
+                <div class="table-wrap catalog-table-wrap" role="region" aria-label="Connect Four project resources" data-i18n-attr="aria-label:connectfour.tableLabel" tabindex="0"><table class="data-table catalog-table">
+                    <caption data-i18n="connectfour.caption">Connect Four release, source, and current findings</caption>
+                    <thead><tr><th scope="col" data-i18n="table.game">Game / project</th><th scope="col" data-i18n="table.finding">Finding / status</th><th scope="col" data-i18n="table.release">Download / release</th><th scope="col" data-i18n="table.source">Source</th><th scope="col" data-i18n="table.dataset">Dataset / model</th><th scope="col" data-i18n="table.notes">Rules / notes / play</th></tr></thead>
+                    <tbody><tr data-catalog-item data-resource-types="release source results"><th scope="row" data-i18n="game.connectFourAi">Connect Four AI</th><td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.connectfour">Preliminary outcomes are recorded for board sizes up to 20×20; the full equivalent text follows the image.</p></td><td><a href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/ConnectFour_20241019" target="_blank" rel="noreferrer">ConnectFour_20241019</a></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/ConnectFour2024" target="_blank" rel="noreferrer">ConnectFour2024</a></td><td><span class="resource-empty">—</span></td><td><a href="#connectfour-results" data-i18n="link.viewMatrix">View result matrix</a></td></tr></tbody>
+                </table></div>
+                <figure class="topic-inline-figure result-matrix" id="connectfour-results" role="region" aria-label="Connect Four outcomes by board size" data-i18n-attr="aria-label:matrix.connectfour.label" tabindex="0">
+                    <img src="pages/connect4_results.png" alt="Connect Four outcome matrix for widths and heights 1 through 20; equivalent text follows" data-i18n-attr="alt:matrix.connectfour.alt" loading="lazy">
+                    <figcaption data-i18n="matrix.connectfour.caption">Preliminary Connect Four outcomes for boards up to 20×20.</figcaption>
+                    <details class="figure-description"><summary data-i18n="matrix.showText">Show equivalent text</summary><p data-i18n="matrix.connectfour.key">Rows are board heights and columns are widths. D means draw, W means first-player win, and L means second-player win.</p><ul>
+                        <li data-i18n="matrix.connectfour.1">Heights 1–3 are draws at every width; widths 1–5 are draws at every height.</li>
+                        <li data-i18n="matrix.connectfour.2">At height 4: widths 6 and 8–15 are second-player wins, widths 16–20 are first-player wins, and the rest are draws.</li>
+                        <li data-i18n="matrix.connectfour.3">At height 5: widths 1–7 are draws and widths 8–20 are first-player wins.</li>
+                        <li data-i18n="matrix.connectfour.4">At even heights 6–20: widths 6 and 8 are second-player wins, width 7 and widths 9–20 are first-player wins, and widths 1–5 are draws; the lone exception is 6×9, also a second-player win.</li>
+                        <li data-i18n="matrix.connectfour.5">At odd heights 7–19: widths 1–5 and 7 are draws, while width 6 and widths 8–20 are first-player wins.</li>
+                    </ul></details>
+                </figure>
+            </section>
 
+            <section class="content-section topic-section catalog-section" id="topic-animal-chess" aria-labelledby="topic-animal-chess-title" data-catalog-section>
+                <header class="section-heading"><p class="page-eyebrow" data-i18n="eyebrow.animal">07 / Animal Chess</p><h2 id="topic-animal-chess-title" data-i18n="game.animal">Animal Chess</h2><p data-i18n="animal.lead">The interface package, engine source, and training dataset are maintained separately.</p></header>
+                <div class="table-wrap catalog-table-wrap" role="region" aria-label="Animal Chess project resources" data-i18n-attr="aria-label:animal.tableLabel" tabindex="0"><table class="data-table catalog-table">
+                    <caption data-i18n="animal.caption">Animal Chess interface, source, data, and finding</caption>
+                    <thead><tr><th scope="col" data-i18n="table.game">Game / project</th><th scope="col" data-i18n="table.finding">Finding / status</th><th scope="col" data-i18n="table.release">Download / release</th><th scope="col" data-i18n="table.source">Source</th><th scope="col" data-i18n="table.dataset">Dataset / model</th><th scope="col" data-i18n="table.notes">Rules / notes / play</th></tr></thead>
+                    <tbody><tr data-catalog-item data-resource-types="release source dataset results"><th scope="row" data-i18n="game.animalAi">Animal Chess AI</th><td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.animal">Current model self-play suggests standard Animal Chess is very close to a draw.</p></td><td><a href="https://github.com/lxsgx23/Dandelion-Chess/releases/tag/v3.1" target="_blank" rel="noreferrer">Dandelion v3.1</a></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/AnimalChess2025" target="_blank" rel="noreferrer">AnimalChess2025</a></td><td><a href="https://www.modelscope.cn/datasets/sigmoid/katago-animalchess-2025" target="_blank" rel="noreferrer">katago-animalchess-2025</a></td><td data-i18n="note.animal">Dandelion provides the playable interface and AI package.</td></tr></tbody>
+                </table></div>
+            </section>
+
+            <section class="content-section topic-section catalog-section" id="topic-chinese-checkers" aria-labelledby="topic-chinese-checkers-title" data-catalog-section>
+                <header class="section-heading"><p class="page-eyebrow" data-i18n="eyebrow.checkers">08 / Chinese Checkers</p><h2 id="topic-chinese-checkers-title" data-i18n="game.checkers">Chinese Checkers</h2><p data-i18n="checkers.lead">A runnable build and training branch are available; the result remains a model-based experimental observation.</p></header>
+                <div class="table-wrap catalog-table-wrap" role="region" aria-label="Chinese Checkers project resources" data-i18n-attr="aria-label:checkers.tableLabel" tabindex="0"><table class="data-table catalog-table">
+                    <caption data-i18n="checkers.caption">Chinese Checkers release, source, and current finding</caption>
+                    <thead><tr><th scope="col" data-i18n="table.game">Game / project</th><th scope="col" data-i18n="table.finding">Finding / status</th><th scope="col" data-i18n="table.release">Download / release</th><th scope="col" data-i18n="table.source">Source</th><th scope="col" data-i18n="table.dataset">Dataset / model</th><th scope="col" data-i18n="table.notes">Rules / notes / play</th></tr></thead>
+                    <tbody><tr data-catalog-item data-resource-types="release source results"><th scope="row" data-i18n="game.checkersAi">Chinese Checkers AI</th><td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.checkers">Current model self-play is very close to a draw.</p></td><td><a href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/20240406" target="_blank" rel="noreferrer">20240406</a></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/tiaoqi" target="_blank" rel="noreferrer">tiaoqi</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td></tr></tbody>
+                </table></div>
+            </section>
+
+            <section class="content-section topic-section catalog-section" id="topic-math-problems" aria-labelledby="topic-math-problems-title" data-catalog-section>
+                <header class="section-heading"><p class="page-eyebrow" data-i18n="eyebrow.math">09 / Mathematical games</p><h2 id="topic-math-problems-title" data-i18n="math.title">Mathematical games &amp; search problems</h2><p data-i18n="math.lead">The same training framework has been used to explore the Angel Problem, a connect-seven proof attempt, Dawson's Chess, and Escape Go.</p></header>
+                <div class="table-wrap catalog-table-wrap" role="region" aria-label="Mathematical game project resources" data-i18n-attr="aria-label:math.tableLabel" tabindex="0"><table class="data-table catalog-table">
+                    <caption data-i18n="math.caption">Mathematical-game source and research status</caption>
+                    <thead><tr><th scope="col" data-i18n="table.game">Game / project</th><th scope="col" data-i18n="table.finding">Finding / status</th><th scope="col" data-i18n="table.release">Download / release</th><th scope="col" data-i18n="table.source">Source</th><th scope="col" data-i18n="table.dataset">Dataset / model</th><th scope="col" data-i18n="table.notes">Rules / notes / play</th></tr></thead>
+                    <tbody><tr data-catalog-item data-resource-types="source results"><th scope="row" data-i18n="game.mathExperiments">Mathematical-game experiments</th><td><span class="status-tag" data-i18n="status.research">Research branch</span><p data-i18n="finding.math">Exploratory work; no standalone public program is currently listed.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/AngelProblem" target="_blank" rel="noreferrer">AngelProblem</a></td><td><span class="resource-empty">—</span></td><td><a href="../googology/index.html">Googology</a></td></tr></tbody>
+                </table></div>
+            </section>
+
+            <section class="content-section topic-section catalog-section" id="topic-other-games" aria-labelledby="topic-other-games-title" data-catalog-section>
+                <header class="section-heading">
+                    <p class="page-eyebrow" data-i18n="eyebrow.more">10 / More games</p>
+                    <h2 id="topic-other-games-title" data-i18n="more.title">More games, original rules &amp; historical branches</h2>
+                    <p data-i18n="more.lead">This table is intentionally dense but predictable: conclusions stay in the second column, files in the middle columns, and rule references or interactive notes at the end.</p>
+                </header>
+                <div class="table-wrap catalog-table-wrap" role="region" aria-label="Other games, resources, and findings" data-i18n-attr="aria-label:more.tableLabel" tabindex="0">
+                    <table class="data-table catalog-table">
+                        <caption data-i18n="more.caption">Other games: findings, releases, source, datasets, and rules</caption>
+                        <thead><tr><th scope="col" data-i18n="table.game">Game / project</th><th scope="col" data-i18n="table.finding">Finding / status</th><th scope="col" data-i18n="table.release">Download / release</th><th scope="col" data-i18n="table.source">Source</th><th scope="col" data-i18n="table.dataset">Dataset / model</th><th scope="col" data-i18n="table.notes">Rules / notes / play</th></tr></thead>
+                        <tbody>
+                            <tr data-catalog-item data-resource-types="release source dataset results">
+                                <th scope="row" data-i18n="game.nogo">NoGo</th>
+                                <td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.nogo">On 9×9, the recorded initial first-player win rate is about 90%.</p></td>
+                                <td><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Nogo20250219" target="_blank" rel="noreferrer">Nogo20250219</a></td>
+                                <td><a href="https://github.com/hzyhhzy/KataGomo/tree/Nogo2025" target="_blank" rel="noreferrer">Nogo2025</a></td>
+                                <td><a href="https://www.modelscope.cn/datasets/sigmoid/katago-nogo-2025" target="_blank" rel="noreferrer">katago-nogo-2025</a></td>
+                                <td><div class="resource-actions"><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-nogo" data-dialog-open="rule-nogo" aria-haspopup="dialog" aria-controls="rule-nogo" aria-label="Open NoGo rules" data-i18n="button.rules" data-i18n-attr="aria-label:aria.nogoRules">Rules</button><button class="rule-popup-trigger" type="button" data-rule-dialog="conclusion-nogo" data-dialog-open="conclusion-nogo" aria-haspopup="dialog" aria-controls="conclusion-nogo" aria-label="Open NoGo results for other board sizes" data-i18n="button.allSizes" data-i18n-attr="aria-label:aria.nogoResults">All sizes</button></div></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="release source results">
+                                <th scope="row" data-i18n="game.amazons">Amazons</th><td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.amazons">On 10×10, the recorded first-player win rate is about 70%.</p></td><td><a href="https://github.com/hzyhhzy/KataGomo_fork/releases/tag/20240406" target="_blank" rel="noreferrer">20240406</a></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/Amazons" target="_blank" rel="noreferrer">Amazons</a></td><td><span class="resource-empty">—</span></td><td><a href="https://en.wikipedia.org/wiki/Game_of_the_Amazons" target="_blank" rel="noreferrer" data-i18n="link.rules">Rules</a></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="release source results">
+                                <th scope="row" data-i18n="game.breakthrough">Breakthrough</th><td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.breakthrough">On 8×8, the current model result is close to a forced first-player win.</p></td><td><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Breakthrough_20250616" target="_blank" rel="noreferrer">Breakthrough_20250616</a></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/Breakthrough2025" target="_blank" rel="noreferrer">Breakthrough2025</a></td><td><span class="resource-empty">—</span></td><td><div class="resource-actions"><a href="https://en.wikipedia.org/wiki/Breakthrough_(board_game)" target="_blank" rel="noreferrer" data-i18n="link.rules">Rules</a><button class="rule-popup-trigger" type="button" data-rule-dialog="conclusion-breakthrough" data-dialog-open="conclusion-breakthrough" aria-haspopup="dialog" aria-controls="conclusion-breakthrough" aria-label="Open Breakthrough results for other board sizes" data-i18n="button.allSizes" data-i18n-attr="aria-label:aria.breakthroughResults">All sizes</button></div></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source results">
+                                <th scope="row" data-i18n="game.reversi">Reversi</th><td><span class="status-tag" data-i18n="status.research">Research branch</span><p data-i18n="finding.reversi">In this experiment, the KataGo-based route underperformed mature traditional Reversi programs.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/Reversi2023" target="_blank" rel="noreferrer">Reversi2023</a></td><td><span class="resource-empty">—</span></td><td><a href="https://en.wikipedia.org/wiki/Reversi" target="_blank" rel="noreferrer" data-i18n="link.rules">Rules</a></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="release source results">
+                                <th scope="row" data-i18n="game.ultimate">Ultimate Tic-tac-toe</th><td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.ultimate">Without tiebreaker: 21% first-player wins, 2% second-player wins, 77% draws. With tiebreaker: 78%, 4%, and 18% respectively.</p></td><td><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/UltimateTictactoe_20250616" target="_blank" rel="noreferrer">UltimateTictactoe_20250616</a></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/UltimateTictactoe2024" target="_blank" rel="noreferrer">UltimateTictactoe2024</a></td><td><span class="resource-empty">—</span></td><td><a href="https://en.wikipedia.org/wiki/Ultimate_tic-tac-toe" target="_blank" rel="noreferrer" data-i18n="link.rules">Rules</a></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="release source">
+                                <th scope="row" data-i18n="game.scoreFour">Score Four</th><td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.scoreFour">A three-dimensional connect-four experiment.</p></td><td><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/ScoreFour_20250510" target="_blank" rel="noreferrer">ScoreFour_20250510</a></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/ConnectFour3d" target="_blank" rel="noreferrer">ConnectFour3d</a></td><td><span class="resource-empty">—</span></td><td><a href="https://en.wikipedia.org/wiki/Score_Four" target="_blank" rel="noreferrer" data-i18n="link.rules">Rules</a></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.dots">Dots and Boxes</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.dots">A line-drawing combinatorial-game experiment.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/DotsAndBoxes" target="_blank" rel="noreferrer">DotsAndBoxes</a></td><td><span class="resource-empty">—</span></td><td><a href="https://en.wikipedia.org/wiki/Dots_and_Boxes" target="_blank" rel="noreferrer" data-i18n="link.rules">Rules</a></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.quoridor">Quoridor</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.quoridor">A wall-placement racing-game experiment.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/Quoridor2024" target="_blank" rel="noreferrer">Quoridor2024</a></td><td><span class="resource-empty">—</span></td><td><a href="https://en.wikipedia.org/wiki/Quoridor" target="_blank" rel="noreferrer" data-i18n="link.rules">Rules</a></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.surakarta">Surakarta</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.surakarta">An experiment with the traditional Indonesian capture game.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/Surakarta" target="_blank" rel="noreferrer">Surakarta</a></td><td><span class="resource-empty">—</span></td><td><a href="https://en.wikipedia.org/wiki/Surakarta_(game)" target="_blank" rel="noreferrer" data-i18n="link.rules">Rules</a></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.clobber">Clobber</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.clobber">A combinatorial-game experiment.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/Clobber2023" target="_blank" rel="noreferrer">Clobber2023</a></td><td><span class="resource-empty">—</span></td><td><a href="https://en.wikipedia.org/wiki/Clobber" target="_blank" rel="noreferrer" data-i18n="link.rules">Rules</a></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.antiConnect">Anti-connect five / four / three</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.antiConnect">The first player to complete the target line loses.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/AntiConnectN2025" target="_blank" rel="noreferrer">AntiConnectN2025</a></td><td><span class="resource-empty">—</span></td><td><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-anti-connect" data-dialog-open="rule-anti-connect" aria-haspopup="dialog" aria-controls="rule-anti-connect" aria-label="Open anti-connect rules" data-i18n="button.rules" data-i18n-attr="aria-label:aria.antiRules">Rules</button></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="release source">
+                                <th scope="row" data-i18n="game.zhen">Zhen Qi</th><td><span class="status-tag" data-i18n="status.published">Published build</span><p data-i18n="finding.zhenqi">An original Nijie-system game in which adjacent stones may be pushed outward after a move.</p></td><td><a href="https://github.com/hzyhhzy/KataGomo/releases/tag/Zhenqi20250218" target="_blank" rel="noreferrer">Zhenqi20250218</a></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/ZhenQi" target="_blank" rel="noreferrer">ZhenQi</a></td><td><span class="resource-empty">—</span></td><td><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-zhenqi" data-dialog-open="rule-zhenqi" aria-haspopup="dialog" aria-controls="rule-zhenqi" aria-label="Open Zhen Qi rules" data-i18n="button.rules" data-i18n-attr="aria-label:aria.zhenRules">Rules</button></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.xing">Xing Qi</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.xingqi">An original Nijie-system symmetry-scoring game.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_XingQi" target="_blank" rel="noreferrer">newgame_XingQi</a></td><td><span class="resource-empty">—</span></td><td><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-xingqi" data-dialog-open="rule-xingqi" aria-haspopup="dialog" aria-controls="rule-xingqi" aria-label="Open Xing Qi rules" data-i18n="button.rules" data-i18n-attr="aria-label:aria.xingRules">Rules</button></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.kingConnect">King's Move Connect 4</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.kingConnect">A non-gravity connect-four variant constrained by king-move adjacency.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/con4type1" target="_blank" rel="noreferrer">con4type1</a></td><td><span class="resource-empty">—</span></td><td><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-king-connect4" data-dialog-open="rule-king-connect4" aria-haspopup="dialog" aria-controls="rule-king-connect4" aria-label="Open King's Move Connect 4 rules" data-i18n="button.rules" data-i18n-attr="aria-label:aria.kingRules">Rules</button></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.nijie">Nijie's AntiGomoku</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.nijie">An original anti-Gomoku game that combines placement with moving an opposing stone.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/newgame_gomokuamazons" target="_blank" rel="noreferrer">newgame_gomokuamazons</a></td><td><span class="resource-empty">—</span></td><td><button class="rule-popup-trigger" type="button" data-rule-dialog="rule-nijie-anti" data-dialog-open="rule-nijie-anti" aria-haspopup="dialog" aria-controls="rule-nijie-anti" aria-label="Open Nijie's AntiGomoku rules" data-i18n="button.rules" data-i18n-attr="aria-label:aria.nijieRules">Rules</button></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="source">
+                                <th scope="row" data-i18n="game.stars">StarsZone</th><td><span class="status-tag" data-i18n="status.sourceOnly">Source branch</span><p data-i18n="finding.stars">Each turn places one own stone and optionally one limited neutral ban point. After 16 stones each, relation patterns score; fewer neutral bans break a tie.</p></td><td><span class="resource-empty">—</span></td><td><a href="https://github.com/hzyhhzy/KataGomo/tree/StarsZone" target="_blank" rel="noreferrer">StarsZone</a></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="results">
+                                <th scope="row" data-i18n="game.xiangqi">Xiangqi</th><td><span class="status-tag" data-i18n="status.notOpen">Not open source</span><p data-i18n="finding.xiangqi">Branch notes report that PX0 performed clearly better.</p></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td><td><a href="https://en.wikipedia.org/wiki/Xiangqi" target="_blank" rel="noreferrer" data-i18n="link.rules">Rules</a></td>
+                            </tr>
+                            <tr data-catalog-item data-resource-types="results">
+                                <th scope="row" data-i18n="game.chess">Chess</th><td><span class="status-tag" data-i18n="status.unavailable">Historical branch unavailable</span><p data-i18n="finding.chess">An early small-scale test; no branch is retained here.</p></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td><td><span class="resource-empty">—</span></td><td><a href="https://en.wikipedia.org/wiki/Chess" target="_blank" rel="noreferrer" data-i18n="link.rules">Rules</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <noscript>
+                <section class="content-section" id="no-script-rules" aria-labelledby="no-script-rules-title">
+                    <header class="section-heading">
+                        <p class="page-eyebrow">No-JavaScript reference</p>
+                        <h2 id="no-script-rules-title">Rule and result summaries</h2>
+                        <p>These native expandable sections keep the dialog-only material reachable when scripts are unavailable.</p>
+                    </header>
+                    <div class="card-grid">
+                        <details class="content-card">
+                            <summary><strong>NoGo</strong></summary>
+                            <p>Use ordinary Go placement, but a move may neither capture stones nor be suicidal. The first player with no legal move loses.</p>
+                        </details>
+                        <details class="content-card">
+                            <summary><strong>Anti-connect five / four / three</strong></summary>
+                            <p>Players alternate placing stones. Completing the configured target line makes that player lose; a full board without the target line is a draw.</p>
+                        </details>
+                        <details class="content-card">
+                            <summary><strong>Zhen Qi</strong></summary>
+                            <p>After placement, adjacent stones are pushed one point outward when possible. After movement resolves, a horizontal, vertical, or diagonal line of four wins.</p>
+                        </details>
+                        <details class="content-card">
+                            <summary><strong>Xing Qi</strong></summary>
+                            <p>Symmetric eight-connected groups of at least six stones are removed and score <var>n</var> − 5 points. The default target score is four.</p>
+                        </details>
+                        <details class="content-card">
+                            <summary><strong>King's Move Connect 4</strong></summary>
+                            <p>After the first move, each placement must be in the eight-neighborhood of an opposing stone. There is no gravity; the first line of four wins.</p>
+                        </details>
+                        <details class="content-card">
+                            <summary><strong>Nijie's AntiGomoku</strong></summary>
+                            <p>A turn either places your stone or moves an opposing stone queen-like and replaces its origin with your color. The color that forms five loses.</p>
+                        </details>
+                        <details class="content-card">
+                            <summary><strong>NoGo board-size results</strong></summary>
+                            <p>The recorded 9×9 initial first-player win rate is about 90%. <a href="pages/nogo_20250209.png">Open the full 1–13 by 1–13 result matrix</a>.</p>
+                        </details>
+                        <details class="content-card">
+                            <summary><strong>Breakthrough board-size results</strong></summary>
+                            <p>The current 8×8 model result is close to a forced first-player win. <a href="pages/breakthrough_20250616.png">Open the full recorded board-size matrix</a>.</p>
+                        </details>
+                    </div>
+                </section>
+            </noscript>
+        </div>
     </main>
 
-    <dialog class="rule-dialog" id="rule-nogo">
+    <footer class="content-footer">
+        <div class="content-container footer-inner">
+            <p data-i18n="footer.summary">Board-game AI · releases, source, datasets, and research findings</p>
+            <nav class="footer-links" aria-label="Footer navigation" data-i18n-attr="aria-label:footer.label">
+                <a href="mailto:2658628026@qq.com" data-i18n="footer.email">Email</a>
+                <a href="index.html" data-i18n="footer.project">Project overview</a>
+                <a href="../boardgame-training.html" data-i18n="nav.training">Training guide</a>
+                <a href="../boardgame-ai-experience.html" data-i18n="nav.experience">Training experience</a>
+                <a href="../boardgame-rule-implementation.html" data-i18n="nav.rules">Rule integration</a>
+            </nav>
+        </div>
+    </footer>
+
+    <dialog class="rule-dialog" id="rule-nogo" aria-labelledby="rule-nogo-title">
         <form method="dialog" class="rule-dialog-card">
-            <div class="rule-dialog-head">
-                <h3>不围棋（NoGo）</h3>
-                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
-            </div>
-            <div class="rule-dialog-body">
-                <p>不围棋沿用围棋的落子方式，但任何一手都不允许提子，也不允许自杀。</p>
-                <p>也可以把它理解成吃子棋（Capture Go）的“反棋”：吃子棋里以先吃到子为目标，而不围棋里凡是会产生提子的着法都直接禁止。</p>
-                <p>如果某一步会让对方棋块被提走，或者让己方棋块无气，那么这一步就是非法着。</p>
-                <p>通常以“谁先没有合法着法谁负”作为胜负条件。</p>
-            </div>
+            <div class="rule-dialog-head"><h3 id="rule-nogo-title" data-i18n="game.nogo">NoGo</h3><button class="rule-dialog-close" type="submit" data-dialog-close aria-label="Close" data-i18n-attr="aria-label:button.close">×</button></div>
+            <div class="rule-dialog-body"><p data-i18n="dialog.nogo.1">NoGo uses ordinary Go placement, but no move may capture stones or be suicidal.</p><p data-i18n="dialog.nogo.2">A move is illegal if it would remove an opposing group or leave the played group without liberties.</p><p data-i18n="dialog.nogo.3">The usual losing condition is being the first player with no legal move.</p></div>
         </form>
     </dialog>
 
-    <dialog class="rule-dialog" id="rule-anti-connect">
+    <dialog class="rule-dialog" id="rule-anti-connect" aria-labelledby="rule-anti-connect-title">
         <form method="dialog" class="rule-dialog-card">
-            <div class="rule-dialog-head">
-                <h3>反五 / 四 / 三子棋</h3>
-                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
-            </div>
-            <div class="rule-dialog-body">
-                <p>这一类规则把通常的“先连成目标方获胜”反过来处理。</p>
-                <p>例如反五子棋里，谁先形成五连反而判负；反四子棋和反三子棋同理，只是目标长度不同。</p>
-                <p>也可以把它理解成 AntiConnectN：先被迫连成指定长度的一方输。</p>
-            </div>
+            <div class="rule-dialog-head"><h3 id="rule-anti-connect-title" data-i18n="dialog.anti.title">Anti-connect five / four / three</h3><button class="rule-dialog-close" type="submit" data-dialog-close aria-label="Close" data-i18n-attr="aria-label:button.close">×</button></div>
+            <div class="rule-dialog-body"><p data-i18n="dialog.anti.1">These games reverse “complete the target line to win” into “complete the target line to lose.”</p><p data-i18n="dialog.anti.2">Anti-five, anti-four, and anti-three share the same core rule and differ only in target line length.</p></div>
         </form>
     </dialog>
 
-    <dialog class="rule-dialog" id="rule-zhenqi">
+    <dialog class="rule-dialog" id="rule-zhenqi" aria-labelledby="rule-zhenqi-title">
         <form method="dialog" class="rule-dialog-card">
-            <div class="rule-dialog-head">
-                <h3>震棋（Zhen Qi / Quake Gomoku）</h3>
-                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
-            </div>
-            <div class="rule-dialog-body">
-                <p>震棋是逆界系原创棋种，可以理解成带有“震动扰动”效果的五子棋变体。</p>
-                <p>落子后，棋局不会像普通五子棋那样完全静止，局面会因为规则触发而发生额外变化。</p>
-                <p>这里先给出站内简述；更细的判定细节建议结合对应分支实现查看。</p>
-            </div>
+            <div class="rule-dialog-head"><h3 id="rule-zhenqi-title" data-i18n="dialog.zhen.title">Zhen Qi / Quake Gomoku</h3><button class="rule-dialog-close" type="submit" data-dialog-close aria-label="Close" data-i18n-attr="aria-label:button.close">×</button></div>
+            <div class="rule-dialog-body"><p data-i18n="dialog.zhen.1">After a stone is placed, an adjacent stone in each of the eight directions is pushed one step outward. It moves into an empty target, leaves the board if pushed past an edge, and stays put if the target is occupied.</p><p data-i18n="dialog.zhen.2">After movement resolves, either color wins by making four horizontally, vertically, or diagonally. A rule parameter selects the winner when both colors make four simultaneously. Passing loses immediately.</p></div>
         </form>
     </dialog>
 
-    <dialog class="rule-dialog" id="rule-xingqi">
+    <dialog class="rule-dialog" id="rule-xingqi" aria-labelledby="rule-xingqi-title">
         <form method="dialog" class="rule-dialog-card">
-            <div class="rule-dialog-head">
-                <h3>形棋（Xing Qi / Symmetry Game）</h3>
-                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
-            </div>
-            <div class="rule-dialog-body">
-                <p>形棋是逆界系原创棋种，核心想法与“图形关系 / 对称结构”有关。</p>
-                <p>它不是直接照搬标准五子棋或围棋规则，而是围绕局面形状本身来定义目标与约束。</p>
-                <p>首页这里先提供简短说明，具体判定仍以分支中的实现为准。</p>
-            </div>
+            <div class="rule-dialog-head"><h3 id="rule-xingqi-title" data-i18n="dialog.xing.title">Xing Qi / Symmetry Game</h3><button class="rule-dialog-close" type="submit" data-dialog-close aria-label="Close" data-i18n-attr="aria-label:button.close">×</button></div>
+            <div class="rule-dialog-body"><p data-i18n="dialog.xing.1">Same-color stones form groups through eight-neighbor connectivity. A group of at least six is removed when it is symmetric across the horizontal axis, vertical axis, or either diagonal of its bounding box.</p><p data-i18n="dialog.xing.2">Removing a shape of n stones scores n − 5 points. The default target is four points; the first player to reduce the remaining target to zero wins. Passing loses.</p></div>
         </form>
     </dialog>
 
-    <dialog class="rule-dialog" id="rule-king-connect4">
+    <dialog class="rule-dialog" id="rule-king-connect4" aria-labelledby="rule-king-connect4-title">
         <form method="dialog" class="rule-dialog-card">
-            <div class="rule-dialog-head">
-                <h3>王步四子棋（King's move Connect 4）</h3>
-                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
-            </div>
-            <div class="rule-dialog-body">
-                <p>这是一个把“王步移动”概念引入四子棋目标的变体。</p>
-                <p>规则重点不再是普通重力四子棋的落子方式，而是围绕王步邻接关系来形成四连。</p>
-                <p>因此它和标准 Connect Four 的空间结构、战术重点都不一样。</p>
-            </div>
+            <div class="rule-dialog-head"><h3 id="rule-king-connect4-title" data-i18n="game.kingConnect">King's Move Connect 4</h3><button class="rule-dialog-close" type="submit" data-dialog-close aria-label="Close" data-i18n-attr="aria-label:button.close">×</button></div>
+            <div class="rule-dialog-body"><p data-i18n="dialog.king.1">The first move may use any empty point. Every later move must be within the eight-neighborhood of at least one opposing stone—the squares a chess king could reach in one step.</p><p data-i18n="dialog.king.2">There is no gravity. The first player to make four horizontally, vertically, or diagonally wins.</p></div>
         </form>
     </dialog>
 
-    <dialog class="rule-dialog" id="rule-nijie-anti">
+    <dialog class="rule-dialog" id="rule-nijie-anti" aria-labelledby="rule-nijie-anti-title">
         <form method="dialog" class="rule-dialog-card">
-            <div class="rule-dialog-head">
-                <h3>逆界反五子棋（Nijie's AntiGomoku）</h3>
-                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
-            </div>
-            <div class="rule-dialog-body">
-                <p>这是逆界系原创的反五子棋分支，整体思想仍然是“先连成五子的一方反而输”。</p>
-                <p>和普通 AntiGomoku 相比，这一条线加入了逆界系自己的规则设计与实现细节。</p>
-                <p>首页先给出区分性的简述，完整细节仍建议查看对应分支代码。</p>
-            </div>
+            <div class="rule-dialog-head"><h3 id="rule-nijie-anti-title" data-i18n="game.nijie">Nijie's AntiGomoku</h3><button class="rule-dialog-close" type="submit" data-dialog-close aria-label="Close" data-i18n-attr="aria-label:button.close">×</button></div>
+            <div class="rule-dialog-body"><p data-i18n="dialog.nijie.1">On a turn, either place one of your stones on an empty point, or move an opposing stone like a chess queen along an unobstructed line; its original point is then replaced with your stone.</p><p data-i18n="dialog.nijie.2">When either color makes five, that color loses. Passing loses; a full board with no five is a draw.</p></div>
         </form>
     </dialog>
 
-    <dialog class="rule-dialog" id="conclusion-nogo">
+    <dialog class="rule-dialog" id="conclusion-nogo" aria-labelledby="conclusion-nogo-title">
         <form method="dialog" class="rule-dialog-card">
-            <div class="rule-dialog-head">
-                <h3>不围棋结论</h3>
-                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
-            </div>
+            <div class="rule-dialog-head"><h3 id="conclusion-nogo-title" data-i18n="dialog.nogoResults.title">NoGo results</h3><button class="rule-dialog-close" type="submit" data-dialog-close aria-label="Close" data-i18n-attr="aria-label:button.close">×</button></div>
             <div class="rule-dialog-body">
-                <p>不围棋 13x13 及以下棋盘的初始先手胜率如下图所示。</p>
-                <figure class="rule-dialog-figure">
-                    <img src="pages/nogo_20250209.png" alt="不围棋小于等于13x13棋盘的初始先手胜率">
-                    <figcaption>不围棋 &lt;=13x13 棋盘的初始先手胜率</figcaption>
+                <p data-i18n="dialog.nogoResults.lead">Initial first-player win rates for NoGo boards up to 13×13.</p>
+                <figure class="rule-dialog-figure result-matrix" role="region" aria-label="NoGo first-player win-rate matrix by board size" data-i18n-attr="aria-label:matrix.nogo.label" tabindex="0">
+                    <img src="pages/nogo_20250209.png" alt="NoGo first-player win-rate matrix for widths and heights 1 through 13; equivalent values follow" data-i18n-attr="alt:matrix.nogo.alt" loading="lazy">
+                    <figcaption data-i18n="matrix.nogo.caption">Initial first-player win rates for NoGo boards up to 13×13.</figcaption>
+                    <details class="figure-description"><summary data-i18n="matrix.showValues">Show equivalent values</summary><p data-i18n="matrix.nogo.key">Rows are heights 1–13 and columns are widths 1–13; every value is a first-player win-rate percentage.</p><pre class="matrix-data" data-i18n="matrix.nogo.data">Width →  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13
+H 1:      0,100,100,  0,100,100,100,100,100,100,100,100,100
+H 2:    100,100,  0,  0,100, 99, 99, 99,  0,  2, 98, 98, 96
+H 3:    100,  0,100,  0, 99, 98, 98, 98, 94, 93, 87, 88, 87
+H 4:      0,  0,  0,  0, 97, 96, 95, 90, 80, 80, 78, 75, 75
+H 5:    100,100, 99, 97, 97, 90, 88, 87, 69, 61, 61, 59, 57
+H 6:    100, 99, 98, 96, 90, 90, 83, 87, 83, 81, 81, 81, 79
+H 7:    100, 99, 98, 95, 88, 83, 84, 87, 89, 86, 83, 82, 82
+H 8:    100, 99, 98, 90, 87, 87, 87, 90, 89, 85, 85, 81, 76
+H 9:    100,  0, 94, 80, 69, 83, 89, 89, 87, 84, 81, 80, 78
+H 10:   100,  2, 93, 80, 61, 81, 86, 85, 84, 80, 80, 76, 75
+H 11:   100, 98, 87, 78, 61, 81, 83, 85, 81, 80, 76, 77, 76
+H 12:   100, 98, 88, 75, 59, 81, 82, 81, 80, 76, 77, 76, 74
+H 13:   100, 96, 87, 75, 57, 79, 82, 76, 78, 75, 76, 74, 73</pre></details>
                 </figure>
-                <p>图例：红色先手优势，蓝色后手优势。</p>
+                <p data-i18n="matrix.legend">Red indicates a first-player advantage; blue indicates a second-player advantage.</p>
             </div>
         </form>
     </dialog>
 
-    <dialog class="rule-dialog" id="conclusion-breakthrough">
+    <dialog class="rule-dialog" id="conclusion-breakthrough" aria-labelledby="conclusion-breakthrough-title">
         <form method="dialog" class="rule-dialog-card">
-            <div class="rule-dialog-head">
-                <h3>突破棋结论</h3>
-                <button class="rule-dialog-close" type="submit" aria-label="关闭">×</button>
-            </div>
+            <div class="rule-dialog-head"><h3 id="conclusion-breakthrough-title" data-i18n="dialog.breakthrough.title">Breakthrough results</h3><button class="rule-dialog-close" type="submit" data-dialog-close aria-label="Close" data-i18n-attr="aria-label:button.close">×</button></div>
             <div class="rule-dialog-body">
-                <p>突破棋 10x10 及以下棋盘的初始先手胜率如下图所示。</p>
-                <figure class="rule-dialog-figure">
-                    <img src="pages/breakthrough_20250616.png" alt="突破棋小于等于10x10棋盘的初始先手胜率">
-                    <figcaption>breakthrough &lt;=10x10 棋盘的初始先手胜率</figcaption>
+                <p data-i18n="dialog.breakthrough.lead">Initial first-player win rates for Breakthrough boards up to 10×10.</p>
+                <figure class="rule-dialog-figure result-matrix" role="region" aria-label="Breakthrough first-player win-rate matrix by board size" data-i18n-attr="aria-label:matrix.breakthrough.label" tabindex="0">
+                    <img src="pages/breakthrough_20250616.png" alt="Breakthrough first-player win-rate matrix for widths 2 through 10 and heights 4 through 10; equivalent values follow" data-i18n-attr="alt:matrix.breakthrough.alt" loading="lazy">
+                    <figcaption data-i18n="matrix.breakthrough.caption">Initial first-player win rates for Breakthrough boards up to 10×10.</figcaption>
+                    <details class="figure-description"><summary data-i18n="matrix.showValues">Show equivalent values</summary><p data-i18n="matrix.breakthrough.key">Rows are heights 4–10 and columns are widths 2–10; every value is a first-player win-rate percentage.</p><pre class="matrix-data" data-i18n="matrix.breakthrough.data">Width →  2,  3,  4,  5,  6,  7,  8,  9, 10
+H 4:      0,  0,  0,  0,  0,  0,  0,  0,  0
+H 5:      0,  0,  0,  0,  0,  0,  0,  0,  1
+H 6:    100,100,100,100, 99, 98, 96, 76, 71
+H 7:      0,  0,100, 99, 98, 97, 94, 70, 50
+H 8:    100,100,100, 99, 98, 98, 94, 71, 63
+H 9:      0,  1,100, 95, 69, 80, 65, 63, 59
+H 10:   100, 99, 97, 81, 66, 74, 66, 62, 59</pre></details>
                 </figure>
-                <p>图例：红色先手优势，蓝色后手优势。</p>
+                <p data-i18n="matrix.legend">Red indicates a first-player advantage; blue indicates a second-player advantage.</p>
             </div>
         </form>
     </dialog>
 
-    <script>
-        document.querySelectorAll(".rule-popup-trigger").forEach((button) => {
-            button.addEventListener("click", () => {
-                const dialog = document.getElementById(button.dataset.ruleDialog);
-                if (dialog) {
-                    dialog.showModal();
-                }
-            });
-        });
-
-        document.querySelectorAll(".rule-dialog").forEach((dialog) => {
-            dialog.addEventListener("click", (event) => {
-                const rect = dialog.getBoundingClientRect();
-                const inside =
-                    event.clientX >= rect.left &&
-                    event.clientX <= rect.right &&
-                    event.clientY >= rect.top &&
-                    event.clientY <= rect.bottom;
-                if (!inside) {
-                    dialog.close();
-                }
-            });
-        });
+    <script type="application/json" id="page-i18n">
+    {
+        "zh": {
+            "meta.title": "棋类 AI 资料库与下载 | hzyhhzy",
+            "meta.description": "双语棋类 AI 研究资料库与下载站，整理数十种棋类项目的发布版、源码分支、数据集和可复核结论。",
+            "skip": "跳到主要内容",
+            "brand.subtitle": "棋类 AI 资料库",
+            "brand.homeLabel": "返回 hzyhhzy 主页",
+            "nav.primaryLabel": "主导航",
+            "nav.languageLabel": "语言",
+            "nav.home": "主页",
+            "nav.archive": "棋种与下载",
+            "nav.training": "训练指南",
+            "nav.experience": "训练经验",
+            "nav.rules": "规则接入",
+            "breadcrumb.label": "面包屑",
+            "page.title": "棋种、研究与下载",
+            "eyebrow.hero": "棋类 AI / 研究资料库 / 下载站",
+            "eyebrow.guide": "资料类型说明",
+            "eyebrow.release": "优先下载",
+            "eyebrow.catalog": "完整资料库",
+            "eyebrow.go": "01 / 围棋",
+            "eyebrow.gomoku": "02 / 五子棋",
+            "eyebrow.connect6": "04 / 六子棋",
+            "eyebrow.connectFour": "06 / 重力四子棋",
+            "eyebrow.animal": "07 / 斗兽棋",
+            "eyebrow.checkers": "08 / 中国跳棋",
+            "eyebrow.math": "09 / 数学棋类问题",
+            "eyebrow.more": "10 / 更多棋种",
+            "game.3d": "三维连子棋",
+            "game.3dGo": "三维围棋 / Lizzie3D",
+            "game.3dFull": "三维连子棋 / Lizzie3D",
+            "game.aliveWin": "活棋胜（aliveWin）",
+            "game.amazons": "亚马逊棋（Amazons）",
+            "game.animal": "斗兽棋",
+            "game.animalAi": "斗兽棋 AI",
+            "game.breakthrough": "突破棋（Breakthrough）",
+            "game.captureGo": "吃子棋（Capture Go）",
+            "game.captureGomoku": "吃子五子棋",
+            "game.checkers": "中国跳棋",
+            "game.checkersAi": "中国跳棋 AI",
+            "game.checkersAmazons": "中国跳棋 / 亚马逊棋",
+            "game.chess": "国际象棋",
+            "game.clobber": "撞子棋（Clobber）",
+            "game.connectFour": "重力四子棋",
+            "game.connectFourAi": "重力四子棋 AI",
+            "game.dots": "点格棋（Dots and Boxes）",
+            "game.gomokuNnue": "五子棋 NNUE",
+            "game.hexCapture": "六角格吃子棋",
+            "game.hexGo": "六角格围棋（Hex Go）",
+            "game.killAll": "死活对局（Kill-all Go）",
+            "game.kingConnect": "王步四子棋",
+            "game.nijie": "逆界反五子棋",
+            "game.nogo": "不围棋（NoGo）",
+            "game.quoridor": "步步为营（Quoridor）",
+            "game.reversi": "黑白棋（Reversi）",
+            "game.scoreFour": "三维连四（Score Four）",
+            "game.stars": "星域（StarsZone）",
+            "game.surakarta": "回战棋（Surakarta）",
+            "game.ultimate": "终极井字棋",
+            "game.xiangqi": "中国象棋",
+            "game.xing": "形棋（Xing Qi）",
+            "game.zhen": "震棋（Zhen Qi）",
+            "hero.lead": "这是一个持续维护的资料库，收录数十种已经训练的棋和规则实验。研究结论与文件严格分开：每一项都会说明目前知道什么、能下载什么、准确源码在哪里，以及模型、数据集、规则或客户端是否公开。",
+            "hero.downloads": "浏览已发布版本",
+            "hero.catalog": "搜索完整资料库",
+            "guide.title": "五列信息，代表五种不同承诺",
+            "guide.lead": "有源码分支不等于已有可下载产品，自对弈结果也不等于严格证明。这里会一直把这些区别摆在明面上。",
+            "legend.results": "结论 / 状态",
+            "legend.results.desc": "当前实验支持什么，并在需要时明确不确定性。",
+            "legend.release": "下载 / Release",
+            "legend.release.desc": "已经打包、可以下载的引擎、模型、客户端或合集。",
+            "legend.source": "源代码",
+            "legend.source.desc": "该棋种对应的准确仓库或分支。",
+            "legend.dataset": "数据集 / 模型",
+            "legend.dataset.desc": "已经公开的训练数据或模型合集。",
+            "legend.notes": "规则 / 论文 / 体验",
+            "legend.notes.desc": "规则说明、论文、界面和相关笔记。",
+            "release.title": "当前可下载版本",
+            "release.lead": "如果你只想先运行程序，从这里开始。下方完整目录会继续补充源码、数据、规则说明与研究结论。",
+            "release.note": "“当前”指本资料库截至 2026 年 7 月 13 日记录到的最新公开版本；具体文件和版本说明请进入对应标签页查看。",
+            "catalog.title": "按棋种或资源类型查找",
+            "catalog.search.label": "搜索棋种、分支或结论",
+            "catalog.search.placeholder": "例如 NoGo、Transformer、数据集……",
+            "catalog.filter.label": "按资源类型筛选",
+            "catalog.count": "项结果",
+            "catalog.empty": "没有符合当前搜索和筛选条件的项目。",
+            "filter.all": "全部",
+            "filter.release": "可下载",
+            "filter.source": "有源码",
+            "filter.dataset": "有数据集",
+            "filter.results": "有结论",
+            "directory.label": "棋类家族",
+            "directory.go": "围棋与变种",
+            "directory.go.desc": "模型、数据与规则研究",
+            "directory.gomoku": "五子棋与变种",
+            "directory.gomoku.desc": "发布版、NNUE 与原创规则",
+            "directory.hex.desc": "引擎、源码与数据集",
+            "directory.connect6.desc": "程序、开局库与 NNUE",
+            "directory.ataxx.desc": "ONNX、Transformer 与数据",
+            "directory.connectfour.desc": "程序与多尺寸结论",
+            "directory.animal.desc": "引擎、界面与数据",
+            "directory.checkers.desc": "程序与研究状态",
+            "directory.math": "数学棋类问题",
+            "directory.math.desc": "Angel Problem 等实验",
+            "directory.more": "更多棋种",
+            "directory.more.desc": "NoGo、Amazons、原创棋种等",
+            "table.game": "棋种 / 项目",
+            "table.finding": "结论 / 状态",
+            "table.release": "下载 / Release",
+            "table.source": "源代码",
+            "table.dataset": "数据集 / 模型",
+            "table.notes": "规则 / 笔记 / 体验",
+            "status.active": "持续研究",
+            "status.published": "已有发布版",
+            "status.sourceOnly": "仅源码分支",
+            "status.research": "研究分支",
+            "status.inMainBuild": "主程序已收录",
+            "status.unavailable": "历史分支未保留",
+            "status.notOpen": "未开源",
+            "go.title": "围棋训练与规则变种",
+            "go.lead": "主线覆盖 CNN、Transformer、推理、公开模型和自对弈数据；其他行则把规则实验和可下载版本分开列出。",
+            "go.tableLabel": "围棋项目与资源",
+            "go.caption": "围棋项目的结论、发布版、源码、数据与参考资料",
+            "game.goTraining": "围棋训练主线",
+            "finding.goTraining": "CNN 与 Transformer 训练线，以及 ONNX / TensorRT 推理链路。",
+            "finding.3dGo": "支持 5×5×5 与 7×7×7。发布说明指出全盘双活较常见，当前测试认为贴目约 1 较为平衡；这些是现阶段观察，不是已解结论。",
+            "link.goModels": "模型合集",
+            "link.goData": "智子围棋自对弈数据",
+            "finding.captureGo": "先吃到对方一枚棋子者胜。",
+            "finding.killAll": "以杀死目标棋块为核心的死活变种。",
+            "finding.hexGo": "在六角格棋盘上使用围棋规则。",
+            "game.noAdjacent": "禁邻手围棋",
+            "finding.noAdjacent": "不能落在紧邻上一手的位置。",
+            "finding.hexCapture": "六角格棋盘上的吃子棋。",
+            "game.weightGo": "加权面积围棋",
+            "finding.weightGo": "不同区域或棋子使用不同的计分权重。",
+            "game.reverseCapture": "反向提子",
+            "finding.reverseCapture": "棋块无气时，先移除当前落子方的棋子。",
+            "game.yiziqianjin": "一子千金",
+            "finding.yiziqianjin": "吃一子计四目，使提子价值远高于普通围棋。",
+            "game.noMoveLoses": "无合法着判负",
+            "finding.noMoveLoses": "同组计分实验可近似理解为禁止 pass：先没有合法着法者输。",
+            "link.sameBranch": "同分支说明",
+            "finding.aliveWin": "白棋吃到一枚黑棋即胜；黑棋形成一块全部连通的活棋即胜。分支记录认为黑棋通常不难成活。",
+            "gomoku.title": "五子棋、NNUE 与规则变种",
+            "gomoku.lead": "KataGomo 是这一家族的主要发布线；NNUE、三维棋和探索性规则仍分别保留可核对的来源。",
+            "gomoku.tableLabel": "五子棋项目与资源",
+            "gomoku.caption": "五子棋项目的结论、发布版、源码、数据与参考资料",
+            "finding.katagomo": "支持无禁手、长连不胜、有禁手和 Caro 规则；桌面公开版日期为 2025-02-06。",
+            "link.mobileGomoku": "智子五子棋手机客户端",
+            "finding.nnue": "Rapfi NNUE 设计路线中的早期工作，重点是高效 CPU 推理。",
+            "link.nnuePaper": "NNUE 论文",
+            "finding.caro": "Caro 胜负规则已包含在 KataGomo 公开程序中。",
+            "finding.pente": "五连或达到吃子条件时获胜。",
+            "finding.3d": "支持连六、恰好连六、连七和仅坐标轴连五，棋盘为 11³ 或 13³；普通三维五子棋不在本次发布中。",
+            "note.3d": "ONNX-DirectML 引擎、模型与配套三维界面一并发布。",
+            "note.3dGo": "发布包包含 ONNX-DirectML 引擎、模型和配套 Lizzie3D 工作流；TensorRT 版本可另行编译。",
+            "game.bannedPoints": "禁点五子棋",
+            "finding.bannedPoints": "部分交叉点禁止落子。",
+            "game.endpointFive": "端点成五",
+            "finding.endpointFive": "完成五连的一手必须落在该线的端点。",
+            "game.doubleLine": "双线五子棋",
+            "finding.doubleLine": "采用不同于普通五子棋的双线连接结构。",
+            "game.moqi": "墨棋",
+            "finding.moqi": "前两手自由；之后合法点取决于横、竖或斜线上黑子数的奇偶性，先成五连者胜。",
+            "game.fiveCount": "连五计数",
+            "finding.fiveCount": "按形成五连的数量计分，而不是第一次五连就结束。",
+            "finding.captureGomoku": "结合连子与吃子两种目标。",
+            "game.arithmeticSix": "等差连六",
+            "finding.arithmeticSix": "目标六子位于等差数列位置，而非普通连续位置。",
+            "game.orthogonalFour": "直四棋",
+            "finding.orthogonalFour": "只有横向或纵向四连有效。先手存在简单胜法，但部分开局仍有一定复杂度。",
+            "hex.lead": "KataHex 同时提供可运行程序、准确训练分支和公开数据集。",
+            "hex.tableLabel": "Hex 项目资源",
+            "hex.caption": "Hex 的发布版、源码、数据与状态",
+            "finding.hex": "公开版日期为 2025-01-31。",
+            "connect6.lead": "发布包包含 KataConnect6 和开局库；源码与 NNUE 实验另列。",
+            "connect6.tableLabel": "六子棋项目资源",
+            "connect6.caption": "六子棋发布版、源码、NNUE 与当前结论",
+            "finding.connect6": "当前模型认为黑棋很可能获胜：19×19 疑似可在 55 步内取胜，25×25 疑似可在 45 步内取胜。这是模型结论，不是已解证明。",
+            "note.connect6": "发布版包含开局库。",
+            "ataxx.lead": "KataAtaxx 将 ONNX 引擎、Transformer 模型路线与训练数据分别公开。",
+            "ataxx.tableLabel": "Ataxx 项目资源",
+            "ataxx.caption": "Ataxx 发布版、源码、数据与当前结论",
+            "finding.ataxx": "记录的 7×7 模型自对弈中，先手胜率约为 57%。",
+            "connectfour.lead": "可运行版本与准确源码独立列出，多棋盘尺寸的胜负矩阵另行展示。",
+            "connectfour.tableLabel": "重力四子棋项目资源",
+            "connectfour.caption": "重力四子棋发布版、源码与当前结论",
+            "finding.connectfour": "记录了 20×20 及以下棋盘的初步胜负；图片后附完整等价文字。",
+            "link.viewMatrix": "查看结果矩阵",
+            "matrix.connectfour.label": "重力四子棋不同棋盘尺寸的胜负矩阵",
+            "matrix.connectfour.alt": "重力四子棋宽高各 1 至 20 的胜负矩阵；后附等价文字",
+            "matrix.connectfour.caption": "重力四子棋 20×20 及以下棋盘的初步结论。",
+            "matrix.showText": "查看等价文字结论",
+            "matrix.connectfour.key": "行表示棋盘高度，列表示宽度；D 为和棋，W 为先手胜，L 为后手胜。",
+            "matrix.connectfour.1": "高度 1–3：所有宽度均为和棋；宽度 1–5：所有高度均为和棋。",
+            "matrix.connectfour.2": "高度 4：宽 6、8–15 为后手胜，宽 16–20 为先手胜，其余为和棋。",
+            "matrix.connectfour.3": "高度 5：宽 1–7 为和棋，宽 8–20 为先手胜。",
+            "matrix.connectfour.4": "偶数高度 6–20：宽 6、8 为后手胜，宽 7 与宽 9–20 为先手胜，宽 1–5 为和棋；唯一例外是高度 6、宽度 9 也为后手胜。",
+            "matrix.connectfour.5": "奇数高度 7–19：宽 1–5 与宽 7 为和棋，宽 6 与宽 8–20 为先手胜。",
+            "animal.lead": "界面发布版、引擎源码与训练数据分别维护。",
+            "animal.tableLabel": "斗兽棋项目资源",
+            "animal.caption": "斗兽棋界面、源码、数据与研究结论",
+            "finding.animal": "当前模型自对弈显示，标准斗兽棋非常接近和棋。",
+            "note.animal": "Dandelion 提供可对弈界面与 AI 程序包。",
+            "checkers.lead": "已有可运行版本与训练分支；结论仍是基于当前模型的实验观察。",
+            "checkers.tableLabel": "中国跳棋项目资源",
+            "checkers.caption": "中国跳棋发布版、源码与当前结论",
+            "finding.checkers": "当前模型自对弈非常接近和棋。",
+            "math.title": "数学棋类问题与搜索实验",
+            "math.lead": "同一训练框架还用于探索 Angel Problem、七连珠证明尝试、Dawson's Chess 与 Escape Go。",
+            "math.tableLabel": "数学棋类问题项目资源",
+            "math.caption": "数学棋类问题的源码与研究状态",
+            "game.mathExperiments": "数学棋类实验",
+            "finding.math": "探索性工作；目前没有单独列出的公开程序。",
+            "more.title": "更多棋种、原创规则与历史分支",
+            "more.lead": "这张表信息密度较高，但结构固定：结论只放第二列，文件放中间三列，规则参考与交互说明放在最后。",
+            "more.tableLabel": "其他棋种、资源与结论",
+            "more.caption": "其他棋种的结论、发布版、源码、数据集与规则",
+            "finding.nogo": "9×9 棋盘记录到的初始先手胜率约为 90%。",
+            "button.rules": "规则",
+            "button.allSizes": "其他尺寸",
+            "aria.nogoRules": "打开不围棋规则",
+            "aria.nogoResults": "打开不围棋其他尺寸的结论",
+            "finding.amazons": "10×10 棋盘记录到的先手胜率约为 70%。",
+            "finding.breakthrough": "8×8 棋盘的当前模型结果接近先手必胜。",
+            "aria.breakthroughResults": "打开突破棋其他尺寸的结论",
+            "finding.reversi": "在这次实验中，KataGo 路线不如成熟的传统黑白棋程序。",
+            "finding.ultimate": "无 Tiebreaker：先手胜 21%、后手胜 2%、和棋 77%；使用 Tiebreaker：分别为 78%、4%、18%。",
+            "finding.scoreFour": "三维连四实验。",
+            "finding.dots": "画线成格的组合博弈实验。",
+            "finding.quoridor": "放置挡板的竞速棋实验。",
+            "finding.surakarta": "印度尼西亚传统吃子棋实验。",
+            "finding.clobber": "组合博弈实验。",
+            "game.antiConnect": "反五 / 四 / 三子棋",
+            "finding.antiConnect": "先连成目标长度的一方判负。",
+            "aria.antiRules": "打开反五、四、三子棋规则",
+            "finding.zhenqi": "逆界系原创棋种；落子后相邻棋子可能被向外推开。",
+            "aria.zhenRules": "打开震棋规则",
+            "finding.xingqi": "逆界系原创的对称图形计分棋。",
+            "aria.xingRules": "打开形棋规则",
+            "finding.kingConnect": "由王步邻接关系限制落点的非重力四子棋变体。",
+            "aria.kingRules": "打开王步四子棋规则",
+            "finding.nijie": "结合己方落子与移动对方棋子的原创反五子棋。",
+            "aria.nijieRules": "打开逆界反五子棋规则",
+            "finding.stars": "每回合放一枚己方棋子，并可放一枚有配额的中立禁点；双方各 16 子后按关系模式计分，同分时中立禁点较少者胜。",
+            "finding.xiangqi": "分支记录显示 PX0 的表现明显更强。",
+            "finding.chess": "早期小规模测试；这里没有保留相应分支。",
+            "link.rules": "规则",
+            "dialog.anti.title": "反五 / 四 / 三子棋",
+            "dialog.anti.1": "这类规则把“先连成目标长度获胜”反转为“先连成目标长度判负”。",
+            "dialog.anti.2": "反五、反四与反三的核心相同，只是目标连线长度不同。",
+            "dialog.nogo.1": "不围棋沿用围棋的落子方式，但任何一手都不能提子，也不能自杀。",
+            "dialog.nogo.2": "如果某一步会移除对方棋块，或让落下的己方棋块无气，该步就是非法着。",
+            "dialog.nogo.3": "通常以先没有合法着法者判负。",
+            "dialog.zhen.title": "震棋（Zhen Qi / Quake Gomoku）",
+            "dialog.zhen.1": "落下一子后，八个方向上的相邻棋子会被向外推一格：目标为空则移动，越过棋盘边界则移除，目标被占则留在原位。",
+            "dialog.zhen.2": "移动结算后，任一方横、竖或斜线形成四连即胜；双方同时四连时由规则参数决定胜者。Pass 直接判负。",
+            "dialog.xing.title": "形棋（Xing Qi / Symmetry Game）",
+            "dialog.xing.1": "同色棋子按八邻接组成连通块。至少六子的连通块如果关于包围盒的水平轴、垂直轴或任一对角线对称，就会被移除。",
+            "dialog.xing.2": "移除 n 枚棋子的形状可得 n − 5 分；默认目标为 4 分，先把剩余目标降到 0 的一方获胜。Pass 判负。",
+            "dialog.king.1": "第一手可落在任意空点；之后每一手必须位于至少一枚对方棋子的八邻域，也就是国际象棋中王一步可达的位置。",
+            "dialog.king.2": "棋子不受重力影响；先在横、竖或斜线形成四连者获胜。",
+            "dialog.nijie.1": "每回合可以在空点放一枚己方棋子，也可以选中一枚对方棋子，让它沿横、竖或斜线移动到路径无阻的空点；原位置随后换成己方棋子。",
+            "dialog.nijie.2": "任一颜色形成五连时，该颜色判负。Pass 判负；棋盘填满且没有五连则和棋。",
+            "dialog.nogoResults.title": "不围棋结论",
+            "dialog.nogoResults.lead": "不围棋 13×13 及以下棋盘的初始先手胜率。",
+            "matrix.nogo.label": "不围棋不同棋盘尺寸的先手胜率矩阵",
+            "matrix.nogo.alt": "不围棋宽高 1 至 13 的先手胜率矩阵；后附等价值",
+            "matrix.nogo.caption": "不围棋 13×13 及以下棋盘的初始先手胜率。",
+            "matrix.showValues": "查看等价值",
+            "matrix.nogo.key": "行表示高度 1–13，列表示宽度 1–13；每个数值都是先手胜率百分比。",
+            "matrix.nogo.data": "宽度 →  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13\n高 1:      0,100,100,  0,100,100,100,100,100,100,100,100,100\n高 2:    100,100,  0,  0,100, 99, 99, 99,  0,  2, 98, 98, 96\n高 3:    100,  0,100,  0, 99, 98, 98, 98, 94, 93, 87, 88, 87\n高 4:      0,  0,  0,  0, 97, 96, 95, 90, 80, 80, 78, 75, 75\n高 5:    100,100, 99, 97, 97, 90, 88, 87, 69, 61, 61, 59, 57\n高 6:    100, 99, 98, 96, 90, 90, 83, 87, 83, 81, 81, 81, 79\n高 7:    100, 99, 98, 95, 88, 83, 84, 87, 89, 86, 83, 82, 82\n高 8:    100, 99, 98, 90, 87, 87, 87, 90, 89, 85, 85, 81, 76\n高 9:    100,  0, 94, 80, 69, 83, 89, 89, 87, 84, 81, 80, 78\n高 10:   100,  2, 93, 80, 61, 81, 86, 85, 84, 80, 80, 76, 75\n高 11:   100, 98, 87, 78, 61, 81, 83, 85, 81, 80, 76, 77, 76\n高 12:   100, 98, 88, 75, 59, 81, 82, 81, 80, 76, 77, 76, 74\n高 13:   100, 96, 87, 75, 57, 79, 82, 76, 78, 75, 76, 74, 73",
+            "dialog.breakthrough.title": "突破棋结论",
+            "dialog.breakthrough.lead": "突破棋 10×10 及以下棋盘的初始先手胜率。",
+            "matrix.breakthrough.label": "突破棋不同棋盘尺寸的先手胜率矩阵",
+            "matrix.breakthrough.alt": "突破棋宽 2 至 10、高 4 至 10 的先手胜率矩阵；后附等价值",
+            "matrix.breakthrough.caption": "突破棋 10×10 及以下棋盘的初始先手胜率。",
+            "matrix.breakthrough.key": "行表示高度 4–10，列表示宽度 2–10；每个数值都是先手胜率百分比。",
+            "matrix.breakthrough.data": "宽度 →  2,  3,  4,  5,  6,  7,  8,  9, 10\n高 4:      0,  0,  0,  0,  0,  0,  0,  0,  0\n高 5:      0,  0,  0,  0,  0,  0,  0,  0,  1\n高 6:    100,100,100,100, 99, 98, 96, 76, 71\n高 7:      0,  0,100, 99, 98, 97, 94, 70, 50\n高 8:    100,100,100, 99, 98, 98, 94, 71, 63\n高 9:      0,  1,100, 95, 69, 80, 65, 63, 59\n高 10:   100, 99, 97, 81, 66, 74, 66, 62, 59",
+            "matrix.legend": "红色表示先手优势，蓝色表示后手优势。",
+            "button.close": "关闭",
+            "footer.summary": "棋类 AI · 发布版、源码、数据集与研究结论",
+            "footer.label": "页脚导航",
+            "footer.email": "邮件联系",
+            "footer.project": "项目概览"
+        }
+    }
     </script>
 </body>
 </html>

@@ -1,0 +1,35 @@
+.qlizzie-screenshots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6);
+}
+
+.qlizzie-screenshots figure {
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.qlizzie-screenshots img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #101719;
+  border-radius: var(--radius-xs);
+}
+
+.qlizzie-screenshots figcaption {
+  margin-top: var(--space-3);
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 52rem) {
+  .qlizzie-screenshots {
+    grid-template-columns: 1fr;
+  }
+}
