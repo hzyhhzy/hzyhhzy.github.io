@@ -1,1136 +1,163 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大数阶梯 - Googology Scale</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-            background-color: #fdfdfd;
-            color: #333;
-        }
-
-        #app {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            cursor: grab;
-            user-select: none;
-        }
-
-        #app:active {
-            cursor: grabbing;
-        }
-
-        #ruler-container {
-            position: absolute;
-            top: 50%;
-            height: 60px; /* 增加容器高度以支持双层轴 */
-            /* background: #ccc; 移除背景色，由 axis-segment 自己绘制 */
-            transform: translateY(-50%);
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            overflow: visible;
-        }
-
-        .axis-segment {
-            height: 30px; /* 默认段高度 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: bold;
-            white-space: nowrap;
-            padding: 0 5px;
-            box-sizing: border-box;
-            position: absolute;
-            cursor: pointer;
-            transition: filter 0.2s, transform 0.2s;
-            z-index: 12; /* 提高层级，确保在曲线之上 */
-        }
-
-        .axis-segment:hover {
-            filter: brightness(1.1);
-            z-index: 20;
-        }
-
-        .ellipsis-dot {
-            position: absolute;
-            height: 30px;
-            z-index: 10;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .axis-arrow {
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-top: 25px solid transparent;
-            border-bottom: 25px solid transparent;
-            z-index: 15;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .branch-axis {
-            position: absolute;
-            height: 30px; /* 分支轴也加粗 */
-            background: #000; /* 分叉后统一黑色 */
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff; /* 白字 */
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 0 4px 4px 0;
-            padding: 0 10px;
-            box-sizing: border-box; /* 确保宽度包含 padding */
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.2s;
-        }
-
-        .branch-axis:hover {
-            background-color: #333;
-            transform: translateY(-50%) scaleX(1.02);
-            transform-origin: left;
-        }
-
-        .fork-curve {
-            fill: none;
-            stroke: #000; /* 曲线也统一黑色 */
-            stroke-width: 30px; /* 曲线也要加粗匹配分支轴 */
-        }
-
-        #svg-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 4;
-        }
-
-        /* 刻度线 */
-        .tick {
-            position: absolute;
-            width: 3px;
-            background-color: #000;
-            z-index: 5;
-            pointer-events: none;
-            /* 解决 1px 渲染偏差问题 */
-            shape-rendering: crispEdges;
-            will-change: left;
-        }
-
-        .scale-item {
-            position: absolute;
-            top: calc(50% - 40px);
-            transform: translate(-50%, -100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            white-space: nowrap;
-            transition: opacity 0.3s, transform 0.3s;
-            z-index: 10;
-        }
-
-        /* 下方的文字项 */
-        .scale-item.side-bottom {
-            top: calc(50% + 40px);
-            transform: translate(-50%, 0);
-        }
-
-        .scale-label {
-            position: relative;
-            font-size: 16px;
-            font-weight: 600;
-            color: #1a1a1a;
-            padding: 8px 14px; /* 增加内边距 */
-            background: rgba(255, 255, 255, 0.95);
-            border: 1.5px solid #333;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
-            /*white-space: nowrap;*/
-            /*line-height: 1.2;*/
-            white-space: normal; /* 允许换行 */
-            word-wrap: break-word;
-            max-width: 200px; /* 限制最大宽度以触发换行 */
-            line-height: 1.4; /* 增加行高 */
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .scale-label:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            background: #fff;
-        }
-
-        /* Zoom Level Specific Styles */
-        /* Lower zoom level (more important) gets higher z-index */
-        .scale-item.zoom-level-0 { z-index: 50; }
-        .scale-item.zoom-level-0 .scale-label {
-            font-size: 20px;
-            border: 3px solid #800;
-            font-weight: 700;
-        }
-
-        .scale-item.zoom-level-1 { z-index: 40; }
-        .scale-item.zoom-level-1 .scale-label {
-            font-size: 18px;
-            border: 2px solid #00f;
-            font-weight: 700;
-        }
-
-        .scale-item.zoom-level-2 { z-index: 30; }
-        .scale-item.zoom-level-2 .scale-label {
-            font-size: 16px;
-            border: 1.5px solid #090;
-            font-weight: 600;
-        }
-
-        .scale-item.zoom-level-3 { z-index: 20; }
-        .scale-item.zoom-level-3 .scale-label {
-            font-size: 12px;
-            border: 1px solid #777;
-            font-weight: 400;
-        }
-
-        .info-icon {
-            position: absolute;
-            top: -6px;
-            right: -6px;
-            width: 14px;
-            height: 14px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230066cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='12' y1='16' x2='12' y2='12'/%3E%3Cline x1='12' y1='8' x2='12.01' y2='8'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-color: #fff;
-            border-radius: 50%;
-            z-index: 2;
-        }
-
-        .code-icon {
-            position: absolute;
-            top: 10px; /* Positioned below info-icon */
-            right: -6px;
-            width: 14px;
-            height: 14px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2328a745' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='16 18 22 12 16 6'/%3E%3Cpolyline points='8 6 2 12 8 18'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-color: #fff;
-            border-radius: 50%;
-            z-index: 2;
-        }
-
-        .btn-icon {
-            display: inline-block;
-            width: 14px;
-            height: 14px;
-            margin-right: 6px;
-            vertical-align: text-bottom;
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-
-        .btn-icon.info {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230066cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='12' y1='16' x2='12' y2='12'/%3E%3Cline x1='12' y1='8' x2='12.01' y2='8'/%3E%3C/svg%3E");
-        }
-
-        .btn-icon.code {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2328a745' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='16 18 22 12 16 6'/%3E%3Cpolyline points='8 6 2 12 8 18'/%3E%3C/svg%3E");
-        }
-
-        /* 弹窗样式 */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: flex-end; /* 靠右显示 */
-            align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(2px);
-        }
-
-        .modal-content {
-            width: 800px;
-            max-width: 90vw;
-            height: 80%;
-            background: white;
-            margin-right: 40px;
-            border-radius: 12px;
-            position: relative;
-            padding: 30px;
-            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
-            overflow-y: auto;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #666;
-            transition: color 0.2s;
-            line-height: 1;
-        }
-
-        .modal-close:hover {
-            color: #000;
-        }
-
-        #modal-body {
-            color: #333;
-            line-height: 1.6;
-        }
-
-        #modal-body h2 {
-            margin-top: 0;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-
-        #modal-body pre, #modal-body code {
-            background: #1e1e1e !important; /* 强制深色背景 */
-            color: #d4d4d4 !important;      /* 强制浅色文字 */
-        }
-
-        #modal-body pre {
-            padding: 16px;
-            border-radius: 8px;
-            overflow-x: auto;
-            font-family: 'Cascadia Code', 'Consolas', 'Monaco', 'Courier New', monospace; /* 更加接近 IDE 的字体 */
-            font-size: 14px;
-            border: 1px solid #3c3c3c;
-            line-height: 1.6;
-            margin: 15px 0;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-            tab-size: 4;
-        }
-
-        #modal-body code {
-            font-family: 'Cascadia Code', 'Consolas', 'Monaco', 'Courier New', monospace;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-
-        #modal-body img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-            margin: 10px 0;
-        }
-
-        #modal-body a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-
-        #modal-body a:hover {
-            text-decoration: underline;
-        }
-
-        /* 支持多重上下标 */
-        .scale-label sup, .scale-label sub {
-            font-size: 0.75em;
-            line-height: 0;
-            position: relative;
-            vertical-align: baseline;
-        }
-        .scale-label sup { top: -0.5em; }
-        .scale-label sub { bottom: -0.25em; }
-        
-        /* 嵌套上下标自动缩小 */
-        .scale-label sup sup, .scale-label sup sub,
-        .scale-label sub sup, .scale-label sub sub {
-            font-size: 0.8em;
-        }
-
-        .scale-label a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-
-        .scale-label a:hover {
-            text-decoration: underline;
-        }
-
-        #ui-overlay {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            pointer-events: none;
-            z-index: 100;
-        }
-
-        #filter-controls {
-            position: fixed;
-            top: 60px;
-            left: 20px;
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border: 1px solid #ddd;
-        }
-
-        #filter-controls button {
-            padding: 6px 12px;
-            border: 1px solid #ccc;
-            background: #fff;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 13px;
-            text-align: left;
-            transition: all 0.2s;
-        }
-
-        #filter-controls button:hover {
-            background: #f0f0f0;
-        }
-
-        #filter-controls button.active {
-            background: #0066cc;
-            color: white;
-            border-color: #0055aa;
-        }
-
-        #filter-controls label {
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .filter-separator {
-            height: 1px;
-            background: #eee;
-            margin: 2px 0;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 24px;
-            color: #222;
-            letter-spacing: 1px;
-        }
-
-        #controls {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            z-index: 100;
-            border: 1px solid #eee;
-        }
-
-        .zoom-info {
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-
-        .hint {
-            font-size: 12px;
-            color: #999;
-        }
-
-        /* 隐藏不满足缩放条件的内容 */
-        .hidden {
-            opacity: 0;
-            pointer-events: none;
-            transform: translate(-50%, -100%) scale(0.8);
-        }
-        
-        .scale-item.side-bottom.hidden {
-            transform: translate(-50%, 0) scale(0.8);
-        }
-
-        /* IDE Window Style */
-        .ide-window {
-            background: #1e1e1e;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin: 20px 0;
-            overflow: hidden;
-            border: 1px solid #333;
-            font-family: 'Cascadia Code', 'Consolas', monospace;
-            text-align: left;
-        }
-
-        .ide-header {
-            background: #2d2d2d;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid #1e1e1e;
-        }
-
-        .ide-controls {
-            display: flex;
-            gap: 8px;
-            margin-right: 15px;
-        }
-
-        .ide-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .ide-dot.red { background: #ff5f56; }
-        .ide-dot.yellow { background: #ffbd2e; }
-        .ide-dot.green { background: #27c93f; }
-
-        .ide-title {
-            color: #999;
-            font-size: 13px;
-            flex: 1;
-            text-align: center;
-            margin-right: 55px; /* Balance the controls width */
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            font-weight: 500;
-        }
-
-        .ide-content {
-            padding: 20px !important;
-            margin: 0 !important;
-            overflow-x: auto;
-            color: #d4d4d4;
-            font-size: 14px;
-            line-height: 1.6;
-            background: #1e1e1e !important;
-            border: none !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-            font-family: 'Cascadia Code', 'Consolas', monospace !important;
-        }
-
-        .ide-content code {
-            font-family: inherit !important;
-            background: transparent !important;
-            padding: 0 !important;
-            border-radius: 0 !important;
-            color: inherit !important;
-            white-space: pre;
-        }
-    </style>
-    <!-- Highlight.js for syntax highlighting -->
+    <title>大数阶梯 — Googology Scale</title>
+    <link rel="stylesheet" href="lib/katex/katex.min.css">
     <link rel="stylesheet" href="lib/atom-one-dark.min.css">
+    <link rel="stylesheet" href="styles.css?v=20260724-latex">
     <script src="lib/highlight.min.js"></script>
-
 </head>
 <body>
-    <div id="app">
+    <main
+        id="app"
+        aria-label="Googology Scale"
+        data-i18n-aria-label="ui.title"
+    >
         <div id="ruler-container"></div>
-        <svg id="svg-layer"></svg>
-        <div id="ticks-container"></div>
+        <svg id="svg-layer" aria-hidden="true"></svg>
+        <div id="ticks-container" aria-hidden="true"></div>
         <div id="items-container"></div>
-    </div>
+    </main>
 
-    <!-- 详情弹窗 -->
-    <div id="detail-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
+    <div id="detail-modal" class="modal-overlay" aria-hidden="true" hidden>
+        <div
+            class="modal-content"
+            role="dialog"
+            aria-modal="true"
+            aria-label="内容详情"
+        >
+            <button
+                class="modal-close"
+                type="button"
+                aria-label="关闭详情"
+            >&times;</button>
             <div id="modal-body"></div>
         </div>
     </div>
 
-    <div id="ui-overlay">
-        <h1>Googology Scale</h1>
-    </div>
+    <header id="ui-overlay">
+        <h1 data-i18n="ui.title">Googology Scale</h1>
+        <label id="language-control" for="language-select">
+            <span data-i18n="ui.language">语言</span>
+            <select id="language-select"></select>
+        </label>
+    </header>
 
-    <div id="filter-controls">
-        <button id="btn-show-all" class="active" onclick="setFilter('all')">显示全部</button>
-        <button id="btn-show-info" onclick="setFilter('info')"><span class="btn-icon info"></span>只显示详情</button>
-        <button id="btn-show-code" onclick="setFilter('code')"><span class="btn-icon code"></span>只显示代码</button>
-        <div class="filter-separator"></div>
-        <label><input type="checkbox" id="check-zoom-level" checked> 根据缩放隐藏</label>
-        <div id="zoom-manual-control" style="display: none; padding-top: 8px; border-top: 1px dashed #eee; margin-top: 5px;">
-            <div style="font-size: 12px; margin-bottom: 4px; color: #666;">
-                显示等级: <span id="zoom-slider-value">0</span> (0-3)
+    <section
+        id="filter-controls"
+        aria-label="内容筛选"
+        data-i18n-aria-label="ui.filters.label"
+    >
+        <button
+            id="btn-show-all"
+            type="button"
+            class="active"
+            data-filter="all"
+            aria-pressed="true"
+        >
+            <span data-i18n="ui.filters.all">显示全部</span>
+        </button>
+        <button
+            id="btn-show-info"
+            type="button"
+            data-filter="info"
+            aria-pressed="false"
+        >
+            <span class="btn-icon info" aria-hidden="true"></span>
+            <span data-i18n="ui.filters.info">只显示有说明的条目</span>
+        </button>
+        <button
+            id="btn-show-code"
+            type="button"
+            data-filter="code"
+            aria-pressed="false"
+        >
+            <span class="btn-icon code" aria-hidden="true"></span>
+            <span data-i18n="ui.filters.code">只显示有代码的条目</span>
+        </button>
+        <div class="filter-separator" aria-hidden="true"></div>
+        <label>
+            <input type="checkbox" id="check-zoom-level" checked>
+            <span data-i18n="ui.filters.zoomVisibility">
+                根据缩放自动隐藏
+            </span>
+        </label>
+        <div id="zoom-manual-control" class="zoom-manual-control" hidden>
+            <div id="zoom-manual-label" class="zoom-manual-header">
+                显示层级：0（0–3）
             </div>
-            <input type="range" id="zoom-slider" min="0" max="3" step="1" value="0" style="width: 100%;">
-            <div style="display: flex; justify-content: space-between; font-size: 10px; color: #999;">
+            <input
+                class="zoom-slider"
+                type="range"
+                id="zoom-slider"
+                min="0"
+                max="3"
+                step="1"
+                value="0"
+            >
+            <div class="zoom-scale-labels" aria-hidden="true">
                 <span>0</span><span>1</span><span>2</span><span>3</span>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div id="controls">
-        <div class="zoom-info">缩放倍率: <span id="zoom-level">1.0</span>x</div>
-        <div class="hint" style="margin-bottom: 10px;">滚轮缩放 / 拖拽移动</div>
-        <div style="display: flex; gap: 5px;">
-            <button onclick="resetView()" style="flex: 1; padding: 5px; cursor: pointer; border: 1px solid #ccc; background: #fff; border-radius: 4px;">回到起点</button>
-            <button onclick="changeZoom(1.2)" style="padding: 5px 10px; cursor: pointer; border: 1px solid #ccc; background: #fff; border-radius: 4px;">+</button>
-            <button onclick="changeZoom(0.8)" style="padding: 5px 10px; cursor: pointer; border: 1px solid #ccc; background: #fff; border-radius: 4px;">-</button>
+    <section
+        id="controls"
+        aria-label="视图控制"
+        data-i18n-aria-label="ui.view.label"
+    >
+        <div class="zoom-info">
+            <span data-i18n="ui.view.zoom">缩放倍率：</span>
+            <span id="zoom-level">1.0</span>x
         </div>
-    </div>
+        <div class="hint controls-hint" data-i18n="ui.view.hint">
+            滚轮缩放 / 拖拽移动
+        </div>
+        <div class="control-buttons">
+            <button
+                type="button"
+                class="control-button control-button-reset"
+                data-action="reset"
+            >
+                <span data-i18n="ui.view.reset">回到起点</span>
+            </button>
+            <button
+                type="button"
+                class="control-button"
+                data-zoom-factor="1.2"
+                aria-label="放大"
+                data-i18n-aria-label="ui.view.zoomIn"
+            >+</button>
+            <button
+                type="button"
+                class="control-button"
+                data-zoom-factor="0.8"
+                aria-label="缩小"
+                data-i18n-aria-label="ui.view.zoomOut"
+            >−</button>
+        </div>
+    </section>
 
-    <script src="items.js"></script>
-    <script src="axis_items.js"></script>
-    <script>
-        const app = document.getElementById('app');
-        const itemsContainer = document.getElementById('items-container');
-        const ticksContainer = document.getElementById('ticks-container');
-        const zoomLevelDisplay = document.getElementById('zoom-level');
-        const checkZoomLevel = document.getElementById('check-zoom-level');
-        const zoomManualControl = document.getElementById('zoom-manual-control');
-        const zoomSlider = document.getElementById('zoom-slider');
-        const zoomSliderValue = document.getElementById('zoom-slider-value');
-
-        let currentFilter = 'all'; // all, info, code
-
-        function setFilter(filter) {
-            currentFilter = filter;
-            document.querySelectorAll('#filter-controls button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            if (filter === 'all') document.getElementById('btn-show-all').classList.add('active');
-            if (filter === 'info') document.getElementById('btn-show-info').classList.add('active');
-            if (filter === 'code') document.getElementById('btn-show-code').classList.add('active');
-            update();
-        }
-
-        checkZoomLevel.addEventListener('change', () => {
-            if (checkZoomLevel.checked) {
-                zoomManualControl.style.display = 'none';
-            } else {
-                zoomManualControl.style.display = 'block';
-                zoomSliderValue.innerText = zoomSlider.value;
-            }
-            update();
-        });
-
-        zoomSlider.addEventListener('input', () => {
-            zoomSliderValue.innerText = zoomSlider.value;
-            update();
-        });
-
-        // 刻度尺坐标配置
-        const RULER_CONFIG = {
-            START: 0,           // 主轴起点
-            DOUBLE_AXIS_END: 6.0, // 双层轴结束点
-            FORK_X: 6.75,       // 主轴分叉点 (开始弯曲)
-            BRANCH_START: 7.25, // 分支轴起点 (变回直线)
-            BRANCH_END: 8.85,   // 分支轴终点 (开始合并弯曲)
-            MERGE_X: 9.0,      // 分支轴合并点 (回到主轴)
-            UNCOMPUTABLE_START: 9.5, // 不可计算函数段起点
-            END: 12.0           // 刻度尺总终点
-        };
-
-        // 基础配置
-        let pixelsPerUnit = 250; 
-        let zoom = 1.0;
-        let offsetX = 0; 
-        
-        // 功能开关
-        const FEATURES = {
-            SHOW_MERGE_CURVES: false // 控制分支合并曲线的显示
-        };
-
-        // 缩放等级预设
-        const zoomLevels = {
-            0: 0,   // 永远显示
-            1: 2,   // > 2
-            2: 4,   // > 4
-            3: 10   // > 10
-        };
-
-        function clampOffset() {
-            // 使用配置的范围
-            const unitWidth = pixelsPerUnit * zoom;
-            const centerX = window.innerWidth / 2;
-            
-            // 最左端限制：START 坐标在屏幕中间
-            const maxOffsetX = centerX - RULER_CONFIG.START * unitWidth;
-            
-            // 最右端限制：END 坐标在屏幕中间
-            const minOffsetX = centerX - RULER_CONFIG.END * unitWidth;
-
-            if (offsetX > maxOffsetX) offsetX = maxOffsetX;
-            if (offsetX < minOffsetX) offsetX = minOffsetX;
-        }
-
-        function resetView() {
-            zoom = 1.0;
-            // 让全图（START 到 END）居中
-            const midPoint = (RULER_CONFIG.START + RULER_CONFIG.END) / 2;
-            offsetX = (window.innerWidth / 2) - (midPoint * pixelsPerUnit * zoom);
-            clampOffset();
-            update();
-        }
-
-        function changeZoom(factor) {
-            const oldZoom = zoom;
-            zoom *= factor;
-            zoom = Math.max(0.1, Math.min(zoom, 20));
-            const centerX = window.innerWidth / 2;
-            offsetX = centerX - (centerX - offsetX) * (zoom / oldZoom);
-            clampOffset();
-            update();
-        }
-
-        // 分支 Y 偏移配置 (相对于屏幕中心)
-        const branchYOffsets = {
-            1: -225,
-            2: -75,
-            3: 75,
-            4: 225
-        };
-
-        function update() {
-            renderItems();
-            renderTicks();
-            updateRuler();
-            zoomLevelDisplay.innerText = zoom.toFixed(2);
-        }
-
-        function updateRuler() {
-            const container = document.getElementById('app');
-            const svgLayer = document.getElementById('svg-layer');
-            const ruler = document.getElementById('ruler-container');
-            
-            // 清理旧的分支轴、分段和箭头
-            const oldElements = container.querySelectorAll('.branch-axis, .axis-segment, .axis-arrow, [style*="border-left"]');
-            oldElements.forEach(el => el.remove());
-            ruler.innerHTML = ''; // 清空主轴内容
-            
-            // 清理旧的曲线
-            svgLayer.innerHTML = '';
-
-            const unitWidth = pixelsPerUnit * zoom;
-            const x_start = offsetX + (RULER_CONFIG.START * unitWidth);
-            const x_fork = offsetX + (RULER_CONFIG.FORK_X * unitWidth);
-            const x_branch_start = offsetX + (RULER_CONFIG.BRANCH_START * unitWidth);
-            const x_branch_end = offsetX + (RULER_CONFIG.BRANCH_END * unitWidth);
-            const x_merge = offsetX + (RULER_CONFIG.MERGE_X * unitWidth);
-            const x_end = offsetX + (RULER_CONFIG.END * unitWidth);
-            
-            // 主轴基础位置
-            ruler.style.left = `${x_start}px`;
-            // 主轴现在分三段：起点到分叉，合并点到终点
-            // 我们通过添加额外的 segment 来覆盖主轴，所以这里容器宽度只要覆盖所有可能区域
-            ruler.style.width = `${x_end - x_start + 5}px`; 
-
-            // 绘制主轴分段文字和颜色
-            axisSegments.forEach(seg => {
-                const segDiv = document.createElement('div');
-                segDiv.className = 'axis-segment';
-                const segLeft = (seg.start - RULER_CONFIG.START) * unitWidth;
-                const segWidth = (seg.end - seg.start) * unitWidth;
-                segDiv.style.left = `${segLeft}px`;
-                segDiv.style.width = `${segWidth + 5}px`; // 增加 5px 重叠
-                segDiv.style.backgroundColor = seg.bg;
-                segDiv.style.color = seg.color;
-                segDiv.innerText = seg.text;
-                
-                // (0, DOUBLE_AXIS_END) 范围内的段处于上半部分
-                if (seg.end <= RULER_CONFIG.DOUBLE_AXIS_END) {
-                    segDiv.style.top = '0';
-                    segDiv.style.fontSize = '12px';
-                    segDiv.style.zIndex = '30'; // 提高层级，以免被分支遮挡
-                } else {
-                    // 其他段居中显示
-                    segDiv.style.top = '15px';
-                }
-
-                // 添加点击事件显示详情
-                segDiv.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    if (seg.detail) {
-                        showModal(seg.detail);
-                    }
-                });
-                
-                ruler.appendChild(segDiv);
-            });
-
-            // 添加下半部分细化段 (来自 axisSubSegments)
-            axisSubSegments.forEach(sub => {
-                const subSeg = document.createElement('div');
-                subSeg.className = 'axis-segment sub-segment';
-                const segLeft = (sub.start - RULER_CONFIG.START) * unitWidth;
-                const segWidth = (sub.end - sub.start) * unitWidth;
-                subSeg.style.left = `${segLeft}px`;
-                subSeg.style.width = `${segWidth + 5}px`;
-                subSeg.style.height = '30px';
-                subSeg.style.top = '30px';
-                subSeg.style.zIndex = '30'; // 提高层级
-                subSeg.style.backgroundColor = sub.bg;
-                subSeg.style.color = sub.color || '#333';
-                subSeg.style.fontSize = '11px';
-                subSeg.style.borderTop = '1px solid rgba(0,0,0,0.1)';
-                subSeg.innerText = sub.text;
-
-                // 添加点击事件显示详情（如果有的话）
-                if (sub.detail) {
-                    subSeg.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        showModal(sub.detail);
-                    });
-                }
-                
-                ruler.appendChild(subSeg);
-            });
-
-            const centerY = window.innerHeight / 2;
-
-            // 绘制 4 个分支轴、分叉曲线和合并曲线
-            Object.entries(branchYOffsets).forEach(([branchId, yOffset]) => {
-                const branchInfo = branchNames[branchId] || { text: "", detail: "" };
-                
-                // 分支轴 (从 BRANCH_START 到 BRANCH_END)
-                const branchAxis = document.createElement('div');
-                branchAxis.className = 'branch-axis';
-                branchAxis.style.left = `${x_branch_start}px`; 
-                branchAxis.style.width = `${x_branch_end - x_branch_start}px`;
-                branchAxis.style.top = `calc(50% + ${yOffset}px)`;
-                branchAxis.style.transform = `translateY(-50%)`;
-                branchAxis.innerText = branchInfo.text;
-
-                // 添加点击事件显示详情
-                branchAxis.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    if (branchInfo.detail) {
-                        showModal(branchInfo.detail);
-                    }
-                });
-
-                container.appendChild(branchAxis);
-
-                // 在分支轴末尾添加黑色箭头
-                const branchArrow = document.createElement('div');
-                branchArrow.style.position = 'absolute';
-                branchArrow.style.left = `${x_branch_end - 1}px`; // 1px 重叠消除接缝
-                branchArrow.style.top = `calc(50% + ${yOffset}px)`;
-                branchArrow.style.width = '0';
-                branchArrow.style.height = '0';
-                branchArrow.style.borderTop = '25px solid transparent';
-                branchArrow.style.borderBottom = '25px solid transparent';
-                branchArrow.style.borderLeft = '20px solid #000';
-                branchArrow.style.transform = 'translateY(-50%)';
-                branchArrow.style.zIndex = '15';
-                container.appendChild(branchArrow);
-
-                // 1. 分叉曲线 (FORK_X -> BRANCH_START)
-                const pathFork = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                pathFork.setAttribute("class", "fork-curve");
-                const dFork = `M ${x_fork - 1} ${centerY} C ${x_fork + (x_branch_start - x_fork) * 0.5} ${centerY}, ${x_fork + (x_branch_start - x_fork) * 0.5} ${centerY + yOffset}, ${x_branch_start + 1} ${centerY + yOffset}`;
-                pathFork.setAttribute("d", dFork);
-                svgLayer.appendChild(pathFork);
-
-                // 2. 合并曲线 (BRANCH_END -> MERGE_X)
-                if (FEATURES.SHOW_MERGE_CURVES) {
-                    const pathMerge = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                    pathMerge.setAttribute("class", "fork-curve");
-                    const dMerge = `M ${x_branch_end - 1} ${centerY + yOffset} C ${x_branch_end + (x_merge - x_branch_end) * 0.5} ${centerY + yOffset}, ${x_branch_end + (x_merge - x_branch_end) * 0.5} ${centerY}, ${x_merge + 1} ${centerY}`;
-                    pathMerge.setAttribute("d", dMerge);
-                    svgLayer.appendChild(pathMerge);
-                }
-            });
-
-            // 3. 绘制合并后的间断坐标轴（省略号效果）
-            // 6小段，空白区域与涂色区域一样宽
-            const dotCount = 6;
-            const dotWidthUnits = 0.04; // 每段的宽度单位
-            const gapUnits = 0.05;      // 间隔宽度单位，与涂色区域等宽
-            
-            const startX_units = RULER_CONFIG.MERGE_X - RULER_CONFIG.START + 0.05;
-            
-            for (let i = 0; i < dotCount; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'ellipsis-dot';
-                const leftUnits = startX_units + i * (dotWidthUnits + gapUnits);
-                dot.style.left = `${leftUnits * unitWidth}px`;
-                dot.style.width = `${dotWidthUnits * unitWidth}px`; 
-                dot.style.backgroundColor = '#666'; 
-                ruler.appendChild(dot);
-            }
-
-            // 4. 在“不可计算函数”段最右端添加灰色箭头
-            const finalArrow = document.createElement('div');
-            finalArrow.className = 'axis-arrow';
-            finalArrow.style.left = `${x_end - 1}px`; // 1px 重叠消除接缝
-            finalArrow.style.top = `50%`;
-            finalArrow.style.borderLeft = "20px solid #666";
-            container.appendChild(finalArrow);
-        }
-
-        function renderItems() {
-            itemsContainer.innerHTML = '';
-            items.forEach(item => {
-                const branchId = item.branch || 0;
-                const yOffset = branchId === 0 ? 0 : branchYOffsets[branchId];
-                
-                // 过滤器检查
-                const hasInfo = !!item.detail;
-                const hasCode = item.detail && (item.detail.includes('<code') || item.detail.includes('<pre'));
-
-                if (currentFilter === 'info' && !hasInfo) return;
-                if (currentFilter === 'code' && !hasCode) return;
-
-                // 缩放级别检查
-                const minZ = zoomLevels[item.zoomLevel] || 0;
-                // 如果开启了缩放过滤，才检查 zoomLevel
-                if (checkZoomLevel.checked) {
-                    if (zoom < minZ) return;
-                } else {
-                    // 手动模式：只显示 zoomLevel <= slider value 的项
-                    if (item.zoomLevel > parseInt(zoomSlider.value)) return;
-                }
-
-                const div = document.createElement('div');
-                const isBottom = item.side === 'bottom';
-                div.className = `scale-item ${isBottom ? 'side-bottom' : ''} zoom-level-${item.zoomLevel}`;
-                
-                const x = offsetX + (item.value * pixelsPerUnit * zoom);
-                div.style.left = `${x}px`;
-                
-                const baseOffset = 35; // 增加基础偏移，使文字离轴更远
-                const levelGap = 65; // 增加层级间距，支持多行内容
-                const offset = baseOffset + (item.level * levelGap);
-                
-                if (isBottom) {
-                    div.style.top = `calc(50% + ${yOffset + offset}px)`;
-                    div.style.transform = `translate(-50%, 0)`;
-                } else {
-                    div.style.top = `calc(50% + ${yOffset - offset}px)`;
-                    div.style.transform = `translate(-50%, -100%)`;
-                }
-
-                div.innerHTML = `<div class="scale-label">
-                    ${item.label}
-                    ${item.detail ? '<span class="info-icon"></span>' : ''}
-                    ${hasCode ? '<span class="code-icon"></span>' : ''}
-                </div>`;
-                
-                // 添加点击事件显示详情
-                div.querySelector('.scale-label').addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    if (item.detail) {
-                        showModal(item.detail);
-                    }
-                });
-
-                itemsContainer.appendChild(div);
-            });
-        }
-
-        const modal = document.getElementById('detail-modal');
-        const modalBody = document.getElementById('modal-body');
-        const modalClose = modal.querySelector('.modal-close');
-
-        function showModal(content) {
-            modalBody.innerHTML = content;
-            
-            // 增强代码块显示：将 h3 + code 转换为 IDE 风格窗口
-            const headers = modalBody.querySelectorAll('h3');
-            headers.forEach(header => {
-                const nextElem = header.nextElementSibling;
-                // 检查是否是代码块
-                if (nextElem && (nextElem.tagName === 'CODE' || nextElem.tagName === 'PRE')) {
-                    const lang = header.innerText.trim();
-                    // 处理换行符：将 <br> 替换为 \n
-                    let codeHtml = nextElem.innerHTML.replace(/<br\s*\/?>/gi, '\n');
-                    
-                    const ideWindow = document.createElement('div');
-                    ideWindow.className = 'ide-window';
-                    
-                    ideWindow.innerHTML = `
-                        <div class="ide-header">
-                            <div class="ide-controls">
-                                <div class="ide-dot red"></div>
-                                <div class="ide-dot yellow"></div>
-                                <div class="ide-dot green"></div>
-                            </div>
-                            <div class="ide-title">${lang}</div>
-                        </div>
-                        <pre class="ide-content"><code class="language-${lang.toLowerCase()}">${codeHtml}</code></pre>
-                    `;
-                    
-                    header.replaceWith(ideWindow);
-                    nextElem.remove();
-                }
-            });
-
-            // 应用语法高亮
-            if (window.hljs) {
-                modalBody.querySelectorAll('pre code').forEach((block) => {
-                    hljs.highlightElement(block);
-                });
-            }
-
-            modal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        modalClose.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        function renderTicks() {
-            ticksContainer.innerHTML = '';
-            const visibleWidth = window.innerWidth;
-            
-            items.forEach(item => {
-                const branchId = item.branch || 0;
-                const yOffset = branchId === 0 ? 0 : branchYOffsets[branchId];
-
-                const minZ = zoomLevels[item.zoomLevel] || 0;
-                // 如果 checkZoomLevel 开启，则进行缩放检查；否则视为显示
-                let isShown = false;
-                if (checkZoomLevel.checked) {
-                    isShown = (zoom >= minZ);
-                } else {
-                    isShown = (item.zoomLevel <= parseInt(zoomSlider.value));
-                }
-                
-                // 过滤器检查
-                const hasInfo = !!item.detail;
-                const hasCode = item.detail && (item.detail.includes('<code') || item.detail.includes('<pre'));
-
-                if (currentFilter === 'info' && !hasInfo) return;
-                if (currentFilter === 'code' && !hasCode) return;
-
-                const x = offsetX + (item.value * pixelsPerUnit * zoom);
-                if (x < -50 || x > visibleWidth + 50) return;
-
-                const tick = document.createElement('div');
-                tick.className = 'tick';
-                tick.style.left = `${x}px`;
-
-                if (isShown) {
-                    // 已显示内容的正常长刻度线
-                    const baseOffset = 35;
-                    const levelGap = 65;
-                    const offset = baseOffset + (item.level * levelGap);
-                    tick.style.height = `${offset}px`;
-                    
-                    if (item.side === 'bottom') {
-                        tick.style.top = `calc(50% + ${yOffset}px)`;
-                    } else {
-                        tick.style.bottom = `calc(100% - (50% + ${yOffset}px))`;
-                        tick.style.top = 'auto';
-                    }
-                } else {
-                    // 未显示内容的短线提示
-                    // zoomLevel 越高，线越短。0: 12px, 1: 9px, 2: 6px, 3: 3px
-                    const shortTickHeight = Math.max(2, 30 - (item.zoomLevel * 3));
-                    tick.style.height = `${shortTickHeight}px`;
-                    tick.style.backgroundColor = '#666'; // 稍微淡一点的颜色
-
-                    // 短线始终在轴的两侧对称显示，或者根据 side 显示
-                    if (item.side === 'bottom') {
-                        tick.style.top = `calc(50% + ${yOffset}px)`;
-                    } else {
-                        tick.style.bottom = `calc(100% - (50% + ${yOffset}px))`;
-                        tick.style.top = 'auto';
-                    }
-                }
-                
-                tick.style.transform = 'none';
-                ticksContainer.appendChild(tick);
-            });
-        }
-
-        // 滚轮缩放
-        app.addEventListener('wheel', (e) => {
-            // 如果按下了 Ctrl 键，则允许浏览器默认的缩放行为
-            if (e.ctrlKey) return;
-
-            e.preventDefault();
-            const delta = -e.deltaY;
-
-            // 滚轮滚动时，强制开启“根据缩放隐藏”
-            /* if (!checkZoomLevel.checked) {
-                checkZoomLevel.checked = true;
-                zoomManualControl.style.display = 'none';
-            } */
-
-            const factor = 1.1;
-            
-            const oldZoom = zoom;
-            if (delta > 0) zoom *= factor;
-            else zoom /= factor;
-
-            zoom = Math.max(0.75, Math.min(zoom, 20));
-
-            const mouseX = e.clientX;
-            offsetX = mouseX - (mouseX - offsetX) * (zoom / oldZoom);
-            
-            clampOffset();
-            update();
-        }, { passive: false });
-
-        // 拖拽移动
-        let isDragging = false;
-        let lastX = 0;
-
-        app.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            lastX = e.clientX;
-        });
-
-        window.addEventListener('mousemove', (e) => {
-            if (isDragging) {
-                const dx = e.clientX - lastX;
-                offsetX += dx;
-                lastX = e.clientX;
-                clampOffset();
-                update();
-            }
-        });
-
-        window.addEventListener('mouseup', () => {
-            isDragging = false;
-        });
-
-        window.addEventListener('resize', () => {
-            clampOffset();
-            update();
-        });
-
-        // 初始化
-        resetView();
-    </script>
+    <script src="lib/katex/katex.min.js"></script>
+    <script src="lib/katex/contrib/auto-render.min.js"></script>
+    <script src="math-renderer.js?v=20260724-latex"></script>
+    <script src="i18n.js?v=20260724-latex"></script>
+    <script src="content-document.js?v=20260724-latex"></script>
+    <script src="items.js?v=20260724-latex"></script>
+    <script src="axis_items.js?v=20260724-latex"></script>
+    <script src="locales/zh-CN/interface.js?v=20260724-latex"></script>
+    <script src="locales/zh-CN/items-000-040.js?v=20260724-latex"></script>
+    <script src="locales/zh-CN/items-041-081.js?v=20260724-latex"></script>
+    <script src="locales/zh-CN/items-082-122.js?v=20260724-latex"></script>
+    <script src="locales/en/interface.js?v=20260724-latex"></script>
+    <script src="locales/en/items-000-040.js?v=20260724-latex"></script>
+    <script src="locales/en/items-041-081.js?v=20260724-latex"></script>
+    <script src="locales/en/items-082-122.js?v=20260724-latex"></script>
+    <script src="scale-core.js?v=20260724-latex"></script>
+    <script src="modal.js?v=20260724-latex"></script>
+    <script src="scale-renderer.js?v=20260724-latex"></script>
+    <script src="app.js?v=20260724-latex"></script>
 </body>
 </html>
