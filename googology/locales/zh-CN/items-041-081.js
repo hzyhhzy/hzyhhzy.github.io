@@ -1,6 +1,13 @@
 (function (global) {
     'use strict';
 
+    function unreviewedNotice() {
+        return {
+            type: 'note',
+            html: '该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性'
+        };
+    }
+
     global.GoogologyI18n.registerMessages('zh-CN', {
         items: {
             'item-041': {
@@ -129,16 +136,19 @@ print(A3(n, n, n))`
             'item-048': {
                 label: 'Friedman n 函数',
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Block_subsequence_theorem">Friedman n 函数</a>',
+                    title: '<a href="https://doi.org/10.1006/jcta.2000.3154">Friedman n 函数</a>',
                     sections: [
                         {
                             type: 'html',
                             html: `
-                                <p>此处不展开定义；可参见链接页面或检索相关资料。</p>
-                                <p>已有结论为 \\(n(4)>\\operatorname{A}^{\\operatorname{A}(187196)}(1)\\)，其中 \\(\\operatorname{A}\\) 是 Ackermann 函数，上标表示函数迭代。又因为有人指出 \\(\\operatorname{TREE}(3)\\) 远大于 \\(n(4)\\)，\\(\\operatorname{A}^{\\operatorname{A}(187196)}(1)\\) 也就成为 \\(\\operatorname{TREE}(3)\\) 的一个下界。</p>
+                                <p><strong>定义。</strong>固定 \\(k\\geq1\\)，取字母表 \\(\\{1,\\ldots,k\\}\\) 上的有限词 \\(x_1\\cdots x_N\\)。若不存在 \\(i\\lt j\\leq N/2\\)，使连续块 \\(x_i\\cdots x_{2i}\\) 是较后连续块 \\(x_j\\cdots x_{2j}\\) 的子序列，则称该词满足性质 \\(*\\)。这里“子序列”允许删除字符，但须保持其余字符的相对次序。\\(n(k)\\) 是满足性质 \\(*\\) 的词的最大长度。</p>
+                                <p>Higman 引理排除了无限长的反例；再对所有合法有限前缀组成的有限分支树应用 König 引理，即知最大长度存在。已知 \\(n(1)=3\\)、\\(n(2)=11\\)，而 \\(12221111111\\) 达到第二个值。Friedman 还证明 \\(n(3)>\\operatorname{A}_{7198}(158386)\\)。令 \\(\\operatorname{A}(t)=\\operatorname{A}(t,t)\\)，则有 \\[n(4)>\\operatorname{A}^{\\operatorname{A}(187196)}(1),\\]其中上标表示函数复合迭代。</p>
+                                <p>作为 \\(k\\) 的函数，\\(n(k)\\) 最终支配每个 \\(H_\\beta\\; (\\beta\\lt\\omega^\\omega)\\)，并最终被 \\(H_{\\omega^\\omega+1}\\) 支配；按本站采用的 FGH 对照，可将它放在 \\(f_{\\omega^\\omega}\\) 层级。又因为 \\(\\operatorname{TREE}(3)\\) 远大于 \\(n(4)\\)，上述 \\(n(4)\\) 下界也成为 \\(\\operatorname{TREE}(3)\\) 的一个很弱的下界。</p>
                                 <p>不过，\\(\\operatorname{TREE}(3)\\) 位于<a href="https://googology.fandom.com/wiki/Small_Veblen_ordinal">小 Veblen 序数（SVO）</a>级别，因此这个下界非常弱。后来，人们把 \\(\\operatorname{A}^{\\operatorname{A}(187196)}(1)\\) 及其他含有“187196”的相关表达式戏称为“\\(\\operatorname{TERR}(3)\\)”；“TERR”是对“TREE”的故意误拼。</p>
+                                <p><strong>来源：</strong><a href="https://doi.org/10.1006/jcta.2000.3154">Harvey M. Friedman，《Long Finite Sequences》，§1、Theorems 5.19 与 6.8</a>；<a href="https://bpb-us-w2.wpmucdn.com/u.osu.edu/dist/1/1952/files/2014/01/EnormousInt.12pt.6_1_00-23kmig3.pdf">Harvey M. Friedman，《Enormous Integers in Real Life》，Theorems 8.4–8.5</a>。</p>
                             `
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -150,18 +160,13 @@ print(A3(n, n, n))`
                         {
                             type: 'html',
                             html: `
-                                <p>这个函数与 <a href="https://googology.fandom.com/wiki/Block_subsequence_theorem">Friedman n 函数</a>类似，大小同为 \\(f_{{\\omega}^{{\\omega}}}\\)，但定义改成了 TREE 函数的风格。</p>
-                                <ul>
-                                    <li>字符串使用由 \\(n\\) 种字符组成的字母表。</li>
-                                    <li>考虑一个长度为 <em>N</em> 的字符串序列 \\(S_{1},\\) \\(S_{2},\\) \\(\\ldots{},\\) \\(S_{N}\\)。</li>
-                                    <li>第 \\(i\\) 个字符串 \\(S_{i}\\) 的长度不超过 \\(i\\)。</li>
-                                    <li>若 \\(i\\lt j\\)，则 \\(S_{i}\\) 不是 \\(S_{j}\\) 的子序列。这里“子序列”指从 \\(S_{j}\\) 中删除若干字符（不改变其余字符的相对次序）后得到 \\(S_{i}\\)。</li>
-                                    <li>函数值是在这些限制下 <em>N</em> 的最大可能值。</li>
-                                </ul>
-                                <p>这个定义等价于不允许树分叉的 TREE 函数：带有 \\(n\\) 种标号的树退化为使用 \\(n\\) 种字符的字符串。每个字符串可对应于 \\({\\omega}^{{\\omega}^{n-1}}\\) 以下的序数，而“第 \\(i\\) 个字符串的长度不超过 \\(i\\)”对应 <a href="https://googology.fandom.com/wiki/Hardy_hierarchy">Hardy hierarchy（HH）</a>。</p>
-                                <p>因此，当 \\(n\\) 趋于 \\({\\omega}\\) 时，\\(N\\) 的增长率为 \\(H_{{\\omega}^{{\\omega}^{{\\omega}}}}=f_{{\\omega}^{{\\omega}}}\\)。</p>
+                                <p><strong>定义。</strong>令 \\(\\operatorname{STR}(n)\\) 为满足下述条件的最长字符串序列 \\(S_1,\\ldots,S_N\\) 的长度：字符串取自一个含 \\(n\\) 个字符的字母表，\\(|S_i|\\leq i\\)，并且对所有 \\(i\\lt j\\)，\\(S_i\\) 都不是 \\(S_j\\) 的子序列。这里“子序列”指删除若干字符而不改变其余字符的相对次序；空串也允许出现。</p>
+                                <p>Higman 引理和 König 引理保证 \\(\\operatorname{STR}(n)\\) 总是有限。小值及下界为 \\(\\operatorname{STR}(1)=2\\)、\\(\\operatorname{STR}(2)=4\\)、\\(\\operatorname{STR}(3)\\geq11\\)；相应例子可写成 \\((A,\\varnothing)\\)、\\((A,BB,B,\\varnothing)\\) 与 \\((A,BB,BC,CB,B,CCCCC,CCCC,CCC,CC,C,\\varnothing)\\)。</p>
+                                <p>这个定义可以看作不允许树分叉的 TREE 风格坏序列：带有 \\(n\\) 种标号的树退化为使用 \\(n\\) 种字符的字符串。由 \\(n\\) 个字符组成的全部有限串在子序列序下的最大序型为 \\(\\omega^{\\omega^{n-1}}\\)。该构造与 Friedman 在《Long Finite Sequences》§5 中研究的 \\(F\\) 函数只差索引约定；相应上下界将它的增长放在 \\(H_{\\omega^{\\omega^{\\omega}}}=f_{\\omega^\\omega}\\) 层级。</p>
+                                <p><strong>来源：</strong><a href="https://mathoverflow.net/questions/285755/growth-rate-of-longest-sequence-of-strings-where-no-string-is-a-subsequence-of-a">MathOverflow，“Growth rate of longest sequence of strings where no string is a subsequence of a later one”（定义与小值）</a>；<a href="https://doi.org/10.1006/jcta.2000.3154">Harvey M. Friedman，《Long Finite Sequences》，§5 与 Theorem 5.19</a>；<a href="https://arxiv.org/abs/1103.4399">Schmitz、Schnoebelen，《Multiply-Recursive Upper Bounds with Higman's Lemma》</a>。</p>
                             `
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -496,16 +501,19 @@ print(g)`
             'item-063': {
                 label: '九头蛇游戏',
                 detail: {
-                    title: '<a href="https://en.wikipedia.org/wiki/Hydra_game">九头蛇（Hydra）游戏</a>',
+                    title: '<a href="https://doi.org/10.1112/blms/14.4.285">九头蛇（Hydra）游戏</a>',
                     sections: [
                         {
                             type: 'html',
                             html: `
-                                <p>定义与分析可参见链接页面，或者阅读 <a href="https://googology.fandom.com/wiki/Kirby-Paris_hydra">Kirby–Paris hydra</a> 条目。</p>
-                                <p><a href="https://googology.fandom.com/wiki/Primitive_sequence_number">PrSS</a> 的每个数字恰好能与九头蛇上每个节点的层数对应，而且砍蛇头规则中的“第 \\(n\\) 步复制 \\(n\\) 遍”与 <a href="https://googology.fandom.com/wiki/Hardy_hierarchy">Hardy hierarchy（HH）</a>几乎相同。</p>
-                                <p>因此，砍完九头蛇所需的步数显然是 \\({\\varepsilon}_{0}\\) 级。</p>
+                                <p>Kirby–Paris 九头蛇是一棵有限有根树；非根叶节点及其相连的边称为一个“头”。在第 \\(n\\geq1\\) 步，Hercules 可以砍掉任意一个头。若断口就是根节点，则不发生再生；否则，设断口为 \\(v\\)，\\(v\\) 朝根方向的父节点为 \\(u\\)，便把以 \\(v\\) 为根、完成本次砍头后的剩余子树另复制 \\(n\\) 份，并把这些副本接到 \\(u\\) 上。</p>
+                                <p>无论初始九头蛇是什么，也无论每一步选择哪个头，战斗最终都会在有限步后只剩根节点。证明方法是给树赋予一个小于 \\(\\varepsilon_0\\) 的序数：叶节点赋值 \\(0\\)；若一个节点的子节点依次带有序数 \\(\\alpha_1\\geq\\cdots\\geq\\alpha_r\\)，则给它赋值 \\[\\omega^{\\alpha_1}+\\cdots+\\omega^{\\alpha_r}.\\]整棵九头蛇的序数是根节点的赋值。每次砍头虽然可能大幅增加树的大小，却会使这个序数严格下降，因此 \\(\\varepsilon_0\\) 以下的良序性保证战斗终止。</p>
+                                <p>每一局的步数都是随初始树和砍头策略变化的有限自然数；这里的 \\(\\varepsilon_0\\) 描述统一终止定理及其长度函数的层级。Kirby 与 Paris 证明，“每个递归策略都能获胜”这一算术命题不能由 Peano arithmetic（PA）证明；对于他们构造的特定递归策略 \\(\\tau\\)，其统一终止性对应于使用相关前驱运算的 \\(\\varepsilon_0\\)-归纳。</p>
+                                <p><a href="https://googology.fandom.com/wiki/Primitive_sequence_number">PrSS</a> 的数字可以与九头蛇节点的层数对应，而砍蛇头规则中的“第 \\(n\\) 步复制 \\(n\\) 遍”与 <a href="https://googology.fandom.com/wiki/Hardy_hierarchy">Hardy hierarchy（HH）</a>的递推非常接近。这也给出了本站将砍完九头蛇所需步数函数放在 \\(\\varepsilon_0\\) 级的直观解释。</p>
+                                <p><strong>来源：</strong><a href="https://doi.org/10.1112/blms/14.4.285">Laurie Kirby、Jeff Paris，《Accessible Independence Results for Peano Arithmetic》，Theorem 2 与 pp. 286–293</a>（<a href="https://www.cs.tau.ac.il/~nachumd/term/Kirbyparis.pdf">开放 PDF</a>）。</p>
                             `
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -546,8 +554,9 @@ print(g)`
                     sections: [
                         {
                             type: 'html',
-                            html: `<p>待补充。</p>`
-                        }
+                            html: `<p>\\({\\zeta}_{0}\\) 是枚举 epsilon 数的函数 \\(\\alpha\\mapsto\\varepsilon_{\\alpha}\\) 的第一个不动点，即满足 \\(\\varepsilon_{{\\zeta}_{0}}={\\zeta}_{0}\\) 的最小正序数。</p><p>令 \\(\\alpha_{0}=0\\)、\\(\\alpha_{n+1}=\\varepsilon_{\\alpha_n}\\)，则 \\({\\zeta}_{0}=\\sup_{n\\lt{}\\omega}\\alpha_n\\)。在常用的二元 Veblen 函数约定下，它也写作 \\(\\varphi_{2}(0)\\)。这一固定点层级源自 <a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen 的连续递增序数函数</a>。</p>`
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },

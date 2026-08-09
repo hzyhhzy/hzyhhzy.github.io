@@ -80,6 +80,13 @@ print(g)`;
         };
     }
 
+    function unreviewedNotice() {
+        return {
+            type: 'note',
+            html: '该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性'
+        };
+    }
+
     i18n.registerLocale({
         code: 'zh-CN',
         name: '中文',
@@ -123,8 +130,14 @@ print(g)`;
                 text: 'Laver Table 相关',
                 detail: document('Laver Table 相关', [
                     html(
-                        '<p>源自集合论中的大基数公理，与有限代数结构的组合性质密切相关，其增长速度非常独特。</p>'
-                    )
+                        '<p>Laver Table \\(A_n\\) 是定义在 \\(2^n\\) 个元素上的有限左自分配代数。它们有完全有限、递归的组合定义，但最初是在研究秩入秩初等嵌入 \\(j:V_\\lambda\\to V_\\lambda\\) 时被发现的。每一行的周期都是 \\(2\\) 的幂，而第一行周期何时翻倍会产生增长极快的有限阈值。</p>' +
+                        '<p><strong>论文与资料：</strong></p><ul>' +
+                        '<li><a href="https://doi.org/10.1016/0001-8708(92)90016-E">Richard Laver：The left distributive law and the freeness of an algebra of elementary embeddings</a></li>' +
+                        '<li><a href="https://arxiv.org/abs/1810.00548">Philippe Biane：Laver tables and combinatorics</a></li>' +
+                        '<li><a href="https://arxiv.org/abs/math/9503204">Randall Dougherty：Critical points in an algebra of elementary embeddings, II</a></li>' +
+                        '</ul>'
+                    ),
+                    unreviewedNotice()
                 ])
             },
             'branch-3': {

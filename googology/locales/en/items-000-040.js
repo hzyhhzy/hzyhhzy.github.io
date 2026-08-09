@@ -1,6 +1,13 @@
 (function (global) {
     'use strict';
 
+    function unreviewedNotice() {
+        return {
+            type: 'note',
+            html: 'This content was produced by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed.'
+        };
+    }
+
     global.GoogologyI18n.registerMessages('en', {
         items: {
             'item-000': {
@@ -24,7 +31,13 @@
                 label: '\\(1000\\)',
                 detail: {
                     title: '\\(1000\\)',
-                    sections: []
+                    sections: [
+                        {
+                            type: 'html',
+                            html: `<p>\\(1000=10^{3}\\), written “one thousand,” is the smallest positive integer with four decimal digits.</p>`
+                        },
+                        unreviewedNotice()
+                    ]
                 }
             },
             'item-002': {
@@ -213,13 +226,29 @@ print(result)`
                     sections: [
                         {
                             type: 'html',
-                            html: `<p>\\(10\\uparrow{}\\uparrow{}\\uparrow{}10=10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}10)))))))))\\)</p><p>Applying “number of decimal digits” to \\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\) a total of \\(10\\uparrow{}\\uparrow{}\\uparrow{}9-1\\) times gives 11. Applying it to \\(10\\uparrow{}\\uparrow{}\\uparrow{}9\\) a total of \\(10\\uparrow{}\\uparrow{}\\uparrow{}8-1\\) times also gives 11; applying it to \\(10\\uparrow{}\\uparrow{}\\uparrow{}8\\) a total of \\(10\\uparrow{}\\uparrow{}\\uparrow{}7-1\\) times again gives 11; and so on.</p>`
+                            html: `<p>\\(10\\uparrow{}\\uparrow{}\\uparrow{}10=10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}10)))))))))\\)</p><p>Applying “number of decimal digits” to \\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\) a total of \\(10\\uparrow{}\\uparrow{}\\uparrow{}9-1\\) times gives 11. Applying it to \\(10\\uparrow{}\\uparrow{}\\uparrow{}9\\) a total of \\(10\\uparrow{}\\uparrow{}\\uparrow{}8-1\\) times also gives 11; applying it to \\(10\\uparrow{}\\uparrow{}\\uparrow{}8\\) a total of \\(10\\uparrow{}\\uparrow{}\\uparrow{}7-1\\) times again gives 11; and so on.</p><p>The program below evaluates the expression directly from the recursive rules for <a href="https://doi.org/10.1126/science.194.4271.1235">Knuth's up-arrow notation</a>. It neither hard-codes the answer nor imposes a limit on integer length.</p>`
                         },
                         {
                             type: 'code',
                             language: 'python',
-                            source: `TODO`
-                        }
+                            title: 'Recursive evaluator (theoretical implementation)',
+                            source: `def up_arrow(base, arrows, argument):
+    # a ↑^0 b = a * b; for arrows >= 1, a ↑^arrows 0 = 1.
+    if arrows == 0:
+        return base * argument
+    if argument == 0:
+        return 1
+
+    return up_arrow(
+        base,
+        arrows - 1,
+        up_arrow(base, arrows, argument - 1),
+    )
+
+
+print(up_arrow(10, 3, 10))`
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },

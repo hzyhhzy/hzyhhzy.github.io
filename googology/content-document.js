@@ -48,6 +48,99 @@
         return windowElement;
     }
 
+    function openDialog(dialog) {
+        if (typeof dialog.showModal === 'function') {
+            dialog.showModal();
+            return;
+        }
+
+        dialog.setAttribute('open', '');
+    }
+
+    function closeDialog(dialog) {
+        if (typeof dialog.close === 'function') {
+            dialog.close();
+            return;
+        }
+
+        dialog.removeAttribute('open');
+    }
+
+    function createCodeDialog(documentRef, section) {
+        var openLabel = section.openLabel ||
+            section.title ||
+            section.language ||
+            'code';
+        var closeLabel = section.closeLabel || openLabel;
+        var container = createElement(
+            documentRef,
+            'div',
+            'code-dialog-section'
+        );
+        var openButton = createElement(
+            documentRef,
+            'button',
+            'code-dialog-open'
+        );
+        var dialog = createElement(
+            documentRef,
+            'dialog',
+            'code-dialog'
+        );
+        var panel = createElement(
+            documentRef,
+            'div',
+            'code-dialog-panel'
+        );
+        var closeButton = createElement(
+            documentRef,
+            'button',
+            'code-dialog-close'
+        );
+
+        openButton.type = 'button';
+        openButton.textContent = openLabel;
+        openButton.setAttribute('aria-haspopup', 'dialog');
+
+        dialog.setAttribute(
+            'aria-label',
+            section.title || openLabel
+        );
+
+        closeButton.type = 'button';
+        closeButton.textContent = closeLabel;
+        closeButton.setAttribute('aria-label', closeLabel);
+
+        openButton.addEventListener('click', function () {
+            openDialog(dialog);
+        });
+        closeButton.addEventListener('click', function () {
+            closeDialog(dialog);
+        });
+        dialog.addEventListener('click', function (event) {
+            if (event.target === dialog) {
+                closeDialog(dialog);
+            }
+        });
+        dialog.addEventListener('keydown', function (event) {
+            if (event.key !== 'Escape') {
+                return;
+            }
+
+            event.preventDefault();
+            event.stopPropagation();
+            closeDialog(dialog);
+        });
+
+        panel.append(
+            closeButton,
+            createCodeWindow(documentRef, section)
+        );
+        dialog.appendChild(panel);
+        container.append(openButton, dialog);
+        return container;
+    }
+
     function appendList(container, section) {
         var documentRef = container.ownerDocument;
         var list = createElement(
@@ -101,9 +194,9 @@
                 appendList(container, section);
                 break;
             case 'code':
-                container.appendChild(
-                    createCodeWindow(documentRef, section)
-                );
+                container.appendChild(section.display === 'dialog'
+                    ? createCodeDialog(documentRef, section)
+                    : createCodeWindow(documentRef, section));
                 break;
             case 'note':
                 element = createElement(

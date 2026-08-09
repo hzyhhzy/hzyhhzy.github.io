@@ -246,6 +246,35 @@ function assertStructuredDetail(detail, description) {
                         `${sectionDescription}.title`
                     );
                 }
+                if (section.display !== undefined) {
+                    assert.equal(
+                        section.display === 'dialog',
+                        true,
+                        `${sectionDescription}.display`
+                    );
+                }
+                if (section.display === 'dialog') {
+                    assert.equal(
+                        typeof section.openLabel,
+                        'string',
+                        `${sectionDescription}.openLabel`
+                    );
+                    assert.notEqual(
+                        section.openLabel.trim(),
+                        '',
+                        `${sectionDescription}.openLabel`
+                    );
+                    assert.equal(
+                        typeof section.closeLabel,
+                        'string',
+                        `${sectionDescription}.closeLabel`
+                    );
+                    assert.notEqual(
+                        section.closeLabel.trim(),
+                        '',
+                        `${sectionDescription}.closeLabel`
+                    );
+                }
                 break;
             default:
                 assert.fail(
@@ -463,6 +492,212 @@ test('corrected content facts and explicit TODO markers stay synchronized', () =
             ),
             true,
             `${locale} should explicitly correct the former Rayo error`
+        );
+    }
+});
+
+test('GPT-supplemented content always carries the localized review notice', () => {
+    const supplementedItemIds = [
+        'item-001',
+        'item-015',
+        'item-048',
+        'item-049',
+        'item-063',
+        'item-074',
+        'item-082',
+        'item-083',
+        'item-084',
+        'item-085',
+        'item-087',
+        'item-090',
+        'item-091',
+        'item-092',
+        'item-101',
+        'item-106',
+        'item-111',
+        'item-112',
+        'item-113',
+        'item-114'
+    ];
+
+    for (const locale of LOCALES) {
+        const content = localized[locale];
+        const expectedNotice = locale === 'zh-CN'
+            ? '该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性'
+            : 'This content was produced by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed.';
+
+        supplementedItemIds.forEach((id) => {
+            const item = content.items.find((candidate) => candidate.id === id);
+            const notices = item.detail.sections
+                .filter((section) => section.type === 'note')
+                .map((section) => section.html)
+                .join(' ');
+
+            assert.equal(
+                notices.includes(expectedNotice),
+                true,
+                `${locale}.${id} should carry the unreviewed-content notice`
+            );
+        });
+
+        const laverBranch = content.branches['2'];
+        const branchNotices = laverBranch.detail.sections
+            .filter((section) => section.type === 'note')
+            .map((section) => section.html)
+            .join(' ');
+
+        assert.equal(
+            branchNotices.includes(expectedNotice),
+            true,
+            `${locale}.branch-2 should carry the unreviewed-content notice`
+        );
+    }
+});
+
+test('expanded combinatorial entries include definitions and sources', () => {
+    const expectedFragments = {
+        'item-048': [
+            'n(1)=3',
+            'n(4)>\\operatorname{A}^{\\operatorname{A}(187196)}(1)',
+            'Long Finite Sequences'
+        ],
+        'item-049': [
+            '\\operatorname{STR}(n)',
+            'Higman',
+            'Multiply-Recursive Upper Bounds'
+        ],
+        'item-063': [
+            '\\varepsilon_0',
+            'Peano arithmetic',
+            'Accessible Independence Results for Peano Arithmetic'
+        ],
+        'item-106': [
+            '\\operatorname{SCG}(k)',
+            '\\operatorname{SSCG}(k)',
+            'Subcubic Graph Numbers/restated'
+        ]
+    };
+
+    for (const locale of LOCALES) {
+        for (const [id, fragments] of Object.entries(expectedFragments)) {
+            const item = localized[locale].items.find(
+                (candidate) => candidate.id === id
+            );
+            const html = item.detail.sections
+                .map((section) => section.html || '')
+                .join(' ');
+
+            fragments.forEach((fragment) => {
+                assert.equal(
+                    html.includes(fragment),
+                    true,
+                    `${locale}.${id} should include ${fragment}`
+                );
+            });
+        }
+    }
+});
+
+test('Laver Table entry computes q(n) instead of displaying A_3', () => {
+    assert.equal(
+        JSON.stringify(localized['zh-CN'].messages).includes('Laver 表'),
+        false,
+        'Chinese content should use “Laver Table” directly'
+    );
+
+    for (const locale of LOCALES) {
+        const item = localized[locale].items.find(
+            (candidate) => candidate.id === 'item-113'
+        );
+        const html = item.detail.sections
+            .map((section) => section.html || '')
+            .join(' ');
+        const code = item.detail.sections.find(
+            (section) => section.type === 'code'
+        );
+
+        assert.equal(item.label, 'Laver Table');
+        assert.equal(html.includes('q(n)=\\min'), true);
+        assert.equal(code.display, 'dialog');
+        assert.equal(code.source.includes('def q(n):'), true);
+        assert.equal(code.source.includes('first_row_period'), true);
+        assert.equal(code.source.includes('requested_n'), true);
+        assert.equal(code.source.includes('show_table'), false);
+        assert.equal(code.source.includes('A_3'), false);
+    }
+});
+
+test('public Laver content identifies @test_alpha0 only by handle', () => {
+    for (const locale of LOCALES) {
+        const messages = JSON.stringify(localized[locale].messages);
+        const attributedItems = ['item-111', 'item-114'];
+
+        assert.equal(
+            /renrui\s+qi/i.test(messages),
+            false,
+            `${locale} must not expose the private author name`
+        );
+
+        attributedItems.forEach((id) => {
+            const item = localized[locale].items.find(
+                (candidate) => candidate.id === id
+            );
+            const html = item.detail.sections
+                .map((section) => section.html || '')
+                .join(' ');
+
+            assert.equal(
+                html.includes('@test_alpha0'),
+                true,
+                `${locale}.${id} should use the public handle`
+            );
+        });
+    }
+});
+
+test('q(5) keeps only the concise BLP bound and community comparison', () => {
+    for (const locale of LOCALES) {
+        const item = localized[locale].items.find(
+            (candidate) => candidate.id === 'item-112'
+        );
+        const html = item.detail.sections
+            .map((section) => section.html || '')
+            .join(' ');
+
+        assert.equal(html.includes('\\varepsilon_0'), true);
+        assert.equal(html.includes('@test_alpha0'), true);
+        assert.equal(html.includes('\\omega\\)-Y'), true);
+        assert.equal(html.includes('Notes on Laver Tables'), true);
+        assert.equal(
+            locale === 'zh-CN'
+                ? html.includes('严格证明') && html.includes('大数社区')
+                : html.includes('rigorously proves') &&
+                    html.includes('large-number community'),
+            true,
+            `${locale}.item-112 should retain the requested claims`
+        );
+        const removedPhrases =
+            locale === 'zh-CN'
+                ? ['具体层级参数', '严格下界简记', '非严格下界', '并非下述论文']
+                : [
+                      'precise hierarchy parameters',
+                      'records the rigorous lower bound',
+                      'non-rigorous lower bound',
+                      'rather than a theorem'
+                  ];
+        removedPhrases.forEach((phrase) => {
+            assert.equal(
+                html.includes(phrase),
+                false,
+                `${locale}.item-112 should omit: ${phrase}`
+            );
+        });
+        assert.equal(html.includes('m\\!\\left'), false);
+        assert.equal(html.includes('H_{\\varepsilon_0}'), false);
+        assert.equal(html.includes('Dougherty'), false);
+        assert.equal(
+            item.detail.sections.some((section) => section.type === 'code'),
+            false
         );
     }
 });

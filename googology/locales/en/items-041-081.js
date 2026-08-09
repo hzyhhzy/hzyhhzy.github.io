@@ -1,6 +1,13 @@
 (function (global) {
     'use strict';
 
+    function unreviewedNotice() {
+        return {
+            type: 'note',
+            html: 'This content was produced by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed.'
+        };
+    }
+
     global.GoogologyI18n.registerMessages('en', {
         items: {
             'item-041': {
@@ -129,16 +136,19 @@ print(A3(n, n, n))`
             'item-048': {
                 label: "Friedman's n function",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Block_subsequence_theorem">Friedman&#39;s n function</a>',
+                    title: '<a href="https://doi.org/10.1006/jcta.2000.3154">Friedman&#39;s n function</a>',
                     sections: [
                         {
                             type: 'html',
                             html: `
-                                <p>The definition is omitted here; follow the link or consult the related literature.</p>
-                                <p>A known result is \\(n(4)>\\operatorname{A}^{\\operatorname{A}(187196)}(1),\\) where \\(\\operatorname{A}\\) is the Ackermann function and the superscript denotes functional iteration. It has also been stated that \\(\\operatorname{TREE}(3)\\) is far larger than \\(n(4)\\), making \\(\\operatorname{A}^{\\operatorname{A}(187196)}(1)\\) a lower bound for \\(\\operatorname{TREE}(3)\\).</p>
+                                <p><strong>Definition.</strong> Fix \\(k\\geq1\\) and take a finite word \\(x_1\\cdots x_N\\) over \\(\\{1,\\ldots,k\\}\\). It has property \\(*\\) when there are no \\(i\\lt j\\leq N/2\\) for which the consecutive block \\(x_i\\cdots x_{2i}\\) is a subsequence of the later block \\(x_j\\cdots x_{2j}\\). Here a subsequence may delete symbols but must preserve the relative order of those retained. The number \\(n(k)\\) is the greatest possible \\(N\\).</p>
+                                <p>Higman's lemma rules out an infinite word with property \\(*\\); applying König's lemma to the finitely branching tree of valid finite prefixes then gives a maximum length. The first two exact values are \\(n(1)=3\\) and \\(n(2)=11\\), with \\(12221111111\\) attaining the latter. Friedman also proved \\(n(3)>\\operatorname{A}_{7198}(158386)\\). If \\(\\operatorname{A}(t)=\\operatorname{A}(t,t)\\), then \\[n(4)>\\operatorname{A}^{\\operatorname{A}(187196)}(1),\\]where the superscript denotes functional iteration.</p>
+                                <p>As a function of \\(k\\), \\(n(k)\\) eventually dominates every \\(H_\\beta\\) with \\(\\beta\\lt\\omega^\\omega\\), and is eventually dominated by \\(H_{\\omega^\\omega+1}\\). Under the FGH correspondence used on this site, this places it at the \\(f_{\\omega^\\omega}\\) level. Since \\(\\operatorname{TREE}(3)\\) is far larger than \\(n(4)\\), the bound above is also a very weak lower bound for \\(\\operatorname{TREE}(3)\\).</p>
                                 <p>However, \\(\\operatorname{TREE}(3)\\) lies at the level of the <a href="https://googology.fandom.com/wiki/Small_Veblen_ordinal">small Veblen ordinal (SVO)</a>, so this lower bound is extremely weak. People later jokingly called \\(\\operatorname{A}^{\\operatorname{A}(187196)}(1),\\) and related expressions containing “187196,” “\\(\\operatorname{TERR}(3)\\)”; “TERR” is an intentional misspelling of “TREE.”</p>
+                                <p><strong>Sources:</strong> <a href="https://doi.org/10.1006/jcta.2000.3154">Harvey M. Friedman, <cite>Long Finite Sequences</cite>, §1 and Theorems 5.19 and 6.8</a>; <a href="https://bpb-us-w2.wpmucdn.com/u.osu.edu/dist/1/1952/files/2014/01/EnormousInt.12pt.6_1_00-23kmig3.pdf">Harvey M. Friedman, <cite>Enormous Integers in Real Life</cite>, Theorems 8.4–8.5</a>.</p>
                             `
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -150,18 +160,13 @@ print(A3(n, n, n))`
                         {
                             type: 'html',
                             html: `
-                                <p>This function is similar to <a href="https://googology.fandom.com/wiki/Block_subsequence_theorem">Friedman's n function</a> and has the same size, \\(f_{{\\omega}^{{\\omega}}},\\) but its definition is recast in the style of the TREE function.</p>
-                                <ul>
-                                    <li>Strings use an alphabet of \\(n\\) symbols.</li>
-                                    <li>Consider a sequence of <em>N</em> strings \\(S_{1},\\) \\(S_{2},\\) \\(\\ldots{},\\) \\(S_{N}.\\)</li>
-                                    <li>The length of the \\(i\\)-th string \\(S_{i}\\) is at most \\(i\\).</li>
-                                    <li>If \\(i\\lt j\\), then \\(S_{i}\\) is not a subsequence of \\(S_{j}.\\) Here, “subsequence” means that \\(S_{i}\\) can be obtained by deleting symbols from \\(S_{j}\\) without changing the relative order of the remaining symbols.</li>
-                                    <li>The function value is the largest possible <em>N</em> under these constraints.</li>
-                                </ul>
-                                <p>This definition is equivalent to a TREE function with no branching: trees with \\(n\\) node labels degenerate into strings over an \\(n\\)-symbol alphabet. Each string corresponds to an ordinal below \\({\\omega}^{{\\omega}^{n-1}},\\) while “the length of the \\(i\\)-th string is at most \\(i\\)” corresponds to the <a href="https://googology.fandom.com/wiki/Hardy_hierarchy">Hardy hierarchy (HH)</a>.</p>
-                                <p>Therefore, as \\(n\\) approaches \\({\\omega},\\) the growth rate of \\(N\\) is \\(H_{{\\omega}^{{\\omega}^{{\\omega}}}}=f_{{\\omega}^{{\\omega}}}.\\)</p>
+                                <p><strong>Definition.</strong> Let \\(\\operatorname{STR}(n)\\) be the greatest length \\(N\\) of a sequence of strings \\(S_1,\\ldots,S_N\\) such that the alphabet has \\(n\\) symbols, \\(|S_i|\\leq i\\), and \\(S_i\\) is not a subsequence of \\(S_j\\) whenever \\(i\\lt j\\). A subsequence may delete symbols but preserves the relative order of those retained; the empty string is allowed.</p>
+                                <p>Higman's lemma together with König's lemma ensures that \\(\\operatorname{STR}(n)\\) is finite. The known initial values and bound are \\(\\operatorname{STR}(1)=2\\), \\(\\operatorname{STR}(2)=4\\), and \\(\\operatorname{STR}(3)\\geq11\\). Witnesses are \\((A,\\varnothing)\\), \\((A,BB,B,\\varnothing)\\), and \\((A,BB,BC,CB,B,CCCCC,CCCC,CCC,CC,C,\\varnothing)\\), respectively.</p>
+                                <p>This can be viewed as a TREE-style bad-sequence function with no branching: trees with \\(n\\) node labels degenerate into strings over an \\(n\\)-symbol alphabet. The maximal order type of all finite strings over \\(n\\) symbols under the subsequence ordering is \\(\\omega^{\\omega^{n-1}}\\). This construction differs only by an indexing convention from the function \\(F\\) studied in §5 of Friedman's <cite>Long Finite Sequences</cite>; the corresponding bounds place its growth at \\(H_{\\omega^{\\omega^{\\omega}}}=f_{\\omega^\\omega}\\).</p>
+                                <p><strong>Sources:</strong> <a href="https://mathoverflow.net/questions/285755/growth-rate-of-longest-sequence-of-strings-where-no-string-is-a-subsequence-of-a">MathOverflow, “Growth rate of longest sequence of strings where no string is a subsequence of a later one” (definition and small cases)</a>; <a href="https://doi.org/10.1006/jcta.2000.3154">Harvey M. Friedman, <cite>Long Finite Sequences</cite>, §5 and Theorem 5.19</a>; <a href="https://arxiv.org/abs/1103.4399">Schmitz and Schnoebelen, <cite>Multiply-Recursive Upper Bounds with Higman's Lemma</cite></a>.</p>
                             `
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -496,16 +501,19 @@ print(g)`
             'item-063': {
                 label: 'Hydra game',
                 detail: {
-                    title: '<a href="https://en.wikipedia.org/wiki/Hydra_game">Hydra game</a>',
+                    title: '<a href="https://doi.org/10.1112/blms/14.4.285">Hydra game</a>',
                     sections: [
                         {
                             type: 'html',
                             html: `
-                                <p>For the definition and analysis, follow the link or see the <a href="https://googology.fandom.com/wiki/Kirby-Paris_hydra">Kirby–Paris hydra</a> entry.</p>
-                                <p>Each number in <a href="https://googology.fandom.com/wiki/Primitive_sequence_number">PrSS</a> corresponds exactly to the level of a node in the hydra, while the decapitation rule “make \\(n\\) copies at step \\(n\\)” is almost identical to the <a href="https://googology.fandom.com/wiki/Hardy_hierarchy">Hardy hierarchy (HH)</a>.</p>
-                                <p>Therefore, the number of steps required to defeat the hydra is clearly at the \\({\\varepsilon}_{0}\\) level.</p>
+                                <p>A Kirby–Paris hydra is a finite rooted tree. A non-root leaf together with its incident edge is called a head. At stage \\(n\\geq1\\), Hercules removes any head. If the exposed node is the root, nothing grows back. Otherwise, let \\(v\\) be the node exposed by the cut and let \\(u\\) be its parent toward the root. Attach to \\(u\\) another \\(n\\) copies of the post-cut subtree rooted at \\(v\\).</p>
+                                <p>Every battle eventually leaves only the root, independently of both the initial hydra and Hercules' choices. The proof assigns an ordinal below \\(\\varepsilon_0\\) to the tree. A leaf receives \\(0\\); if the children of a node carry ordinals \\(\\alpha_1\\geq\\cdots\\geq\\alpha_r\\), that node receives \\[\\omega^{\\alpha_1}+\\cdots+\\omega^{\\alpha_r}.\\]The ordinal of the hydra is the value at its root. A move may greatly enlarge the finite tree, but it strictly decreases this ordinal, so well-foundedness below \\(\\varepsilon_0\\) proves termination.</p>
+                                <p>Each individual battle has a finite natural-number length depending on its initial tree and chopping strategy; \\(\\varepsilon_0\\) describes the level of the uniform termination theorem and its length function. Kirby and Paris proved that the arithmetical statement “every recursive strategy is winning” is not provable in Peano arithmetic (PA). For their particular recursive strategy \\(\\tau\\), uniform termination corresponds to \\(\\varepsilon_0\\)-induction for the associated predecessor operation.</p>
+                                <p>The entries in <a href="https://googology.fandom.com/wiki/Primitive_sequence_number">PrSS</a> can be matched with node levels in a hydra, while the rule “make \\(n\\) copies at step \\(n\\)” closely resembles the recursion in the <a href="https://googology.fandom.com/wiki/Hardy_hierarchy">Hardy hierarchy (HH)</a>. This also gives the site's intuitive reason for placing the battle-length function at the \\(\\varepsilon_0\\) level.</p>
+                                <p><strong>Source:</strong> <a href="https://doi.org/10.1112/blms/14.4.285">Laurie Kirby and Jeff Paris, <cite>Accessible Independence Results for Peano Arithmetic</cite>, Theorem 2 and pp. 286–293</a> (<a href="https://www.cs.tau.ac.il/~nachumd/term/Kirbyparis.pdf">open PDF</a>).</p>
                             `
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -546,8 +554,9 @@ print(g)`
                     sections: [
                         {
                             type: 'html',
-                            html: `<p>To be added.</p>`
-                        }
+                            html: `<p>\\({\\zeta}_{0}\\) is the first fixed point of the epsilon-enumerating function \\(\\alpha\\mapsto\\varepsilon_{\\alpha}\\): it is the least positive ordinal satisfying \\(\\varepsilon_{{\\zeta}_{0}}={\\zeta}_{0}\\).</p><p>If \\(\\alpha_{0}=0\\) and \\(\\alpha_{n+1}=\\varepsilon_{\\alpha_n}\\), then \\({\\zeta}_{0}=\\sup_{n\\lt{}\\omega}\\alpha_n\\). Under the usual binary Veblen convention it can also be written \\(\\varphi_{2}(0)\\). This fixed-point hierarchy goes back to <a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen's continuous increasing ordinal functions</a>.</p>`
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },

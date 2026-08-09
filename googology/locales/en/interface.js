@@ -80,6 +80,13 @@ print(g)`;
         };
     }
 
+    function unreviewedNotice() {
+        return {
+            type: 'note',
+            html: 'This content was produced by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed.'
+        };
+    }
+
     i18n.registerLocale({
         code: 'en',
         name: 'English',
@@ -123,8 +130,14 @@ print(g)`;
                 text: 'Laver-table constructions',
                 detail: document('Laver-table constructions', [
                     html(
-                        '<p>Originating in large-cardinal axioms in set theory, these constructions are closely related to the combinatorial properties of finite algebraic structures and have a highly distinctive growth rate.</p>'
-                    )
+                        '<p>A Laver table \\(A_n\\) is a finite left-self-distributive algebra on \\(2^n\\) elements. Although it has a completely finite recursive definition, Laver tables were discovered through the study of rank-into-rank elementary embeddings \\(j:V_\\lambda\\to V_\\lambda\\). Every row has a power-of-two period, and the indices at which the first-row period doubles give rise to extremely rapidly growing finite thresholds.</p>' +
+                        '<p><strong>Papers and references:</strong></p><ul>' +
+                        '<li><a href="https://doi.org/10.1016/0001-8708(92)90016-E">Richard Laver: The left distributive law and the freeness of an algebra of elementary embeddings</a></li>' +
+                        '<li><a href="https://arxiv.org/abs/1810.00548">Philippe Biane: Laver tables and combinatorics</a></li>' +
+                        '<li><a href="https://arxiv.org/abs/math/9503204">Randall Dougherty: Critical points in an algebra of elementary embeddings, II</a></li>' +
+                        '</ul>'
+                    ),
+                    unreviewedNotice()
                 ])
             },
             'branch-3': {

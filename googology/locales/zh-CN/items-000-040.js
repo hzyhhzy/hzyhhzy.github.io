@@ -1,6 +1,13 @@
 (function (global) {
     'use strict';
 
+    function unreviewedNotice() {
+        return {
+            type: 'note',
+            html: '该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性'
+        };
+    }
+
     global.GoogologyI18n.registerMessages('zh-CN', {
         items: {
             'item-000': {
@@ -24,7 +31,13 @@
                 label: '\\(1000\\)',
                 detail: {
                     title: '\\(1000\\)',
-                    sections: []
+                    sections: [
+                        {
+                            type: 'html',
+                            html: `<p>\\(1000=10^{3}\\)，中文读作“一千”，英文写作 one thousand。它是最小的四位正整数。</p>`
+                        },
+                        unreviewedNotice()
+                    ]
                 }
             },
             'item-002': {
@@ -213,13 +226,29 @@ print(result)`
                     sections: [
                         {
                             type: 'html',
-                            html: `<p>\\(10\\uparrow{}\\uparrow{}\\uparrow{}10=10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}10)))))))))\\)。</p><p>对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9-1\\) 次“十进制位数”，结果是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8-1\\) 次，结果也是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}7-1\\) 次，结果仍是 11；依此类推。</p>`
+                            html: `<p>\\(10\\uparrow{}\\uparrow{}\\uparrow{}10=10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}10)))))))))\\)。</p><p>对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9-1\\) 次“十进制位数”，结果是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8-1\\) 次，结果也是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}7-1\\) 次，结果仍是 11；依此类推。</p><p>下面的程序按照 <a href="https://doi.org/10.1126/science.194.4271.1235">Knuth 上箭头记号</a>的递归规则求值；它没有预先写入答案，也不设置整数位数上限。</p>`
                         },
                         {
                             type: 'code',
                             language: 'python',
-                            source: `TODO`
-                        }
+                            title: '递归求值（理论实现）',
+                            source: `def up_arrow(base, arrows, argument):
+    # a ↑^0 b = a * b；当 arrows >= 1 时，a ↑^arrows 0 = 1。
+    if arrows == 0:
+        return base * argument
+    if argument == 0:
+        return 1
+
+    return up_arrow(
+        base,
+        arrows - 1,
+        up_arrow(base, arrows, argument - 1),
+    )
+
+
+print(up_arrow(10, 3, 10))`
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
