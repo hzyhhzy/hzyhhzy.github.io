@@ -7,6 +7,9 @@ import { SavesParser as TtSavesParser } from "./tt/savesparser.js";
 const splittor = "-(=)-";
 const survivalStorageKey = "deductrium-optimized-save";
 const creativeStorageKey = "deductrium-optimized-creative-save";
+const timeoutStorageKey = "deductrium-optimized-type-timeout-seconds";
+const defaultTimeoutSeconds = "300";
+const validTimeoutSeconds = new Set(["10", "30", "300", "1800", "1e10"]);
 const dict = {
     ',"aE0","aPair","aPow","aUnion","areg","arepl","asep","ainf",': "a#`",
     '"0","1","2","3","4","5","6","7","8","9","10"': "b#`",
@@ -125,9 +128,12 @@ export class GameSaveLoad {
         }
     }
     serialize(game: Game) {
+        const selectedTimeout = (document.getElementById("timeSelect") as HTMLSelectElement)?.value;
+        const timeoutSeconds = validTimeoutSeconds.has(selectedTimeout) ? selectedTimeout : defaultTimeoutSeconds;
         return JSON.stringify([
             game.rewards, game.deductriums, game.consumed,
-            game.destructedGates, game.parcours, game.maxOrd, game.ordBase
+            game.destructedGates, game.parcours, game.maxOrd, game.ordBase,
+            timeoutSeconds
         ]);
     }
     deserialize(game: Game, data: string) {
@@ -135,11 +141,20 @@ export class GameSaveLoad {
         let deductriums: number;
         let consumed: number;
         let destructedGates: number;
-        let maxOrd: number[], ordBase: number;
+        let maxOrd: number[], ordBase: number, timeoutSeconds: string;
         [
             rewards, deductriums, consumed, destructedGates,
-            game.parcours, maxOrd, ordBase
+            game.parcours, maxOrd, ordBase, timeoutSeconds
         ] = JSON.parse(data);
+        if (timeoutSeconds !== undefined) {
+            const normalizedTimeout = String(timeoutSeconds);
+            if (validTimeoutSeconds.has(normalizedTimeout)) {
+                const timeSelect = document.getElementById("timeSelect") as HTMLSelectElement;
+                timeSelect.value = normalizedTimeout;
+                localStorage.setItem(timeoutStorageKey, normalizedTimeout);
+                timeSelect.dispatchEvent(new Event("change"));
+            }
+        }
         const skipRendering = game.fsGui.skipRendering;
         game.fsGui.skipRendering = true;
         game.ttGui.skipRendering = true;

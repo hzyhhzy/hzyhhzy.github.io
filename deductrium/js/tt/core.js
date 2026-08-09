@@ -372,7 +372,7 @@ export function assignContext(added, oldContext) {
     return n;
 }
 export class Core {
-    static timeout = 10_000;
+    static timeout = 300_000;
     static timeoutOccured;
     matchWhnfEpoch = 0;
     static assign(ast, value, moveSemantic) {

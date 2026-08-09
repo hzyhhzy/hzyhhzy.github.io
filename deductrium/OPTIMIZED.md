@@ -12,3 +12,8 @@ on the same origin:
 
 Exported text saves remain compatible with the original game's import/export
 format.
+
+Type-check timeout choices are 10, 30, 300, and 1800 seconds plus infinity.
+The optimized build defaults to 300 seconds, persists the selected value across
+the reload performed by file import, and records it as an optional trailing
+save field. Older builds safely ignore that extra field.

@@ -12,6 +12,8 @@ const sysmacro = new Set();
 let consts = new Set;
 const allrules = initTypeSystem();
 const reservedConsts = new Set;
+const timeoutStorageKey = "deductrium-optimized-type-timeout-seconds";
+const defaultTimeoutSeconds = "300";
 export class TTGui {
     puzzleDefs = new Set;
     skipRendering = true;
@@ -114,8 +116,23 @@ export class TTGui {
                 document.getElementById("tactic-begin").click();
             }
         });
-        document.getElementById('timeSelect').addEventListener('change', function () {
+        const timeSelect = document.getElementById('timeSelect');
+        let timeoutSeconds = defaultTimeoutSeconds;
+        try {
+            const savedTimeout = localStorage.getItem(timeoutStorageKey);
+            if (savedTimeout && Array.from(timeSelect.options).some(option => option.value === savedTimeout)) {
+                timeoutSeconds = savedTimeout;
+            }
+        }
+        catch { }
+        timeSelect.value = timeoutSeconds;
+        Core.timeout = Number(timeoutSeconds) * 1000;
+        timeSelect.addEventListener('change', function () {
             Core.timeout = Number(this.value) * 1000;
+            try {
+                localStorage.setItem(timeoutStorageKey, this.value);
+            }
+            catch { }
         });
         const remove = (all) => {
             if (this.mode.length === 1 || all) {

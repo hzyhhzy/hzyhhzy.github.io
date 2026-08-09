@@ -378,7 +378,7 @@ export function assignContext(added: [string, AST, number], oldContext: Context)
 }
 
 export class Core {
-    static timeout:number = 10_000;
+    static timeout:number = 300_000;
     static timeoutOccured:boolean;
     private matchWhnfEpoch = 0;
     static assign(ast: AST, value: AST, moveSemantic?: boolean) {
