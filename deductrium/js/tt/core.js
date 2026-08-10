@@ -37,7 +37,13 @@ export class InferTable {
     }
     clone() {
         const n = new InferTable;
-        n.list = new Map(this.list);
+        // Reused caches remap inference variables in-place.  Every cloned
+        // table must own its contexts so loading one definition cannot mutate
+        // another cached definition or the live precheck table.
+        n.list = new Map([...this.list].map(([name, context]) => [
+            name,
+            Core.cloneContext(context),
+        ]));
         n.rel = Object.fromEntries(Object.entries(this.rel).map(([k, v]) => {
             const nv = Core.clone(v, true);
             nv.origin = v.origin;
@@ -47,7 +53,11 @@ export class InferTable {
             return [k, nv];
         }));
         n.solved = new Set(this.solved);
-        n.defered = this.defered.map(e => [Core.clone(e[0], true), Core.clone(e[1], true), e[2]]);
+        n.defered = this.defered.map(e => [
+            Core.clone(e[0], true),
+            Core.clone(e[1], true),
+            Core.cloneContext(e[2]),
+        ]);
         n.nextName = this.nextName;
         return n;
     }
@@ -679,19 +689,6 @@ export class Core {
             }
             this.fillInfered(ast);
             this.solveInferDefered();
-            if (ast.type === ":=" && ast.nodes?.[1]) {
-                const content = ast.nodes[1];
-                const publicType = content.type === ":" ? content.nodes[1] : content.checked;
-                if (publicType) {
-                    // checkType ensugars its result for display below. Keep a
-                    // kernel-form snapshot so immediate registration can reuse
-                    // this proof without turning a dependent Pi into an arrow.
-                    this.state.precheckedDefinition = {
-                        content,
-                        publicType: Core.clone(publicType),
-                    };
-                }
-            }
         }
         catch (e) {
             errmsg = e;
@@ -704,6 +701,19 @@ export class Core {
         }
         catch (e) {
             errmsg = e;
+        }
+        if (!errmsg && ast.type === ":=" && ast.nodes?.[1]) {
+            const content = ast.nodes[1];
+            const publicType = content.type === ":" ? content.nodes[1] : content.checked;
+            if (publicType) {
+                // Capture the public type only after the final inference-value
+                // pass, so it and the saved inference table describe the same
+                // solved state.
+                this.state.precheckedDefinition = {
+                    content,
+                    publicType: Core.clone(publicType),
+                };
+            }
         }
         const alphaConversionIds = new Set;
         this.reduce(ast, context, false, alphaConversionIds);
@@ -2292,9 +2302,9 @@ export class Core {
         for (const [a, b, ct] of inferTable.defered) {
             const ctxt = Core.cloneContext(ct);
             const na = Core.clone(a);
-            InferTable.mapInferVal(a, map);
+            InferTable.mapInferVal(na, map);
             const nb = Core.clone(b);
-            InferTable.mapInferVal(b, map);
+            InferTable.mapInferVal(nb, map);
             this.increaseBondVarIdsBy(na, bondvarIdBase);
             this.increaseBondVarIdsBy(nb, bondvarIdBase);
             // first we remark bondvar id in the context of infer vars

@@ -403,6 +403,33 @@ text .highlighted span {
     height: 80vh;
 }
 
+#panel-0 {
+    position: relative;
+}
+
+#geometry-map-controls {
+    position: absolute;
+    right: 12px;
+    top: 4px;
+    z-index: 2;
+    display: flex;
+    gap: 7px;
+}
+
+#geometry-map-controls button {
+    border: 1px solid #8ba0b8;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.94);
+    color: #29435f;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+#geometry-map-controls button:hover {
+    border-color: #4777ad;
+    background: #eef5ff;
+}
+
 @keyframes hint-anim {
     0% {
         color: rgba(255, 0, 0, 0);
