@@ -1,4 +1,4 @@
-import { HWorld } from "./hworld.js?flat-map=39";
+import { HWorld } from "./hworld.js?flat-map=41";
 export class HyperGui {
     canvas = document.getElementById("hyper");
     geometryModeButton = document.getElementById("geometry-mode-toggle");

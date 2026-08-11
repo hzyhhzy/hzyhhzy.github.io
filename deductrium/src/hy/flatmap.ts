@@ -146,6 +146,7 @@ export class FlatMapModel {
     polygon;
     getBlock;
     currentHash;
+    sourceNodeHashes: Set<string> = null;
     sourcePassiveRoadHashes: Set<string> = new Set();
     sourceEmptyRoadHashes: Set<string> = new Set();
     nodes = new Map();
@@ -171,6 +172,8 @@ export class FlatMapModel {
     globalCoords: Map<string, { x: number, y: number }> = new Map();
     globalNodes: Set<string> = new Set();
     globalEdges: any[] = [];
+    globalLayoutResolved = false;
+    fixedLayoutUnavailable = false;
     reachableRouteCache: any[] = null;
     reachableRegionCache: {
         reachableNodes: Set<string>,
@@ -203,6 +206,9 @@ export class FlatMapModel {
         this.currentHash = currentHash;
         this.usePrecomputedLayout = usePrecomputedLayout;
         if (sourceRoadSnapshot) {
+            if (sourceRoadSnapshot.nodeHashes) {
+                this.sourceNodeHashes = new Set(sourceRoadSnapshot.nodeHashes);
+            }
             this.sourcePassiveRoadHashes = new Set(sourceRoadSnapshot.passiveRoadHashes);
             this.sourceEmptyRoadHashes = new Set(sourceRoadSnapshot.emptyRoadHashes);
         } else {
@@ -359,27 +365,36 @@ export class FlatMapModel {
     }
 
     buildOriginalGraph() {
-        const hashes = new Set(blockMap.keys());
-        const currentBlock = this.getBlock(this.currentHash);
-        if (currentBlock) hashes.add(this.currentHash);
+        // The in-game planar view is a fixed drawing of the map as it exists
+        // immediately after initMap().  Ordinal exploration appends procedural
+        // tiles to blockMap, but those tiles belong exclusively to the
+        // hyperbolic view and must never invalidate the fixed layout.
+        const hashes = this.sourceNodeHashes
+            ? new Set(this.sourceNodeHashes)
+            : new Set(blockMap.keys());
 
-        // Procedural ordinal territory is not necessarily present in blockMap.
-        // Discover only a bounded neighbourhood around the current save tile.
-        const queue = currentBlock ? [[this.currentHash, 0]] : [];
-        const discovered = new Set(queue.map(([hash]) => hash));
-        let cursor = 0;
-        while (cursor < queue.length && discovered.size < 2048) {
-            const [hash, depth] = queue[cursor++];
-            if (depth >= 10) continue;
-            const tile = hashToTile(hash);
-            for (let direction = 0; direction < this.polygon.p; direction++) {
-                const neighbor = this.polygon.getNeighborAndDir(tile, direction, true)[0].join(",");
-                if (discovered.has(neighbor)) continue;
-                const block = this.getBlock(neighbor);
-                if (!block) continue;
-                discovered.add(neighbor);
-                hashes.add(neighbor);
-                queue.push([neighbor, depth + 1]);
+        // Standalone tooling can still construct a model without a source-map
+        // snapshot. Preserve its bounded procedural discovery for that case;
+        // HWorld always supplies the fixed snapshot above.
+        if (!this.sourceNodeHashes) {
+            const currentBlock = this.getBlock(this.currentHash);
+            if (currentBlock) hashes.add(this.currentHash);
+            const queue = currentBlock ? [[this.currentHash, 0]] : [];
+            const discovered = new Set(queue.map(([hash]) => hash));
+            let cursor = 0;
+            while (cursor < queue.length && discovered.size < 2048) {
+                const [hash, depth] = queue[cursor++];
+                if (depth >= 10) continue;
+                const tile = hashToTile(hash);
+                for (let direction = 0; direction < this.polygon.p; direction++) {
+                    const neighbor = this.polygon.getNeighborAndDir(tile, direction, true)[0].join(",");
+                    if (discovered.has(neighbor)) continue;
+                    const block = this.getBlock(neighbor);
+                    if (!block) continue;
+                    discovered.add(neighbor);
+                    hashes.add(neighbor);
+                    queue.push([neighbor, depth + 1]);
+                }
             }
         }
 
@@ -1036,7 +1051,7 @@ export class FlatMapModel {
     }
 
     ensureGlobalLayout() {
-        if (!this.globalCoords.size) this.layoutGlobalOverview();
+        if (!this.globalLayoutResolved) this.layoutGlobalOverview();
         return this.globalCoords;
     }
 
@@ -1460,18 +1475,35 @@ export class FlatMapModel {
      */
     layoutGlobalOverview() {
         const started = performance.now();
+        this.globalLayoutResolved = true;
+        this.fixedLayoutUnavailable = false;
         this.globalCoords.clear();
         this.globalNodes = new Set<string>(this.anchors as Set<string>);
         this.globalEdges = this.edges.slice();
-        if (this.usePrecomputedLayout && this.applyPrecomputedGlobalLayout()) {
-            this.centerGlobalCoordinates();
-            this.globalLayoutStats = this.globalMetrics(
-                PRECOMPUTED_GLOBAL_LAYOUT.componentCount,
-                PRECOMPUTED_GLOBAL_LAYOUT.layerCount,
-                started,
-                PRECOMPUTED_GLOBAL_LAYOUT.minimumNodeDistance,
-                PRECOMPUTED_GLOBAL_LAYOUT.crossingCount,
-            );
+        if (this.usePrecomputedLayout) {
+            if (this.applyPrecomputedGlobalLayout()) {
+                this.centerGlobalCoordinates();
+                this.globalLayoutStats = this.globalMetrics(
+                    PRECOMPUTED_GLOBAL_LAYOUT.componentCount,
+                    PRECOMPUTED_GLOBAL_LAYOUT.layerCount,
+                    started,
+                    PRECOMPUTED_GLOBAL_LAYOUT.minimumNodeDistance,
+                    PRECOMPUTED_GLOBAL_LAYOUT.crossingCount,
+                );
+                return;
+            }
+
+            // Never replace the curated planar drawing with the old layered
+            // tree fallback in the browser. A mismatched fixed graph is safer
+            // to report as unavailable than to silently change geometry.
+            this.fixedLayoutUnavailable = true;
+            this.globalExtent = { x: 1, y: 1 };
+            this.globalLayoutStats = {
+                ...this.globalLayoutStats,
+                nodeCount: this.globalNodes.size,
+                edgeCount: this.globalEdges.length,
+                layoutMilliseconds: performance.now() - started,
+            };
             return;
         }
 

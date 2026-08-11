@@ -1,6 +1,6 @@
 import { TRC1 } from "../lang.js";
 import { Hvec, Quaternion, Rotor } from "./algebra.js";
-import { FlatMapModel } from "./flatmap.js?flat-map=39";
+import { FlatMapModel } from "./flatmap.js?flat-map=41";
 import { LocalDraw } from "./localdraw.js";
 import { TileBlockType, blockMap, initMap, nameMap } from "./maploader.js";
 import { genOrdTiles } from "./ordinal.js";
@@ -106,6 +106,7 @@ export class HWorld {
         this.captureSourceRoadSnapshot();
     }
     captureSourceRoadSnapshot() {
+        const nodeHashes = new Set(blockMap.keys());
         const passiveRoadHashes = new Set();
         const emptyRoadHashes = new Set();
         for (const [hash, block] of blockMap) {
@@ -115,7 +116,7 @@ export class HWorld {
             if (!block.text?.trim())
                 emptyRoadHashes.add(hash);
         }
-        this.sourceRoadSnapshot = { passiveRoadHashes, emptyRoadHashes };
+        this.sourceRoadSnapshot = { nodeHashes, passiveRoadHashes, emptyRoadHashes };
     }
     invalidateMap() {
         this.graphDirty = true;
@@ -174,7 +175,6 @@ export class HWorld {
     }
     reload() {
         initMap(this.atlasTile);
-        this.captureSourceRoadSnapshot();
         this.invalidateMap();
     }
     getBlock(hash) {
@@ -635,6 +635,33 @@ export class HWorld {
             : "点击蓝圈会沿白路前往 · 门只在抵达时判定 · M 查看全图", 22 * dpr, 79 * dpr);
         context.restore();
     }
+    drawFlatNotice(context, lines, centered = false) {
+        const dpr = window.devicePixelRatio;
+        const canvas = this.localDraw.canvas;
+        const fontSize = (centered ? 18 : 14) * dpr;
+        const lineHeight = (centered ? 26 : 21) * dpr;
+        const horizontalPadding = 22 * dpr;
+        const verticalPadding = 13 * dpr;
+        context.save();
+        context.font = `600 ${fontSize}px system-ui, sans-serif`;
+        const measuredWidth = Math.max(...lines.map(line => context.measureText(line).width));
+        const width = Math.min(canvas.width - 32 * dpr, measuredWidth + horizontalPadding * 2);
+        const height = lines.length * lineHeight + verticalPadding * 2;
+        const x = (canvas.width - width) / 2;
+        const y = centered ? (canvas.height - height) / 2 : 108 * dpr;
+        roundedRect(context, x, y, width, height, 10 * dpr);
+        context.fillStyle = "rgba(255,247,224,0.96)";
+        context.fill();
+        context.strokeStyle = "rgba(190,128,20,0.75)";
+        context.lineWidth = 1.2 * dpr;
+        context.stroke();
+        context.fillStyle = "#714b00";
+        context.textAlign = "center";
+        context.textBaseline = "middle";
+        const firstY = y + height / 2 - (lines.length - 1) * lineHeight / 2;
+        lines.forEach((line, index) => context.fillText(line, canvas.width / 2, firstY + index * lineHeight));
+        context.restore();
+    }
     drawHoverCard(context) {
         const hash = this.hoveredEdge !== null
             ? this.screenTargets.find(target => target.route.id === this.hoveredEdge)?.hash
@@ -734,10 +761,17 @@ export class HWorld {
         this.screenNodes = [];
         this.screenTargets = [];
         if (!model.nodes.has(model.currentHash)) {
-            context.fillStyle = "#8d2431";
-            context.font = `${18 * dpr}px system-ui, sans-serif`;
-            context.textAlign = "center";
-            context.fillText("存档所在地图节点不存在", canvas.width / 2, canvas.height / 2);
+            this.drawFlatNotice(context, [
+                "当前位于序数节点，平面图不显示",
+                "请换回双曲视图（按 V）",
+            ], true);
+            return;
+        }
+        if (model.fixedLayoutUnavailable) {
+            this.drawFlatNotice(context, [
+                "固定平面图布局不可用",
+                "请换回双曲视图（按 V）",
+            ], true);
             return;
         }
         const edges = this.activeEdges(model);
@@ -785,16 +819,13 @@ export class HWorld {
                 context.fillText(node.hash || "[]", node.x + 10 * dpr, node.y + 12 * dpr);
             context.restore();
         }
-        if (this.navigateDraw) {
-            context.save();
-            context.strokeStyle = "rgba(42,78,128,0.45)";
-            context.setLineDash([5 * dpr, 6 * dpr]);
-            context.beginPath();
-            context.arc(canvas.width / 2 + this.panX, canvas.height / 2 + this.panY, 42 * dpr, 0, Math.PI * 2);
-            context.stroke();
-            context.restore();
-        }
         this.drawInfo(context);
+        if (this.getBlock(model.currentHash)?.type === TileBlockType.Ordinal) {
+            this.drawFlatNotice(context, [
+                "当前位于序数节点",
+                "建议切回双曲视图（按 V）",
+            ]);
+        }
         this.drawHoverCard(context);
     }
     hoverAt(x, y) {

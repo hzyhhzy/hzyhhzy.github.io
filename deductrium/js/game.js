@@ -1,7 +1,7 @@
 import { ASTMgr } from "./fs/astmgr.js";
 import { FSGui } from "./fs/gui.js";
 import { Rotor } from "./hy/algebra.js";
-import { HyperGui } from "./hy/gui.js?flat-map=39";
+import { HyperGui } from "./hy/gui.js?flat-map=41";
 import { TileBlockType } from "./hy/maploader.js";
 import { calcMaxReachOrd, cmp, printOrd } from "./hy/ordinal.js";
 import { langMgr, TR } from "./lang.js";
