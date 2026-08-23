@@ -47,6 +47,8 @@
     }
     main { width: min(980px, 100%); margin: 0 auto; padding: 24px 16px 32px; }
     h1 { margin: 0 0 6px; font-size: clamp(1.35rem, 3vw, 2rem); font-weight: 650; }
+    .repo-link { margin: 0 0 6px; }
+    .repo-link a { color: var(--button-active); }
     .intro { margin: 0 0 18px; color: var(--muted); }
     .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 8px; }
     .star-choice { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -108,6 +110,7 @@
 <body>
 <main>
   <h1>Regular-star path player · 正则星形路径播放器</h1>
+  <p class="repo-link"><a href="https://github.com/hzyhhzy/y-triod-sweep">Research repository · 研究项目仓库</a></p>
   <p class="intro">The slider is path progress, not orientation angle, so the four-ray candidate can visibly retreat and advance. 滑块表示路径进度而非角度，因此能忠实显示四射线的回转。</p>
   <div class="toolbar">
     <div class="star-choice" role="group" aria-label="Number of unit rays">
