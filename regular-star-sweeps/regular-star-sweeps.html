@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Regular stars & filled polygons · 旋转扫掠</title>
+  <title>Rotation sweeps — regular stars and filled polygons</title>
   <style>
     :root {
       color-scheme: light dark;
@@ -47,6 +47,11 @@
     }
     main { width: min(980px, 100%); margin: 0 auto; padding: 24px 16px 32px; }
     h1 { margin: 0 0 6px; font-size: clamp(1.35rem, 3vw, 2rem); font-weight: 650; }
+    .page-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+    .page-header h1 { margin: 0; }
+    #language-toggle { flex-shrink: 0; min-width: 76px; }
+    html[lang="en"] [data-lang="zh"],
+    html[lang="zh-CN"] [data-lang="en"] { display: none !important; }
     .repo-link { margin: 0 0 6px; }
     .repo-link a { color: var(--button-active); }
     .intro { margin: 0 0 18px; color: var(--muted); }
@@ -125,82 +130,96 @@
 </head>
 <body>
 <main>
-  <h1>Rotation sweeps · 旋转扫掠播放器</h1>
-  <p class="repo-link"><a href="https://github.com/hzyhhzy/y-triod-sweep">Research repository · 研究项目仓库</a></p>
-  <p class="intro">Continuous sweeps · 连续扫掠：3、4、5、6 射线，以及实心正三角形、正方形。射线臂长 1；多边形外接圆半径 1。滑块表示路径进度，保留 4、5、6 射线的真实回转。<br>Unit arms / unit circumradius. Areas are numerical estimates, not certified minima. 面积为数值估计，并非已证明的最小值。</p>
+  <header class="page-header">
+    <h1><span data-lang="en">Rotation sweeps</span><span data-lang="zh">旋转扫掠播放器</span></h1>
+    <button type="button" id="language-toggle" lang="zh-CN" aria-label="Switch to Chinese">中文</button>
+  </header>
+  <p class="repo-link"><a href="https://github.com/hzyhhzy/y-triod-sweep"><span data-lang="en">Research repository</span><span data-lang="zh">研究项目仓库</span></a></p>
+  <p class="intro" data-lang="en">Continuous sweeps of 3, 4, 5 and 6 rays, a filled equilateral triangle, and a filled square. Each ray has length 1; each polygon has circumradius 1. The slider measures path progress, preserving the angular backtracking of the 4-, 5- and 6-ray motions.<br>Areas are numerical estimates, not proven minima.</p>
+  <p class="intro" data-lang="zh">连续扫掠：3、4、5、6 射线，以及实心正三角形、正方形。射线臂长 1；多边形外接圆半径 1。滑块表示路径进度，保留 4、5、6 射线的真实回转。<br>面积为数值估计，并非已证明的最小值。</p>
   <div class="toolbar">
-    <div class="star-choice" role="group" aria-label="Shape · 图形">
-      <button type="button" data-shape="3" aria-pressed="false">3 rays · 射线</button>
-      <button type="button" data-shape="4" aria-pressed="true">4 rays · 十字</button>
-      <button type="button" data-shape="5" aria-pressed="false">5 rays · 射线</button>
-      <button type="button" data-shape="6" aria-pressed="false">6 rays · 射线</button>
-      <button type="button" data-shape="triangle" aria-pressed="false">Triangle · 实心三角形</button>
-      <button type="button" data-shape="square" aria-pressed="false">Square · 实心正方形</button>
+    <div class="star-choice" id="shape-group" role="group" aria-label="Shape">
+      <button type="button" data-shape="3" aria-pressed="false"><span data-lang="en">3 rays</span><span data-lang="zh">三射线</span></button>
+      <button type="button" data-shape="4" aria-pressed="true"><span data-lang="en">4 rays (cross)</span><span data-lang="zh">四射线（十字）</span></button>
+      <button type="button" data-shape="5" aria-pressed="false"><span data-lang="en">5 rays</span><span data-lang="zh">五射线</span></button>
+      <button type="button" data-shape="6" aria-pressed="false"><span data-lang="en">6 rays</span><span data-lang="zh">六射线</span></button>
+      <button type="button" data-shape="triangle" aria-pressed="false"><span data-lang="en">Filled triangle</span><span data-lang="zh">实心三角形</span></button>
+      <button type="button" data-shape="square" aria-pressed="false"><span data-lang="en">Filled square</span><span data-lang="zh">实心正方形</span></button>
     </div>
   </div>
   <div class="toolbar">
-    <label class="version-label" for="version">方案 <select id="version"><option value="latest">Latest · 当前代表方案</option><option id="control-option" value="control" disabled>5-ray control · 原本地无急尖角方案</option><option id="previous-option" value="previous">Published · 公开旧版</option></select></label>
-    <button type="button" id="play">Play · 播放</button>
-    <button type="button" id="reset">Reset path · 路径归零</button>
-    <button type="button" id="reset-view">Reset view · 视图复位</button>
+    <label class="version-label" for="version"><span data-lang="en">Candidate</span><span data-lang="zh">方案</span> <select id="version"><option id="latest-option" value="latest">Current representative</option><option id="control-option" value="control" disabled>5-ray local control (no acute tips)</option><option id="previous-option" value="previous">Previously published</option></select></label>
+    <button type="button" id="play">Play</button>
+    <button type="button" id="reset"><span data-lang="en">Reset path</span><span data-lang="zh">路径归零</span></button>
+    <button type="button" id="reset-view"><span data-lang="en">Reset view</span><span data-lang="zh">视图复位</span></button>
   </div>
   <p class="candidate-info" id="candidate-info" aria-live="polite"></p>
-  <section class="player" aria-label="Interactive star or filled polygon motion">
+  <section class="player" id="player-panel" aria-label="Interactive star or filled polygon motion">
     <div class="canvas-wrap"><canvas id="motion" role="img" aria-label="Swept region, centre loop, and current rigid shape; use the wheel to zoom and drag to pan"></canvas></div>
     <div class="controls">
       <div class="range-label">
         <div class="range-heading">
-          <label for="progress"><strong>Path progress · 路径进度</strong></label>
-          <label class="mode-toggle"><input id="single-loop" type="checkbox" checked><span>One centre loop · 单次中心环</span></label>
+          <label for="progress"><strong><span data-lang="en">Path progress</span><span data-lang="zh">路径进度</span></strong></label>
+          <label class="mode-toggle"><input id="single-loop" type="checkbox" checked><span data-lang="en">One centre loop</span><span data-lang="zh">单次中心环</span></label>
         </div>
         <output id="progress-value" for="progress">0.00%</output>
       </div>
       <input id="progress" type="range" min="0" max="10000" step="any" value="0">
-      <p class="mode-help">On: one centre loop, net angle 360°/n. Off: n loops, a literal 360° turn. 开启：中心闭环走一遍，净提升角增加 360°/n；关闭：重复 n 遍转满 360°。n 是射线数或多边形边数。切换自动换算进度，当前姿态不变。</p>
+      <p class="mode-help" data-lang="en">On (default): one centre loop, with a net lifted turn of 360°/n. Off: n loops, a literal 360° turn. Here n is the number of rays or polygon sides. Switching modes converts the progress and preserves the current pose.</p>
+      <p class="mode-help" data-lang="zh">开启（默认）：中心闭环走一遍，净提升角增加 360°/n；关闭：重复 n 遍转满 360°。n 是射线数或多边形边数。切换自动换算进度，当前姿态不变。</p>
       <div class="status" id="status" aria-live="polite">
-        <span>Area · 面积 <strong id="area"></strong></span>
-        <span>Sweep outline · 扫掠轮廓 <strong id="resolution"></strong></span>
-        <span>Centre-loop repetition · 中心环重复 <strong id="loop"></strong></span>
-        <span>Lifted orientation · 提升角 <strong id="angle"></strong></span>
-        <span>Local turn · 局部转向 <strong id="direction"></strong></span>
-        <span>Zoom · 缩放 <strong id="zoom">1.00×</strong></span>
+        <span><span data-lang="en">Area</span><span data-lang="zh">面积</span> <strong id="area"></strong></span>
+        <span><span data-lang="en">Sweep outline</span><span data-lang="zh">扫掠轮廓</span> <strong id="resolution"></strong></span>
+        <span><span data-lang="en">Centre-loop repetition</span><span data-lang="zh">中心环重复</span> <strong id="loop"></strong></span>
+        <span><span data-lang="en">Lifted orientation</span><span data-lang="zh">提升角</span> <strong id="angle"></strong></span>
+        <span><span data-lang="en">Local turn</span><span data-lang="zh">局部转向</span> <strong id="direction"></strong></span>
+        <span><span data-lang="en">Zoom</span><span data-lang="zh">缩放</span> <strong id="zoom">1.00×</strong></span>
       </div>
-      <p class="view-help">Mouse wheel to zoom; drag the view to pan. 鼠标滚轮缩放；按住并拖动可平移视图。</p>
-      <div class="legend" aria-label="Legend">
-        <span class="key"><span class="swatch tagged"></span><span id="tagged-legend">tagged material ray · 标记射线</span></span>
-        <span class="key"><span class="swatch"></span><span id="body-legend">other rays · 其余射线</span></span>
-        <span class="key"><span class="swatch path"></span>closed centre loop · 闭合中心环</span>
+      <p class="view-help"><span data-lang="en">Mouse wheel to zoom; drag the view to pan.</span><span data-lang="zh">鼠标滚轮缩放；按住并拖动可平移视图。</span></p>
+      <div class="legend" id="legend" aria-label="Legend">
+        <span class="key"><span class="swatch tagged"></span><span id="tagged-legend">tagged material ray</span></span>
+        <span class="key"><span class="swatch"></span><span id="body-legend">other rays</span></span>
+        <span class="key"><span class="swatch path"></span><span data-lang="en">closed centre loop</span><span data-lang="zh">闭合中心环</span></span>
       </div>
-      <p class="mode-help">The outline is a numerically guarded display approximation, not an area certificate. 轮廓为带数值余量的显示近似；面积末位未严格认证。</p>
+      <p class="mode-help" data-lang="en">The outline is a display approximation with a numerical safety margin, not an area certificate. The last reported area digits are not rigorously certified.</p>
+      <p class="mode-help" data-lang="zh">轮廓为带数值余量的显示近似，不是面积证书；面积末位未严格认证。</p>
     </div>
   </section>
-  <section class="research" aria-label="Research notes · 研究摘要">
-    <h2>Research notes · 研究摘要</h2>
+  <section class="research" id="research-notes" aria-label="Research notes">
+    <h2><span data-lang="en">Research notes</span><span data-lang="zh">研究摘要</span></h2>
     <details open id="five-ray-research">
-      <summary>Five rays: a smaller, spiky branch · 五射线：更小的带刺分支</summary>
-      <p>选择“5 rays”，即可播放新方案；在方案菜单中可切换原本地无急尖角方案和公开旧版。新方案每个中心闭环净转 72°，其中累计回转约 <strong>10.8050557°</strong>；重复五遍转满 360°。</p>
+      <summary><span data-lang="en">Five rays: a smaller, spiky branch</span><span data-lang="zh">五射线：更小的带刺分支</span></summary>
+      <p data-lang="en">Select “5 rays” to play the new candidate. The candidate menu also offers the previous local control without acute tips and the previously published version. Each new centre loop has a net turn of 72°, including about <strong>10.8050557°</strong> of cumulative backward rotation; five loops complete 360°.</p>
+      <p data-lang="zh">选择“五射线”，即可播放新方案；在方案菜单中可切换原本地无急尖角方案和公开旧版。新方案每个中心闭环净转 72°，其中累计回转约 <strong>10.8050557°</strong>；重复五遍转满 360°。</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Five-ray candidate · 五射线方案</th><th>Area ≈ · 面积</th><th>Acute tips · 急尖角</th></tr></thead>
+          <thead><tr><th><span data-lang="en">Five-ray candidate</span><span data-lang="zh">五射线方案</span></th><th><span data-lang="en">Area ≈</span><span data-lang="zh">面积 ≈</span></th><th><span data-lang="en">Acute tips</span><span data-lang="zh">急尖角</span></th></tr></thead>
           <tbody>
-            <tr><td>Previous local · 原本地方案</td><td>2.2054128</td><td>0</td></tr>
-            <tr><td>New spiky branch · 新带刺分支</td><td>2.2053945</td><td>12</td></tr>
+            <tr><td><span data-lang="en">Previous local control</span><span data-lang="zh">原本地方案</span></td><td>2.2054128</td><td>0</td></tr>
+            <tr><td><span data-lang="en">New spiky branch</span><span data-lang="zh">新带刺分支</span></td><td>2.2053945</td><td>12</td></tr>
           </tbody>
         </table>
       </div>
-      <p>面积减少约 <strong>0.0000183</strong>；12 个急尖角的开角约 <strong>0.2660616°</strong>。它们在多档边界加密下均被检出，并与源运动的切线方向核对；不是单靠图片数出来的。</p>
-      <p>The five-ray search can produce a lower-area spiky branch. The earlier absence of acute tips was not a geometric prohibition. It remains unknown whether an exact minimizer exists or must have infinitely many tips.<br>五射线原来未见尖刺，不能解释为几何上禁止尖刺：搜索分支会影响结果。但“全局最优必须带刺／有无限尖刺／是分形”仍未证明。</p>
-      <p class="caveat">“急尖角”统计阈值为内角小于 30°；0 不代表整个边界处处光滑。面积和尖角均为数值结果，末位未经严格认证；本页使用经独立算法复核的 32 段代表候选，不把约 5×10<sup>−8</sup> 的后续局部精修当作主要突破。<a href="https://github.com/hzyhhzy/y-triod-sweep/blob/main/star-spike-structure/OPTIMAL_LIMIT.md">Full results &amp; derivations · 完整结果与推导</a></p>
+      <p data-lang="en">The area decreases by about <strong>0.0000183</strong>. The 12 acute tips have opening angles of about <strong>0.2660616°</strong>. They were detected at several boundary refinement levels and checked against tangent directions from the source motion, not merely counted in an image.</p>
+      <p data-lang="zh">面积减少约 <strong>0.0000183</strong>；12 个急尖角的开角约 <strong>0.2660616°</strong>。它们在多档边界加密下均被检出，并与源运动的切线方向核对；不是单靠图片数出来的。</p>
+      <p data-lang="en">The five-ray search can produce a lower-area spiky branch. The earlier absence of acute tips was not a geometric prohibition: the search branch matters. Whether an exact global minimizer exists, must have spikes or infinitely many tips, or has a fractal boundary remains unproved.</p>
+      <p data-lang="zh">五射线原来未见尖刺，不能解释为几何上禁止尖刺：搜索分支会影响结果。但精确全局最优解是否存在，以及“全局最优必须带刺／有无限尖刺／是分形”仍未证明。</p>
+      <p class="caveat" data-lang="en">“Acute tips” counts interior angles below 30°; a count of 0 does not mean the entire boundary is smooth. Areas and angles are numerical results with uncertified final digits. This page uses an independently cross-checked, 32-interval representative; later local refinements of about 5×10<sup>−8</sup> are not presented as a major breakthrough.</p>
+      <p class="caveat" data-lang="zh">“急尖角”统计阈值为内角小于 30°；0 不代表整个边界处处光滑。面积和尖角均为数值结果，末位未经严格认证；本页使用经独立算法复核的 32 段代表候选，不把约 5×10<sup>−8</sup> 的后续局部精修当作主要突破。</p>
+      <p><a href="https://github.com/hzyhhzy/y-triod-sweep/blob/main/star-spike-structure/OPTIMAL_LIMIT.md"><span data-lang="en">Full results &amp; derivations</span><span data-lang="zh">完整结果与推导</span></a></p>
     </details>
     <details id="theory-research">
-      <summary>Infinite spikes and the large-n limit · 无限尖刺与射线数的极限</summary>
-      <p>固定的有限分段解析运动，其真实扫掠边界只有有限解析分解，不藏着无限分形层级。另一方面，合法连续运动可以产生无限尖刺，且边界维数仍为 1；也可以产生维数大于 1 的分形片。三类边界都能任意逼近面积下确界，不能据此判断哪一类精确达到最优。</p>
-      <p>对等角分布、每臂长 1 的 n 射线，记连续转满一圈所需面积的下确界为 A<sub>n</sub>。可以严格证明 <strong>A<sub>n</sub> → π</strong>，无须角度单调，也不限制尖刺、路程或运动分段数。证明给出对所有运动都成立的下界，而非把稠密射线直接当成实心圆盘。</p>
-      <p>For equally spaced unit rays, the minimum-area infimum tends to π, even with angular backtracking and unrestricted continuous paths. This does not assert that every feasible sweep has area tending to π, or that the optimal boundary for a fixed n is known.</p>
-      <p><a href="https://github.com/hzyhhzy/y-triod-sweep/blob/main/star-spike-structure/THEORY.md">Theory summary · 理论结论与证明索引</a> · <a href="https://github.com/hzyhhzy/y-triod-sweep/blob/main/star-spike-structure/LARGE_N_LIMIT.md">Complete large-n proof · 趋于 π 的完整证明</a></p>
+      <summary><span data-lang="en">Infinite spikes and the large-n limit</span><span data-lang="zh">无限尖刺与射线数的极限</span></summary>
+      <p data-lang="en">A fixed motion with finitely many analytic pieces has a swept boundary with a finite analytic decomposition, not hidden infinitely nested fractal levels. Other admissible continuous motions can produce infinitely many spikes while retaining a boundary of dimension 1, or fractal boundary pieces of dimension greater than 1. All three boundary classes can approach the area infimum arbitrarily closely; this does not determine which class attains it exactly.</p>
+      <p data-lang="zh">固定的有限分段解析运动，其真实扫掠边界只有有限解析分解，不藏着无限分形层级。另一方面，合法连续运动可以产生无限尖刺，且边界维数仍为 1；也可以产生维数大于 1 的分形片。三类边界都能任意逼近面积下确界，不能据此判断哪一类精确达到最优。</p>
+      <p data-lang="en">For n equally spaced unit rays, let A<sub>n</sub> be the infimum of the swept area needed for a continuous full turn. One can rigorously prove <strong>A<sub>n</sub> → π</strong>, without requiring monotone angles or restricting spikes, path length, or the number of motion pieces. The proof gives a lower bound valid for every motion; it does not simply replace dense rays with a filled disk.</p>
+      <p data-lang="zh">对等角分布、每臂长 1 的 n 射线，记连续转满一圈所需面积的下确界为 A<sub>n</sub>。可以严格证明 <strong>A<sub>n</sub> → π</strong>，无须角度单调，也不限制尖刺、路程或运动分段数。证明给出对所有运动都成立的下界，而非把稠密射线直接当成实心圆盘。</p>
+      <p data-lang="en">This is a statement about the infimum: it does not assert that every feasible sweep has area tending to π, or that the optimal boundary for a fixed n is known.</p>
+      <p data-lang="zh">这是关于面积下确界的结论，并不是说任意可行扫掠的面积都会趋于 π，也不意味着已知固定 n 时最优边界的形状。</p>
+      <p><a href="https://github.com/hzyhhzy/y-triod-sweep/blob/main/star-spike-structure/THEORY.md"><span data-lang="en">Theory summary</span><span data-lang="zh">理论结论与证明索引</span></a> · <a href="https://github.com/hzyhhzy/y-triod-sweep/blob/main/star-spike-structure/LARGE_N_LIMIT.md"><span data-lang="en">Complete large-n proof</span><span data-lang="zh">趋于 π 的完整证明</span></a></p>
     </details>
   </section>
-  <noscript>This player requires JavaScript. 此播放器需要 JavaScript。</noscript>
+  <noscript>This player requires JavaScript to animate the motion and switch languages.</noscript>
 </main>
 <script>
 "use strict";
@@ -220,6 +239,8 @@ const resetButton = document.getElementById("reset");
 const resetViewButton = document.getElementById("reset-view");
 const singleLoopToggle = document.getElementById("single-loop");
 const versionSelect = document.getElementById("version");
+const languageToggle = document.getElementById("language-toggle");
+const latestOption = document.getElementById("latest-option");
 const previousOption = document.getElementById("previous-option");
 const controlOption = document.getElementById("control-option");
 const candidateInfo = document.getElementById("candidate-info");
@@ -242,6 +263,105 @@ let dragClientY = 0;
 let singleLoopOffset = 0;
 const loopCache = new Map();
 
+// Display copy is separate from DATA: changing language must not alter a motion.
+const LANGUAGE_COPY = {
+  en: {
+    lang: "en", title: "Rotation sweeps — regular stars and filled polygons",
+    toggle: "中文", toggleLang: "zh-CN", toggleLabel: "Switch to Chinese",
+    play: "Play", pause: "Pause", shapeGroup: "Shape",
+    playerPanel: "Interactive star or filled polygon motion",
+    legend: "Legend", researchNotes: "Research notes",
+    latest: "Current representative", previous: "Previously published",
+    control: "5-ray local control (no acute tips)",
+    rayUnits: "each ray has length 1", solidUnits: "circumradius 1, filled interior",
+    comparisonLatest: "Compared with the baseline {baseline}, this retained candidate reduces the area by about {gain}.",
+    comparisonPrevious: "Previously published candidate; the current representative has area about {area}, a reduction of about {gain}.",
+    comparisonControl: "Previous local control; the new spiky representative has area about {area}, a reduction of about {gain}.",
+    taggedRay: "tagged material ray", taggedEdge: "tagged material edge",
+    otherRays: "other rays", filledPolygon: "filled polygon",
+    canvas: "{label}; swept region, centre loop and current pose. Mouse wheel to zoom; drag to pan.",
+    progress: "{progress} percent; lifted orientation {angle} degrees",
+    outline: "fold, q = {q}", backward: "backward", forward: "forward", stationary: "stationary",
+    separator: ". ",
+    labels: {
+      "3": "3 rays", "4": "4 rays (cross)", "5": "5 rays", "6": "6 rays",
+      triangle: "Filled equilateral triangle", square: "Filled square",
+      "5-control": "5 rays (previous local control)",
+    },
+    notes: {
+      "3": "The current retained motion has monotone orientation.",
+      "4": "The current best cross candidate is retained, with angular backtracking.",
+      "5": "New spiky branch: 12 acute tips, with opening angles about 0.2660616°. Each net 72° centre cycle includes about 10.8050557° of backward rotation.",
+      "6": "Each net 60° centre cycle includes about 0.933° of backward rotation.",
+      triangle: "A small improvement; area about 2.52749, with monotone orientation.",
+      square: "A very small improvement; area about 2.86634, with monotone orientation.",
+      previous: "This is the old candidate from the original page; its motion data has not been reoptimized.",
+      control: "The 64-interval candidate from the earlier local preview has monotone orientation. No acute tips below 30° were detected; this does not mean the whole boundary is smooth.",
+    },
+  },
+  zh: {
+    lang: "zh-CN", title: "旋转扫掠播放器 — 正则星形与实心多边形",
+    toggle: "English", toggleLang: "en", toggleLabel: "切换为英文",
+    play: "播放", pause: "暂停", shapeGroup: "图形",
+    playerPanel: "射线或实心多边形的交互运动",
+    legend: "图例", researchNotes: "研究摘要",
+    latest: "当前代表方案", previous: "公开旧版",
+    control: "五射线原本地无急尖角方案",
+    rayUnits: "每臂长 1", solidUnits: "外接圆半径 1，完整实心图形",
+    comparisonLatest: "相对原基线 {baseline}，本轮保留方案减少约 {gain}。",
+    comparisonPrevious: "公开旧版；当前代表方案约 {area}，面积减少约 {gain}。",
+    comparisonControl: "原本地对照；新带刺代表方案约 {area}，比此对照减少约 {gain}。",
+    taggedRay: "标记射线", taggedEdge: "标记边",
+    otherRays: "其余射线", filledPolygon: "实心多边形",
+    canvas: "{label}；扫掠区域、中心轨迹与当前姿态。鼠标滚轮缩放，拖动平移。",
+    progress: "路径进度 {progress}%；提升角 {angle} 度",
+    outline: "折叠，q = {q}", backward: "回转", forward: "正转", stationary: "暂停",
+    separator: "。",
+    labels: {
+      "3": "三射线", "4": "四射线（十字）", "5": "五射线", "6": "六射线",
+      triangle: "实心正三角形", square: "实心正方形",
+      "5-control": "五射线原本地无急尖角方案",
+    },
+    notes: {
+      "3": "当前保留运动的角度单调。",
+      "4": "保留当前最佳十字候选；允许回转。",
+      "5": "新带刺分支：12 个急尖角，开角约 0.2660616°；每个净转 72° 的中心周期累计回转约 10.8050557°。",
+      "6": "每个净转 60° 的中心周期累计回转约 0.933°。",
+      triangle: "仅小幅改善；面积约 2.52749，当前角度单调。",
+      square: "仅微小改善；面积约 2.86634，当前角度单调。",
+      previous: "来自原网页的旧方案；旧数据未重新优化。",
+      control: "原本地预览中的 64 段方案：角度单调；未检出小于 30° 的急尖角，不等同于处处光滑。",
+    },
+  },
+};
+// Always start in English; neither browser locale nor saved preferences override it.
+let language = "en";
+
+function message(key, values = {}) {
+  return LANGUAGE_COPY[language][key].replace(/\{(\w+)\}/g, (_, name) => String(values[name]));
+}
+
+function setLanguage(next, redraw = true) {
+  if (!Object.hasOwn(LANGUAGE_COPY, next)) throw new Error("Unknown language: " + next);
+  language = next;
+  const copy = LANGUAGE_COPY[language];
+  document.documentElement.lang = copy.lang;
+  document.title = copy.title;
+  languageToggle.textContent = copy.toggle;
+  languageToggle.setAttribute("lang", copy.toggleLang);
+  languageToggle.setAttribute("aria-label", copy.toggleLabel);
+  latestOption.textContent = copy.latest;
+  previousOption.textContent = copy.previous;
+  controlOption.textContent = copy.control;
+  document.getElementById("shape-group").setAttribute("aria-label", copy.shapeGroup);
+  document.getElementById("player-panel").setAttribute("aria-label", copy.playerPanel);
+  document.getElementById("legend").setAttribute("aria-label", copy.legend);
+  document.getElementById("research-notes").setAttribute("aria-label", copy.researchNotes);
+  playButton.textContent = playing ? copy.pause : copy.play;
+  updateSelectionInfo();
+  if (redraw) draw();
+}
+
 function currentDataset() {
   const latest = DATA[selectedShape];
   if (versionSelect.value === "control" && latest.control) return latest.control;
@@ -258,15 +378,19 @@ function updateSelectionInfo() {
   const dataset = currentDataset();
   const solid = dataset.kind === "solid";
   const gain = latest.baselineArea - latest.areaEstimate;
-  const comparison = versionSelect.value === "control"
-    ? `原本地对照；新带刺代表方案约 ${latest.area}，比此对照减少约 ${(dataset.areaEstimate - latest.areaEstimate).toFixed(7)}。`
-    : versionSelect.value === "previous"
-      ? `公开旧版；当前代表方案约 ${latest.area}，面积减少约 ${gain.toFixed(7)}。`
-      : `相对原基线 ${latest.baselineArea.toFixed(7)}，本轮保留方案减少约 ${gain.toFixed(7)}。`;
-  candidateInfo.textContent = `${dataset.label} · ${solid ? "外接圆半径 1，完整实心图形" : "每臂长 1"}。${comparison} ${dataset.note || ""}`;
-  taggedLegend.textContent = solid ? "tagged material edge · 标记边" : "tagged material ray · 标记射线";
-  bodyLegend.textContent = solid ? "filled polygon · 实心多边形" : "other rays · 其余射线";
-  canvas.setAttribute("aria-label", `${dataset.label}; swept region, centre loop and current pose. Wheel zoom and drag pan.`);
+  const copy = LANGUAGE_COPY[language];
+  const version = versionSelect.value;
+  const comparison = message(version === "control" ? "comparisonControl"
+    : version === "previous" ? "comparisonPrevious" : "comparisonLatest", {
+      baseline: latest.baselineArea.toFixed(7), area: latest.area,
+      gain: (version === "control" ? dataset.areaEstimate - latest.areaEstimate : gain).toFixed(7),
+    });
+  const label = copy.labels[version === "control" ? "5-control" : selectedShape];
+  const note = copy.notes[version === "latest" ? selectedShape : version];
+  candidateInfo.textContent = `${label} · ${solid ? copy.solidUnits : copy.rayUnits}${copy.separator}${comparison} ${note}`;
+  taggedLegend.textContent = solid ? copy.taggedEdge : copy.taggedRay;
+  bodyLegend.textContent = solid ? copy.filledPolygon : copy.otherRays;
+  canvas.setAttribute("aria-label", message("canvas", { label }));
 }
 
 function rotate(point, angle) {
@@ -391,9 +515,9 @@ function localDirection(dataset, value) {
   const lower = Math.max(0, value - epsilon);
   const upper = Math.min(1, value + epsilon);
   const change = sliderMotion(dataset, upper).angle - sliderMotion(dataset, lower).angle;
-  if (change < -1e-9) return "backward · 回转";
-  if (change > 1e-9) return "forward · 正转";
-  return "stationary · 暂停";
+  if (change < -1e-9) return message("backward");
+  if (change > 1e-9) return message("forward");
+  return message("stationary");
 }
 
 function bodyVertices(dataset, state) {
@@ -485,12 +609,14 @@ function draw() {
 
   progressValue.value = `${(100 * value).toFixed(2)}%`;
   areaValue.textContent = `≈ ${dataset.area}`;
-  resolutionValue.textContent = `${dataset.outlineMethod ? dataset.outlineMethod + ", " : ""}q = ${dataset.outlineQ}`;
+  resolutionValue.textContent = dataset.outlineMethod ? message("outline", { q: dataset.outlineQ }) : `q = ${dataset.outlineQ}`;
   loopValue.textContent = `${state.repetition} / ${singleLoopToggle.checked ? 1 : dataset.n}`;
   angleValue.textContent = `${(state.angle * 180 / Math.PI).toFixed(7)}°`;
   directionValue.textContent = localDirection(dataset, value);
   zoomValue.textContent = `${viewZoom.toFixed(2)}×`;
-  progress.setAttribute("aria-valuetext", `${(100 * value).toFixed(2)} percent; lifted orientation ${(state.angle * 180 / Math.PI).toFixed(7)} degrees`);
+  progress.setAttribute("aria-valuetext", message("progress", {
+    progress: (100 * value).toFixed(2), angle: (state.angle * 180 / Math.PI).toFixed(7),
+  }));
 }
 
 function resetView(redraw = true) {
@@ -517,7 +643,7 @@ function setPlaying(value) {
     animationFrame = 0;
   }
   playing = value;
-  playButton.textContent = playing ? "Pause · 暂停" : "Play · 播放";
+  playButton.textContent = playing ? message("pause") : message("play");
   if (playing) {
     animationStart = performance.now();
     animationOrigin = Number(progress.value) / Number(progress.max);
@@ -612,7 +738,8 @@ function finishDrag(event) {
 }
 canvas.addEventListener("pointerup", finishDrag);
 canvas.addEventListener("pointercancel", finishDrag);
-updateSelectionInfo();
+languageToggle.addEventListener("click", () => setLanguage(language === "en" ? "zh" : "en"));
+setLanguage("en", false);
 new ResizeObserver(resize).observe(canvas.parentElement);
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
 </script>
