@@ -6,30 +6,25 @@
     <meta name="color-scheme" content="light dark">
     <title data-en="Engineering Strong Board-game AI | hzyhhzy" data-zh="训练强棋类 AI 的经验 | hzyhhzy">Engineering Strong Board-game AI | hzyhhzy</title>
     <meta name="description" content="Personal engineering notes on training strong board-game AI with AlphaZero, NNUE, KataGo, and deliberate scaling." data-i18n-content="metaDescription">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="site-base.css?v=20260913-2">
+    <link rel="stylesheet" href="styles.css?v=20260913-1">
 </head>
-<body>
+<body class="content-page article-page">
     <a class="skip-link" href="#main-content" data-en="Skip to main content" data-zh="跳到主要内容">Skip to main content</a>
 
-    <header class="content-header">
-        <div class="content-container header-inner">
-            <a class="content-brand" href="index.html" aria-label="Back to hzyhhzy projects" data-i18n-aria-label="brandLabel">
-                <span aria-hidden="true">σ</span>
-                <strong>hzyhhzy</strong>
-            </a>
-            <div class="header-actions">
-                <a class="content-github" href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-                <div class="language-switcher" role="group" aria-label="Language" data-i18n-aria-label="languageControl">
-                    <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
-                    <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
-                </div>
-            </div>
-            <nav class="content-nav" aria-label="Primary navigation" data-i18n-aria-label="primaryNavigation">
-                <a href="index.html" data-en="Projects" data-zh="项目">Projects</a>
-                <a href="boardgame-ai-experience.html" aria-current="page" data-en="AI notes" data-zh="AI 经验">AI notes</a>
-                <a href="boardgame-training.html" data-en="Training" data-zh="训练指南">Training</a>
-                <a href="boardgame-rule-implementation.html" data-en="Rules" data-zh="规则接入">Rules</a>
+    <header class="site-header">
+        <div class="page-shell header-inner">
+            <a class="wordmark" href="index.html" aria-label="HZY / Sigmoid — home"><span class="site-mark" aria-hidden="true">σ</span><span>hzyhhzy<span class="wordmark-dot">.</span></span></a>
+<nav class="section-nav" aria-label="Site navigation">
+                <a href="boardgames/index.html" data-en="Board-game AI" data-zh="棋类 AI">Board-game AI</a>
+                <a href="index.html#web-projects" data-en="Web projects" data-zh="在线项目">Web projects</a>
+                <a href="index.html#misc" data-en="Miscellaneous" data-zh="杂项">Miscellaneous</a>
+                <a href="index.html#blog" aria-current="page" data-en="Blog" data-zh="博客">Blog</a>
             </nav>
+            <div class="language-control" role="group" aria-label="Language">
+                <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
+                <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
+            </div>
         </div>
     </header>
 
@@ -41,28 +36,30 @@
                 <span aria-current="page" data-en="Board-game AI field notes" data-zh="训练强棋类 AI 的经验">Board-game AI field notes</span>
             </nav>
 
-            <section class="content-hero article-hero" aria-labelledby="page-title">
-                <p class="page-eyebrow" data-en="Board-game AI field notes" data-zh="棋类 AI 工程笔记">Board-game AI field notes</p>
-                <h1 id="page-title" data-en="Building strong board-game AI: my engineering judgment" data-zh="训练一个强棋类 AI：我的工程判断">Building strong board-game AI: my engineering judgment</h1>
-                <p class="content-lead" data-en="These conclusions come from recurring problems in my multi-game training, transfer, and implementation work. They are not universal theorems, but a personal route for reaching strong play quickly without closing off room for further improvement." data-zh="这些结论来自我做多棋种训练、迁移和工程实现时反复遇到的问题。它们不是普遍定理，而是一套用来尽快做出强棋类 AI、并保留继续提升空间的个人路线判断。">These conclusions come from recurring problems in my multi-game training, transfer, and implementation work. They are not universal theorems, but a personal route for reaching strong play quickly without closing off room for further improvement.</p>
-                <div class="hero-actions">
-                    <a class="button" href="boardgame-training.html" data-en="Open the training guide" data-zh="进入训练指南">Open the training guide</a>
-                    <a class="ghost-button" href="boardgames/games-table-prototype.html" data-en="Browse games and resources" data-zh="查看棋种与资源">Browse games and resources</a>
-                </div>
-            </section>
-
             <div class="article-layout">
                 <aside class="article-toc" aria-label="On this page" data-i18n-aria-label="tableOfContents">
-                    <p data-en="On this page" data-zh="本文目录">On this page</p>
-                    <ol>
-                        <li><a href="#routes" data-en="Choosing a route" data-zh="路线选择">Choosing a route</a></li>
-                        <li><a href="#katago" data-en="Why KataGo" data-zh="KataGo 的价值">Why KataGo</a></li>
-                        <li><a href="#compound-actions" data-en="Compound actions" data-zh="复合行动拆步">Compound actions</a></li>
-                        <li><a href="#scale" data-en="Training scale" data-zh="训练规模">Training scale</a></li>
-                    </ol>
+                    <a class="toc-back" href="index.html#blog" data-en="← All notes" data-zh="← 全部博客">← All notes</a>
+                    <details class="toc-disclosure" open>
+                        <summary data-en="On this page" data-zh="本文目录">On this page</summary>
+                        <ol>
+                            <li><a href="#routes" data-en="Choosing a route" data-zh="路线选择">Choosing a route</a></li>
+                            <li><a href="#katago" data-en="Why KataGo" data-zh="KataGo 的价值">Why KataGo</a></li>
+                            <li><a href="#compound-actions" data-en="Compound actions" data-zh="复合行动拆步">Compound actions</a></li>
+                            <li><a href="#scale" data-en="Training scale" data-zh="训练规模">Training scale</a></li>
+                        </ol>
+                    </details>
                 </aside>
 
                 <article class="article-body">
+                    <section class="content-hero article-hero" aria-labelledby="page-title">
+                        <p class="page-eyebrow" data-en="Board-game AI field notes" data-zh="棋类 AI 工程笔记">Board-game AI field notes</p>
+                        <h1 id="page-title" data-en="Building strong board-game AI: my engineering judgment" data-zh="训练一个强棋类 AI：我的工程判断">Building strong board-game AI: my engineering judgment</h1>
+                        <p class="content-lead" data-en="These conclusions come from recurring problems in my multi-game training, transfer, and implementation work. They are not universal theorems, but a personal route for reaching strong play quickly without closing off room for further improvement." data-zh="这些结论来自我做多棋种训练、迁移和工程实现时反复遇到的问题。它们不是普遍定理，而是一套用来尽快做出强棋类 AI、并保留继续提升空间的个人路线判断。">These conclusions come from recurring problems in my multi-game training, transfer, and implementation work. They are not universal theorems, but a personal route for reaching strong play quickly without closing off room for further improvement.</p>
+                        <div class="hero-actions">
+                            <a class="button" href="boardgame-training.html" data-en="Open the training guide" data-zh="进入训练指南">Open the training guide</a>
+                            <a class="ghost-button" href="boardgames/games-table-prototype.html" data-en="Browse games and resources" data-zh="查看棋种与资源">Browse games and resources</a>
+                        </div>
+                    </section>
                     <section class="article-section" id="routes">
                         <p class="page-eyebrow" data-en="01 / Route" data-zh="01 / 路线">01 / Route</p>
                         <h2 data-en="For my projects, compare AlphaZero and NNUE first" data-zh="在我的项目里，先比较 AlphaZero 与 NNUE">For my projects, compare AlphaZero and NNUE first</h2>
@@ -130,9 +127,9 @@
         </div>
     </main>
 
-    <footer class="content-footer">
+    <footer class="site-footer">
         <div class="content-container footer-inner">
-            <p data-en="Personal board-game AI engineering notes · QQ 2658628026 · Discord hzy_sigmoid" data-zh="个人棋类 AI 工程笔记 · QQ 2658628026 · Discord hzy_sigmoid">Personal board-game AI engineering notes · QQ 2658628026 · Discord hzy_sigmoid</p>
+            <p>© 2026 HZY / Sigmoid</p>
             <nav class="footer-links" aria-label="Footer navigation" data-i18n-aria-label="footerNavigation">
                 <a href="mailto:2658628026@qq.com" data-en="Email" data-zh="邮件联系">Email</a>
                 <a href="boardgames/index.html">KataGomo</a>
@@ -155,6 +152,6 @@
       }
     }
     </script>
-    <script src="site.js" defer></script>
+    <script src="site.js?v=20260913-1" defer></script>
 </body>
 </html>

@@ -292,8 +292,55 @@
     applyCatalogFilters();
   }
 
+  function setupArticleToc() {
+    var disclosure = document.querySelector(".article-toc .toc-disclosure");
+    if (!disclosure) return;
+
+    var desktop = window.matchMedia("(min-width: 50.01rem)");
+    var links = Array.from(disclosure.querySelectorAll('a[href^="#"]'));
+    var entries = links.map(function (link) {
+      return { link: link, section: document.getElementById(link.hash.slice(1)) };
+    }).filter(function (entry) { return entry.section; });
+    var header = document.querySelector(".site-header");
+    var framePending = false;
+
+    function setDisclosureDefault() {
+      disclosure.open = desktop.matches;
+    }
+
+    function updateCurrentSection() {
+      framePending = false;
+      var threshold = (header ? header.getBoundingClientRect().height : 0) + 48;
+      var current = null;
+      entries.forEach(function (entry) {
+        if (entry.section.getBoundingClientRect().top <= threshold) current = entry.link;
+      });
+      links.forEach(function (link) {
+        if (link === current) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    }
+
+    function scheduleUpdate() {
+      if (framePending) return;
+      framePending = true;
+      window.requestAnimationFrame(updateCurrentSection);
+    }
+
+    disclosure.addEventListener("click", function (event) {
+      if (!desktop.matches && event.target.closest('a[href^="#"]')) disclosure.open = false;
+    });
+    desktop.addEventListener("change", setDisclosureDefault);
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate, { passive: true });
+    document.addEventListener("languagechange", scheduleUpdate);
+    setDisclosureDefault();
+    updateCurrentSection();
+  }
+
   setupLanguageControls();
   setupDialogs();
   applyLanguage(readStoredLanguage(), { persist: false });
   setupCatalog();
+  setupArticleToc();
 })();

@@ -6,32 +6,26 @@
     <meta name="color-scheme" content="light dark">
     <title data-i18n="meta.title">Board-game AI archive &amp; downloads | hzyhhzy</title>
     <meta name="description" content="A bilingual research archive and download desk for dozens of board-game AI projects, releases, source branches, datasets, and reproducible findings." data-i18n-attr="content:meta.description">
-    <link rel="stylesheet" href="../styles.css">
-    <script src="../site.js" defer></script>
+    <link href="../site-base.css?v=20260913-2" rel="stylesheet">
+    <link href="../styles.css?v=20260913-1" rel="stylesheet">
+    <script src="../site.js?v=20260913-1" defer></script>
 </head>
-<body>
+<body class="content-page archive-page">
     <a class="skip-link" href="#main-content" data-i18n="skip">Skip to content</a>
 
-    <header class="content-header">
-        <div class="content-container header-inner">
-            <a class="content-brand" href="../index.html" aria-label="hzyhhzy home" data-i18n-attr="aria-label:brand.homeLabel">
-                <span aria-hidden="true">σ</span>
-                <span><strong>hzyhhzy</strong><small data-i18n="brand.subtitle">Board-game AI archive</small></span>
-            </a>
-            <div class="header-actions">
-                <a class="content-github" href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-                <div class="language-switcher" data-language-switcher role="group" aria-label="Language" data-i18n-attr="aria-label:nav.languageLabel">
-                    <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
-                    <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
-                </div>
-            </div>
-            <nav class="content-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.primaryLabel">
-                <a href="../index.html" data-i18n="nav.home">Home</a>
-                <a href="index.html">KataGomo</a>
-                <a href="games.html" aria-current="page" data-i18n="nav.archive">Games &amp; downloads</a>
-                <a href="../boardgame-training.html" data-i18n="nav.training">Training guide</a>
-                <a href="../boardgame-rule-implementation.html" data-i18n="nav.rules">Rule integration</a>
+<header class="site-header">
+        <div class="page-shell header-inner">
+            <a class="wordmark" href="../index.html" aria-label="HZY / Sigmoid — home"><span class="site-mark" aria-hidden="true">σ</span><span>hzyhhzy<span class="wordmark-dot">.</span></span></a>
+<nav class="section-nav" aria-label="Site navigation">
+                <a href="../boardgames/index.html" aria-current="page" data-en="Board-game AI" data-zh="棋类 AI">Board-game AI</a>
+                <a href="../index.html#web-projects" data-en="Web projects" data-zh="在线项目">Web projects</a>
+                <a href="../index.html#misc" data-en="Miscellaneous" data-zh="杂项">Miscellaneous</a>
+                <a href="../index.html#blog" data-en="Blog" data-zh="博客">Blog</a>
             </nav>
+            <div class="language-control" role="group" aria-label="Language">
+                <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
+                <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
+            </div>
         </div>
     </header>
 
@@ -473,9 +467,9 @@
         </div>
     </main>
 
-    <footer class="content-footer">
+    <footer class="site-footer">
         <div class="content-container footer-inner">
-            <p data-i18n="footer.summary">Board-game AI · releases, source, datasets, and research findings</p>
+            <p>© 2026 HZY / Sigmoid</p>
             <nav class="footer-links" aria-label="Footer navigation" data-i18n-attr="aria-label:footer.label">
                 <a href="mailto:2658628026@qq.com" data-i18n="footer.email">Email</a>
                 <a href="index.html" data-i18n="footer.project">Project overview</a>

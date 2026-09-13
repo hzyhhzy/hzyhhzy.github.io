@@ -6,30 +6,25 @@
     <meta name="color-scheme" content="light dark">
     <title data-en="Integrating New Rules into KataGomo | hzyhhzy" data-zh="KataGomo 规则接入细节 | hzyhhzy">Integrating New Rules into KataGomo | hzyhhzy</title>
     <meta name="description" content="A C++ integration checklist for original games and variants in KataGomo: board state, legal moves, terminal conditions, history, network inputs, and staged compound actions." data-i18n-content="metaDescription">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="site-base.css?v=20260913-2">
+    <link rel="stylesheet" href="styles.css?v=20260913-1">
 </head>
-<body>
+<body class="content-page article-page">
     <a class="skip-link" href="#main-content" data-en="Skip to main content" data-zh="跳到主要内容">Skip to main content</a>
 
-    <header class="content-header">
-        <div class="content-container header-inner">
-            <a class="content-brand" href="index.html" aria-label="Back to hzyhhzy projects" data-i18n-aria-label="brandLabel">
-                <span aria-hidden="true">σ</span>
-                <strong>hzyhhzy</strong>
-            </a>
-            <div class="header-actions">
-                <a class="content-github" href="https://github.com/hzyhhzy" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-                <div class="language-switcher" role="group" aria-label="Language" data-i18n-aria-label="languageControl">
-                    <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
-                    <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
-                </div>
-            </div>
-            <nav class="content-nav" aria-label="Primary navigation" data-i18n-aria-label="primaryNavigation">
-                <a href="index.html" data-en="Projects" data-zh="项目">Projects</a>
-                <a href="boardgame-ai-experience.html" data-en="AI notes" data-zh="AI 经验">AI notes</a>
-                <a href="boardgame-training.html" data-en="Training" data-zh="训练指南">Training</a>
-                <a href="boardgame-rule-implementation.html" aria-current="page" data-en="Rules" data-zh="规则接入">Rules</a>
+    <header class="site-header">
+        <div class="page-shell header-inner">
+            <a class="wordmark" href="index.html" aria-label="HZY / Sigmoid — home"><span class="site-mark" aria-hidden="true">σ</span><span>hzyhhzy<span class="wordmark-dot">.</span></span></a>
+<nav class="section-nav" aria-label="Site navigation">
+                <a href="boardgames/index.html" data-en="Board-game AI" data-zh="棋类 AI">Board-game AI</a>
+                <a href="index.html#web-projects" data-en="Web projects" data-zh="在线项目">Web projects</a>
+                <a href="index.html#misc" data-en="Miscellaneous" data-zh="杂项">Miscellaneous</a>
+                <a href="index.html#blog" aria-current="page" data-en="Blog" data-zh="博客">Blog</a>
             </nav>
+            <div class="language-control" role="group" aria-label="Language">
+                <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
+                <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
+            </div>
         </div>
     </header>
 
@@ -43,30 +38,32 @@
                 <span aria-current="page" data-en="Rules integration" data-zh="规则接入细节">Rules integration</span>
             </nav>
 
-            <section class="content-hero article-hero" aria-labelledby="page-title">
-                <p class="page-eyebrow" data-en="KataGomo rule implementation" data-zh="KataGomo 规则实现">KataGomo rule implementation</p>
-                <h1 id="page-title" data-en="Integrating a new ruleset into KataGomo" data-zh="把一套新规则接进 KataGomo">Integrating a new ruleset into KataGomo</h1>
-                <p class="content-lead" data-en="Make the engine answer four questions completely: what the current state is, which actions are legal, how an action changes the state, and when the game ends and who wins." data-zh="让引擎完整回答四个问题：当前局面是什么、哪些行动合法、行动后局面怎样变化、什么时候结束以及谁赢。">Make the engine answer four questions completely: what the current state is, which actions are legal, how an action changes the state, and when the game ends and who wins.</p>
-                <p data-lang-content="en">Filenames vary slightly between branches, but most changes are concentrated in <code>cpp/game</code>, <code>cpp/neuralnet</code>, <code>cpp/dataio</code>, and a small number of search and command-line entry points.</p>
-                <p data-lang-content="zh" lang="zh-CN" hidden>不同分支的文件名可能略有差异，但大多数改动会集中在 <code>cpp/game</code>、<code>cpp/neuralnet</code>、<code>cpp/dataio</code> 和少量搜索、命令行入口附近。</p>
-                <div class="hero-actions">
-                    <a class="button" href="boardgame-training.html" data-en="Back to the training guide" data-zh="返回训练指南">Back to the training guide</a>
-                    <a class="ghost-button" href="https://github.com/hzyhhzy/KataGomo" target="_blank" rel="noreferrer"><span data-en="KataGomo repository" data-zh="KataGomo 仓库">KataGomo repository</span> <span aria-hidden="true">↗</span></a>
-                </div>
-            </section>
-
             <div class="article-layout">
                 <aside class="article-toc" aria-label="On this page" data-i18n-aria-label="tableOfContents">
-                    <p data-en="On this page" data-zh="本文目录">On this page</p>
-                    <ol>
-                        <li><a href="#action-model" data-en="Action model" data-zh="行动表示">Action model</a></li>
-                        <li><a href="#core-files" data-en="Core files" data-zh="核心文件">Core files</a></li>
-                        <li><a href="#staged-moves" data-en="Staged moves" data-zh="拆步实现">Staged moves</a></li>
-                        <li><a href="#verification" data-en="Verification" data-zh="自测清单">Verification</a></li>
-                    </ol>
+                    <a class="toc-back" href="index.html#blog" data-en="← All notes" data-zh="← 全部博客">← All notes</a>
+                    <details class="toc-disclosure" open>
+                        <summary data-en="On this page" data-zh="本文目录">On this page</summary>
+                        <ol>
+                            <li><a href="#action-model" data-en="Action model" data-zh="行动表示">Action model</a></li>
+                            <li><a href="#core-files" data-en="Core files" data-zh="核心文件">Core files</a></li>
+                            <li><a href="#staged-moves" data-en="Staged moves" data-zh="拆步实现">Staged moves</a></li>
+                            <li><a href="#verification" data-en="Verification" data-zh="自测清单">Verification</a></li>
+                        </ol>
+                    </details>
                 </aside>
 
                 <article class="article-body">
+                    <section class="content-hero article-hero" aria-labelledby="page-title">
+                        <p class="page-eyebrow" data-en="KataGomo rule implementation" data-zh="KataGomo 规则实现">KataGomo rule implementation</p>
+                        <h1 id="page-title" data-en="Integrating a new ruleset into KataGomo" data-zh="把一套新规则接进 KataGomo">Integrating a new ruleset into KataGomo</h1>
+                        <p class="content-lead" data-en="Make the engine answer four questions completely: what the current state is, which actions are legal, how an action changes the state, and when the game ends and who wins." data-zh="让引擎完整回答四个问题：当前局面是什么、哪些行动合法、行动后局面怎样变化、什么时候结束以及谁赢。">Make the engine answer four questions completely: what the current state is, which actions are legal, how an action changes the state, and when the game ends and who wins.</p>
+                        <p data-lang-content="en">Filenames vary slightly between branches, but most changes are concentrated in <code>cpp/game</code>, <code>cpp/neuralnet</code>, <code>cpp/dataio</code>, and a small number of search and command-line entry points.</p>
+                        <p data-lang-content="zh" lang="zh-CN" hidden>不同分支的文件名可能略有差异，但大多数改动会集中在 <code>cpp/game</code>、<code>cpp/neuralnet</code>、<code>cpp/dataio</code> 和少量搜索、命令行入口附近。</p>
+                        <div class="hero-actions">
+                            <a class="button" href="boardgame-training.html" data-en="Back to the training guide" data-zh="返回训练指南">Back to the training guide</a>
+                            <a class="ghost-button" href="https://github.com/hzyhhzy/KataGomo" target="_blank" rel="noreferrer"><span data-en="KataGomo repository" data-zh="KataGomo 仓库">KataGomo repository</span> <span aria-hidden="true">↗</span></a>
+                        </div>
+                    </section>
                     <section class="article-section" id="action-model">
                         <p class="page-eyebrow" data-en="01 / Action model" data-zh="01 / 行动模型">01 / Action model</p>
                         <h2 data-en="Choose the action representation first" data-zh="先定行动表示">Choose the action representation first</h2>
@@ -216,9 +213,9 @@
         </div>
     </main>
 
-    <footer class="content-footer">
+    <footer class="site-footer">
         <div class="content-container footer-inner">
-            <p data-en="KataGomo rules-engineering checklist · QQ 2658628026 · Discord hzy_sigmoid" data-zh="KataGomo 规则工程清单 · QQ 2658628026 · Discord hzy_sigmoid">KataGomo rules-engineering checklist · QQ 2658628026 · Discord hzy_sigmoid</p>
+            <p>© 2026 HZY / Sigmoid</p>
             <nav class="footer-links" aria-label="Footer navigation" data-i18n-aria-label="footerNavigation">
                 <a href="mailto:2658628026@qq.com" data-en="Email" data-zh="邮件联系">Email</a>
                 <a href="boardgames/index.html">KataGomo</a>
@@ -242,6 +239,6 @@
       }
     }
     </script>
-    <script src="site.js" defer></script>
+    <script src="site.js?v=20260913-1" defer></script>
 </body>
 </html>

@@ -115,6 +115,7 @@
 
   function updateTopScrollbar() {
     if (!viewport || !table || !topScroll || !topSpacer) return;
+    viewport.style.setProperty("--ledger-view-width", viewport.clientWidth + "px");
     var reservedGutter = Math.max(0, topScroll.clientWidth - viewport.clientWidth);
     topSpacer.style.width = table.scrollWidth + reservedGutter + "px";
     topScroll.hidden = table.scrollWidth <= viewport.clientWidth + 1;

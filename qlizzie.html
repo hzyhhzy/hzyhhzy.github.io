@@ -6,32 +6,27 @@
     <meta name="color-scheme" content="light dark">
     <title data-en="QLizzie — Qt board-game AI analysis | hzyhhzy" data-zh="QLizzie — Qt 棋类 AI 分析界面 | hzyhhzy">QLizzie — Qt board-game AI analysis | hzyhhzy</title>
     <meta name="description" content="QLizzie is a Qt 6 desktop analysis interface for Go, Gomoku, Hex, and related games using KataGo/KataGomo-compatible engines.">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="qlizzie.css?v=20260723-1">
-    <script src="site.js" defer></script>
+    <link rel="stylesheet" href="site-base.css?v=20260913-2">
+    <link rel="stylesheet" href="styles.css?v=20260913-1">
+    <link rel="stylesheet" href="qlizzie.css?v=20260913-1">
+    <script src="site.js?v=20260913-1" defer></script>
 </head>
-<body>
+<body class="content-page project-page">
     <a class="skip-link" href="#main-content" data-en="Skip to content" data-zh="跳到正文">Skip to content</a>
 
-    <header class="content-header">
-        <div class="content-container header-inner">
-            <a class="content-brand" href="index.html" aria-label="hzyhhzy home">
-                <span aria-hidden="true">σ</span>
-                <span><strong>hzyhhzy</strong><small data-en="Projects and notes" data-zh="项目与博客">Projects and notes</small></span>
-            </a>
-            <div class="header-actions">
-                <a class="content-github" href="https://github.com/hzyhhzy/QLizzie" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-                <div class="language-switcher" role="group" aria-label="Language">
-                    <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
-                    <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
-                </div>
-            </div>
-            <nav class="content-nav" aria-label="Page navigation">
-                <a href="#overview" data-en="Overview" data-zh="概览">Overview</a>
-                <a href="#screenshots" data-en="Screenshots" data-zh="界面">Screenshots</a>
-                <a href="#download" data-en="Download" data-zh="下载">Download</a>
-                <a href="boardgames/games-table-prototype.html" data-en="Games &amp; resources" data-zh="棋种与资源">Games &amp; resources</a>
+    <header class="site-header">
+        <div class="page-shell header-inner">
+            <a class="wordmark" href="index.html" aria-label="HZY / Sigmoid — home"><span class="site-mark" aria-hidden="true">σ</span><span>hzyhhzy<span class="wordmark-dot">.</span></span></a>
+<nav class="section-nav" aria-label="Site navigation">
+                <a href="boardgames/index.html" data-en="Board-game AI" data-zh="棋类 AI">Board-game AI</a>
+                <a href="index.html#web-projects" data-en="Web projects" data-zh="在线项目">Web projects</a>
+                <a href="index.html#misc" aria-current="page" data-en="Miscellaneous" data-zh="杂项">Miscellaneous</a>
+                <a href="index.html#blog" data-en="Blog" data-zh="博客">Blog</a>
             </nav>
+            <div class="language-control" role="group" aria-label="Language">
+                <button type="button" data-language-option="en" aria-pressed="true" lang="en">EN</button>
+                <button type="button" data-language-option="zh" aria-pressed="false" lang="zh-CN">中文</button>
+            </div>
         </div>
     </header>
 
@@ -40,7 +35,7 @@
             <nav class="breadcrumb" aria-label="Breadcrumb">
                 <a href="index.html" data-en="Home" data-zh="主页">Home</a>
                 <span aria-hidden="true">/</span>
-                <span aria-current="page">QLizzie</span>
+                <a href="index.html#misc" data-en="Miscellaneous" data-zh="杂项">Miscellaneous</a><span aria-hidden="true">/</span><span aria-current="page">QLizzie</span>
             </nav>
 
             <section class="content-hero" aria-labelledby="page-title">
@@ -58,6 +53,12 @@
                     <li><span class="tag">KataGo / KataGomo</span></li>
                     <li><span class="tag" data-en="English / Chinese" data-zh="中英双语">English / Chinese</span></li>
                 </ul>
+                <nav class="page-nav" aria-label="Page navigation">
+                    <a href="#overview" data-en="Overview" data-zh="概览">Overview</a>
+                    <a href="#screenshots" data-en="Screenshots" data-zh="界面">Screenshots</a>
+                    <a href="#download" data-en="Download" data-zh="下载">Download</a>
+                    <a href="boardgames/games-table-prototype.html" data-en="Games &amp; resources" data-zh="棋种与资源">Games &amp; resources</a>
+                </nav>
             </section>
         </div>
 
@@ -119,9 +120,9 @@
         </section>
     </main>
 
-    <footer class="content-footer">
+    <footer class="site-footer">
         <div class="content-container footer-inner">
-            <p>hzyhhzy / QLizzie</p>
+            <p>© 2026 HZY / Sigmoid</p>
             <p><a href="index.html" data-en="Back to projects" data-zh="返回项目主页">Back to projects</a></p>
             <p><a href="mailto:2658628026@qq.com">2658628026@qq.com</a></p>
         </div>
