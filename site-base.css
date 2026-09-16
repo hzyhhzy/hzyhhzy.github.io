@@ -1,16 +1,16 @@
 /* Shared foundation for the homepage, project pages, and articles. */
 :root {
   color-scheme: light dark;
-  --page: #f9f9f6;
+  --page: #f1f7fd;
   --surface: #fff;
-  --text: #262d28;
-  --muted: #696f68;
-  --faint: #81857c;
-  --line: #e0e3db;
-  --line-strong: #c3cabd;
-  --accent: #3a6248;
-  --accent-soft: #e9eee5;
-  --hover: #f0f2eb;
+  --text: #24384a;
+  --muted: #536e83;
+  --faint: #5d7284;
+  --line: #d3e3f1;
+  --line-strong: #abc8df;
+  --accent: #286f9f;
+  --accent-soft: #deeffc;
+  --hover: #e8f3fc;
   --sans: "Segoe UI", -apple-system, BlinkMacSystemFont, "Noto Sans", "Microsoft YaHei", sans-serif;
   --mono: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
   --heading: Georgia, "Times New Roman", serif;
@@ -42,9 +42,9 @@
   --resource-dataset: #826331;
   --resource-note: #6b5c43;
   --focus: var(--accent);
-  --code-bg: #eef1eb;
-  --code-text: #303b2d;
-  --dialog-backdrop: #151c17a8;
+  --code-bg: #e7f1fa;
+  --code-text: #2c4b65;
+  --dialog-backdrop: #102638a8;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -116,23 +116,23 @@ html:not(.js-enabled) .language-control { display: none; }
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --page: #191c19;
-    --surface: #212520;
-    --text: #e4e8df;
-    --muted: #a5ad9f;
-    --faint: #939c8d;
-    --line: #353c32;
-    --line-strong: #515d4b;
-    --accent: #b1c8a4;
-    --accent-soft: #2e3c2c;
-    --hover: #252c23;
-    --on-brand: #191c19;
+    --page: #14202c;
+    --surface: #1b2b3b;
+    --text: #e3eff9;
+    --muted: #adbed0;
+    --faint: #97aec3;
+    --line: #30475d;
+    --line-strong: #4c6983;
+    --accent: #9ccff3;
+    --accent-soft: #253f57;
+    --hover: #20364b;
+    --on-brand: #14202c;
     --resource-source: #b0bfdf;
     --resource-dataset: #d4bc8b;
     --resource-note: #c8bb9d;
-    --code-bg: #242d21;
-    --code-text: #dee8d8;
-    --dialog-backdrop: #080d0bba;
+    --code-bg: #1f354a;
+    --code-text: #dcecf9;
+    --dialog-backdrop: #080f18ba;
   }
 }
 @media (prefers-reduced-motion: reduce) {
