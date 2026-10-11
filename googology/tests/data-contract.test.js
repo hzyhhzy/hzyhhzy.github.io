@@ -169,6 +169,20 @@ function assertStructuredDetail(detail, description) {
         `${description}.title`
     );
     assert.notEqual(detail.title.trim(), '', `${description}.title`);
+    if (detail.representations !== undefined) {
+        assert.equal(Array.isArray(detail.representations), true,
+            `${description}.representations`);
+        detail.representations.forEach((representation, index) => {
+            const representationDescription = `${description}.representations[${index}]`;
+            assert.equal(representation !== null && typeof representation === 'object' &&
+                !Array.isArray(representation), true, representationDescription);
+            assertAllowedKeys(representation, new Set(['label', 'html']), representationDescription);
+            for (const key of ['label', 'html']) {
+                assert.equal(typeof representation[key], 'string', `${representationDescription}.${key}`);
+                assert.notEqual(representation[key].trim(), '', `${representationDescription}.${key}`);
+            }
+        });
+    }
     assert.equal(
         Array.isArray(detail.sections),
         true,
@@ -385,6 +399,10 @@ test('Chinese and English item details remain structurally symmetric', () => {
         if (!item.detail) {
             return;
         }
+
+        assert.equal((counterpart.detail.representations || []).length,
+            (item.detail.representations || []).length,
+            `${item.id} representation count`);
 
         assert.deepEqual(
             counterpart.detail.sections.map(({ type }) => type),

@@ -11,87 +11,96 @@
     global.GoogologyI18n.registerMessages('en', {
         items: {
             'item-082': {
-                label: '\\({\\Gamma}_{0}\\)',
+                label: "\\({\\Gamma}_{0}\\)",
                 detail: {
-                    title: '\\({\\Gamma}_{0}\\)',
+                    title: "\\({\\Gamma}_{0}\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\Gamma_0\\)<br>\\(\\varphi(1,0,0)\\)" },
+                        { label: "BMS representation", html: "\\((0,0)(1,1)(2,1)(3,1)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>BMS representation:</strong>\\[(0,0)(1,1)(2,1)(3,1)\\]</p><p>Correspondence: <a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>.</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>\\({\\Gamma}_{0}\\) is the least nonzero ordinal closed under the binary Veblen operation on smaller arguments. Under the finitary convention used here—leading zeroes may be omitted, while trailing zeroes may not—\\[{\\Gamma}_{0}=\\varphi(1,0,0).\\]</p><p>Equivalently, if \\(\\gamma_0=1\\) and \\(\\gamma_{n+1}=\\varphi_{\\gamma_n}(0)\\), then \\[{\\Gamma}_{0}=\\sup_{n\\lt{}\\omega}\\gamma_n.\\] It is commonly called the Feferman–Schütte ordinal.</p><p><strong>Convention and source:</strong> <a href="https://arxiv.org/abs/2205.11017">Bufetov, Nivasch, and Pakhomov, <cite>Generalized fusible numbers and their ordinals</cite>, §3.2</a>.</p>`,
-                        },
+                        {"type":"html","html":"<p>Correspondence: <a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>.</p>"},
+                        {"type":"html","html":"<p>\\({\\Gamma}_{0}\\) is the least nonzero ordinal closed under the binary Veblen operation on smaller arguments. Under the finitary convention used here—leading zeroes may be omitted, while trailing zeroes may not—\\[{\\Gamma}_{0}=\\varphi(1,0,0).\\]</p><p>Equivalently, if \\(\\gamma_0=1\\) and \\(\\gamma_{n+1}=\\varphi_{\\gamma_n}(0)\\), then \\[{\\Gamma}_{0}=\\sup_{n\\lt{}\\omega}\\gamma_n.\\] It is commonly called the Feferman–Schütte ordinal.</p><p><strong>Convention and source:</strong> <a href=\"https://arxiv.org/abs/2205.11017\">Bufetov, Nivasch, and Pakhomov, <cite>Generalized fusible numbers and their ordinals</cite>, §3.2</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-083': {
-                label: '\\({\\varphi}(1,0,1)\\)',
+                label: "\\({\\varphi}(1,0,1)\\)",
                 detail: {
-                    title: '\\({\\varphi}(1,0,1)\\)',
+                    title: "\\({\\varphi}(1,0,1)\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\Gamma_1\\)<br>\\(\\varphi(1,0,1)\\)" },
+                        { label: "BMS representation", html: "\\((0,0)(1,1)(2,1)(3,1)(1,1)(2,1)(3,1)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>\\(\\varphi(1,0,1)=\\Gamma_1\\)</p><p><strong>BMS representation:</strong>\\[(0,0)(1,1)(2,1)(3,1)(1,1)(2,1)(3,1)\\]</p><p>Correspondence: <a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>.</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>With the first two arguments fixed, \\(\\varphi(1,0,1)\\) is the next indexed value after \\(\\varphi(1,0,0)={\\Gamma}_{0}\\), obtained by changing the last argument from \\(0\\) to \\(1\\).</p><p>“Next” refers to the next index in this ternary Veblen family, not to the ordinal successor \\({\\Gamma}_{0}+1\\).</p><p><strong>Convention and source:</strong> <a href="https://arxiv.org/abs/2205.11017">Bufetov, Nivasch, and Pakhomov, <cite>Generalized fusible numbers and their ordinals</cite>, §3.2</a>.</p>`,
-                        },
+                        {"type":"html","html":"<p>Correspondence: <a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>.</p>"},
+                        {"type":"html","html":"<p>With the first two arguments fixed, \\(\\varphi(1,0,1)\\) is the next indexed value after \\(\\varphi(1,0,0)={\\Gamma}_{0}\\), obtained by changing the last argument from \\(0\\) to \\(1\\).</p><p>“Next” refers to the next index in this ternary Veblen family, not to the ordinal successor \\({\\Gamma}_{0}+1\\).</p><p><strong>Convention and source:</strong> <a href=\"https://arxiv.org/abs/2205.11017\">Bufetov, Nivasch, and Pakhomov, <cite>Generalized fusible numbers and their ordinals</cite>, §3.2</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-084': {
-                label: '\\({\\varphi}(1,0,0,0)\\)',
+                label: "\\({\\varphi}(1,0,0,0)\\)",
                 detail: {
-                    title: '\\({\\varphi}(1,0,0,0)\\)',
+                    title: "\\({\\varphi}(1,0,0,0)\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\({\\varphi}(1,0,0,0)\\)" },
+                        { label: "BMS representation", html: "\\((0,0)(1,1)(2,1)(3,1)(3,1)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>BMS representation:</strong>\\[(0,0)(1,1)(2,1)(3,1)(3,1)\\]</p><p>Correspondence: <a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>.</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>\\(\\varphi(1,0,0,0)\\) is the first new closure point obtained when the ternary Veblen function is extended to four arguments. The additional trailing zero records a genuine increase in arity and therefore cannot be omitted.</p><p>Finitary Veblen functions are defined recursively by arity: an additional argument position enumerates common fixed points generated by lower arities and earlier argument values.</p><p><strong>Convention and source:</strong> <a href="https://arxiv.org/abs/2205.11017">Bufetov, Nivasch, and Pakhomov, <cite>Generalized fusible numbers and their ordinals</cite>, §3.2</a>.</p>`,
-                        },
+                        {"type":"html","html":"<p>Correspondence: <a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>.</p>"},
+                        {"type":"html","html":"<p>\\(\\varphi(1,0,0,0)\\) is the first new closure point obtained when the ternary Veblen function is extended to four arguments. The additional trailing zero records a genuine increase in arity and therefore cannot be omitted.</p><p>Finitary Veblen functions are defined recursively by arity: an additional argument position enumerates common fixed points generated by lower arities and earlier argument values.</p><p><strong>Convention and source:</strong> <a href=\"https://arxiv.org/abs/2205.11017\">Bufetov, Nivasch, and Pakhomov, <cite>Generalized fusible numbers and their ordinals</cite>, §3.2</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-085': {
-                label: 'SVO',
+                label: "SVO",
                 detail: {
-                    title: 'SVO',
+                    title: "SVO",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\mathrm{SVO}\\)<br>\\(\\vartheta(\\Omega^\\omega)\\)<br>\\(\\psi_0(\\Omega^{\\Omega^\\omega})\\)" },
+                        { label: "BMS representation", html: "\\((0,0)(1,1)(2,1)(3,1)(4,0)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>\\(\\mathrm{SVO}=\\vartheta(\\Omega^\\omega)=\\psi_0(\\Omega^{\\Omega^\\omega})\\)</p><p><strong>BMS representation:</strong>\\[(0,0)(1,1)(2,1)(3,1)(4,0)\\]</p><p>Correspondence: <a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>.</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>SVO abbreviates small Veblen ordinal. It is the common closure bound of all finitary Veblen hierarchies: \\[\\mathrm{SVO}=\\sup\\{\\varphi(1,0),\\varphi(1,0,0),\\varphi(1,0,0,0),\\ldots\\}.\\]</p><p>Equivalently, it is the least ordinal not obtainable from \\(0\\) by repeatedly applying Veblen functions of arbitrary finite arity.</p><p><strong>Source:</strong> <a href="https://arxiv.org/abs/2205.11017">Bufetov, Nivasch, and Pakhomov, <cite>Generalized fusible numbers and their ordinals</cite>, §3.2</a>.</p>`,
-                        },
+                        {"type":"html","html":"<p>Correspondence: <a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>.</p>"},
+                        {"type":"html","html":"<p>SVO abbreviates small Veblen ordinal. It is the common closure bound of all finitary Veblen hierarchies: \\[\\mathrm{SVO}=\\sup\\{\\varphi(1,0),\\varphi(1,0,0),\\varphi(1,0,0,0),\\ldots\\}.\\]</p><p>Equivalently, it is the least ordinal not obtainable from \\(0\\) by repeatedly applying Veblen functions of arbitrary finite arity.</p><p><strong>Source:</strong> <a href=\"https://arxiv.org/abs/2205.11017\">Bufetov, Nivasch, and Pakhomov, <cite>Generalized fusible numbers and their ordinals</cite>, §3.2</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-086': {
-                label: '\\(\\operatorname{tree}(n)\\)',
+                label: "\\(\\operatorname{tree}(n)\\)",
                 detail: {
-                    title: '\\(\\operatorname{tree}(n)\\)',
+                    title: "\\(\\operatorname{tree}(n)\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\operatorname{tree}(n)\\)<br><small>Corresponding ordinal:</small><br>\\(\\mathrm{SVO}\\)<br>\\(\\vartheta(\\Omega^\\omega)\\)<br>\\(\\psi_0(\\Omega^{\\Omega^\\omega})\\)" },
+                        { label: "BMS representation", html: "\\((0,0)(1,1)(2,1)(3,1)(4,0)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>\\(\\operatorname{tree}(n)\\) uses unlabelled rooted trees, with at most \\(n+i\\) vertices in the \\(i\\)-th tree and no earlier tree embedding into a later one. Its growth corresponds to \\(\\mathrm{SVO}=\\vartheta(\\Omega^\\omega)\\), the \\(f_{\\mathrm{SVO}}\\) level; see <a href=\"#item-085\">SVO</a> at the same position for its BMS representation.</p><p>Source: <a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos's analysis of tree and TREE</a>.</p>" },
+                        {"type":"html","html":"<p>\\(\\operatorname{tree}(n)\\) uses unlabelled rooted trees, with at most \\(n+i\\) vertices in the \\(i\\)-th tree and no earlier tree embedding into a later one. Its growth corresponds to \\(\\mathrm{SVO}=\\vartheta(\\Omega^\\omega)\\), the \\(f_{\\mathrm{SVO}}\\) level; see <a href=\"#item-085\">SVO</a> for more about this ordinal.</p><p>Source: <a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos's analysis of tree and TREE</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-087': {
-                label: '\\(\\operatorname{TREE}(3)\\)',
+                label: "\\(\\operatorname{TREE}(3)\\)",
                 detail: {
-                    title: '\\(\\operatorname{TREE}(3)\\)',
+                    title: "\\(\\operatorname{TREE}(3)\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\operatorname{TREE}(3)\\)<br>Lower-bound index: \\(\\beta=\\vartheta(\\Omega^\\omega+3)+\\vartheta(\\Omega^\\omega)\\)" },
+                        { label: "BMS representation", html: "SVO reference point: \\((0,0)(1,1)(2,1)(3,1)(4,0)\\)" },
+                    ],
                     sections: [
+                        {"type":"html","html":"<p><strong>Definition.</strong> Following Friedman, consider finite nonempty rooted trees whose vertices are labeled from \\(\\{1,2,3\\}\\). Siblings are unordered, and labels may repeat. \\(\\operatorname{TREE}(3)\\) is the greatest possible length \\(m\\) of a sequence \\(T_1,\\ldots,T_m\\) such that \\(T_i\\) has at most \\(i\\) vertices and, whenever \\(i\\lt{}j\\), there is no label-preserving, infimum-preserving homeomorphic embedding of \\(T_i\\) into \\(T_j\\). For rooted trees, preserving infima is equivalent to preserving lowest-common-ancestor relations: an edge may map to a path, but distinct source branches must enter distinct target branches.</p><p><strong>Why the exhaustive search terminates in theory.</strong> At position \\(i\\), there are only finitely many three-labeled rooted trees with at most \\(i\\) vertices, so all valid sequence prefixes form a finitely branching tree. If valid sequences existed at every length, König's lemma would give an infinite branch—an infinite bad sequence—contradicting Kruskal's tree theorem. The breadth-first search below must therefore reach an empty next level and return the greatest length. This establishes termination only in an idealized model with unbounded resources; it does not make the computation physically feasible.</p><p><strong>Formal sources:</strong> <a href=\"https://fomarchive.ugent.be/2006-March/010279.html\">Harvey Friedman, “273: Sigma01/optimal/size”</a> gives the original definition of \\(\\operatorname{TREE}(k)\\); <a href=\"https://www.ams.org/tran/1960-095-02/S0002-9947-1960-0111704-1/S0002-9947-1960-0111704-1.pdf\">J. B. Kruskal, “Well-quasi-ordering, the Tree Theorem, and Vázsonyi’s Conjecture” (1960)</a> is the original paper for the tree theorem used to prove termination.</p>"},
                         {
-                            type: 'html',
-                            html: `<p><strong>Definition.</strong> Following Friedman, consider finite nonempty rooted trees whose vertices are labeled from \\(\\{1,2,3\\}\\). Siblings are unordered, and labels may repeat. \\(\\operatorname{TREE}(3)\\) is the greatest possible length \\(m\\) of a sequence \\(T_1,\\ldots,T_m\\) such that \\(T_i\\) has at most \\(i\\) vertices and, whenever \\(i\\lt{}j\\), there is no label-preserving, infimum-preserving homeomorphic embedding of \\(T_i\\) into \\(T_j\\). For rooted trees, preserving infima is equivalent to preserving lowest-common-ancestor relations: an edge may map to a path, but distinct source branches must enter distinct target branches.</p><p><strong>Why the exhaustive search terminates in theory.</strong> At position \\(i\\), there are only finitely many three-labeled rooted trees with at most \\(i\\) vertices, so all valid sequence prefixes form a finitely branching tree. If valid sequences existed at every length, König's lemma would give an infinite branch—an infinite bad sequence—contradicting Kruskal's tree theorem. The breadth-first search below must therefore reach an empty next level and return the greatest length. This establishes termination only in an idealized model with unbounded resources; it does not make the computation physically feasible.</p><p><strong>Formal sources:</strong> <a href="https://fomarchive.ugent.be/2006-March/010279.html">Harvey Friedman, “273: Sigma01/optimal/size”</a> gives the original definition of \\(\\operatorname{TREE}(k)\\); <a href="https://www.ams.org/tran/1960-095-02/S0002-9947-1960-0111704-1/S0002-9947-1960-0111704-1.pdf">J. B. Kruskal, “Well-quasi-ordering, the Tree Theorem, and Vázsonyi’s Conjecture” (1960)</a> is the original paper for the tree theorem used to prove termination.</p>`,
-                        },
-                        {
-                            type: 'code',
-                            language: 'python',
-                            display: 'dialog',
-                            title: 'Theoretical exhaustive search for three-label TREE',
-                            openLabel: 'View the exhaustive-search program',
-                            closeLabel: 'Close program',
+                            type: "code",
+                            language: "python",
+                            display: "dialog",
+                            title: "Theoretical exhaustive search for three-label TREE",
+                            openLabel: "View the exhaustive-search program",
+                            closeLabel: "Close program",
                             source: `from functools import cache
 from itertools import permutations, product
 
@@ -224,182 +233,259 @@ assert TREE(2) == 3
 
 print(TREE(3))`,
                         },
-                        {
-                            type: 'html',
-                            html: "<p><strong>Ordinal lower bound.</strong> One simplified lower bound obtained by HypCos is\\[\\operatorname{TREE}(3)>f_{\\beta}\\bigl(\\operatorname{tree}(\\operatorname{tree}(3))\\bigr),\\qquad\\beta=\\vartheta(\\Omega^\\omega+3)+\\vartheta(\\Omega^\\omega).\\]Here \\(\\vartheta(\\Omega^\\omega)=\\mathrm{SVO}\\), represented in BMS by \\((0,0)(1,1)(2,1)(3,1)(4,0)\\). Thus the particular value \\(\\operatorname{TREE}(3)\\) already passes the SVO level; see <a href=\"#item-089\">the next entry</a> for the growth of the whole \\(\\operatorname{TREE}(n)\\) function.</p><p>Source: <a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos: tree function and \\(\\operatorname{TREE}(3)\\)</a>.</p>",
-                        },
+                        {"type":"html","html":"<p><strong>Ordinal lower bound.</strong> One simplified lower bound obtained by HypCos is\\[\\operatorname{TREE}(3)>f_{\\beta}\\bigl(\\operatorname{tree}(\\operatorname{tree}(3))\\bigr),\\qquad\\beta=\\vartheta(\\Omega^\\omega+3)+\\vartheta(\\Omega^\\omega).\\]Here \\(\\vartheta(\\Omega^\\omega)=\\mathrm{SVO}\\). Thus the particular value \\(\\operatorname{TREE}(3)\\) already passes the SVO level; see <a href=\"#item-089\">the next entry</a> for the growth of the whole \\(\\operatorname{TREE}(n)\\) function.</p><p>Source: <a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos: tree function and \\(\\operatorname{TREE}(3)\\)</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-088': {
-                label: '\\({\\varphi}({\\omega}@{\\omega})\\)',
+                label: "\\({\\varphi}({\\omega}@{\\omega})\\)",
                 detail: {
-                    title: '\\({\\varphi}({\\omega}@{\\omega})\\)',
+                    title: "\\({\\varphi}({\\omega}@{\\omega})\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\varphi(\\omega @\\omega)\\)<br>\\(\\vartheta(\\Omega^\\omega\\cdot\\omega)\\)<br>\\(\\psi_0(\\Omega^{\\Omega^\\omega\\cdot\\omega})\\)" },
+                        { label: "BMS representation", html: "\\((0,0)(1,1)(2,1)(3,1)(4,0)(3,0)\\)" },
+                    ],
                     sections: [
-                        {
-                            type: 'html',
-                            html: "<p>The ordinal level corresponding to \\(\\operatorname{TREE}(n)\\) is\\[\\varphi(\\omega @\\omega)=\\vartheta(\\Omega^\\omega\\cdot\\omega)=\\psi_0(\\Omega^{\\Omega^\\omega\\cdot\\omega}).\\]</p><p><strong>BMS representation:</strong>\\[(0,0)(1,1)(2,1)(3,1)(4,0)(3,0).\\]</p><p>Sources: <a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos's TREE analysis</a>; <a href=\"https://solarzone1010.github.io/bms-analyzer.html\">Solarzone's BMS analyzer</a>.</p>",
-                        },
+                        {"type":"html","html":"<p>Sources: <a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos's TREE analysis</a>; <a href=\"https://solarzone1010.github.io/bms-analyzer.html\">Solarzone's BMS analyzer</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-089': {
-                label: '\\(\\operatorname{TREE}(n)\\)',
+                label: "\\(\\operatorname{TREE}(n)\\)",
                 detail: {
-                    title: 'The \\(\\operatorname{TREE}\\) function',
+                    title: "The \\(\\operatorname{TREE}\\) function",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\operatorname{TREE}(n)\\)<br><small>Corresponding ordinal:</small><br>\\(\\varphi(\\omega @\\omega)\\)<br>\\(\\vartheta(\\Omega^\\omega\\cdot\\omega)\\)<br>\\(\\psi_0(\\Omega^{\\Omega^\\omega\\cdot\\omega})\\)" },
+                        { label: "BMS representation", html: "\\((0,0)(1,1)(2,1)(3,1)(4,0)(3,0)\\)" },
+                    ],
                     sections: [
-                        {
-                            type: 'html',
-                            html: "<p>\\(\\operatorname{TREE}(1)=1\\) and \\(\\operatorname{TREE}(2)=3\\). As the number \\(n\\) of available labels increases, \\(\\operatorname{TREE}(n)\\) grows at the \\(f_{\\varphi(\\omega @\\omega)}\\) level. See <a href=\"#item-088\">\\(\\varphi(\\omega @\\omega)\\)</a> at the same position for the expanded ordinal and its BMS representation.</p><p>Sources: <a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos's analysis</a> and the cited <a href=\"https://cage.ugent.be/~jvdm/Site/Research_files/DissertationJeroenVanderMeerenPrinted.pdf\">dissertation by Van der Meeren on labelled trees and ordinal notations</a>.</p>",
-                        },
+                        {"type":"html","html":"<p>\\(\\operatorname{TREE}(1)=1\\) and \\(\\operatorname{TREE}(2)=3\\). As the number \\(n\\) of available labels increases, \\(\\operatorname{TREE}(n)\\) grows at the \\(f_{\\varphi(\\omega @\\omega)}\\) level. See <a href=\"#item-088\">\\(\\varphi(\\omega @\\omega)\\)</a> for more about this ordinal.</p><p>Sources: <a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos's analysis</a> and the cited <a href=\"https://cage.ugent.be/~jvdm/Site/Research_files/DissertationJeroenVanderMeerenPrinted.pdf\">dissertation by Van der Meeren on labelled trees and ordinal notations</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-090': {
-                label: 'LVO',
+                label: "LVO",
                 detail: {
-                    title: 'LVO',
+                    title: "LVO",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\mathrm{LVO}\\)<br>\\(\\vartheta(\\Omega^\\Omega)\\)<br>\\(\\psi_0(\\Omega^{\\Omega^\\Omega})\\)" },
+                        { label: "BMS representation", html: "\\((0,0)(1,1)(2,1)(3,1)(4,1)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>\\(\\mathrm{LVO}=\\vartheta(\\Omega^\\Omega)=\\psi_0(\\Omega^{\\Omega^\\Omega})\\)</p><p><strong>BMS representation:</strong>\\[(0,0)(1,1)(2,1)(3,1)(4,1)\\]</p><p>Correspondence: <a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>.</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>The large Veblen ordinal extends the Veblen construction to transfinite argument positions while requiring every expression to have finite support. It is the closure bound of these finite-support transfinitary Veblen operations, and is also called \\(E(0)\\), or the great Veblen number, in Veblen’s original framework.</p><p>Because this extension contains every finite-arity Veblen level, LVO lies above SVO.</p><p><strong>Source:</strong> <a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Oswald Veblen, <cite>Continuous Increasing Functions of Finite and Transfinite Ordinals</cite> (1908)</a>.</p>`,
-                        },
+                        {"type":"html","html":"<p>Correspondence: <a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>.</p>"},
+                        {"type":"html","html":"<p>The large Veblen ordinal extends the Veblen construction to transfinite argument positions while requiring every expression to have finite support. It is the closure bound of these finite-support transfinitary Veblen operations, and is also called \\(E(0)\\), or the great Veblen number, in Veblen’s original framework.</p><p>Because this extension contains every finite-arity Veblen level, LVO lies above SVO.</p><p><strong>Source:</strong> <a href=\"https://doi.org/10.1090/S0002-9947-1908-1500814-9\">Oswald Veblen, <cite>Continuous Increasing Functions of Finite and Transfinite Ordinals</cite> (1908)</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-091': {
-                label: '\\(\\mathrm{BHO}={\\psi}({\\Omega}_{2})\\)',
+                label: "\\(\\mathrm{BHO}={\\psi}({\\Omega}_{2})\\)",
                 detail: {
-                    title: '\\(\\mathrm{BHO}={\\psi}({\\Omega}_{2})\\)',
+                    title: "\\(\\mathrm{BHO}={\\psi}({\\Omega}_{2})\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\mathrm{BHO}\\)<br>\\(\\psi_0(\\Omega_2)\\)" },
+                        { label: "BMS representation", html: "\\((0,0)(1,1)(2,2)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>BMS representation:</strong>\\[(0,0)(1,1)(2,2)\\]</p><p>Correspondence: <a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>.</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>The Bachmann–Howard ordinal is obtained by ordinal collapsing: auxiliary \\(\\Omega\\)-levels are introduced in the closure construction, and \\(\\psi\\) then collapses the resulting structure back to a countable ordinal. In the Buchholz convention used here, \\(\\psi\\) abbreviates \\(\\psi_0\\), and \\[\\mathrm{BHO}=\\psi_0(\\Omega_2).\\]</p><p>The auxiliary \\(\\Omega_n\\) symbols act as scaffolding for the recursive closure; the value returned by \\(\\psi_0\\) is countable.</p><p><strong>Source:</strong> <a href="https://doi.org/10.1016/0168-0072(86)90052-7">Wilfried Buchholz, <cite>A new system of proof-theoretic ordinal functions</cite> (1986)</a> (<a href="https://epub.ub.uni-muenchen.de/3841/1/3841.pdf">open PDF</a>).</p>`,
-                        },
+                        {"type":"html","html":"<p>Correspondence: <a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>.</p>"},
+                        {"type":"html","html":"<p>The Bachmann–Howard ordinal is obtained by ordinal collapsing: auxiliary \\(\\Omega\\)-levels are introduced in the closure construction, and \\(\\psi\\) then collapses the resulting structure back to a countable ordinal. In the Buchholz convention used here, \\(\\psi\\) abbreviates \\(\\psi_0\\), and \\[\\mathrm{BHO}=\\psi_0(\\Omega_2).\\]</p><p>The auxiliary \\(\\Omega_n\\) symbols act as scaffolding for the recursive closure; the value returned by \\(\\psi_0\\) is countable.</p><p><strong>Source:</strong> <a href=\"https://doi.org/10.1016/0168-0072(86)90052-7\">Wilfried Buchholz, <cite>A new system of proof-theoretic ordinal functions</cite> (1986)</a> (<a href=\"https://epub.ub.uni-muenchen.de/3841/1/3841.pdf\">open PDF</a>).</p>"},
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-092': {
-                label: '\\(\\mathrm{BO}={\\psi}({\\Omega}_{{\\omega}})\\)',
+                label: "\\(\\mathrm{BO}={\\psi}({\\Omega}_{{\\omega}})\\)",
                 detail: {
-                    title: 'Buchholz ordinal (\\(\\mathrm{BO}={\\psi}({\\Omega}_{{\\omega}})\\))',
+                    title: "Buchholz ordinal (\\(\\mathrm{BO}={\\psi}({\\Omega}_{{\\omega}})\\))",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\mathrm{BO}\\)<br>\\(\\psi_0(\\Omega_\\omega)\\)" },
+                        { label: "BMS representation", html: "\\((0,0,0)(1,1,1)\\)" },
+                    ],
                     sections: [
-                        {
-                            type: 'html',
-                            html: `<p><strong>BMS representation:</strong> \\((0,0,0)(1,1,1)=(0,0)(1,1)(2,2)(3,3)\\ldots\\)</p><p>Under the same Buchholz convention, let \\[\\Omega_\\omega=\\sup_{1\\leq n\\lt{}\\omega}\\Omega_n.\\] The ordinal called the Buchholz ordinal here is \\[\\mathrm{BO}:=\\psi_0(\\Omega_\\omega)=\\sup_{1\\leq n\\lt{}\\omega}\\psi_0(\\Omega_n).\\] Thus it is the countable limit of the finite \\(\\Omega_n\\)-collapse levels. As above, the shorter \\(\\psi\\) in the item label denotes \\(\\psi_0\\), while the subscript in \\(\\Omega_\\omega\\) is part of the hierarchy and is not an exponent.</p><p><strong>Source:</strong> <a href="https://doi.org/10.1016/0168-0072(86)90052-7">Wilfried Buchholz, <cite>A new system of proof-theoretic ordinal functions</cite> (1986)</a> (<a href="https://epub.ub.uni-muenchen.de/3841/1/3841.pdf">open PDF</a>).</p>`,
-                        },
+                        {"type":"html","html":"<p>Under the same Buchholz convention, let \\[\\Omega_\\omega=\\sup_{1\\leq n\\lt{}\\omega}\\Omega_n.\\] The ordinal called the Buchholz ordinal here is \\[\\mathrm{BO}:=\\psi_0(\\Omega_\\omega)=\\sup_{1\\leq n\\lt{}\\omega}\\psi_0(\\Omega_n).\\] Thus it is the countable limit of the finite \\(\\Omega_n\\)-collapse levels. As above, the shorter \\(\\psi\\) in the item label denotes \\(\\psi_0\\), while the subscript in \\(\\Omega_\\omega\\) is part of the hierarchy and is not an exponent.</p><p><strong>Source:</strong> <a href=\"https://doi.org/10.1016/0168-0072(86)90052-7\">Wilfried Buchholz, <cite>A new system of proof-theoretic ordinal functions</cite> (1986)</a> (<a href=\"https://epub.ub.uni-muenchen.de/3841/1/3841.pdf\">open PDF</a>).</p>"},
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-093': {
-                label: '\\(\\mathrm{BMS}:(0,0,0)(1,1,1)\\)',
+                label: "\\(\\mathrm{BMS}:(0,0,0)(1,1,1)\\)",
+                detail: {
+                    title: "\\(\\mathrm{BMS}:(0,0,0)(1,1,1)\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\mathrm{BO}\\)<br>\\(\\psi_0(\\Omega_\\omega)\\)" },
+                        { label: "BMS representation", html: "\\((0,0,0)(1,1,1)\\)" },
+                    ],
+                    sections: [
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-094': {
-                label: '\\(\\mathrm{TFB}={\\psi}({\\Omega}_{{\\omega}+1})\\)',
+                label: "\\(\\mathrm{TFB}={\\psi}({\\Omega}_{{\\omega}+1})\\)",
                 detail: {
-                    title: '\\(\\mathrm{TFB}={\\psi}({\\Omega}_{{\\omega}+1})\\)',
+                    title: "\\(\\mathrm{TFB}={\\psi}({\\Omega}_{{\\omega}+1})\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\mathrm{TFB}\\)<br>\\(\\psi_0(\\Omega_{\\omega+1})\\)<br>\\(\\psi_0(\\varepsilon_{\\Omega_\\omega+1})\\)" },
+                        { label: "BMS representation", html: "\\((0,0,0)(1,1,1)(2,1,0)(3,2,0)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>TFB is the limit of the Buchholz hydra, written \\(\\psi_0(\\Omega_{\\omega+1})=\\psi_0(\\varepsilon_{\\Omega_\\omega+1})\\).</p><p><strong>BMS representation:</strong>\\[(0,0,0)(1,1,1)(2,1,0)(3,2,0).\\]</p><p>Correspondence: <a href=\"https://wiki.googology.top/index.php/BMS分析Part2：BO~EBO\">最菜萌新, BMS Analysis Part 2: BO to EBO</a>; <a href=\"https://solarzone1010.github.io/bms-analyzer.html\">Solarzone's BMS analyzer</a>.</p>" },
+                        {"type":"html","html":"<p>TFB is the limit of the Buchholz hydra.</p><p>Correspondence: <a href=\"https://wiki.googology.top/index.php/BMS分析Part2：BO~EBO\">最菜萌新, BMS Analysis Part 2: BO to EBO</a>; <a href=\"https://solarzone1010.github.io/bms-analyzer.html\">Solarzone's BMS analyzer</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-095': {
-                label: 'EBO',
+                label: "EBO",
                 detail: {
-                    title: 'EBO (Extended Buchholz ordinal)',
+                    title: "EBO (Extended Buchholz ordinal)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\mathrm{EBO}\\)" },
+                        { label: "BMS representation", html: "\\((0,0,0)(1,1,1)(2,1,1)(3,1,0)(2,0,0)\\)" },
+                    ],
                     sections: [
-                        {
-                            type: 'html',
-                            html: `<p><strong>BMS representation:</strong> \\((0,0,0)(1,1,1)(2,1,1)(3,1,0)(2,0,0)\\)</p><p>Here EBO denotes the limit of the <a href="https://googology.fandom.com/wiki/Extended_Buchholz's_function">Extended Buchholz's function</a>.</p>`,
-                        },
+                        {"type":"html","html":"<p>Here EBO denotes the limit of the <a href=\"https://googology.fandom.com/wiki/Extended_Buchholz's_function\">Extended Buchholz's function</a>.</p>"},
+                        unreviewedNotice(),
                     ],
                 },
             },
             'item-096': {
-                label: '\\(\\mathrm{BMS}:(0,0,0)(1,1,1)(2,1,1)(3,1,0)(2,0,0)\\)',
+                label: "\\(\\mathrm{BMS}:(0,0,0)(1,1,1)(2,1,1)(3,1,0)(2,0,0)\\)",
+                detail: {
+                    title: "\\(\\mathrm{BMS}:(0,0,0)(1,1,1)(2,1,1)(3,1,0)(2,0,0)\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\mathrm{EBO}\\)" },
+                        { label: "BMS representation", html: "\\((0,0,0)(1,1,1)(2,1,1)(3,1,0)(2,0,0)\\)" },
+                    ],
+                    sections: [
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-097': {
-                label: 'SSO',
+                label: "SSO",
                 detail: {
-                    title: 'SSO (Small Stegert ordinal; informal name)',
+                    title: "SSO (Small Stegert ordinal; informal name)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\mathrm{SSO}\\)" },
+                        { label: "BMS representation", html: "\\((0,0,0)(1,1,1)(2,2,0)\\)" },
+                    ],
                     sections: [
-                        {
-                            type: 'html',
-                            html: `<p><strong>BMS representation:</strong> \\((0,0,0)(1,1,1)(2,2,0)\\)</p><p>SSO is the common informal name used here, but the same abbreviation sometimes denotes other ordinals. For an unambiguous reference, use the BMS expression above.</p>`,
-                        },
+                        {"type":"html","html":"<p>SSO is the common informal name used here, but the same abbreviation sometimes denotes other ordinals. For an unambiguous reference, use the BMS expression above.</p>"},
+                        unreviewedNotice(),
                     ],
                 },
             },
             'item-098': {
-                label: '\\(\\mathrm{BMS}:(0,0,0)(1,1,1)(2,2,0)\\)',
+                label: "\\(\\mathrm{BMS}:(0,0,0)(1,1,1)(2,2,0)\\)",
+                detail: {
+                    title: "\\(\\mathrm{BMS}:(0,0,0)(1,1,1)(2,2,0)\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\mathrm{SSO}\\)" },
+                        { label: "BMS representation", html: "\\((0,0,0)(1,1,1)(2,2,0)\\)" },
+                    ],
+                    sections: [
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-099': {
-                label: 'LRO',
+                label: "LRO",
                 detail: {
-                    title: 'LRO (Large Rathjen ordinal; informal name)',
+                    title: "LRO (Large Rathjen ordinal; informal name)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\mathrm{LRO}\\)" },
+                        { label: "BMS representation", html: "\\((0,0,0)(1,1,1)(2,2,2)\\)" },
+                    ],
                     sections: [
-                        {
-                            type: 'html',
-                            html: `<p><strong>BMS representation:</strong> \\((0,0,0)(1,1,1)(2,2,2)\\)</p><p>LRO is the common informal name used here, but the same abbreviation sometimes denotes other ordinals. For an unambiguous reference, use the BMS expression above.</p>`,
-                        },
+                        {"type":"html","html":"<p>LRO is the common informal name used here, but the same abbreviation sometimes denotes other ordinals. For an unambiguous reference, use the BMS expression above.</p>"},
+                        unreviewedNotice(),
                     ],
                 },
             },
             'item-100': {
-                label: '\\(\\mathrm{BMS}:(0,0,0)(1,1,1)(2,2,2)\\)',
+                label: "\\(\\mathrm{BMS}:(0,0,0)(1,1,1)(2,2,2)\\)",
+                detail: {
+                    title: "\\(\\mathrm{BMS}:(0,0,0)(1,1,1)(2,2,2)\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\mathrm{LRO}\\)" },
+                        { label: "BMS representation", html: "\\((0,0,0)(1,1,1)(2,2,2)\\)" },
+                    ],
+                    sections: [
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-101': {
-                label: 'Three-row BMS',
+                label: "Three-row BMS",
                 detail: {
-                    title: 'Three-row BMS',
+                    title: "Three-row BMS",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\lim(\\text{3-row BMS})\\)" },
+                        { label: "BMS representation", html: "\\((0,0,0,0)(1,1,1,1)\\)" },
+                    ],
                     sections: [
-                        {
-                            type: 'html',
-                            html: `<p>Here “three-row” means that every column of a BMS matrix contains three natural-number entries. In this page’s scale layout, this item marks the upper end of the three-row BMS region; the following four-entry columns \\((0,0,0,0)(1,1,1,1)\\) begin the four-row region. The item therefore serves as the transition between the two row-count levels.</p>`,
-                        },
+                        {"type":"html","html":"<p>Here “three-row” means that every column of a BMS matrix contains three natural-number entries. In this page’s scale layout, this item marks the upper end of the three-row BMS region; the four-entry-column expression shown above begins the four-row region. The item therefore serves as the transition between the two row-count levels.</p>"},
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-102': {
-                label: '\\(\\mathrm{BMS}:(0,0,0,0)(1,1,1,1)\\)',
+                label: "\\(\\mathrm{BMS}:(0,0,0,0)(1,1,1,1)\\)",
+                detail: {
+                    title: "\\(\\mathrm{BMS}:(0,0,0,0)(1,1,1,1)\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\lim(\\text{3-row BMS})\\)" },
+                        { label: "BMS representation", html: "\\((0,0,0,0)(1,1,1,1)\\)" },
+                    ],
+                    sections: [
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-103': {
                 label: "\\(\\boldsymbol{\\lim(\\mathbf{BMS})}\\) · SHO",
                 detail: {
                     title: "The BMS limit (SHO)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\lim(\\mathrm{BMS})\\)<br>\\(\\mathrm{SHO}\\)" },
+                        { label: "BMS representation", html: "\\(\\lim(\\mathrm{BMS})\\)" },
+                        { label: "Y-sequence representation", html: "\\(Y(1,3)\\)" },
+                    ],
                     sections: [
-                        {
-                            type: 'html',
-                            html: "<p>The Bashicu Matrix System (BMS) represents ordinals by matrices of natural numbers. Expansion copies and increases a bad part according to parent relations. The limit of the standard domain allowing every finite number of rows is commonly called SHO (Small Hydra Ordinal) in the googology community.</p><p>SHO is a historical community name; it does not literally identify this limit with the ordinal of a particular hydra game. BMS has a well-ordering proof. Increasing the number of rows opens further stages; this marker denotes the combined limit over all finite row counts.</p><p><strong>Sources:</strong> <a href=\"https://github.com/EgoFakeFantasy/BMS-Well-Ordering-Lean\">BMS well-ordering formalization and original-paper references</a>; <a href=\"https://github.com/Phyrion1343/1Y-Well-Ordering-Lean\">0-Y/BMS correspondence and standard-domain well-ordering</a>.</p>",
-                        },
+                        {"type":"html","html":"<p>The Bashicu Matrix System (BMS) represents ordinals by matrices of natural numbers. Expansion copies and increases a bad part according to parent relations. The limit of the standard domain allowing every finite number of rows is commonly called SHO (Small Hydra Ordinal) in the googology community.</p><p>SHO is a historical community name; it does not literally identify this limit with the ordinal of a particular hydra game. BMS has a well-ordering proof. Increasing the number of rows opens further stages; this marker denotes the combined limit over all finite row counts.</p><p><strong>Sources:</strong> <a href=\"https://github.com/EgoFakeFantasy/BMS-Well-Ordering-Lean\">BMS well-ordering formalization and original-paper references</a>; <a href=\"https://github.com/Phyrion1343/1Y-Well-Ordering-Lean\">0-Y/BMS correspondence and standard-domain well-ordering</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-105': {
-                label: '\\(Y:(1,3)\\)',
+                label: "\\(Y:(1,3)\\)",
+                detail: {
+                    title: "\\(Y:(1,3)\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\lim(\\mathrm{BMS})\\)<br>\\(\\mathrm{SHO}\\)" },
+                        { label: "BMS representation", html: "\\(\\lim(\\mathrm{BMS})\\)" },
+                        { label: "Y-sequence representation", html: "\\(Y(1,3)\\)" },
+                    ],
+                    sections: [
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-106': {
-                label: '\\(\\operatorname{SCG}(n)\\)',
+                label: "\\(\\operatorname{SCG}(n)\\)",
                 detail: {
-                    title: 'The \\(\\operatorname{SCG}\\) function',
+                    title: "The \\(\\operatorname{SCG}\\) function",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\operatorname{SCG}(n)\\)<br><small>Rigorous bounds</small>\\(\\psi_0(\\Omega_\\omega)\\)<br>\\(\\psi_0(\\Omega_\\omega^{\\omega^\\omega})\\)<br><small>Conjectured interval</small>\\(\\psi_0(\\Omega_\\omega\\cdot\\omega)\\)<br>\\(\\psi_0(\\Omega_\\omega^\\omega)\\)" },
+                        { label: "BMS representation", html: "<small>Rigorous lower / upper</small>\\((0,0,0)(1,1,1)\\)<br>\\((0,0,0)(1,1,1)(2,1,0)(3,0,0)(4,0,0)\\)<br><small>Conjectured lower / upper</small>\\((0,0,0)(1,1,1)(2,0,0)\\)<br>\\((0,0,0)(1,1,1)(2,1,0)(3,0,0)\\)" },
+                    ],
                     sections: [
-                        {
-                            type: 'html',
-                            html: `<p>A finite undirected graph is subcubic when every vertex has degree at most \\(3\\). SSCG uses simple subcubic graphs, with no loops or parallel edges; SCG allows loops and parallel edges. Neither definition requires connectedness.</p><p><strong>Definition.</strong> Fix \\(k\\in\\mathbb N\\). Consider sequences \\(G_1,\\ldots,G_N\\) such that \\(|V(G_i)|\\leq i+k\\), with no \\(i\\lt j\\) for which \\(G_i\\) is homeomorphically embeddable in \\(G_j\\). Here \\(G_i\\) embeds homeomorphically in \\(G_j\\) exactly when a subdivision of \\(G_i\\) is isomorphic to a subgraph of \\(G_j\\). The greatest possible \\(N\\) is \\(\\operatorname{SCG}(k)\\); restricting all graphs to be simple gives \\(\\operatorname{SSCG}(k)\\). Hence \\[\\operatorname{SCG}(k)\\geq\\operatorname{SSCG}(k).\\]</p><p>Finite subcubic graphs are well-quasi-ordered by homeomorphic embeddability, so an infinite bad sequence cannot exist. For each vertex bound there are only finitely many isomorphism types; applying König's lemma to the finitely branching tree of bad sequences therefore gives a finite maximum for every \\(k\\).</p><p>Friedman proved that \\(\\operatorname{SSCG}(13)\\) exceeds the halting time of every blank-tape Turing machine whose termination has a proof in \\(\\Pi^1_1\\text{-}\\mathrm{CA}_0\\) using at most \\(2^{[2000]}\\) symbols, where \\(2^{[r]}\\) denotes a tower of \\(2\\)s of height \\(r\\). He later removed the simplicity restriction and restated the result for \\(\\operatorname{SCG}(13)\\), noting that \\(\\operatorname{TREE}(3)\\) is negligible by comparison.</p><p><strong>Sources:</strong> <a href="https://fomarchive.ugent.be/2006-April/010305.html">Harvey M. Friedman, FOM #274, <cite>Subcubic Graph Numbers</cite></a>; <a href="https://fomarchive.ugent.be/2006-April/010362.html">Harvey M. Friedman, FOM #279, <cite>Subcubic Graph Numbers/restated</cite></a>; <a href="https://doi.org/10.1090/conm/065/891251">Friedman, Robertson, and Seymour, <cite>The Metamathematics of the Graph Minor Theorem</cite></a>.</p>`,
-                        },
-                        { type: 'html', html: "<p><strong>Rigorous bounds.</strong> The lower bound for \\(\\operatorname{SCG}\\) reaches the Buchholz ordinal \\(\\mathrm{BO}=\\psi_0(\\Omega_\\omega)\\) level; an upper bound comes from the proof-theoretic analysis of the graph minor theorem. Krombholz–Rathjen give the following interval for that theorem's ordinal:\\[\\psi_0(\\Omega_\\omega)\\lt\\alpha_{\\mathrm{GMT}}\\leq\\psi_0(\\Omega_\\omega^{\\omega^\\omega}).\\]The BMS representations of the endpoints are\\[\\begin{gathered}(0,0,0)(1,1,1),\\\\(0,0,0)(1,1,1)(2,1,0)(3,0,0)(4,0,0).\\end{gathered}\\]This locates the function's growth scale; see Friedman's result above for the particular value \\(\\operatorname{SCG}(13)\\).</p><p>Source: <a href=\"https://arxiv.org/html/1907.00412#S3\">Krombholz and Rathjen, <cite>Upper bounds on the graph minor theorem</cite>, §3</a>; BMS correspondences checked with <a href=\"https://solarzone1010.github.io/bms-analyzer.html\">Solarzone's analyzer</a>.</p>" },
-                        { type: 'html', html: "<p><strong>Conjectured bounds (community analysis).</strong> A narrower proposed interval places the growth of \\(\\operatorname{SCG}\\) between \\(\\psi_0(\\Omega_\\omega\\cdot\\omega)\\) and \\(\\psi_0(\\Omega_\\omega^\\omega)\\). The corresponding BMS endpoints are\\[\\begin{gathered}(0,0,0)(1,1,1)(2,0,0),\\\\(0,0,0)(1,1,1)(2,1,0)(3,0,0).\\end{gathered}\\]</p>" },
+                        {"type":"html","html":"<p>A finite undirected graph is subcubic when every vertex has degree at most \\(3\\). SSCG uses simple subcubic graphs, with no loops or parallel edges; SCG allows loops and parallel edges. Neither definition requires connectedness.</p><p><strong>Definition.</strong> Fix \\(k\\in\\mathbb N\\). Consider sequences \\(G_1,\\ldots,G_N\\) such that \\(|V(G_i)|\\leq i+k\\), with no \\(i\\lt j\\) for which \\(G_i\\) is homeomorphically embeddable in \\(G_j\\). Here \\(G_i\\) embeds homeomorphically in \\(G_j\\) exactly when a subdivision of \\(G_i\\) is isomorphic to a subgraph of \\(G_j\\). The greatest possible \\(N\\) is \\(\\operatorname{SCG}(k)\\); restricting all graphs to be simple gives \\(\\operatorname{SSCG}(k)\\). Hence \\[\\operatorname{SCG}(k)\\geq\\operatorname{SSCG}(k).\\]</p><p>Finite subcubic graphs are well-quasi-ordered by homeomorphic embeddability, so an infinite bad sequence cannot exist. For each vertex bound there are only finitely many isomorphism types; applying König's lemma to the finitely branching tree of bad sequences therefore gives a finite maximum for every \\(k\\).</p><p>Friedman proved that \\(\\operatorname{SSCG}(13)\\) exceeds the halting time of every blank-tape Turing machine whose termination has a proof in \\(\\Pi^1_1\\text{-}\\mathrm{CA}_0\\) using at most \\(2^{[2000]}\\) symbols, where \\(2^{[r]}\\) denotes a tower of \\(2\\)s of height \\(r\\). He later removed the simplicity restriction and restated the result for \\(\\operatorname{SCG}(13)\\), noting that \\(\\operatorname{TREE}(3)\\) is negligible by comparison.</p><p><strong>Sources:</strong> <a href=\"https://fomarchive.ugent.be/2006-April/010305.html\">Harvey M. Friedman, FOM #274, <cite>Subcubic Graph Numbers</cite></a>; <a href=\"https://fomarchive.ugent.be/2006-April/010362.html\">Harvey M. Friedman, FOM #279, <cite>Subcubic Graph Numbers/restated</cite></a>; <a href=\"https://doi.org/10.1090/conm/065/891251\">Friedman, Robertson, and Seymour, <cite>The Metamathematics of the Graph Minor Theorem</cite></a>.</p>"},
+                        {"type":"html","html":"<p><strong>Rigorous bounds.</strong> The lower bound for \\(\\operatorname{SCG}\\) reaches the Buchholz ordinal \\(\\mathrm{BO}=\\psi_0(\\Omega_\\omega)\\) level; an upper bound comes from the proof-theoretic analysis of the graph minor theorem. Krombholz–Rathjen give the following interval for that theorem's ordinal:\\[\\psi_0(\\Omega_\\omega)\\lt\\alpha_{\\mathrm{GMT}}\\leq\\psi_0(\\Omega_\\omega^{\\omega^\\omega}).\\]This locates the function's growth scale; see Friedman's result above for the particular value \\(\\operatorname{SCG}(13)\\).</p><p>Source: <a href=\"https://arxiv.org/html/1907.00412#S3\">Krombholz and Rathjen, <cite>Upper bounds on the graph minor theorem</cite>, §3</a>; BMS correspondences checked with <a href=\"https://solarzone1010.github.io/bms-analyzer.html\">Solarzone's analyzer</a>.</p>"},
+                        {"type":"html","html":"<p><strong>Conjectured bounds (community analysis).</strong> A narrower proposed interval places the growth of \\(\\operatorname{SCG}\\) between \\(\\psi_0(\\Omega_\\omega\\cdot\\omega)\\) and \\(\\psi_0(\\Omega_\\omega^\\omega)\\). </p>"},
                         unreviewedNotice(),
                     ],
                 },
@@ -408,11 +494,12 @@ print(TREE(3))`,
                 label: "\\(Y:(1,4)\\)",
                 detail: {
                     title: "\\(Y:(1,4)\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(Y:(1,4)\\)" },
+                        { label: "Y-sequence representation", html: "\\(Y(1,4)\\)" },
+                    ],
                     sections: [
-                        {
-                            type: 'html',
-                            html: "<p>This is the graveyard of the various extensions of BMS.</p><p>\\((1,4)\\) is one fixed seed among the standard Y seeds \\((1,m)\\), \\(m\\ge2\\), marking a stage below the entire Y limit. Standard Y sequences use ordinary lexicographic order. Since their second entries satisfy \\(3\\lt4\\),\\[Y(1,3,4,3)\\lt Y(1,4).\\]The longer tail on the left does not change the order already determined by the second entry.</p><p><strong>Source:</strong> <a href=\"https://github.com/Phyrion1343/1Y-Well-Ordering-Lean\">the standard generated Y domain, lexicographic order and well-ordering proof</a>.</p>",
-                        },
+                        {"type":"html","html":"<p>This is the graveyard of the various extensions of BMS.</p><p>\\((1,4)\\) is one fixed seed among the standard Y seeds \\((1,m)\\), \\(m\\ge2\\), marking a stage below the entire Y limit. Standard Y sequences use ordinary lexicographic order. Since their second entries satisfy \\(3\\lt4\\),\\[Y(1,3,4,3)\\lt Y(1,4).\\]The longer tail on the left does not change the order already determined by the second entry.</p><p><strong>Source:</strong> <a href=\"https://github.com/Phyrion1343/1Y-Well-Ordering-Lean\">the standard generated Y domain, lexicographic order and well-ordering proof</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
@@ -421,11 +508,12 @@ print(TREE(3))`,
                 label: "\\(\\lim(Y)\\)",
                 detail: {
                     title: "\\(\\lim(Y)\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\lim(Y)\\)" },
+                        { label: "Y-sequence representation", html: "\\(\\lim(Y)\\)" },
+                    ],
                     sections: [
-                        {
-                            type: 'html',
-                            html: "<p>Introduced by Yukito, Y sequences turn finite sequences of natural numbers into difference mountains with ancestry relations. Expansion copies and adjusts the terminal structure, then reconstructs a sequence. This marker denotes the limit of the system generated from the standard seeds \\((1,m)\\), \\(m\\ge2\\).</p><p>On September 11, 2026, @Phyrion published a well-ordering proof for Y. Shortly afterwards, @test_alpha0 lowered the axiomatic upper bound to \\(KP_\\omega+\\text{“}\\omega_1\\text{ exists”}\\), connecting its concrete expansion rules with well-ordering analysis in weak set theory.</p><p><strong>Sources:</strong> <a href=\"https://github.com/Phyrion1343/1Y-Well-Ordering-Lean\">Y well-ordering proof and formalization</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/README.md\">progress record</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/well-ordering.md\">proof in weak set theory</a>.</p>",
-                        },
+                        {"type":"html","html":"<p>Introduced by Yukito, Y sequences turn finite sequences of natural numbers into difference mountains with ancestry relations. Expansion copies and adjusts the terminal structure, then reconstructs a sequence. This marker denotes the limit of the system generated from the standard seeds \\((1,m)\\), \\(m\\ge2\\).</p><p>On September 11, 2026, @Phyrion published a well-ordering proof for Y. Shortly afterwards, @test_alpha0 lowered the axiomatic upper bound to \\(KP_\\omega+\\text{“}\\omega_1\\text{ exists”}\\), connecting its concrete expansion rules with well-ordering analysis in weak set theory.</p><p><strong>Sources:</strong> <a href=\"https://github.com/Phyrion1343/1Y-Well-Ordering-Lean\">Y well-ordering proof and formalization</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/README.md\">progress record</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/well-ordering.md\">proof in weak set theory</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
@@ -434,11 +522,12 @@ print(TREE(3))`,
                 label: "\\(\\lim(\\omega\\text{-}Y)\\)",
                 detail: {
                     title: "\\(\\lim(\\omega\\text{-}Y)\\)",
+                    representations: [
+                        { label: "Common representations", html: "\\(\\lim(\\omega\\text{-}Y)\\)" },
+                        { label: "Y-sequence representation", html: "Beyond \\(\\lim(Y)\\)" },
+                    ],
                     sections: [
-                        {
-                            type: 'html',
-                            html: "<p>\\(\\omega\\)-Y extends the Y mountain construction through arbitrary finite levels. This entry uses NER's weak-magma version of omega-Y and marks the limit of its entire standard domain.</p><p>The system has a well-ordering proof in \\(KP_\\omega+\\text{“}\\omega_1\\text{ exists”}\\).</p><p><strong>Sources:</strong> <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.md\">record of the \\(\\omega\\)-Y well-ordering manuscript</a>.</p>",
-                        },
+                        {"type":"html","html":"<p>\\(\\omega\\)-Y extends the Y mountain construction through arbitrary finite levels. This entry uses NER's weak-magma version of omega-Y and marks the limit of its entire standard domain.</p><p>The system has a well-ordering proof in \\(KP_\\omega+\\text{“}\\omega_1\\text{ exists”}\\).</p><p><strong>Sources:</strong> <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.md\">record of the \\(\\omega\\)-Y well-ordering manuscript</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },

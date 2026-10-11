@@ -1,0 +1,1 @@
+for(a=[[],[0]],n=9;a[1];a.pop(),n++)for(i=n;i--&&(c=a[l=a.length-1])>"";p=c.at(-1),d=l-p,a.push(...a.slice(-d).map(b=>b.flatMap((x,j)=>Array(j-p?1:d+1).fill(x<p?x:x+d)))),c.pop(),c.push(...a[p].slice(c.length)));console.log(n)

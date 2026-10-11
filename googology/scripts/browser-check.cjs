@@ -65,8 +65,18 @@ const { chromium } = require('playwright');
         await page.locator('#detail-modal:not([hidden])').waitFor();
         assert.match(await page.locator('#modal-body h2').textContent(), /SRPD/);
         assert.equal(new URL(page.url()).hash, '#item-124');
+        assert.equal(await page.locator('.detail-representation').count(), 2);
+        assert.match(await page.locator('.detail-representation').last().textContent(), /可能是/);
+        await page.locator('.code-dialog-open').first().click();
+        const golf = await page.locator('dialog[open] code').textContent();
+        assert.equal(golf.length, 226);
+        assert.match(golf, /console\.log\(n\)$/);
+        await page.keyboard.press('Escape');
         await page.keyboard.press('Escape');
         assert.equal(await page.locator('#detail-modal').isHidden(), true);
+        await page.locator('#entry-search').fill('1,3,4,2,5,8,10,4,9,14,17,10');
+        await page.locator('#search-results [data-item-id="item-124"]').waitFor();
+        assert.equal(await page.locator('#search-results .directory-entry').count(), 1);
 
         // A normal pointer click must reach the label, not its capture parent.
         await page.locator('#jump-select').selectOption('bms');
@@ -113,6 +123,15 @@ const { chromium } = require('playwright');
         assert.match(await page.locator('#modal-body').textContent(), /Conjectured bounds/);
         assert.equal(await page.locator('.katex-error').count(), 0);
 
+        for (const [id, title, fields] of [['057', 'ε', 3], ['060', 'Goodstein', 3], ['092', 'Buchholz', 2], ['103', 'SHO', 3], ['124', 'SRPD', 2]]) {
+            await page.goto(base + '#item-' + id);
+            await page.locator('#modal-body h2').filter({ hasText: title }).waitFor();
+            await page.locator('.detail-representation').first().waitFor();
+            assert.equal(await page.locator('.detail-representation').count(), fields);
+            assert.equal(await page.locator('.katex-error').count(), 0);
+            await page.screenshot({ path: path.join(output, 'representations-' + id + '.png') });
+        }
+
         // Narrow viewports retain reachable search, stages and code controls.
         const mobile = await browser.newPage({
             viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true
@@ -139,6 +158,21 @@ const { chromium } = require('playwright');
             assert.equal(await mobile.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
             await mobile.locator('#modal-body .katex-display').last().scrollIntoViewIfNeeded();
             await mobile.screenshot({ path: path.join(output, 'mobile-item-' + id + '.png') });
+        }
+        for (const [id, title, fields] of [['057', 'ε', 3], ['092', 'Buchholz', 2], ['124', 'SRPD', 2]]) {
+            await mobile.goto(base + '#item-' + id);
+            await mobile.locator('#modal-body h2').filter({ hasText: title }).waitFor();
+            assert.equal(await mobile.locator('.detail-representation').count(), fields);
+            const bounds = await mobile.locator('.detail-representation').evaluateAll(cards => cards.map(card => {
+                const rect = card.getBoundingClientRect();
+                return { x: rect.x, y: rect.y, width: rect.width, height: rect.height };
+            }));
+            assert.ok(bounds.every(rect => rect.x >= 0 && rect.x + rect.width <= 390));
+            assert.ok(bounds.slice(1).every((rect, i) => rect.y >= bounds[i].y + bounds[i].height));
+            assert.equal(await mobile.locator('.katex-error').count(), 0);
+            assert.equal(await mobile.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+            await mobile.locator('#modal-body h2').scrollIntoViewIfNeeded();
+            await mobile.screenshot({ path: path.join(output, 'mobile-representations-' + id + '.png') });
         }
         assert.deepEqual(errors, []);
         console.log('Browser checks passed. Screenshots: ' + output);

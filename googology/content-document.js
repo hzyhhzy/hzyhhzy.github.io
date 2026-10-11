@@ -213,6 +213,28 @@
         }
     }
 
+    function appendRepresentations(container, representations) {
+        if (!representations || !representations.length) {
+            return;
+        }
+
+        var documentRef = container.ownerDocument;
+        var list = createElement(documentRef, 'dl', 'detail-representations');
+
+        representations.forEach(function (representation) {
+            var entry = createElement(documentRef, 'div', 'detail-representation');
+            var label = createElement(documentRef, 'dt');
+            var value = createElement(documentRef, 'dd');
+
+            label.textContent = representation.label;
+            value.innerHTML = representation.html;
+            entry.append(label, value);
+            list.appendChild(entry);
+        });
+
+        container.appendChild(list);
+    }
+
     function render(container, detail) {
         container.replaceChildren();
 
@@ -236,6 +258,8 @@
             title.innerHTML = detail.title;
             container.appendChild(title);
         }
+
+        appendRepresentations(container, detail.representations);
 
         (detail.sections || []).forEach(function (section) {
             appendSection(container, section);

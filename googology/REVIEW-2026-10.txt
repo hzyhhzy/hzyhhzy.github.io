@@ -77,6 +77,34 @@ NER 核对版本：26d2dd981134231b44280934514d63aac2cc31af
    待补充：社区猜测的原始分析链接；若需要精确到某个 FGH 约定的逐输入函数界，还需明确该换写与参数调整。
    来源：https://arxiv.org/html/1907.00412#S3
 
+12. item-123 / item-124 · Y 序列对应
+   TBMS 当前表示栏使用已知下界 Y(1,3,4,2,5,8,10)，没有添上末尾的 5，也没有将下界写成等号。
+   记录中的 Y(1,3,4,2,5,8,10,5) 是另一个与 SRPD 比较的目标；它还高于下述 SRPD 候选，不能同时作为 TBMS 的等号候选而保留 TBMS < SRPD。
+   SRPD 当前写“可能是 Y(1,3,4,2,5,8,10,4,9,14,17,10)”，这是档案中的主要候选。
+   待确认：TBMS 极限的更精确 Y 对应；SRPD 候选是否已有更新。
+   来源：https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/srpd-tbms/continuation/README.zh-CN.md
+
+13. item-124 · S🎄O、公共初段与 BMS 极限
+   按作者本轮提供的信息写 SRPD 计数序列 (1,2,4,2) 对应 lim(BMS)；保留显式空根的记法为 (1,1,2,4,2)。
+   核对到的展开实例：(1,2,4,1,2,7,1,2,10,1,2,13,1,2,16)。
+   档案证明目前明确给 lim(BMS) ≤ SRPD1242，早期论文把等号列为猜想；这里的等号依照作者提供的信息，待补充反向比较的出处。
+   公共初段端点 lim(SRPD)=|e0MN(1,3)|=|RPD(1,2)|=|ARD(1,1,3)|=|ARD2(1,1,3)| 已核对，未误写成这些记号的整体极限相等。
+   来源：https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/SRPD/correspondence.zh-CN.md
+
+14. item-129 · DQDN 的编码理念与列数
+   底层是 F_ω + Nat + Rec 加非确定自然数查询，不是 CoC。共同 TOP 的标准后裔按普通字典序与展开顺序相容；良序结论限定于标准域。
+   核对到 ω^ω 的具体表示为 880 列，ω^(ω·2) 为 1079 列；没有找到“简单序数上万列”的确切实例，因此使用这两个已知数字。
+   来源：https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/dqdn/small-ordinals.zh-CN.md
+
+15. item-124 · SRPD JavaScript 大数高尔夫
+   完整程序 226 ASCII 字符/字节，含初值与 console.log 输出，仅排除末尾换行；尚未达到 200 或 150 字符，不声称最短。
+   规则采用理想化 JavaScript：整数精确且位数、数组长度、内存、运行时间无上限；无输入、无外部资源，终止后输出唯一整数。
+   初始项 [[0]]、指标 9，每步展开后指标加一。可读参考版额外设置安全整数/步数保护，只供小规模核对，不计入高尔夫字数。
+   本地程序：programs/srpd-golf.js；参考实现：programs/srpd-reference.cjs；测试：tests/srpd-golf.test.js。
+   680 个标准后裔共 3,400 组展开与作者原始实现一致；另有插行反例和小初值完整终止检查。默认大初值未实际运行。
+   对照作者实现 SHA256：fdbd0d0788afe0cd6949cb280ffea4c85813bbd6d5e47d04e6a078e00bbee85a。
+   规则参考：https://codegolf.stackexchange.com/questions/148897/bignum-bakeoff-reboot
+
 已核对且特意保留的边界
 ----------------------
 - Y 良序史：@Phyrion 于 2026-09-11 公布证明，之后 @test_alpha0 降低所需理论上界。
@@ -115,6 +143,14 @@ NER 核对版本：26d2dd981134231b44280934514d63aac2cc31af
 
 这些检查是文本核对、定义复查和小规模程序验证，不是对所有巨大参数的重新形式化证明。
 
+第四轮表示栏重构
+----------------
+- 101 个词条（每种语言）新增独立 representations 栏位，正文解释与表示法分离。
+- 10↑↑10 至 ε₀ 使用 FGH；ε₀ 至 SHO 使用 BMS；SHO 起使用 Y 序列。ε₀ 同时保留 FGH/BMS，SHO 同时保留 BMS/Y。
+- BO 的 BO、ψ₀(Ω_ω) 等别名单列；手机纵向排列，长公式仅在表示栏内滚动；搜索包含双语表示栏。
+- 原有 44 个代码区块源码保持不变，另加双语 SRPD 短程序和可读参考版弹窗。
+- FGH 数值近似沿用本页增长层级比较的用法，未将其升级为逐输入的数值误差估计。
+
 维护与验证
 ----------
 词条位置：items.js；轴与支线几何：scale-core.js / axis_items.js。
@@ -127,4 +163,4 @@ NER 核对版本：26d2dd981134231b44280934514d63aac2cc31af
 浏览器检查需在外部安装 Playwright（或通过 NODE_PATH 指向已有安装）及 Edge。
 脚本自建临时本地服务器，检查桌面/移动端、中英切换、搜索、直达链接、代码弹窗，并将截图保存到系统临时目录。
 
-本次结果：60 项单元测试通过；桌面和 390px 移动端浏览器检查通过（含词条互跳、燃烧数与 SCG 公式）；git diff --check 通过。
+本次结果：69 项单元测试通过；桌面和 390px 移动端浏览器检查通过（含表示栏、候选序列搜索、226 字符程序弹窗、词条互跳、燃烧数与 SCG 公式）；git diff --check 通过。

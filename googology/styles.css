@@ -129,6 +129,13 @@ select { border: 1px solid var(--line); border-radius: 8px; background: #fff; co
 #modal-body ul, #modal-body ol { padding-left: 24px; }
 #modal-body a { overflow-wrap: anywhere; }
 #modal-body code { background: #edf4f8; padding: 2px 4px; border-radius: 4px; font-size: .9em; }
+.detail-representations { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px; margin: 0 0 25px; }
+.detail-representation { min-width: 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: 9px; background: #f7fafc; }
+.detail-representation dt { margin-bottom: 7px; color: var(--muted); font-size: 11px; font-weight: 650; }
+.detail-representation dd { min-width: 0; max-width: 100%; margin: 0; overflow-x: auto; overflow-y: hidden; padding: 2px 0 5px; }
+#modal-body .detail-representation p { margin: 0 0 8px; }
+#modal-body .detail-representation p:last-child { margin-bottom: 0; }
+.detail-representation .katex-display { margin: 0; }
 .detail-note { margin-top: 24px; padding: 12px 14px; border-left: 3px solid #bfd5e1; background: #f4f8fb; color: #718393; font-size: 11px; line-height: 1.7; }
 .katex-display { max-width: 100%; overflow-x: auto; overflow-y: hidden; padding: 6px 0; }
 .scale-label .katex, .axis-segment .katex, .branch-axis .katex { font-size: .98em; }
@@ -168,5 +175,8 @@ select { border: 1px solid var(--line); border-radius: 8px; background: #fff; co
     #modal-body { padding: 21px 20px 30px; font-size: 14px; }
     #modal-body h2 { font-size: 21px; }
     .zoom-level-0 .scale-label { font-size: 15px; }
+}
+@media (max-width: 520px) {
+    .detail-representations { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }

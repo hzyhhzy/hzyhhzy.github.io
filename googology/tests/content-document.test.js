@@ -177,6 +177,48 @@ test('legacy string details are also typeset after insertion', () => {
     assert.equal(calls[0].html, detail);
 });
 
+test('representations form a labeled definition list between the title and prose', () => {
+    const { calls, container, renderer } = createFixture();
+    const detail = {
+        title: 'An ordinal',
+        representations: [
+            { label: '常用表示', html: '<p>\\(\\varepsilon_0\\)</p>' },
+            { label: 'FGH表示', html: '\\(f_{\\varepsilon_0}(n)\\)' },
+            { label: 'BMS表示', html: '\\(\\operatorname{BMS}((0)(1))\\)' }
+        ],
+        sections: [{ type: 'paragraph', html: 'Body text.' }]
+    };
+
+    renderer.render(container, detail);
+
+    assert.deepEqual(container.children.map(({ tagName }) => tagName), ['H2', 'DL', 'P']);
+    const list = container.children[1];
+    assert.equal(list.className, 'detail-representations');
+    assert.equal(list.children.length, 3);
+    list.children.forEach((entry, index) => {
+        assert.equal(entry.className, 'detail-representation');
+        assert.deepEqual(entry.children.map(({ tagName }) => tagName), ['DT', 'DD']);
+        assert.equal(entry.children[0].textContent, detail.representations[index].label);
+        assert.equal(entry.children[1].innerHTML, detail.representations[index].html);
+    });
+    assert.equal(container.children[2].innerHTML, 'Body text.');
+    assert.equal(calls.length, 1);
+    assert.equal(calls[0].childCount, 3, 'representations are inserted before math rendering');
+    assert.equal(renderer.hasCode(detail), false);
+});
+
+test('absent or empty representations do not add an empty panel', () => {
+    const { container, renderer } = createFixture();
+    for (const representations of [undefined, []]) {
+        renderer.render(container, {
+            title: 'Title',
+            representations,
+            sections: [{ type: 'paragraph', html: 'Body.' }]
+        });
+        assert.deepEqual(container.children.map(({ tagName }) => tagName), ['H2', 'P']);
+    }
+});
+
 test('dialog code sections open and close with localized controls', () => {
     const { container, renderer } = createFixture();
     const detail = {

@@ -188,50 +188,55 @@
                 }
             },
             'item-013': {
-                label: '\\(10\\uparrow{}\\uparrow{}10\\)',
+                label: "\\(10\\uparrow{}\\uparrow{}10\\)",
                 detail: {
-                    title: '\\(10\\uparrow{}\\uparrow{}10=10^{10^{10^{10^{10^{10^{10^{10^{10^{10}}}}}}}}}\\)',
+                    title: "\\(10\\uparrow{}\\uparrow{}10=10^{10^{10^{10^{10^{10^{10^{10^{10^{10}}}}}}}}}\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(10\\uparrow{}\\uparrow{}10\\)" },
+                        { label: "FGH 表示", html: "\\(\\approx f_3(10)\\)" },
+                    ],
                     sections: [
+                        {"type":"html","html":"<p>这里开始使用<a href=\"https://googology.fandom.com/wiki/Arrow_notation\">高德纳上箭头记号（Knuth's up-arrow notation）</a>。这是最常用的超运算符号：\\(\\uparrow{}\\) 表示指数，\\(\\uparrow{}\\uparrow{}\\) 表示四级运算，\\(\\uparrow{}\\uparrow{}\\uparrow{}\\) 表示五级运算，依此类推。</p><p>\\(10\\uparrow{}\\uparrow{}10\\) 是由 10 构成、高度为 10 的幂塔。对它连续取八次“十进制位数”，结果为 \\(10{,}000{,}000{,}001\\)。</p><p>从这里开始，底数（箭头前的数字）变得毫无意义；数的大小只取决于箭头后的数字以及箭头的个数。容易证明：</p>\\[\\begin{aligned}1{,}000{,}000{,}000\\uparrow{}\\uparrow{}n&\\lt 10\\uparrow{}\\uparrow{}(n+1)\\\\&\\lt 3\\uparrow{}\\uparrow{}(n+2)\\\\&\\lt 2\\uparrow{}\\uparrow{}(n+4)\\end{aligned}\\]"},
                         {
-                            type: 'html',
-                            html: `<p>这里开始使用<a href="https://googology.fandom.com/wiki/Arrow_notation">高德纳上箭头记号（Knuth's up-arrow notation）</a>。这是最常用的超运算符号：\\(\\uparrow{}\\) 表示指数，\\(\\uparrow{}\\uparrow{}\\) 表示四级运算，\\(\\uparrow{}\\uparrow{}\\uparrow{}\\) 表示五级运算，依此类推。</p><p>\\(10\\uparrow{}\\uparrow{}10\\) 是由 10 构成、高度为 10 的幂塔。对它连续取八次“十进制位数”，结果为 \\(10{,}000{,}000{,}001\\)。</p><p>从这里开始，底数（箭头前的数字）变得毫无意义；数的大小只取决于箭头后的数字以及箭头的个数。容易证明：</p>\\[\\begin{aligned}1{,}000{,}000{,}000\\uparrow{}\\uparrow{}n&\\lt 10\\uparrow{}\\uparrow{}(n+1)\\\\&\\lt 3\\uparrow{}\\uparrow{}(n+2)\\\\&\\lt 2\\uparrow{}\\uparrow{}(n+4)\\end{aligned}\\]`
-                        },
-                        {
-                            type: 'code',
-                            language: 'python',
+                            type: "code",
+                            language: "python",
                             source: `result = 10
 for _ in range(9):
     result = 10 ** result
-print(result)`
-                        }
-                    ]
-                }
+print(result)`,
+                        },
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-014': {
-                label: '\\(3\\uparrow{}\\uparrow{}\\uparrow{}3\\)',
+                label: "\\(3\\uparrow{}\\uparrow{}\\uparrow{}3\\)",
                 detail: {
-                    title: '\\(3\\uparrow{}\\uparrow{}\\uparrow{}3=3\\uparrow{}\\uparrow{}(3\\uparrow{}\\uparrow{}3)\\)',
+                    title: "\\(3\\uparrow{}\\uparrow{}\\uparrow{}3=3\\uparrow{}\\uparrow{}(3\\uparrow{}\\uparrow{}3)\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(3\\uparrow{}\\uparrow{}\\uparrow{}3\\)" },
+                        { label: "FGH 表示", html: "\\(\\approx f_4(3)\\)" },
+                    ],
                     sections: [
-                        {
-                            type: 'html',
-                            html: `\\[\\begin{aligned}3\\uparrow{}\\uparrow{}\\uparrow{}3&=3\\uparrow{}\\uparrow{}(3\\uparrow{}\\uparrow{}3)\\\\&=3\\uparrow{}\\uparrow{}(3^{3^{3}})\\\\&=3\\uparrow{}\\uparrow{}(3^{27})\\\\&=3\\uparrow{}\\uparrow{}7{,}625{,}597{,}484{,}987\\\\&>10\\uparrow{}\\uparrow{}7{,}625{,}597{,}484{,}986\\end{aligned}\\]`
-                        }
-                    ]
-                }
+                        {"type":"html","html":"\\[\\begin{aligned}3\\uparrow{}\\uparrow{}\\uparrow{}3&=3\\uparrow{}\\uparrow{}(3\\uparrow{}\\uparrow{}3)\\\\&=3\\uparrow{}\\uparrow{}(3^{3^{3}})\\\\&=3\\uparrow{}\\uparrow{}(3^{27})\\\\&=3\\uparrow{}\\uparrow{}7{,}625{,}597{,}484{,}987\\\\&>10\\uparrow{}\\uparrow{}7{,}625{,}597{,}484{,}986\\end{aligned}\\]"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-015': {
-                label: '\\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\)',
+                label: "\\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\)",
                 detail: {
-                    title: '\\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\)',
+                    title: "\\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\)" },
+                        { label: "FGH 表示", html: "\\(\\approx f_4(10)\\)" },
+                    ],
                     sections: [
+                        {"type":"html","html":"<p>\\(10\\uparrow{}\\uparrow{}\\uparrow{}10=10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}\\uparrow{}9)\\)。若令 \\(T(x)=10\\uparrow{}\\uparrow{}x\\)，这个数就是从 \\(10\\) 开始，连续应用 \\(T\\) 共 \\(9\\) 次。</p><p>对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9-1\\) 次“十进制位数”，结果是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8-1\\) 次，结果也是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}7-1\\) 次，结果仍是 11；依此类推。</p><p>下面的程序按照 <a href=\"https://doi.org/10.1126/science.194.4271.1235\">Knuth 上箭头记号</a>的递归规则求值；它没有预先写入答案，也不设置整数位数上限。</p>"},
                         {
-                            type: 'html',
-                            html: `<p>\\(10\\uparrow{}\\uparrow{}\\uparrow{}10=10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}\\uparrow{}9)\\)。若令 \\(T(x)=10\\uparrow{}\\uparrow{}x\\)，这个数就是从 \\(10\\) 开始，连续应用 \\(T\\) 共 \\(9\\) 次。</p><p>对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9-1\\) 次“十进制位数”，结果是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8-1\\) 次，结果也是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}7-1\\) 次，结果仍是 11；依此类推。</p><p>下面的程序按照 <a href="https://doi.org/10.1126/science.194.4271.1235">Knuth 上箭头记号</a>的递归规则求值；它没有预先写入答案，也不设置整数位数上限。</p>`
-                        },
-                        {
-                            type: 'code',
-                            language: 'python',
-                            title: '递归求值（理论实现）',
+                            type: "code",
+                            language: "python",
+                            title: "递归求值（理论实现）",
                             source: `def up_arrow(base, arrows, argument):
     # a ↑^0 b = a * b；当 arrows >= 1 时，a ↑^arrows 0 = 1。
     if arrows == 0:
@@ -246,37 +251,39 @@ print(result)`
     )
 
 
-print(up_arrow(10, 3, 10))`
+print(up_arrow(10, 3, 10))`,
                         },
-                        unreviewedNotice()
-                    ]
-                }
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-016': {
-                label: '葛立恒数 \\(G_{1}\\)',
+                label: "葛立恒数 \\(G_{1}\\)",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Graham\'s_number">葛立恒数</a>序列的第一项：\\(G_{1}=3\\uparrow{}\\uparrow{}\\uparrow{}\\uparrow{}3\\)',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Graham's_number\">葛立恒数</a>序列的第一项：\\(G_{1}=3\\uparrow{}\\uparrow{}\\uparrow{}\\uparrow{}3\\)",
+                    representations: [
+                        { label: "常用表示", html: "葛立恒数 \\(G_{1}\\)" },
+                        { label: "FGH 表示", html: "\\(\\approx f_5(3)\\)" },
+                    ],
                     sections: [
-                        {
-                            type: 'html',
-                            html: `<p>根据上箭头的递归定义：</p><p>\\(3\\uparrow{}\\uparrow{}\\uparrow{}\\uparrow{}3=3\\uparrow{}\\uparrow{}\\uparrow{}(3\\uparrow{}\\uparrow{}\\uparrow{}3)\\)。</p>`
-                        }
-                    ]
-                }
+                        {"type":"html","html":"<p>根据上箭头的递归定义：</p><p>\\(3\\uparrow{}\\uparrow{}\\uparrow{}\\uparrow{}3=3\\uparrow{}\\uparrow{}\\uparrow{}(3\\uparrow{}\\uparrow{}\\uparrow{}3)\\)。</p>"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-017': {
-                label: 'FGH：\\(f_{{\\omega}}(n)\\)',
+                label: "FGH：\\(f_{{\\omega}}(n)\\)",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">快速增长层级（FGH）</a>：\\(f_{{\\omega}}(n)=f_{n}(n)\\approx n\\uparrow{}(\\times{}n)n\\)',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Fast-growing_hierarchy\">快速增长层级（FGH）</a>：\\(f_{{\\omega}}(n)=f_{n}(n)\\approx n\\uparrow{}(\\times{}n)n\\)",
+                    representations: [
+                        { label: "常用表示", html: "FGH：\\(f_{{\\omega}}(n)\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}}(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>下面的 BMS 式子表示序数指标，而不是函数输出的自然数。</p><p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega\\ \\longleftrightarrow\\ (0)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        {"type":"html","html":"<p>从这里开始，统一使用快速增长层级（fast-growing hierarchy，FGH）表示大数。</p><h3>FGH 的三条定义规则</h3><ul><li><strong>起点：</strong>\\(f_{0}(n)=n+1\\)。</li><li><strong>后继序数：</strong>\\(f_{{\\alpha}+1}(n)=f_{{\\alpha}}^{n}(n)\\)，即把 \\(f_{{\\alpha}}\\) 嵌套 \\(n\\) 层。</li><li><strong>极限序数：</strong>\\(f_{{\\alpha}}(n)=f_{{\\alpha}[n]}(n)\\)，其中 \\({\\alpha}[n]\\) 是极限序数 \\({\\alpha}\\) 的基本列第 \\(n\\) 项。</li></ul><h3>由此可直接推出</h3><ul><li>\\(f_{1}(n)=2n\\)；</li><li>\\(f_{2}(n)=n\\cdot 2^{n}\\)；</li><li>\\(f_{3}(n)\\) 与 \\(n\\uparrow{}\\uparrow{}n\\) 同级；</li><li>\\(f_{4}(n)\\) 与 \\(n\\uparrow{}\\uparrow{}\\uparrow{}n\\) 同级；</li><li>\\(\\ldots{}\\)</li></ul><h3>引入 \\({\\omega}\\)</h3><p>令 \\({\\omega}[n]=n\\)，则 \\(f_{{\\omega}}(n)=f_{n}(n)\\)。</p>"},
                         {
-                            type: 'html',
-                            html: `<p>从这里开始，统一使用快速增长层级（fast-growing hierarchy，FGH）表示大数。</p><h3>FGH 的三条定义规则</h3><ul><li><strong>起点：</strong>\\(f_{0}(n)=n+1\\)。</li><li><strong>后继序数：</strong>\\(f_{{\\alpha}+1}(n)=f_{{\\alpha}}^{n}(n)\\)，即把 \\(f_{{\\alpha}}\\) 嵌套 \\(n\\) 层。</li><li><strong>极限序数：</strong>\\(f_{{\\alpha}}(n)=f_{{\\alpha}[n]}(n)\\)，其中 \\({\\alpha}[n]\\) 是极限序数 \\({\\alpha}\\) 的基本列第 \\(n\\) 项。</li></ul><h3>由此可直接推出</h3><ul><li>\\(f_{1}(n)=2n\\)；</li><li>\\(f_{2}(n)=n\\cdot 2^{n}\\)；</li><li>\\(f_{3}(n)\\) 与 \\(n\\uparrow{}\\uparrow{}n\\) 同级；</li><li>\\(f_{4}(n)\\) 与 \\(n\\uparrow{}\\uparrow{}\\uparrow{}n\\) 同级；</li><li>\\(\\ldots{}\\)</li></ul><h3>引入 \\({\\omega}\\)</h3><p>令 \\({\\omega}[n]=n\\)，则 \\(f_{{\\omega}}(n)=f_{n}(n)\\)。</p>`
-                        },
-                        {
-                            type: 'code',
-                            language: 'python',
+                            type: "code",
+                            language: "python",
                             source: `def f(n,a):
     if a == 0:
         return n + 1
@@ -286,25 +293,25 @@ print(up_arrow(10, 3, 10))`
             x = f(x,a - 1)
         return x
 n = 10
-print(f(n, n))`
+print(f(n, n))`,
                         },
-                        unreviewedNotice()
-                    ]
-                }
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-018': {
-                label: 'HH：\\(H_{{\\omega}^{{\\omega}}}(n)\\)',
+                label: "HH：\\(H_{{\\omega}^{{\\omega}}}(n)\\)",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Hardy_hierarchy">Hardy 层级（HH）</a>：\\(H_{{\\omega}^{{\\omega}}}(n)\\)',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Hardy_hierarchy\">Hardy 层级（HH）</a>：\\(H_{{\\omega}^{{\\omega}}}(n)\\)",
+                    representations: [
+                        { label: "常用表示", html: "HH：\\(H_{{\\omega}^{{\\omega}}}(n)\\)" },
+                        { label: "FGH 表示", html: "\\(f_\\omega(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>HH 指标的 BMS 对应：</strong>\\(\\omega^\\omega\\longleftrightarrow(0)(1)(2)\\)。通过 \\(H_{\\omega^\\omega}=f_\\omega\\)，它对应主轴的 \\(\\omega\\) 级 FGH。</p>" },
+                        {"type":"html","html":"<p>建议先阅读 FGH 条目。Hardy 层级（HH）同样把序数转换为大数，但后继步骤只把输入增加 \\(1\\)。Goodstein 序列等构造可以借助它来分析。</p><h3>HH 的三条定义规则</h3><ul><li>\\(H_0(n)=n\\)；</li><li>\\(H_{\\alpha+1}(n)=H_\\alpha(n+1)\\)；</li><li>\\(H_\\lambda(n)=H_{\\lambda[n]}(n)\\)，其中 \\(\\lambda\\) 为极限序数。</li></ul><p>在这里采用的基本列约定下，对 \\(\\alpha\\lt\\varepsilon_0\\) 有 \\(H_{\\omega^\\alpha}(n)=f_\\alpha(n)\\)。例如 \\(H_\\omega(n)=2n\\)、\\(H_{\\omega^2}(n)=n2^n\\)。后继步骤的对应关系为</p>\\[H_{\\omega^{\\alpha+1}}(n)=H_{\\omega^\\alpha\\cdot n}(n)=H_{\\omega^\\alpha}^{\\,n}(n)=f_\\alpha^{\\,n}(n)=f_{\\alpha+1}(n).\\]<p>这里上标 \\(n\\) 表示函数迭代。沿极限基本列继续递推，就得到上述对应；到 \\(\\varepsilon_0\\) 级时，HH 与 FGH 的增长速度相当。</p><p>下面的程序用一维数组表示小于 \\(\\omega^\\omega\\) 的序数，并计算 \\(H_{\\omega^\\omega}(n)\\)。参考：<a href=\"https://lsv.ens-paris-saclay.fr/Publis/PAPERS/PDF/HSS-lmcs14.pdf\">《The Power of Priority Channel Systems》§4.1.1</a>。</p>"},
                         {
-                            type: 'html',
-                            html: `<p>建议先阅读 FGH 条目。Hardy 层级（HH）同样把序数转换为大数，但后继步骤只把输入增加 \\(1\\)。Goodstein 序列等构造可以借助它来分析。</p><h3>HH 的三条定义规则</h3><ul><li>\\(H_0(n)=n\\)；</li><li>\\(H_{\\alpha+1}(n)=H_\\alpha(n+1)\\)；</li><li>\\(H_\\lambda(n)=H_{\\lambda[n]}(n)\\)，其中 \\(\\lambda\\) 为极限序数。</li></ul><p>在这里采用的基本列约定下，对 \\(\\alpha\\lt\\varepsilon_0\\) 有 \\(H_{\\omega^\\alpha}(n)=f_\\alpha(n)\\)。例如 \\(H_\\omega(n)=2n\\)、\\(H_{\\omega^2}(n)=n2^n\\)。后继步骤的对应关系为</p>\\[H_{\\omega^{\\alpha+1}}(n)=H_{\\omega^\\alpha\\cdot n}(n)=H_{\\omega^\\alpha}^{\\,n}(n)=f_\\alpha^{\\,n}(n)=f_{\\alpha+1}(n).\\]<p>这里上标 \\(n\\) 表示函数迭代。沿极限基本列继续递推，就得到上述对应；到 \\(\\varepsilon_0\\) 级时，HH 与 FGH 的增长速度相当。</p><p>下面的程序用一维数组表示小于 \\(\\omega^\\omega\\) 的序数，并计算 \\(H_{\\omega^\\omega}(n)\\)。参考：<a href="https://lsv.ens-paris-saclay.fr/Publis/PAPERS/PDF/HSS-lmcs14.pdf">《The Power of Priority Channel Systems》§4.1.1</a>。</p>`
-                        },
-                        {
-                            type: 'code',
-                            language: 'python',
+                            type: "code",
+                            language: "python",
                             source: `n = 10
 # 先应用极限步骤 (ω^ω)[n] = ω^n。
 a = [n] # 数组 a 表示 ω^a[0] + ω^a[1] + ... + ω^a[-1]。
@@ -316,25 +323,25 @@ while(len(a) > 0): # Hardy hierarchy on ordinals.
         v = a[-1]
         a.pop()
         a.extend([v-1,] * n)
-print(n)`
+print(n)`,
                         },
-                        unreviewedNotice()
-                    ]
-                }
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-019': {
-                label: 'Ackermann 函数',
+                label: "Ackermann 函数",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Ackermann_function">Ackermann 函数</a>',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Ackermann_function\">Ackermann 函数</a>",
+                    representations: [
+                        { label: "常用表示", html: "Ackermann 函数" },
+                        { label: "FGH 表示", html: "\\(\\approx f_\\omega(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>对应的增长层级与 BMS 指标见<a href=\"#item-017\">\\(\\omega\\) 级条目</a>。</p>" },
+                        {"type":"html","html":"<p>Ackermann 函数是最早被发现的非原始递归函数之一，增长速度非常快。</p><p>定义如下：</p>\\[\\begin{aligned}A(0,n)&=n+1,\\\\A(m,0)&=A(m-1,1),\\\\A(m,n)&=A(m-1,A(m,n-1)).\\end{aligned}\\]<p>Ackermann 函数的对角线 \\(A(n,n)\\) 的增长速度大约相当于 FGH 中的 \\(f_{{\\omega}}(n)\\)。</p>"},
                         {
-                            type: 'html',
-                            html: `<p>Ackermann 函数是最早被发现的非原始递归函数之一，增长速度非常快。</p><p>定义如下：</p>\\[\\begin{aligned}A(0,n)&=n+1,\\\\A(m,0)&=A(m-1,1),\\\\A(m,n)&=A(m-1,A(m,n-1)).\\end{aligned}\\]<p>Ackermann 函数的对角线 \\(A(n,n)\\) 的增长速度大约相当于 FGH 中的 \\(f_{{\\omega}}(n)\\)。</p>`
-                        },
-                        {
-                            type: 'code',
-                            language: 'python',
+                            type: "code",
+                            language: "python",
                             source: `def A(m, n): # Ackermann function
     if m == 0:
         return n + 1
@@ -343,25 +350,25 @@ print(n)`
     else:
         return A(m - 1, A(m, n - 1))
 n = 10
-print(A(10, 10))`
+print(A(10, 10))`,
                         },
-                        unreviewedNotice()
-                    ]
-                }
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-020': {
-                label: '高德纳上箭头记号',
+                label: "高德纳上箭头记号",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Arrow_notation">高德纳上箭头记号（Knuth\'s up-arrow notation）</a>的极限：\\(n\\uparrow{}\\uparrow{}\\ldots{}\\uparrow{}\\uparrow{}n\\)',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Arrow_notation\">高德纳上箭头记号（Knuth's up-arrow notation）</a>的极限：\\(n\\uparrow{}\\uparrow{}\\ldots{}\\uparrow{}\\uparrow{}n\\)",
+                    representations: [
+                        { label: "常用表示", html: "高德纳上箭头记号" },
+                        { label: "FGH 表示", html: "\\(\\approx f_\\omega(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>对应的增长层级与 BMS 指标见<a href=\"#item-017\">\\(\\omega\\) 级条目</a>。</p>" },
+                        {"type":"html","html":"<p>这是最常用的超运算符号，由 Donald Knuth 于 1976 年提出。\\(\\uparrow{}\\) 表示指数，\\(\\uparrow{}\\uparrow{}\\) 表示四级运算，\\(\\uparrow{}\\uparrow{}\\uparrow{}\\) 表示五级运算，依此类推。</p><p>用 \\(\\uparrow{}^{k}\\) 表示 \\(k\\) 个箭头，定义如下：</p><ul><li>\\(a\\uparrow{}b=a^{b}\\)；</li><li>\\(a\\uparrow{}^{n}1=a\\)；</li><li>\\(a\\uparrow{}^{n+1}b=a\\uparrow{}^{n}(a\\uparrow{}^{n+1}(b-1))\\)。</li></ul>"},
                         {
-                            type: 'html',
-                            html: `<p>这是最常用的超运算符号，由 Donald Knuth 于 1976 年提出。\\(\\uparrow{}\\) 表示指数，\\(\\uparrow{}\\uparrow{}\\) 表示四级运算，\\(\\uparrow{}\\uparrow{}\\uparrow{}\\) 表示五级运算，依此类推。</p><p>用 \\(\\uparrow{}^{k}\\) 表示 \\(k\\) 个箭头，定义如下：</p><ul><li>\\(a\\uparrow{}b=a^{b}\\)；</li><li>\\(a\\uparrow{}^{n}1=a\\)；</li><li>\\(a\\uparrow{}^{n+1}b=a\\uparrow{}^{n}(a\\uparrow{}^{n+1}(b-1))\\)。</li></ul>`
-                        },
-                        {
-                            type: 'code',
-                            language: 'python',
+                            type: "code",
+                            language: "python",
                             source: `def arr(a, b, k): # a >= 1，b >= 0，k >= 1；均为整数。
     if k == 1:
         return a ** b
@@ -370,81 +377,81 @@ print(A(10, 10))`
     return arr(a, arr(a, b - 1, k), k - 1)
 
 n = 100
-print(arr(n, n, n))`
+print(arr(n, n, n))`,
                         },
-                        unreviewedNotice()
-                    ]
-                }
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-021': {
-                label: '\\(f_{{\\omega}}(f_{{\\omega}}(n))\\)',
+                label: "\\(f_{{\\omega}}(f_{{\\omega}}(n))\\)",
                 detail: {
-                    title: '\\(f_{{\\omega}}(f_{{\\omega}}(n))\\)',
+                    title: "\\(f_{{\\omega}}(f_{{\\omega}}(n))\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(f_{{\\omega}}(f_{{\\omega}}(n))\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}}(f_{{\\omega}}(n))\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>这里迭代两次的基准函数是 \\(f_\\omega\\)，其序数指标的 BMS 表示为 \\(\\omega\\longleftrightarrow(0)(1)\\)。</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>这是 \\(f_{{\\omega}}\\) 的二重迭代。由于 \\(f_{{\\omega}}(n)=f_{n}(n)\\)，可写成：</p>\\[\\begin{aligned}f_{{\\omega}}(f_{{\\omega}}(n))&=f_{{\\omega}}(f_{n}(n))\\\\&=f_{f_{n}(n)}(f_{n}(n))\\end{aligned}\\]。`
-                        },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"<p>这是 \\(f_{{\\omega}}\\) 的二重迭代。由于 \\(f_{{\\omega}}(n)=f_{n}(n)\\)，可写成：</p>\\[\\begin{aligned}f_{{\\omega}}(f_{{\\omega}}(n))&=f_{{\\omega}}(f_{n}(n))\\\\&=f_{f_{n}(n)}(f_{n}(n))\\end{aligned}\\]。"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-022': {
-                label: '\\(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(n)))\\)',
+                label: "\\(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(n)))\\)",
                 detail: {
-                    title: '\\(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(n)))\\)',
+                    title: "\\(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(n)))\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(n)))\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(n)))\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>这里迭代三次的基准函数是 \\(f_\\omega\\)，其序数指标的 BMS 表示为 \\(\\omega\\longleftrightarrow(0)(1)\\)。</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>这是 \\(f_{{\\omega}}\\) 的三重迭代。</p>`
-                        },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"<p>这是 \\(f_{{\\omega}}\\) 的三重迭代。</p>"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-023': {
-                label: '葛立恒数 \\(G_{2}\\)',
+                label: "葛立恒数 \\(G_{2}\\)",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Graham\'s_number">葛立恒数</a>序列的第二项',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Graham's_number\">葛立恒数</a>序列的第二项",
+                    representations: [
+                        { label: "常用表示", html: "葛立恒数 \\(G_{2}\\)" },
+                        { label: "FGH 表示", html: "\\(\\approx f_{G_1+1}(3)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>这里按前一项的值增加箭头个数；所用基准是<a href=\"#item-017\">\\(\\omega\\) 级增长与其 BMS 指标</a>。</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>\\(G_{2}=3\\uparrow{}^{G_{1}}3\\)，即在两个 3 之间使用 \\(G_{1}\\) 个箭头。</p>`
-                        },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"<p>\\(G_{2}=3\\uparrow{}^{G_{1}}3\\)，即在两个 3 之间使用 \\(G_{1}\\) 个箭头。</p>"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-024': {
-                label: '葛立恒数 \\(G_{3}\\)',
+                label: "葛立恒数 \\(G_{3}\\)",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Graham\'s_number">葛立恒数</a>序列的第三项',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Graham's_number\">葛立恒数</a>序列的第三项",
+                    representations: [
+                        { label: "常用表示", html: "葛立恒数 \\(G_{3}\\)" },
+                        { label: "FGH 表示", html: "\\(\\approx f_{G_2+1}(3)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>这里按前一项的值增加箭头个数；所用基准是<a href=\"#item-017\">\\(\\omega\\) 级增长与其 BMS 指标</a>。</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>\\(G_{3}=3\\uparrow{}^{G_{2}}3\\)，即在两个 3 之间使用 \\(G_{2}\\) 个箭头。</p>`
-                        },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"<p>\\(G_{3}=3\\uparrow{}^{G_{2}}3\\)，即在两个 3 之间使用 \\(G_{2}\\) 个箭头。</p>"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-025': {
-                label: '\\(f_{{\\omega}+1}(n)\\)',
+                label: "\\(f_{{\\omega}+1}(n)\\)",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>：\\(f_{{\\omega}+1}(n)\\)',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Fast-growing_hierarchy\">FGH</a>：\\(f_{{\\omega}+1}(n)\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(f_{{\\omega}+1}(n)\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}+1}(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega+1\\ \\longleftrightarrow\\ (0)(1)(0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        {"type":"html","html":"\\[f_{{\\omega}+1}(10)=f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(10))))))))))\\]。"},
                         {
-                            type: 'html',
-                            html: `\\[f_{{\\omega}+1}(10)=f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(10))))))))))\\]。`
-                        },
-                        {
-                            type: 'code',
-                            language: 'python',
+                            type: "code",
+                            language: "python",
                             source: `def f(n,a): # f_a(n)
     if a == 0:
         return n + 1
@@ -461,25 +468,25 @@ n = 64
 x = n
 for i in range(n):
     x = f_w(x)
-print(x) # x = f_(w+1)(64), slightly larger than Graham's number`
+print(x) # x = f_(w+1)(64), slightly larger than Graham's number`,
                         },
-                        unreviewedNotice()
-                    ]
-                }
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-026': {
-                label: '葛立恒数',
+                label: "葛立恒数",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Graham\'s_number">葛立恒数</a>（\\(G_{64}\\)）',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Graham's_number\">葛立恒数</a>（\\(G_{64}\\)）",
+                    representations: [
+                        { label: "常用表示", html: "葛立恒数" },
+                        { label: "FGH 表示", html: "\\(\\approx f_\\omega^{\\circ64}(4)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>对应的增长层级与 BMS 指标见<a href=\"#item-025\">\\(\\omega+1\\) 级条目</a>。</p>" },
+                        {"type":"html","html":"<p>定义：</p>\\[\\begin{aligned}G_{1}&=3\\uparrow{}\\uparrow{}\\uparrow{}\\uparrow{}3,\\\\G_{2}&=3\\uparrow{}^{G_{1}}3,\\\\G_{3}&=3\\uparrow{}^{G_{2}}3,\\\\&\\ldots{}\\\\G_{64}&=3\\uparrow{}^{G_{63}}3\\end{aligned}\\]。<p>\\(G_{64}\\) 即葛立恒数。</p>"},
                         {
-                            type: 'html',
-                            html: `<p>定义：</p>\\[\\begin{aligned}G_{1}&=3\\uparrow{}\\uparrow{}\\uparrow{}\\uparrow{}3,\\\\G_{2}&=3\\uparrow{}^{G_{1}}3,\\\\G_{3}&=3\\uparrow{}^{G_{2}}3,\\\\&\\ldots{}\\\\G_{64}&=3\\uparrow{}^{G_{63}}3\\end{aligned}\\]。<p>\\(G_{64}\\) 即葛立恒数。</p>`
-                        },
-                        {
-                            type: 'code',
-                            language: 'python',
+                            type: "code",
+                            language: "python",
                             source: `def arr(a,b,k): # knuth_arrow, a ^(k) b
     if k == 1:
         return a**b
@@ -492,109 +499,109 @@ print(x) # x = f_(w+1)(64), slightly larger than Graham's number`
 G = 4
 for i in range(64):
     G = arr(3,3,G)
-print(G)`
+print(G)`,
                         },
-                        unreviewedNotice()
-                    ]
-                }
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-027': {
-                label: '\\(f_{{\\omega}+1}(f_{{\\omega}+1}(n))\\)',
+                label: "\\(f_{{\\omega}+1}(f_{{\\omega}+1}(n))\\)",
                 detail: {
-                    title: '\\(f_{{\\omega}+1}(f_{{\\omega}+1}(n))\\)',
+                    title: "\\(f_{{\\omega}+1}(f_{{\\omega}+1}(n))\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(f_{{\\omega}+1}(f_{{\\omega}+1}(n))\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}+1}(f_{{\\omega}+1}(n))\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>这里迭代两次的基准函数是 \\(f_{\\omega+1}\\)，其序数指标的 BMS 表示为 \\(\\omega+1\\longleftrightarrow(0)(1)(0)\\)。</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>这是 \\(f_{{\\omega}+1}\\) 的二重迭代。</p>`
-                        },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"<p>这是 \\(f_{{\\omega}+1}\\) 的二重迭代。</p>"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-028': {
-                label: '\\(G(G(n))\\)',
+                label: "\\(G(G(n))\\)",
                 detail: {
-                    title: '\\(G(G(n))\\)',
+                    title: "\\(G(G(n))\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(G(G(n))\\)" },
+                        { label: "FGH 表示", html: "\\(\\approx f_{\\omega+1}^{\\circ2}(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>对应的增长层级与 BMS 指标见<a href=\"#item-027\">\\(\\omega+1\\) 级条目</a>。</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>把葛立恒数的 \\(G(n)\\) 嵌套两层，得到 \\(GGn\\)，即 \\(G(G(n))\\)。</p>`
-                        },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"<p>把葛立恒数的 \\(G(n)\\) 嵌套两层，得到 \\(GGn\\)，即 \\(G(G(n))\\)。</p>"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-029': {
-                label: '\\(f_{{\\omega}+2}(n)\\)',
+                label: "\\(f_{{\\omega}+2}(n)\\)",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>：\\(f_{{\\omega}+2}(n)\\)',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Fast-growing_hierarchy\">FGH</a>：\\(f_{{\\omega}+2}(n)\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(f_{{\\omega}+2}(n)\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}+2}(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega+2\\ \\longleftrightarrow\\ (0)(1)(0)(0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
-                        {
-                            type: 'html',
-                            html: `\\[f_{{\\omega}+2}(10)=f_{{\\omega}+1}(f_{{\\omega}+1}(\\ldots{}f_{{\\omega}+1}(10)\\ldots{}))\\]。`
-                        },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"\\[f_{{\\omega}+2}(10)=f_{{\\omega}+1}(f_{{\\omega}+1}(\\ldots{}f_{{\\omega}+1}(10)\\ldots{}))\\]。"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-030': {
-                label: '\\(G\\) 的有限次嵌套',
+                label: "\\(G\\) 的有限次嵌套",
                 detail: {
-                    title: '生成函数 \\(G\\) 的有限次嵌套',
+                    title: "生成函数 \\(G\\) 的有限次嵌套",
+                    representations: [
+                        { label: "常用表示", html: "\\(G\\) 的有限次嵌套" },
+                        { label: "FGH 表示", html: "\\(\\approx f_{\\omega+2}(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>对应的增长层级与 BMS 指标见<a href=\"#item-029\">\\(\\omega+2\\) 级条目</a>。</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>\\(GGGG\\ldots{}GGGn\\)（共 \\(n\\) 个 \\(G\\)）。</p><p>直观上，嵌套 \\(G\\) 会产生极大的数；但在 FGH 中，这只相当于指标增加 1，与 \\(f_{{\\omega}+2}(n)\\) 相当。</p>`
-                        },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"<p>\\(GGGG\\ldots{}GGGn\\)（共 \\(n\\) 个 \\(G\\)）。</p><p>直观上，嵌套 \\(G\\) 会产生极大的数；但在 FGH 中，这只相当于指标增加 1，与 \\(f_{{\\omega}+2}(n)\\) 相当。</p>"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-031': {
-                label: '\\(f_{{\\omega}+3}(n)\\)',
+                label: "\\(f_{{\\omega}+3}(n)\\)",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>：\\(f_{{\\omega}+3}(n)\\)',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Fast-growing_hierarchy\">FGH</a>：\\(f_{{\\omega}+3}(n)\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(f_{{\\omega}+3}(n)\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}+3}(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega+3\\ \\longleftrightarrow\\ (0)(1)(0)(0)(0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
-                        {
-                            type: 'html',
-                            html: `\\[f_{{\\omega}+3}(10)=f_{{\\omega}+2}(f_{{\\omega}+2}(\\ldots{}f_{{\\omega}+2}(10)\\ldots{}))\\]。`
-                        },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"\\[f_{{\\omega}+3}(10)=f_{{\\omega}+2}(f_{{\\omega}+2}(\\ldots{}f_{{\\omega}+2}(10)\\ldots{}))\\]。"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-032': {
-                label: '\\(f_{{\\omega}+4}(n)\\)',
+                label: "\\(f_{{\\omega}+4}(n)\\)",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>：\\(f_{{\\omega}+4}(n)\\)',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Fast-growing_hierarchy\">FGH</a>：\\(f_{{\\omega}+4}(n)\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(f_{{\\omega}+4}(n)\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}+4}(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega+4\\ \\longleftrightarrow\\ (0)(1)(0)(0)(0)(0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
-                        {
-                            type: 'html',
-                            html: `\\[f_{{\\omega}+4}(10)=f_{{\\omega}+3}(f_{{\\omega}+3}(\\ldots{}f_{{\\omega}+3}(10)\\ldots{}))\\]。`
-                        },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"\\[f_{{\\omega}+4}(10)=f_{{\\omega}+3}(f_{{\\omega}+3}(\\ldots{}f_{{\\omega}+3}(10)\\ldots{}))\\]。"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-033': {
-                label: '\\(f_{{\\omega}\\cdot{}2}(n)\\)',
+                label: "\\(f_{{\\omega}\\cdot{}2}(n)\\)",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>：\\(f_{{\\omega}\\cdot{}2}(n)=f_{{\\omega}+n}(n)\\)',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Fast-growing_hierarchy\">FGH</a>：\\(f_{{\\omega}\\cdot{}2}(n)=f_{{\\omega}+n}(n)\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(f_{{\\omega}\\cdot{}2}(n)\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}\\cdot{}2}(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega\\cdot2\\ \\longleftrightarrow\\ (0)(1)(0)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        {"type":"html","html":"<p>对 \\({\\omega}\\cdot{}2\\) 取 \\([n]\\) 时，应先写成 \\({\\omega}+{\\omega}\\)，再对后面的 \\({\\omega}\\) 取 \\([n]\\)：</p><p>\\(({\\omega}\\cdot{}2)[n]=({\\omega}+{\\omega})[n]={\\omega}+n\\)，<br>而不是 \\(({\\omega}\\cdot{}2)[n]=2n\\)。</p><p>因此：</p>\\[\\begin{aligned}f_{{\\omega}\\cdot{}2}(10)&=f_{{\\omega}+10}(10)\\\\&=f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(10))))))))))\\end{aligned}\\]。"},
                         {
-                            type: 'html',
-                            html: `<p>对 \\({\\omega}\\cdot{}2\\) 取 \\([n]\\) 时，应先写成 \\({\\omega}+{\\omega}\\)，再对后面的 \\({\\omega}\\) 取 \\([n]\\)：</p><p>\\(({\\omega}\\cdot{}2)[n]=({\\omega}+{\\omega})[n]={\\omega}+n\\)，<br>而不是 \\(({\\omega}\\cdot{}2)[n]=2n\\)。</p><p>因此：</p>\\[\\begin{aligned}f_{{\\omega}\\cdot{}2}(10)&=f_{{\\omega}+10}(10)\\\\&=f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(10))))))))))\\end{aligned}\\]。`
-                        },
-                        {
-                            type: 'code',
-                            language: 'python',
+                            type: "code",
+                            language: "python",
                             source: `def f1(n,a): # f_a(n)
     if a == 0:
         return n + 1
@@ -612,100 +619,109 @@ def f2(n,a): # f_(w+a)(n)
             x = f2(x,a - 1)
         return x
 n = 10
-print(f2(n,n))`
+print(f2(n,n))`,
                         },
-                        unreviewedNotice()
-                    ]
-                }
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-034': {
-                label: '\\(f_{{\\omega}\\cdot{}2+1}(n)\\)',
+                label: "\\(f_{{\\omega}\\cdot{}2+1}(n)\\)",
                 detail: {
-                    title: '\\(f_{{\\omega}\\cdot{}2+1}(n)\\)',
+                    title: "\\(f_{{\\omega}\\cdot{}2+1}(n)\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(f_{{\\omega}\\cdot{}2+1}(n)\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}\\cdot{}2+1}(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega\\cdot2+1\\ \\longleftrightarrow\\ (0)(1)(0)(1)(0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
-                        { type: 'html', html: `<p>后继层级把前一层函数迭代 \\(n\\) 次：\\[f_{\\omega\\cdot2+1}(n)=f_{\\omega\\cdot2}^{\\,n}(n).\\]上标表示复合迭代，而不是乘方。</p>` },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"<p>后继层级把前一层函数迭代 \\(n\\) 次：\\[f_{\\omega\\cdot2+1}(n)=f_{\\omega\\cdot2}^{\\,n}(n).\\]上标表示复合迭代，而不是乘方。</p>"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-035': {
-                label: '\\(f_{{\\omega}\\cdot{}2+2}(n)\\)',
+                label: "\\(f_{{\\omega}\\cdot{}2+2}(n)\\)",
                 detail: {
-                    title: '\\(f_{{\\omega}\\cdot{}2+2}(n)\\)',
+                    title: "\\(f_{{\\omega}\\cdot{}2+2}(n)\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(f_{{\\omega}\\cdot{}2+2}(n)\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}\\cdot{}2+2}(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega\\cdot2+2\\ \\longleftrightarrow\\ (0)(1)(0)(1)(0)(0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
-                        { type: 'html', html: `<p>再把上一层函数迭代 \\(n\\) 次：\\[f_{\\omega\\cdot2+2}(n)=f_{\\omega\\cdot2+1}^{\\,n}(n).\\]这样可以依次得到 \\(\\omega\\cdot2+3\\)、\\(\\omega\\cdot2+4\\) 等层级。</p>` },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"<p>再把上一层函数迭代 \\(n\\) 次：\\[f_{\\omega\\cdot2+2}(n)=f_{\\omega\\cdot2+1}^{\\,n}(n).\\]这样可以依次得到 \\(\\omega\\cdot2+3\\)、\\(\\omega\\cdot2+4\\) 等层级。</p>"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-036': {
-                label: '\\(f_{{\\omega}\\cdot{}3}(n)\\)',
+                label: "\\(f_{{\\omega}\\cdot{}3}(n)\\)",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>：\\(f_{{\\omega}\\cdot{}3}(n)\\)',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Fast-growing_hierarchy\">FGH</a>：\\(f_{{\\omega}\\cdot{}3}(n)\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(f_{{\\omega}\\cdot{}3}(n)\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}\\cdot{}3}(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega\\cdot3\\ \\longleftrightarrow\\ (0)(1)(0)(1)(0)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>\\(({\\omega}\\cdot{}3)[n]=({\\omega}\\cdot{}2+{\\omega})[n]={\\omega}\\cdot{}2+n\\)。</p><p>因此：</p>\\[\\begin{aligned}f_{{\\omega}\\cdot{}3}(10)&=f_{{\\omega}\\cdot{}2+{\\omega}}(10)\\\\&=f_{{\\omega}\\cdot{}2+10}(10)\\end{aligned}\\]。`
-                        },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"<p>\\(({\\omega}\\cdot{}3)[n]=({\\omega}\\cdot{}2+{\\omega})[n]={\\omega}\\cdot{}2+n\\)。</p><p>因此：</p>\\[\\begin{aligned}f_{{\\omega}\\cdot{}3}(10)&=f_{{\\omega}\\cdot{}2+{\\omega}}(10)\\\\&=f_{{\\omega}\\cdot{}2+10}(10)\\end{aligned}\\]。"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-037': {
-                label: '“\\(\\operatorname{TERR}[3]\\)”',
+                label: "“\\(\\operatorname{TERR}[3]\\)”",
                 detail: {
-                    title: '“\\(\\operatorname{TERR}[3]\\)”：并非 \\(\\operatorname{TREE}(3)\\)',
+                    title: "“\\(\\operatorname{TERR}[3]\\)”：并非 \\(\\operatorname{TREE}(3)\\)",
+                    representations: [
+                        { label: "常用表示", html: "“\\(\\operatorname{TERR}[3]\\)”" },
+                        { label: "FGH 表示", html: "\\(\\approx f_{\\omega\\cdot3}(187196)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p>对应的增长层级与 BMS 指标见<a href=\"#item-036\">\\(\\omega\\cdot3\\) 级条目</a>。</p>" },
-                        {
-                            type: 'html',
-                            html: `<p><strong>这个词条具有玩梗性质：“\\(\\operatorname{TERR}[3]\\)”不是数学函数，而是由错误拼写衍生出的称呼。</strong></p><p>它源于 UP 主“超级大钢球”于 2023 年 11 月 19 日发布的哔哩哔哩视频 <a href="https://www.bilibili.com/video/BV1X94y1n7D1/">BV1X94y1n7D1《\\(\\operatorname{TERR}[3]\\)究竟比葛立恒数大多少》</a>。视频原本意指 \\(\\operatorname{TREE}(3)\\)，但其中的分析与 \\(\\operatorname{TREE}(3)\\) 无关，并且把 \\(\\operatorname{TREE}\\) 误写成了 \\(\\operatorname{TERR}\\)。</p><p>视频经过大量缺乏依据的构造，最终得到一个 \\(f_{{\\omega}\\cdot{}3}(187196)\\) 级别的数。</p><p>数字 187196 来自 \\(n(4)>A^{A(187196)}(1)\\)，其中 \\(n\\) 是 <a href="https://googology.fandom.com/wiki/Block_subsequence_theorem">Friedman \\(n\\) 函数</a>，\\(A\\) 是 Ackermann 函数，上标表示函数迭代。</p><p>一些营销号把 \\(n(4)\\) 的这个下界与 \\(\\operatorname{TREE}(3)\\) 混淆，而且经常写错格式，于是出现了各种带有“187196”的所谓 \\(\\operatorname{TREE}(3)\\) 下界；“\\(\\operatorname{TERR}[3]\\)”是其中最典型的例子之一。</p><p>真正的 \\(\\operatorname{TREE}(3)\\) 略大于 <a href="https://googology.fandom.com/wiki/Small_Veblen_ordinal">SVO</a> 级别。关于这一点，可参考 @HypCos 的分析：</p><ul><li><a href="https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)">tree_function_and_\\(\\operatorname{TREE}(3)\\)</a>；</li><li><a href="https://www.zhihu.com/question/667616017/answer/13389602444">葛立恒数、\\(\\operatorname{TREE}(3)\\)、\\(\\operatorname{SCG}(13)\\) 如何用 BMS 表达？</a>；</li><li><a href="https://www.zhihu.com/question/353941713/answer/885942447">从数学原理理解葛立恒数与 \\(\\operatorname{TREE}(3)\\) 的大小</a>。</li></ul>`
-                        },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"<p><strong>这个词条具有玩梗性质：“\\(\\operatorname{TERR}[3]\\)”不是数学函数，而是由错误拼写衍生出的称呼。</strong></p><p>它源于 UP 主“超级大钢球”于 2023 年 11 月 19 日发布的哔哩哔哩视频 <a href=\"https://www.bilibili.com/video/BV1X94y1n7D1/\">BV1X94y1n7D1《\\(\\operatorname{TERR}[3]\\)究竟比葛立恒数大多少》</a>。视频原本意指 \\(\\operatorname{TREE}(3)\\)，但其中的分析与 \\(\\operatorname{TREE}(3)\\) 无关，并且把 \\(\\operatorname{TREE}\\) 误写成了 \\(\\operatorname{TERR}\\)。</p><p>视频经过大量缺乏依据的构造，最终得到一个 \\(f_{{\\omega}\\cdot{}3}(187196)\\) 级别的数。</p><p>数字 187196 来自 \\(n(4)>A^{A(187196)}(1)\\)，其中 \\(n\\) 是 <a href=\"https://googology.fandom.com/wiki/Block_subsequence_theorem\">Friedman \\(n\\) 函数</a>，\\(A\\) 是 Ackermann 函数，上标表示函数迭代。</p><p>一些营销号把 \\(n(4)\\) 的这个下界与 \\(\\operatorname{TREE}(3)\\) 混淆，而且经常写错格式，于是出现了各种带有“187196”的所谓 \\(\\operatorname{TREE}(3)\\) 下界；“\\(\\operatorname{TERR}[3]\\)”是其中最典型的例子之一。</p><p>真正的 \\(\\operatorname{TREE}(3)\\) 略大于 <a href=\"https://googology.fandom.com/wiki/Small_Veblen_ordinal\">SVO</a> 级别。关于这一点，可参考 @HypCos 的分析：</p><ul><li><a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">tree_function_and_\\(\\operatorname{TREE}(3)\\)</a>；</li><li><a href=\"https://www.zhihu.com/question/667616017/answer/13389602444\">葛立恒数、\\(\\operatorname{TREE}(3)\\)、\\(\\operatorname{SCG}(13)\\) 如何用 BMS 表达？</a>；</li><li><a href=\"https://www.zhihu.com/question/353941713/answer/885942447\">从数学原理理解葛立恒数与 \\(\\operatorname{TREE}(3)\\) 的大小</a>。</li></ul>"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-038': {
-                label: '\\(f_{{\\omega}\\cdot{}4}(n)\\)',
+                label: "\\(f_{{\\omega}\\cdot{}4}(n)\\)",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>：\\(f_{{\\omega}\\cdot{}4}(n)\\)',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Fast-growing_hierarchy\">FGH</a>：\\(f_{{\\omega}\\cdot{}4}(n)\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(f_{{\\omega}\\cdot{}4}(n)\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}\\cdot{}4}(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega\\cdot4\\ \\longleftrightarrow\\ (0)(1)(0)(1)(0)(1)(0)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
-                        {
-                            type: 'html',
-                            html: `<p>\\(({\\omega}\\cdot{}4)[n]=({\\omega}\\cdot{}3+{\\omega})[n]={\\omega}\\cdot{}3+n\\)。</p><p>因此：</p>\\[\\begin{aligned}f_{{\\omega}\\cdot{}4}(10)&=f_{{\\omega}\\cdot{}3+{\\omega}}(10)\\\\&=f_{{\\omega}\\cdot{}3+10}(10)\\end{aligned}\\]。`
-                        },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"<p>\\(({\\omega}\\cdot{}4)[n]=({\\omega}\\cdot{}3+{\\omega})[n]={\\omega}\\cdot{}3+n\\)。</p><p>因此：</p>\\[\\begin{aligned}f_{{\\omega}\\cdot{}4}(10)&=f_{{\\omega}\\cdot{}3+{\\omega}}(10)\\\\&=f_{{\\omega}\\cdot{}3+10}(10)\\end{aligned}\\]。"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-039': {
-                label: '\\(f_{{\\omega}\\cdot{}5}(n)\\)',
+                label: "\\(f_{{\\omega}\\cdot{}5}(n)\\)",
                 detail: {
-                    title: '\\(f_{{\\omega}\\cdot{}5}(n)\\)',
+                    title: "\\(f_{{\\omega}\\cdot{}5}(n)\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(f_{{\\omega}\\cdot{}5}(n)\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}\\cdot{}5}(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega\\cdot5\\ \\longleftrightarrow\\ (0)(1)(0)(1)(0)(1)(0)(1)(0)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
-                        { type: 'html', html: `<p>使用基本列 \\((\\omega\\cdot5)[n]=\\omega\\cdot4+n\\)，得到 \\[f_{\\omega\\cdot5}(n)=f_{\\omega\\cdot4+n}(n).\\]把有限倍数也放开，就会到达后面的 \\(\\omega^2\\) 层级。</p>` },
-                        unreviewedNotice()
-                    ]
-                }
+                        {"type":"html","html":"<p>使用基本列 \\((\\omega\\cdot5)[n]=\\omega\\cdot4+n\\)，得到 \\[f_{\\omega\\cdot5}(n)=f_{\\omega\\cdot4+n}(n).\\]把有限倍数也放开，就会到达后面的 \\(\\omega^2\\) 层级。</p>"},
+                        unreviewedNotice(),
+                    ],
+                },
             },
             'item-040': {
-                label: '\\(f_{{\\omega}^{2}}(n)\\)',
+                label: "\\(f_{{\\omega}^{2}}(n)\\)",
                 detail: {
-                    title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>：\\(f_{{\\omega}^{2}}(n)=f_{{\\omega}\\cdot{}n}(n)\\)',
+                    title: "<a href=\"https://googology.fandom.com/wiki/Fast-growing_hierarchy\">FGH</a>：\\(f_{{\\omega}^{2}}(n)=f_{{\\omega}\\cdot{}n}(n)\\)",
+                    representations: [
+                        { label: "常用表示", html: "\\(f_{{\\omega}^{2}}(n)\\)" },
+                        { label: "FGH 表示", html: "\\(f_{{\\omega}^{2}}(n)\\)" },
+                    ],
                     sections: [
-                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega^2\\ \\longleftrightarrow\\ (0)(1)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        {"type":"html","html":"\\[\\begin{aligned}f_{{\\omega}^{2}}(10)&=f_{{\\omega}\\cdot{}{\\omega}}(10)\\\\&=f_{{\\omega}\\cdot{}10}(10)\\\\&=f_{{\\omega}\\cdot{}9+{\\omega}}(10)\\\\&=f_{{\\omega}\\cdot{}9+10}(10)\\\\&=f_{{\\omega}\\cdot{}9+9}(f_{{\\omega}\\cdot{}9+9}(\\ldots{}f_{{\\omega}\\cdot{}9+9}(10)\\ldots{}))\\end{aligned}\\]。"},
                         {
-                            type: 'html',
-                            html: `\\[\\begin{aligned}f_{{\\omega}^{2}}(10)&=f_{{\\omega}\\cdot{}{\\omega}}(10)\\\\&=f_{{\\omega}\\cdot{}10}(10)\\\\&=f_{{\\omega}\\cdot{}9+{\\omega}}(10)\\\\&=f_{{\\omega}\\cdot{}9+10}(10)\\\\&=f_{{\\omega}\\cdot{}9+9}(f_{{\\omega}\\cdot{}9+9}(\\ldots{}f_{{\\omega}\\cdot{}9+9}(10)\\ldots{}))\\end{aligned}\\]。`
-                        },
-                        {
-                            type: 'code',
-                            language: 'python',
+                            type: "code",
+                            language: "python",
                             source: `def f(n,a,b): # f_(w*a+b)(n)
     if b == 0:
         if a == 0:
@@ -718,11 +734,11 @@ print(f2(n,n))`
             x = f(x,a,b-1)
         return x
 n = 10
-print(f(n, n, 0))`
+print(f(n, n, 0))`,
                         },
-                        unreviewedNotice()
-                    ]
-                }
+                        unreviewedNotice(),
+                    ],
+                },
             }
         }
     });

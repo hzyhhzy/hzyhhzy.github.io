@@ -155,29 +155,52 @@ function itemProse(locale, id) {
         .map((section) => section.html || '').join('\n');
 }
 
-test('ordinal landmarks from omega through TFB retain matching bilingual BMS formulas', () => {
-    const ids = [17, 25, 29, 31, 32, 33, 34, 35, 36, 38, 39, 40,
-        42, 43, 44, 45, 46, 50, 51, 52, 53, 54, 55, 56,
-        ...Array.from({ length: 22 }, (_, index) => index + 64), 88, 90, 91, 94];
-    for (const number of ids) {
-        const id = 'item-' + String(number).padStart(3, '0');
-        const formulas = LOCALES.map((locale) => {
-            const prose = itemProse(locale, id);
-            assert.match(prose, /BMS/, locale + '.' + id);
-            const matrices = prose.match(/(?:\(\d+(?:,\d+)*\)){2,}/g);
-            assert.ok(matrices?.length, locale + '.' + id + ' has a BMS matrix');
-            return matrices;
-        });
-        assert.deepEqual(formulas[0], formulas[1], id + ' BMS translation parity');
+function itemContent(locale, id) {
+    const fields = messages[locale].items[id].detail.representations || [];
+    return fields.map((field) => field.html).join('\n') + '\n' + itemProse(locale, id);
+}
+
+test('representation fields cover FGH, BMS and Y ranges with both boundary overlaps', () => {
+    const geometryContext = vm.createContext({});
+    runClassicScript(geometryContext, 'items.js');
+    const geometry = vm.runInContext('items', geometryContext);
+    for (const { id, value } of geometry.filter((item) => item.value >= 1.5 && item.value <= 7.5)) {
+        for (const locale of LOCALES) {
+            const fields = messages[locale].items[id].detail.representations;
+            const labels = fields.map((field) => field.label).join(' ');
+            assert.match(labels, locale === 'zh-CN' ? /常用表示/ : /Common representations/, locale + '.' + id);
+            assert.equal(/FGH/.test(labels), value <= 3, id + ' FGH range');
+            assert.equal(/BMS/.test(labels), value >= 3 && value <= 6, id + ' BMS range');
+            assert.equal(fields.some((field) => /^Y[ -]/.test(field.label)), value >= 6, id + ' Y range');
+        }
+        const formulas = LOCALES.map((locale) => messages[locale].items[id].detail.representations
+            .flatMap((field) => extractFormulas(field.html).map((formula) => formula.source.replace(/\\text\{[^}]*\}/g, '\\text{}'))));
+        assert.deepEqual(formulas[0], formulas[1], id + ' representation formula parity');
+    }
+});
+
+test('landmark aliases and matrices are separated from prose', () => {
+    for (const locale of LOCALES) {
+        const epsilon = messages[locale].items['item-057'].detail.representations;
+        assert.equal(epsilon.length, 3);
+        const bo = messages[locale].items['item-092'].detail.representations;
+        assert.match(bo[0].html, /BO/);
+        assert.ok(bo[0].html.includes(String.raw`\psi_0(\Omega_\omega)`));
+        assert.ok(bo[1].html.includes('(0,0,0)(1,1,1)'));
+        assert.ok(!itemProse(locale, 'item-092').includes('(0,0,0)(1,1,1)'));
+        const sho = messages[locale].items['item-103'].detail.representations;
+        assert.equal(sho.length, 3);
+        assert.ok(sho[2].html.includes('Y(1,3)'));
+        assert.ok(messages[locale].items['item-013'].detail.representations[1].html.includes(String.raw`\approx f_3(10)`));
     }
 });
 
 test('TREE and SCG retain their distinct ordinal placements and four SCG endpoints', () => {
     for (const locale of LOCALES) {
-        const tree = itemProse(locale, 'item-088');
+        const tree = itemContent(locale, 'item-088');
         assert.ok(tree.includes(String.raw`\vartheta(\Omega^\omega\cdot\omega)`));
         assert.ok(tree.includes('(0,0)(1,1)(2,1)(3,1)(4,0)(3,0)'));
-        const scg = itemProse(locale, 'item-106');
+        const scg = itemContent(locale, 'item-106');
         for (const matrix of [
             '(0,0,0)(1,1,1)',
             '(0,0,0)(1,1,1)(2,1,0)(3,0,0)(4,0,0)',
@@ -196,6 +219,25 @@ test('fusible estimates preserve the reciprocal, exponential layers and lowercas
         assert.ok(prose.includes(String.raw`\left(10^{10^{1.05\times10^{28}}}\right)`));
         assert.match(prose, /FGH/);
         assert.doesNotMatch(prose, /F_/);
+    }
+});
+
+test('mountain candidates, DQDN encoding and displayed SRPD programs match the audited sources', () => {
+    for (const locale of LOCALES) {
+        const items = messages[locale].items;
+        assert.ok(items['item-123'].detail.representations[1].html.includes('Y(1,3,4,2,5,8,10)'));
+        assert.ok(items['item-124'].detail.representations[1].html.includes('Y(1,3,4,2,5,8,10,4,9,14,17,10)'));
+        assert.match(items['item-124'].label, /S🎄O/);
+        const code = items['item-124'].detail.sections.filter((section) => section.type === 'code');
+        assert.equal(code.length, 2);
+        assert.equal(code[0].source, fs.readFileSync(path.join(SOURCE_ROOT, 'programs/srpd-golf.js'), 'utf8').trim());
+        assert.equal(code[1].source, fs.readFileSync(path.join(SOURCE_ROOT, 'programs/srpd-reference.cjs'), 'utf8').trim());
+        assert.ok(code.every((section) => section.display === 'dialog'));
+        const dqdn = itemProse(locale, 'item-129');
+        assert.ok(dqdn.includes(String.raw`F_\omega`));
+        assert.match(dqdn, /880/);
+        assert.match(dqdn, /1079/);
+        assert.doesNotMatch(dqdn, /CoC/);
     }
 });
 

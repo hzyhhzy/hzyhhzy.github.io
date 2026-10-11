@@ -284,7 +284,9 @@
                 const otherLocale = I18n.getLocale() === 'en' ? 'zh-CN' : 'en';
                 const other = I18n.get('items.' + item.id, { locale: otherLocale });
                 const prose = (item.detail?.sections || []).map((section) => section.type === 'code' ? '' : section.html || '').join(' ');
-                return { item, search: searchableText(item.label + ' ' + (other?.label || '') + ' ' + prose) };
+                const representations = [item, other].flatMap((entry) => entry?.detail?.representations || [])
+                    .map((field) => field.label + ' ' + field.html).join(' ');
+                return { item, search: searchableText(item.label + ' ' + (other?.label || '') + ' ' + prose + ' ' + representations) };
             }).sort((a, b) => a.item.value - b.item.value);
         }
 
