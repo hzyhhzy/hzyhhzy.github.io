@@ -1,0 +1,82 @@
+Googology Scale · 2026-10 内容审查清单
+====================================
+
+本次修改基于 main，工作分支 codex/googology-2026-refresh；不合并 main。
+资料核对日期：2026-10-11。
+column-ordinal-notations-hzy 核对版本：2dfd1bb0c770ee6a6c1890064fbe5ebc55e338e4
+NER 采用 https://smilelee-lyx.github.io/ne-rewritten/ 对应 master 分支的代码定义。
+NER 核对版本：26d2dd981134231b44280934514d63aac2cc31af
+
+以下疑点集中列出供作者审查；未在网页各处反复添加保留性说明。
+
+1. item-127 · 良序证明使用的公理强度
+   当前：PTO(KP_ω + UC)，UC 在词条中定义为“存在不可数序数”。
+   核对到的结论：这是已有 Y / ω-Y 良序证明使用的充分理论；KP 取全体集合归纳。
+   待确认：是否另有证明它是“最小公理强度”的结果？目前没有把充分条件写成最小值。
+   来源：
+   https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/well-ordering.zh-CN.md
+
+2. item-124 / item-125 · SRPD 与 Y(1,3,4,3)
+   当前：按要求分别放在 BMS+3/8、BMS+1/2。正文写已取得的对应，不写两者比较定理。
+   核对到的结论：lim(TBMS) ≤ |D44| < lim(SRPD)；尚未找到 SRPD 整体与 Y(1,3,4,3) 的完成比较。
+   待补充：如果这一比较已有新进展，请提供方向、严格与否及证明位置。
+   来源：
+   https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/srpd-tbms/continuation/README.zh-CN.md
+
+3. item-126 · 普通 ε₀MN 的整个系统
+   当前：放在 ω-Y+1/2；写 ω-Y 标准域嵌入 ε₀MN 的固定项 (1,3,14,2)，以及 SRPD 对应 (1,3) 以下的初段。
+   待补充：普通 ε₀MN 整个标准域的良序证明与公理上界。局部嵌入结论本身不能给出整个系统位于 KP 节点以下的上界。
+   注意：这里没有换成强 ε₀MN 变体。
+   来源入口：
+   https://github.com/hzyhhzy/column-ordinal-notations-hzy
+
+4. item-129 · DQDN 与 PTO(Z_ω)
+   当前：按要求与 Loader 数对齐；正文为 lim(DQDN) ≥ PTO(Z_ω)。
+   待补充：目前核对到的是下界，不是等号；如有新上界或等号证明，请提供。
+   来源入口：
+   https://github.com/hzyhhzy/column-ordinal-notations-hzy
+
+5. item-109 · ω-Y 良序证明的历史信息
+   当前：使用 NER 的 weak-magma ω-Y 版本，引用 CWY2 定义及等价证明所引的原稿。
+   待补充：原稿的公开链接与希望展示的作者署名。档案所引日期为 2026-09-13，未自行补作者。
+   原稿标题：Well-foundedness of the Weak-Magma ω-Y System in KP with an Uncountable Ordinal
+   来源：
+   https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.md
+
+6. item-121 · 忙碌海狸的记号约定
+   当前：BB(n) 取两符号、空白纸带、n 个非停机状态的最大停机步数 S(n)。
+   待确认：是否更希望沿用最大输出 1 的个数 Σ(n)？两者都常称忙碌海狸，本页当前固定前一种以免混用。
+
+7. 旧伪燃烧数条目 · f(4)、f(5) 的具体增长层级
+   当前：修正了 f 与倒数的混用及可直接检查的错误不等式；原有高参数的层级判断未另行扩大。
+   待补充：相关精确比较的原始出处或推导，尤其社区来源中高参数的具体层级。
+
+8. item-111 / item-112 / item-117 · 支线和具体大数的定位
+   当前：iBLP、q(5) 沿 Laver 支线排列；Loader 数按要求放在 PTO(Z_ω) 同一横坐标。
+   待补充：整个 iBLP 系统与有限数 q(5) 的比较，以及 Loader 数相对该增长层级的更精确定位。
+   BLP 给 q(5) 的下界不能直接当作整个 iBLP 系统的比较结论；同横坐标也不表示等号。
+
+已核对且特意保留的边界
+----------------------
+- Y 良序史：@Phyrion 于 2026-09-11 公布证明，之后 @test_alpha0 降低所需理论上界。
+- iBLP 的 ZFC+I3 结果限定为文献所处理的六行标准根终止，没有扩成任意根或整个系统良序。
+- Laver / iBLP / LTY 支线横坐标是排版位置，不把它们写成与主轴节点相等。
+- q(5) 保留精简的下界说明和来源；没有重新加入先前要求删除的解释段。
+- 人名在可见正文中统一为 @test_alpha0；来源 URL 保持原链接。
+- 新补充内容沿用指定的 gpt5.6sol 未审核提示。
+- Y(1,4) 已移至 Y(1,3,4,3) 与 Y 极限之间；旧 SCG 放在 BO 与 TFB 之间。
+- 最终 KP 坐标为 8.5；右侧节点整体顺延半格。分叉点仍为 7.75，短省略段以二者中点 8.125 为中心。
+
+维护与验证
+----------
+词条位置：items.js；轴与支线几何：scale-core.js / axis_items.js。
+中英文内容：locales/zh-CN/ 与 locales/en/；新条目在 items-123-129.js。
+界面与阶段名称：两种语言的 interface.js。
+长代码超过 18 行自动进入弹窗，也可显式指定 display: 'dialog'。
+
+单元测试：node --test --test-isolation=none googology/tests/*.test.js
+浏览器检查：node googology/scripts/browser-check.cjs
+浏览器检查需在外部安装 Playwright（或通过 NODE_PATH 指向已有安装）及 Edge。
+脚本自建临时本地服务器，检查桌面/移动端、中英切换、搜索、直达链接、代码弹窗，并将截图保存到系统临时目录。
+
+本次结果：56 项单元测试通过；桌面和 390px 移动端浏览器检查通过；git diff --check 通过。

@@ -88,61 +88,117 @@ print(g)`;
 
     i18n.registerMessages('zh-CN', {
         ui: {
-            documentTitle: '大数阶梯 — Googology Scale',
-            title: 'Googology Scale',
-            language: '语言',
-            modalLabel: '内容详情',
-            modalClose: '关闭详情',
-            filters: {
-                label: '内容筛选',
-                all: '显示全部',
-                info: '只显示有说明的条目',
-                code: '只显示有代码的条目',
-                zoomVisibility: '根据缩放自动隐藏',
-                manualLevel: '显示层级：{level}（0–3）'
+            "documentTitle": "大数阶梯 — Googology Scale",
+            "title": "Googology Scale",
+            "language": "语言",
+            "modalLabel": "词条详情",
+            "modalClose": "关闭详情",
+            "codeClose": "关闭代码",
+            "codeOpen": "查看程序",
+            "subtitle": "从有限，走向无限的记号。",
+            "home": "返回主页",
+            "explore": "探索工具",
+            "search": "搜索所有词条",
+            "searchPlaceholder": "搜索词条、记号、关键词…",
+            "directory": "词条目录",
+            "jump": "跳转",
+            "guide": "阅读指南",
+            "mapLabel": "大数阶梯：方向键平移，加减键缩放",
+            "mapCaption": "等距展示阶段；支线的横坐标仅作排版定位。",
+            "edition": "资料更新 · 2026-10",
+            "sources": "资料仓库 ↗",
+            "copyLink": "复制链接",
+            "copied": "已复制",
+            "copyFallback": "请复制地址栏中的词条链接",
+            "mainAxis": "主轴",
+            "noResults": "没有匹配的词条。试试缩短关键词，或在显示设置中选择“全部”。",
+            "resultCount": "{count} 项",
+            "jumps": {
+                "frontier": "序数前沿",
+                "start": "日常与超运算",
+                "epsilon": "基础序数",
+                "bms": "山脉记号家族",
+                "pto": "证明论序数",
+                "laver": "Laver Table"
             },
-            view: {
-                label: '视图控制',
-                zoom: '缩放倍率：',
-                hint: '滚轮缩放 / 拖拽移动',
-                reset: '回到起点',
-                zoomIn: '放大',
-                zoomOut: '缩小'
+            "filters": {
+                "label": "显示设置",
+                "all": "全部",
+                "info": "有说明",
+                "code": "有代码",
+                "zoomVisibility": "按缩放自动显示细节",
+                "manualLevel": "显示层级：{level}（0–3）"
+            },
+            "view": {
+                "label": "视图控制",
+                "zoom": "缩放",
+                "hint": "拖动平移 · 滚轮缩放 · Shift + 滚轮纵览分支",
+                "reset": "总览",
+                "zoomIn": "放大",
+                "zoomOut": "缩小"
             }
         },
+        guide: {
+            "title": "如何阅读这张图",
+            "sections": [
+                {
+                    "type": "html",
+                    "html": "<p>主轴从日常数字出发，经过序数记号、证明论强度，最后到达忙碌海狸与 Rayo。从 \\(\\varepsilon_0\\) 起，主要节点采用等间距排版。</p><p>拖动图面，或用“跳转”快速定位。词条目录同时搜索中英文，缩放时隐藏的词条也能搜到。点击词条可查看定义、来源和程序，并通过“复制链接”分享该词条。</p><p>主轴保持水平连续。三条支线分别收纳 Laver 相关构造、BTBMS 和 Friedman 的有限组合学问题。支线横坐标是大致区域的排版位置，不表示与主轴节点的精确大小关系；省略号表示未展示的距离。图中的序数记号、具体大数与函数作为增长层级的参照共同展示。</p><p>键盘聚焦图面后，可用左右方向键平移、加减键缩放、Home 和 End 跳到两端。触屏上左右拖动平移，上下滑动查看分支。</p>"
+                },
+                {
+                    "type": "note",
+                    "html": "该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性"
+                }
+            ]
+        },
         branches: {
-            'branch-1': {
-                text: 'Y 序列及其变种',
-                detail: document('Y 序列及其变种', [
-                    html(
-                        '<p>由多位 Googologist 共同开发的矩阵系统扩展，旨在探索 BMS 之后的增长极限。</p>'
-                    )
-                ])
+            "branch-1": {
+                "text": "Laver 相关构造",
+                "detail": {
+                    "title": "Laver 相关构造",
+                    "sections": [
+                        {
+                            "type": "html",
+                            "html": "<p>iBLP、Laver Table 与 LTY 将有限组合规则和初等嵌入联系起来；各词条中给出具体构造及来源。</p>"
+                        },
+                        {
+                            "type": "note",
+                            "html": "该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性"
+                        }
+                    ]
+                }
             },
-            'branch-2': {
-                text: 'Laver Table 相关',
-                detail: document('Laver Table 相关', [
-                    html(
-                        '<p>源自集合论中的大基数公理，与有限代数结构的组合性质密切相关，其增长速度非常独特。</p>'
-                    )
-                ])
+            "branch-2": {
+                "text": "BTBMS",
+                "detail": {
+                    "title": "BTBMS",
+                    "sections": [
+                        {
+                            "type": "html",
+                            "html": "<p>Bubby3’s Transfinite BMS 为 BMS 的父关系引入序数索引的祖先层；词条中提供 NER 实现的链接。</p>"
+                        },
+                        {
+                            "type": "note",
+                            "html": "该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性"
+                        }
+                    ]
+                }
             },
-            'branch-3': {
-                text: 'PTO 系列',
-                detail: document('证明论序数（PTO）系列', [
-                    html(
-                        '<p>用于衡量数学系统的“强度”。从 ZFC 到带有各种大基数公理的系统，' +
-                        '其对应的增长率是目前已知最快的。</p>'
-                    )
-                ])
-            },
-            'branch-4': {
-                text: '未被研究的内容',
-                detail: document('未被研究的内容', [
-                    html(
-                        '<p>大数研究中尚未被完全形式化，或仍缺乏深入分析的定义。</p>'
-                    )
-                ])
+            "branch-3": {
+                "text": "Friedman 有限组合学",
+                "detail": {
+                    "title": "Friedman 的有限组合学",
+                    "sections": [
+                        {
+                            "type": "html",
+                            "html": "<p>有限树、图和其他组合对象，也能给出逻辑强度极高的终止原理。这条支线承接前面主轴上的 TREE、SCG 等例子。</p>"
+                        },
+                        {
+                            "type": "note",
+                            "html": "该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性"
+                        }
+                    ]
+                }
             }
         },
         axisSegments: {
@@ -181,14 +237,21 @@ print(g)`;
                 ])
             },
             'axis-04': {
-                text: '扩展 OCF',
-                detail: document('扩展 OCF', [
-                    html(
-                        '<p>对 OCF 继续扩展，引入更大的基数（如 \\(I\\)、\\(M\\)、\\(K\\) 等）来构造更强的序数系统。' +
-                        '但大基数 OCF 的规则较为混乱，目前已基本被放弃并由 BMS 取代。</p>'
-                    )
-                ])
-            },
+            "text": "扩展折叠函数",
+            "detail": {
+                "title": "扩展折叠函数",
+                "sections": [
+                    {
+                        "type": "html",
+                        "html": "<p>序数折叠函数将较大结构的符号与折叠运算结合，用来描述可数序数。扩展 Buchholz 系统与 BMS 为探索这一段提供了不同的表示方式。</p><p>沿主轴到达 BMS 的 \\((0,0,0)(1,1,1)(2,2,0)\\)，再越过固定行数的限制，走向 BMS 极限。</p>"
+                    },
+                    {
+                        "type": "note",
+                        "html": "该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性"
+                    }
+                ]
+            }
+        },
             'axis-05': {
                 text: 'BMS',
                 detail: document(
@@ -202,24 +265,40 @@ print(g)`;
                 )
             },
             'axis-06': {
-                text: '前沿未知领域',
-                detail: document('进入未知领域', [
-                    html(
-                        '<p>这里是目前的研究前沿，难度巨大，人们对这些内容所知甚少。' +
-                        '许多条目之间暂时无法比较大小，大部分也缺乏严格的停机性证明。</p>' +
-                        '<p>本网页将不同类型的记号划分为不同分支；不同分支之间的大小顺序暂时未知。</p>'
-                    )
-                ])
-            },
-            'axis-07': {
-                text: '不可计算大数',
-                detail: document('不可计算大数', [
-                    html(
-                        '<p>不可计算大数大于一切可计算函数。由于它们无法用程序代码表示，' +
-                        '且原理大多类似于“某种语言用 \\(N\\) 个字符能表达的最大数”，因此感兴趣的人相对较少。</p>'
-                    )
-                ])
+            "text": "山脉记号家族",
+            "detail": {
+                "title": "山脉记号家族",
+                "sections": [
+                    {
+                        "type": "html",
+                        "html": "<p>这一段收纳 TBMS、SRPD、Y 与 \\(\\omega\\)-Y。新的大小比较与良序证明，将具体的展开规则和弱集合论联系起来。</p><p>各词条中列出结论；具体定义可在 <a href=\"https://smilelee-lyx.github.io/ne-rewritten/\">NER</a> 与<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy\">资料仓库</a>中继续阅读。</p>"
+                    },
+                    {
+                        "type": "note",
+                        "html": "该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性"
+                    }
+                ]
             }
+        },
+            'axis-07': {
+            "text": "超越可计算增长",
+            "detail": {
+                "title": "忙碌海狸与 Rayo",
+                "sections": [
+                    {
+                        "type": "html",
+                        "html": "<p>忙碌海狸函数最终超过每个全可计算函数。Rayo 则对固定语言中能够唯一指定自然数的公式取上界。这里的每个具体值仍是有限自然数；不可计算性说的是无法用一个统一算法计算整个函数。</p>"
+                    },
+                    {
+                        "type": "note",
+                        "html": "该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性"
+                    }
+                ]
+            }
+        },
+            'axis-08': {
+            "text": "证明论序数"
+        }
         },
         axisSubSegments: {
             'subaxis-00': {
@@ -375,39 +454,53 @@ print(g)`;
                 ])
             },
             'subaxis-09': {
-                text: '大基数 \\(\\Psi\\)',
-                detail: document('EBO 到 SSO：大基数 \\(\\Psi\\)', [
-                    html(
-                        '<p>在 \\(\\Psi\\) 中引入 \\(I\\)、\\(M\\)、\\(K\\) 等大基数后，定义变得非常复杂和混乱，' +
-                        '相关资料也不易查找。</p>' +
-                        '<p>然而，与<a href="' + links.bms +
-                        '">BMS</a>相比，其强度提升微乎其微：即使用尽所有字母，' +
-                        '也很难到达 \\((0,0,0)(1,1,1)(2,2,0)\\)。</p>' +
-                        '<p>因此，目前大基数 \\(\\Psi\\) 已很少使用，通常改用 BMS 表达式。</p>'
-                    )
-                ])
-            },
-            'subaxis-10': {
-                text: '[TODO:取个合适的名字]',
-                detail: document('[TODO:取个合适的名字]', [
-                    html(
-                        '<p>[TODO:补充这一段的说明。]</p>'
-                    )
-                ])
-            },
-            'subaxis-11': {
-                text: 'BMS 主导区间',
-                detail: document(
-                    '<a href="' + links.bms + '">BMS</a> 主导区间',
-                    [
-                        html(
-                            '<p>从这里到 BMS 极限 \\((0,0,0,\\ldots{})(1,1,1,\\ldots{})\\) 之前，' +
-                            '并没有太多其他内容。不借助 BMS 或类似结构，' +
-                            '很少有记号可以到达 BMS 的 \\((0,0,0)(1,1,1)(2,2,2)\\)。</p>'
-                        )
-                    ]
-                )
+            "text": "大基数折叠",
+            "detail": {
+                "title": "EBO 之后",
+                "sections": [
+                    {
+                        "type": "html",
+                        "html": "<p>进一步的折叠函数引入 \\(I\\)、\\(M\\)、\\(K\\) 等符号，具体规则取决于所选体系。这里同时用 BMS 矩阵作为路标，逐步走向 \\((0,0,0)(1,1,1)(2,2,0)\\)。</p>"
+                    },
+                    {
+                        "type": "note",
+                        "html": "该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性"
+                    }
+                ]
             }
+        },
+            'subaxis-10': {
+            "text": "行数与父关系",
+            "detail": {
+                "title": "BMS 的行数与父关系",
+                "sections": [
+                    {
+                        "type": "html",
+                        "html": "<p>BMS 以有限矩阵表示记号，通过各行记录嵌套的父关系。展开时删去末列，并按父关系选择、复制与调整一段列。增加行数使更深层的祖先关系也能参与复制规则。</p>"
+                    },
+                    {
+                        "type": "note",
+                        "html": "该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性"
+                    }
+                ]
+            }
+        },
+            'subaxis-11': {
+            "text": "走向 BMS 极限",
+            "detail": {
+                "title": "走向 BMS 极限",
+                "sections": [
+                    {
+                        "type": "html",
+                        "html": "<p>有限行 BMS 系统不断增加行数，汇成整个 BMS 极限。进一步的超限扩展允许行结构本身携带序数信息；下一段将介绍 TBMS 与 Y 相关系统。</p>"
+                    },
+                    {
+                        "type": "note",
+                        "html": "该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性"
+                    }
+                ]
+            }
+        }
         }
     });
 }(globalThis));

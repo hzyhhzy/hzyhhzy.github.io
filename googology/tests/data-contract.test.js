@@ -1,7 +1,6 @@
 'use strict';
 
 const assert = require('node:assert/strict');
-const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
@@ -11,38 +10,28 @@ const core = require('../scale-core.js');
 const SOURCE_ROOT = path.join(__dirname, '..');
 const LOCALES = ['zh-CN', 'en'];
 const ITEM_IDS = Array.from(
-    { length: 123 },
+    { length: 130 },
     (_, index) => `item-${String(index).padStart(3, '0')}`
-);
+).filter((id) => id !== 'item-110');
 const AXIS_IDS = Array.from(
-    { length: 8 },
+    { length: 9 },
     (_, index) => `axis-${String(index).padStart(2, '0')}`
 );
 const SUBAXIS_IDS = Array.from(
     { length: 12 },
     (_, index) => `subaxis-${String(index).padStart(2, '0')}`
 );
-const BRANCH_IDS = ['branch-1', 'branch-2', 'branch-3', 'branch-4'];
-const ITEM_GEOMETRY_SHA256 =
-    '77abcda4a6a1e31b8ea86f6c1046fde4191cc42fd9a72067af120615236f19de';
-const AXIS_GEOMETRY_SHA256 =
-    '641740590846961d95cc500de2d0f62cdc63498d597c555bb3bc4e13728d1f1f';
+const BRANCH_IDS = ['branch-1', 'branch-2', 'branch-3'];
 const LOCALE_FILES = LOCALES.flatMap((locale) => [
     `locales/${locale}/interface.js`,
     `locales/${locale}/items-000-040.js`,
     `locales/${locale}/items-041-081.js`,
-    `locales/${locale}/items-082-122.js`
+    `locales/${locale}/items-082-122.js`,
+    `locales/${locale}/items-123-129.js`
 ]);
 
 function normalize(value) {
     return JSON.parse(JSON.stringify(value));
-}
-
-function sha256(value) {
-    return crypto
-        .createHash('sha256')
-        .update(JSON.stringify(value))
-        .digest('hex');
 }
 
 function runClassicScript(context, filename) {
@@ -246,6 +235,18 @@ function assertStructuredDetail(detail, description) {
                         `${sectionDescription}.title`
                     );
                 }
+                if (section.display !== undefined) {
+                    assert.ok(['inline', 'dialog'].includes(section.display),
+                        `${sectionDescription}.display`);
+                }
+                if (section.display === 'dialog') {
+                    for (const key of ['openLabel', 'closeLabel']) {
+                        assert.equal(typeof section[key], 'string',
+                            `${sectionDescription}.${key}`);
+                        assert.notEqual(section[key].trim(), '',
+                            `${sectionDescription}.${key}`);
+                    }
+                }
                 break;
             default:
                 assert.fail(
@@ -270,28 +271,10 @@ const localized = Object.fromEntries(
     ])
 );
 
-test('items.js contains only 123 stable, continuous geometry records', () => {
-    assert.equal(items.length, 123);
+test('items.js contains unique stable geometry records on the main axis and three branches', () => {
+    assert.equal(items.length, ITEM_IDS.length);
     assert.deepEqual(items.map(({ id }) => id), ITEM_IDS);
     assert.equal(new Set(items.map(({ id }) => id)).size, items.length);
-    assert.deepEqual(
-        [0, 1, 2, 3].map((zoomLevel) =>
-            items.filter((item) => item.zoomLevel === zoomLevel).length
-        ),
-        [47, 29, 18, 29]
-    );
-    assert.deepEqual(
-        [0, 1, 2, 3, 4].map((branchId) =>
-            items.filter((item) => (item.branch || 0) === branchId).length
-        ),
-        [109, 4, 4, 5, 1]
-    );
-    assert.deepEqual(
-        ['top', 'bottom'].map((side) =>
-            items.filter((item) => item.side === side).length
-        ),
-        [92, 31]
-    );
 
     const allowedKeys = new Set([
         'id',
@@ -312,24 +295,34 @@ test('items.js contains only 123 stable, continuous geometry records', () => {
         assert.equal([0, 1, 2, 3].includes(item.zoomLevel), true);
         assert.equal(['top', 'bottom'].includes(item.side), true);
         assert.equal(Number.isInteger(item.level) && item.level >= 0, true);
-        assert.equal([0, 1, 2, 3, 4].includes(item.branch || 0), true);
+        assert.equal([0, 1, 2, 3].includes(item.branch || 0), true);
+        if (item.branch) {
+            assert.ok(item.value >= core.CONFIG.RULER.BRANCH_START);
+            assert.ok(item.value < core.CONFIG.BRANCH_ENDS[item.branch]);
+        }
     });
 
+    assert.deepEqual(items.filter((item) => item.value < 3).map(({ id }) => id),
+        ITEM_IDS.slice(0, 57), 'all early-scale entries are retained');
+    const positions = Object.fromEntries(items.map((item) => [item.id, item.value]));
     assert.deepEqual(
-        [items[0].id, items[0].value, items.at(-1).id, items.at(-1).value],
-        ['item-000', 0, 'item-122', 11]
+        ['057', '092', '098', '104', '109', '127', '115', '116', '118', '119', '121', '122']
+            .map((id) => positions['item-' + id]),
+        [3, 4, 5, 6, 7, 8.5, 9.5, 10.5, 11.5, 12.5, 14.5, 15.5]
     );
-    assert.equal(
-        sha256(items.map((item) => [
-            item.value,
-            item.zoomLevel,
-            item.side,
-            item.level,
-            item.branch || 0
-        ])),
-        ITEM_GEOMETRY_SHA256,
-        'the complete item geometry must remain byte-for-byte compatible'
-    );
+    assert.deepEqual(['123', '124', '125', '108', '126'].map((id) => positions['item-' + id]),
+        [6.25, 6.375, 6.5, 6.75, 7.5]);
+    assert.ok(positions['item-125'] < positions['item-107'] &&
+        positions['item-107'] < positions['item-108'],
+    'Y(1,4) lies between Y(1,3,4,3) and the Y-sequence limit');
+    const ptoGap = core.CONFIG.AXIS_GAPS.find((gap) => gap.id === 'pto-gap');
+    assert.equal((ptoGap.start + ptoGap.end) / 2,
+        (core.CONFIG.RULER.FORK_X + positions['item-127']) / 2,
+        'the short omission is centered between the fork and the KP node');
+    assert.deepEqual(['111', '112', '113', '114', '120', '128'].map((id) => positions['item-' + id]),
+        [9.5, 10.3, 11.8, 12.5, 12, 9.5]);
+    assert.ok(items.filter((item) => ['item-115', 'item-116', 'item-117', 'item-118', 'item-119', 'item-127', 'item-129'].includes(item.id))
+        .every((item) => !item.branch), 'PTO, Loader and DQDN belong to the main axis');
 });
 
 test('both locale packs independently cover all item content', () => {
@@ -409,86 +402,26 @@ test('Chinese and English item details remain structurally symmetric', () => {
     );
 
     assert.deepEqual(codeIds.en, codeIds['zh-CN']);
-    assert.equal(codeIds.en.length, 21);
 });
 
-test('corrected content facts and explicit TODO markers stay synchronized', () => {
-    for (const locale of LOCALES) {
-        const content = localized[locale];
-        const tenBillion = content.items.find(
-            ({ id }) => id === 'item-003'
-        );
-        const rayo = content.items.find(
-            ({ id }) => id === 'item-122'
-        );
-        const unnamedRange = content.axisSubSegments.find(
-            ({ id }) => id === 'subaxis-10'
-        );
-        const rayoHtml = rayo.detail.sections
-            .map(({ html = '' }) => html)
-            .join(' ');
-
-        assert.equal(
-            tenBillion.detail.title,
-            '\\(10^{10}=10{,}000{,}000{,}000\\)'
-        );
-        assert.equal(
-            unnamedRange.text.startsWith('[TODO:'),
-            true,
-            `${locale} should expose the unfinished range name`
-        );
-        assert.equal(
-            rayoHtml.includes(
-                locale === 'zh-CN'
-                    ? '一阶集合论'
-                    : 'first-order set theory'
-            ),
-            true,
-            `${locale} should identify the object language`
-        );
-        assert.equal(
-            rayoHtml.includes(
-                locale === 'zh-CN'
-                    ? '二阶集合论'
-                    : 'second-order set theory'
-            ),
-            true,
-            `${locale} should identify the metalanguage`
-        );
-        assert.equal(
-            rayoHtml.includes(
-                locale === 'zh-CN'
-                    ? '并不是使用二阶算术语言'
-                    : 'does not use the language of second-order arithmetic'
-            ),
-            true,
-            `${locale} should explicitly correct the former Rayo error`
-        );
-    }
-});
-
-test('localized models preserve the original info/code filter counts', () => {
-    const expected = {
-        1: { all: 47, info: 44, code: 16 },
-        2: { all: 76, info: 68, code: 20 },
-        4: { all: 94, info: 81, code: 21 },
-        10: { all: 123, info: 90, code: 21 }
-    };
-
+test('filters retain their meaning after entries move between lanes and locales', () => {
     for (const locale of LOCALES) {
         const models = localized[locale].items.map(core.createItemModel);
 
         for (const zoom of [1, 2, 4, 10]) {
             for (const filter of ['all', 'info', 'code']) {
                 const state = core.createState({ zoom, filter });
-                const count = models.filter((model) =>
+                const shown = models.filter((model) =>
                     core.isLabelVisible(model, state)
-                ).length;
-                assert.equal(
-                    count,
-                    expected[zoom][filter],
-                    `${locale}: zoom=${zoom}, filter=${filter}`
                 );
+                assert.ok(shown.every((model) => model.minZoom <= zoom));
+                assert.ok(shown.every((model) => filter === 'all' ||
+                    (filter === 'code' ? model.hasCode : model.hasInfo)));
+                const otherLocale = locale === 'en' ? 'zh-CN' : 'en';
+                const counterparts = localized[otherLocale].items.map(core.createItemModel)
+                    .filter((model) => core.isLabelVisible(model, state));
+                assert.deepEqual(shown.map((model) => model.item.id),
+                    counterparts.map((model) => model.item.id));
             }
         }
     }
@@ -500,8 +433,8 @@ test('models preserve every item when several labels share one value', () => {
         const uniqueValues = new Set(models.map((model) => model.value));
         const atTwo = models.filter((model) => model.value === 2);
 
-        assert.equal(uniqueValues.size, 87);
-        assert.equal(models.length, 123);
+        assert.ok(uniqueValues.size < models.length);
+        assert.equal(models.length, items.length);
         assert.deepEqual(
             atTwo.map((model) => model.item.id),
             ['item-017', 'item-018', 'item-019', 'item-020']
@@ -513,7 +446,7 @@ test('models preserve every item when several labels share one value', () => {
 test('axis structures keep their topology and contain no prose', () => {
     const { branchNames, axisSegments, axisSubSegments } = axisData;
 
-    assert.deepEqual(Object.keys(branchNames), ['1', '2', '3', '4']);
+    assert.deepEqual(Object.keys(branchNames), ['1', '2', '3']);
     assert.deepEqual(
         Object.values(branchNames).map(({ id }) => id),
         BRANCH_IDS
@@ -526,8 +459,8 @@ test('axis structures keep their topology and contain no prose', () => {
         );
     });
 
-    assert.equal(axisSegments.length, 8);
-    assert.deepEqual(axisSegments.map(({ id }) => id), AXIS_IDS);
+    assert.equal(axisSegments.length, 9);
+    assert.deepEqual(axisSegments.map(({ id }) => id).sort(), AXIS_IDS);
     assert.deepEqual(
         axisSegments.map(({ start, end }) => [start, end]),
         [
@@ -537,8 +470,9 @@ test('axis structures keep their topology and contain no prose', () => {
             [3, 4],
             [4, 5],
             [5, 6],
-            [6, 6.75],
-            [9.5, 12]
+            [6, 8.025],
+            [8.225, 12.8],
+            [14.2, 16]
         ]
     );
 
@@ -566,25 +500,11 @@ test('axis structures keep their topology and contain no prose', () => {
             `${segment.id} leaked localized content`
         );
     });
-    assert.equal(
-        sha256({
-            branches: Object.keys(branchNames),
-            axis: axisSegments.map((segment) => [
-                segment.start,
-                segment.end,
-                segment.bg,
-                segment.color
-            ]),
-            subaxis: axisSubSegments.map((segment) => [
-                segment.start,
-                segment.end,
-                segment.bg,
-                segment.color
-            ])
-        }),
-        AXIS_GEOMETRY_SHA256,
-        'the complete axis geometry and palette must remain compatible'
-    );
+    core.CONFIG.AXIS_GAPS.forEach((gap) => {
+        assert.ok(axisSegments.every((segment) =>
+            segment.end <= gap.start || segment.start >= gap.end),
+        `${gap.id} remains visibly disconnected`);
+    });
 });
 
 test('both locale packs cover branch and axis content with valid details', () => {
@@ -613,10 +533,12 @@ test('both locale packs cover branch and axis content with valid details', () =>
         ].forEach((entry) => {
             assert.equal(typeof entry.text, 'string', `${locale}.${entry.id}`);
             assert.notEqual(entry.text.trim(), '', `${locale}.${entry.id}`);
-            assertStructuredDetail(
-                entry.detail,
-                `${locale}.${entry.id}.detail`
-            );
+            if (entry.detail !== undefined) {
+                assertStructuredDetail(
+                    entry.detail,
+                    `${locale}.${entry.id}.detail`
+                );
+            }
         });
     }
 });

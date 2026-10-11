@@ -3,161 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="从日常数字到序数记号、证明论与不可计算函数，探索大数的层级。">
     <title>大数阶梯 — Googology Scale</title>
     <link rel="stylesheet" href="lib/katex/katex.min.css">
     <link rel="stylesheet" href="lib/atom-one-dark.min.css">
-    <link rel="stylesheet" href="styles.css?v=20260724-latex">
-    <script src="lib/highlight.min.js"></script>
+    <link rel="stylesheet" href="styles.css?v=20261011">
+    <script src="lib/highlight.min.js" defer></script>
 </head>
 <body>
-    <main
-        id="app"
-        aria-label="Googology Scale"
-        data-i18n-aria-label="ui.title"
-    >
-        <div id="ruler-container"></div>
-        <svg id="svg-layer" aria-hidden="true"></svg>
-        <div id="ticks-container" aria-hidden="true"></div>
-        <div id="items-container"></div>
-    </main>
-
-    <div id="detail-modal" class="modal-overlay" aria-hidden="true" hidden>
-        <div
-            class="modal-content"
-            role="dialog"
-            aria-modal="true"
-            aria-label="内容详情"
-        >
-            <button
-                class="modal-close"
-                type="button"
-                aria-label="关闭详情"
-            >&times;</button>
-            <div id="modal-body"></div>
+    <header class="site-header">
+        <a class="home-link" href="../" data-i18n-aria-label="ui.home">↗</a>
+        <div class="site-title">
+            <p class="eyebrow">THE LARGE NUMBER ATLAS · 2026</p>
+            <h1 data-i18n="ui.title">Googology Scale</h1>
         </div>
-    </div>
-
-    <header id="ui-overlay">
-        <h1 data-i18n="ui.title">Googology Scale</h1>
-        <label id="language-control" for="language-select">
+        <p class="header-caption" data-i18n="ui.subtitle">从有限，走向无限的记号。</p>
+        <label class="language-control" for="language-select">
             <span data-i18n="ui.language">语言</span>
             <select id="language-select"></select>
         </label>
     </header>
 
-    <section
-        id="filter-controls"
-        aria-label="内容筛选"
-        data-i18n-aria-label="ui.filters.label"
-    >
-        <button
-            id="btn-show-all"
-            type="button"
-            class="active"
-            data-filter="all"
-            aria-pressed="true"
-        >
-            <span data-i18n="ui.filters.all">显示全部</span>
-        </button>
-        <button
-            id="btn-show-info"
-            type="button"
-            data-filter="info"
-            aria-pressed="false"
-        >
-            <span class="btn-icon info" aria-hidden="true"></span>
-            <span data-i18n="ui.filters.info">只显示有说明的条目</span>
-        </button>
-        <button
-            id="btn-show-code"
-            type="button"
-            data-filter="code"
-            aria-pressed="false"
-        >
-            <span class="btn-icon code" aria-hidden="true"></span>
-            <span data-i18n="ui.filters.code">只显示有代码的条目</span>
-        </button>
-        <div class="filter-separator" aria-hidden="true"></div>
-        <label>
-            <input type="checkbox" id="check-zoom-level" checked>
-            <span data-i18n="ui.filters.zoomVisibility">
-                根据缩放自动隐藏
-            </span>
+    <nav class="explorer-toolbar" data-i18n-aria-label="ui.explore">
+        <div class="search-control">
+            <span aria-hidden="true">⌕</span>
+            <input id="entry-search" type="search" autocomplete="off"
+                data-i18n-placeholder="ui.searchPlaceholder" data-i18n-aria-label="ui.search"
+                aria-controls="entry-directory" placeholder="搜索词条、记号、关键词…">
+            <button id="directory-toggle" type="button" aria-expanded="false"
+                aria-controls="entry-directory" data-i18n="ui.directory">目录</button>
+        </div>
+        <label class="jump-control">
+            <span data-i18n="ui.jump">跳转</span>
+            <select id="jump-select" data-i18n-aria-label="ui.jump">
+                <option value="frontier" data-i18n="ui.jumps.frontier">序数前沿</option>
+                <option value="start" data-i18n="ui.jumps.start">日常与超运算</option>
+                <option value="epsilon" data-i18n="ui.jumps.epsilon">基础序数</option>
+                <option value="bms" data-i18n="ui.jumps.bms">BMS 与 Y</option>
+                <option value="pto" data-i18n="ui.jumps.pto">证明论序数</option>
+                <option value="laver" data-i18n="ui.jumps.laver">Laver Table</option>
+                <option value="btbms">BTBMS</option>
+                <option value="friedman">Friedman</option>
+                <option value="end">BB / Rayo</option>
+            </select>
         </label>
-        <div id="zoom-manual-control" class="zoom-manual-control" hidden>
-            <div id="zoom-manual-label" class="zoom-manual-header">
-                显示层级：0（0–3）
-            </div>
-            <input
-                class="zoom-slider"
-                type="range"
-                id="zoom-slider"
-                min="0"
-                max="3"
-                step="1"
-                value="0"
-            >
-            <div class="zoom-scale-labels" aria-hidden="true">
-                <span>0</span><span>1</span><span>2</span><span>3</span>
-            </div>
-        </div>
-    </section>
+        <details class="filter-popover">
+            <summary data-i18n="ui.filters.label">显示设置</summary>
+            <section id="filter-controls" data-i18n-aria-label="ui.filters.label">
+                <div class="filter-buttons">
+                    <button type="button" class="active" data-filter="all" aria-pressed="true" data-i18n="ui.filters.all">全部</button>
+                    <button type="button" data-filter="info" aria-pressed="false" data-i18n="ui.filters.info">有说明</button>
+                    <button type="button" data-filter="code" aria-pressed="false" data-i18n="ui.filters.code">有代码</button>
+                </div>
+                <label><input type="checkbox" id="check-zoom-level" checked><span data-i18n="ui.filters.zoomVisibility">自动显示细节</span></label>
+                <div id="zoom-manual-control" hidden>
+                    <label id="zoom-manual-label" for="zoom-slider"></label>
+                    <input type="range" id="zoom-slider" min="0" max="3" step="1" value="0">
+                </div>
+            </section>
+        </details>
+        <button class="help-button" id="help-button" type="button" data-i18n="ui.guide">阅读指南</button>
+    </nav>
 
-    <section
-        id="controls"
-        aria-label="视图控制"
-        data-i18n-aria-label="ui.view.label"
-    >
-        <div class="zoom-info">
-            <span data-i18n="ui.view.zoom">缩放倍率：</span>
-            <span id="zoom-level">1.0</span>x
+    <div class="workspace">
+        <aside id="entry-directory" hidden data-i18n-aria-label="ui.directory">
+            <div class="directory-heading"><strong data-i18n="ui.directory">词条目录</strong><span id="result-count" role="status" aria-live="polite"></span></div>
+            <div id="search-results"></div>
+        </aside>
+        <div id="map-viewport">
+            <main id="app" tabindex="0" data-i18n-aria-label="ui.mapLabel">
+                <div id="ruler-container"></div>
+                <svg id="svg-layer" aria-hidden="true"></svg>
+                <div id="ticks-container" aria-hidden="true"></div>
+                <div id="items-container"></div>
+            </main>
         </div>
-        <div class="hint controls-hint" data-i18n="ui.view.hint">
-            滚轮缩放 / 拖拽移动
-        </div>
-        <div class="control-buttons">
-            <button
-                type="button"
-                class="control-button control-button-reset"
-                data-action="reset"
-            >
-                <span data-i18n="ui.view.reset">回到起点</span>
-            </button>
-            <button
-                type="button"
-                class="control-button"
-                data-zoom-factor="1.2"
-                aria-label="放大"
-                data-i18n-aria-label="ui.view.zoomIn"
-            >+</button>
-            <button
-                type="button"
-                class="control-button"
-                data-zoom-factor="0.8"
-                aria-label="缩小"
-                data-i18n-aria-label="ui.view.zoomOut"
-            >−</button>
-        </div>
-    </section>
+        <div class="map-caption" data-i18n="ui.mapCaption">等距展示阶段；支线的横坐标仅作排版定位。</div>
+        <section id="controls" data-i18n-aria-label="ui.view.label">
+            <button type="button" data-action="reset" data-i18n="ui.view.reset">总览</button>
+            <span class="controls-divider"></span>
+            <button type="button" data-zoom-factor="0.8" data-i18n-aria-label="ui.view.zoomOut">−</button>
+            <output><span id="zoom-level">1.0</span>×</output>
+            <button type="button" data-zoom-factor="1.25" data-i18n-aria-label="ui.view.zoomIn">+</button>
+        </section>
+    </div>
 
+    <footer class="map-footer">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span data-i18n="ui.edition">资料更新 · 2026-10</span>
+        <span class="footer-hint" data-i18n="ui.view.hint">拖动平移 · 滚轮缩放 · Shift + 滚轮纵览分支</span>
+        <a href="https://github.com/hzyhhzy/column-ordinal-notations-hzy" target="_blank" rel="noopener noreferrer" data-i18n="ui.sources">资料仓库 ↗</a>
+        <a href="https://smilelee-lyx.github.io/ne-rewritten/" target="_blank" rel="noopener noreferrer">NER ↗</a>
+    </footer>
+
+    <div id="detail-modal" class="modal-overlay" aria-hidden="true" hidden>
+        <div class="modal-content" role="dialog" aria-modal="true" data-i18n-aria-label="ui.modalLabel">
+            <div class="modal-toolbar">
+                <span data-i18n="ui.modalLabel">词条详情</span>
+                <button id="copy-entry-link" type="button" hidden data-i18n="ui.copyLink">复制链接</button>
+                <button class="modal-close" type="button" data-i18n-aria-label="ui.modalClose">×</button>
+            </div>
+            <div id="modal-body"></div>
+        </div>
+    </div>
     <script src="lib/katex/katex.min.js"></script>
     <script src="lib/katex/contrib/auto-render.min.js"></script>
-    <script src="math-renderer.js?v=20260724-latex"></script>
-    <script src="i18n.js?v=20260724-latex"></script>
-    <script src="content-document.js?v=20260724-latex"></script>
-    <script src="items.js?v=20260724-latex"></script>
-    <script src="axis_items.js?v=20260724-latex"></script>
-    <script src="locales/zh-CN/interface.js?v=20260724-latex"></script>
-    <script src="locales/zh-CN/items-000-040.js?v=20260724-latex"></script>
-    <script src="locales/zh-CN/items-041-081.js?v=20260724-latex"></script>
-    <script src="locales/zh-CN/items-082-122.js?v=20260724-latex"></script>
-    <script src="locales/en/interface.js?v=20260724-latex"></script>
-    <script src="locales/en/items-000-040.js?v=20260724-latex"></script>
-    <script src="locales/en/items-041-081.js?v=20260724-latex"></script>
-    <script src="locales/en/items-082-122.js?v=20260724-latex"></script>
-    <script src="scale-core.js?v=20260724-latex"></script>
-    <script src="modal.js?v=20260724-latex"></script>
-    <script src="scale-renderer.js?v=20260724-latex"></script>
-    <script src="app.js?v=20260724-latex"></script>
+    <script src="math-renderer.js?v=20261011"></script>
+    <script src="i18n.js?v=20261011"></script>
+    <script src="content-document.js?v=20261011"></script>
+    <script src="items.js?v=20261011"></script>
+    <script src="axis_items.js?v=20261011"></script>
+    <script src="locales/zh-CN/interface.js?v=20261011"></script>
+    <script src="locales/zh-CN/items-000-040.js?v=20261011"></script>
+    <script src="locales/zh-CN/items-041-081.js?v=20261011"></script>
+    <script src="locales/zh-CN/items-082-122.js?v=20261011"></script>
+    <script src="locales/zh-CN/items-123-129.js?v=20261011"></script>
+    <script src="locales/en/interface.js?v=20261011"></script>
+    <script src="locales/en/items-000-040.js?v=20261011"></script>
+    <script src="locales/en/items-041-081.js?v=20261011"></script>
+    <script src="locales/en/items-082-122.js?v=20261011"></script>
+    <script src="locales/en/items-123-129.js?v=20261011"></script>
+    <script src="scale-core.js?v=20261011"></script>
+    <script src="modal.js?v=20261011"></script>
+    <script src="scale-renderer.js?v=20261011"></script>
+    <script src="app.js?v=20261011"></script>
 </body>
 </html>

@@ -1,6 +1,13 @@
 (function (global) {
     'use strict';
 
+    function unreviewedNotice() {
+        return {
+            type: 'note',
+            html: 'This content was produced by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed.'
+        };
+    }
+
     global.GoogologyI18n.registerMessages('en', {
         items: {
             'item-000': {
@@ -24,7 +31,13 @@
                 label: '\\(1000\\)',
                 detail: {
                     title: '\\(1000\\)',
-                    sections: []
+                    sections: [
+                        {
+                            type: 'html',
+                            html: `<p>\\(1000=10^{3}\\), written “one thousand,” is the smallest positive integer with four decimal digits.</p>`
+                        },
+                        unreviewedNotice()
+                    ]
                 }
             },
             'item-002': {
@@ -213,13 +226,29 @@ print(result)`
                     sections: [
                         {
                             type: 'html',
-                            html: `<p>\\(10\\uparrow{}\\uparrow{}\\uparrow{}10=10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}10)))))))))\\)</p><p>Applying “number of decimal digits” to \\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\) a total of \\(10\\uparrow{}\\uparrow{}\\uparrow{}9-1\\) times gives 11. Applying it to \\(10\\uparrow{}\\uparrow{}\\uparrow{}9\\) a total of \\(10\\uparrow{}\\uparrow{}\\uparrow{}8-1\\) times also gives 11; applying it to \\(10\\uparrow{}\\uparrow{}\\uparrow{}8\\) a total of \\(10\\uparrow{}\\uparrow{}\\uparrow{}7-1\\) times again gives 11; and so on.</p>`
+                            html: `<p>\\(10\\uparrow{}\\uparrow{}\\uparrow{}10=10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}10)))))))))\\)</p><p>Applying “number of decimal digits” to \\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\) a total of \\(10\\uparrow{}\\uparrow{}\\uparrow{}9-1\\) times gives 11. Applying it to \\(10\\uparrow{}\\uparrow{}\\uparrow{}9\\) a total of \\(10\\uparrow{}\\uparrow{}\\uparrow{}8-1\\) times also gives 11; applying it to \\(10\\uparrow{}\\uparrow{}\\uparrow{}8\\) a total of \\(10\\uparrow{}\\uparrow{}\\uparrow{}7-1\\) times again gives 11; and so on.</p><p>The program below evaluates the expression directly from the recursive rules for <a href="https://doi.org/10.1126/science.194.4271.1235">Knuth's up-arrow notation</a>. It neither hard-codes the answer nor imposes a limit on integer length.</p>`
                         },
                         {
                             type: 'code',
                             language: 'python',
-                            source: `TODO`
-                        }
+                            title: 'Recursive evaluator (theoretical implementation)',
+                            source: `def up_arrow(base, arrows, argument):
+    # a ↑^0 b = a * b; for arrows >= 1, a ↑^arrows 0 = 1.
+    if arrows == 0:
+        return base * argument
+    if argument == 0:
+        return 1
+
+    return up_arrow(
+        base,
+        arrows - 1,
+        up_arrow(base, arrows, argument - 1),
+    )
+
+
+print(up_arrow(10, 3, 10))`
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -268,7 +297,7 @@ print(f(n, n))`
                     sections: [
                         {
                             type: 'html',
-                            html: `<p>Reading the FGH entry first is recommended. The Hardy hierarchy (HH) likewise converts ordinals into large numbers. At successor ordinals it discards the nesting rule and replaces it with a simple “\\(+1\\).” The behavior of large-number constructions such as Goodstein sequences, \\(\\operatorname{TREE}\\), and \\(\\operatorname{SCG}\\) resembles HH at some ordinal, so HH provides a tool for analyzing them.</p><h3>The three defining rules of HH</h3><ul><li><strong>Starting point:</strong> \\(H_{0}(n)=n\\).</li><li><strong>Successor ordinal:</strong> \\(H_{{\\alpha}+1}(n)=H_{{\\alpha}}(n)+1\\).</li><li><strong>Limit ordinal:</strong> \\(H_{{\\alpha}}(n)=H_{{\\alpha}[n]}(n),\\) where \\({\\alpha}[n]\\) is the nth term of the fundamental sequence for the limit ordinal \\({\\alpha}.\\)</li></ul><p>At first HH is much smaller than FGH, but after reaching \\({\\varepsilon}_{0},\\) HH grows at a rate comparable to FGH. The following is a rough proof.</p><h3>Theorem: \\(H_{{\\omega}^{{\\alpha}}}(n)=f_{{\\alpha}}(n)\\)</h3><p>This is strict equality, not an approximation.</p><ul><li>It is easy to prove that \\(H_{{\\alpha}+{\\beta}}(n)=H_{{\\alpha}}(H_{{\\beta}}(n)).\\)</li><li>Therefore:\\[\\begin{aligned}H_{{\\omega}^{{\\alpha}+1}}(n)&=H_{{\\omega}^{{\\alpha}}\\cdot{}{\\omega}}(n)\\\\&=H_{{\\omega}^{{\\alpha}}\\cdot{}n}(n)\\\\&=H_{{\\omega}^{{\\alpha}}}(H_{{\\omega}^{{\\alpha}}}(\\ldots{}H_{{\\omega}^{{\\alpha}}}(n)\\ldots{}))&& (n\\text{ levels})\\\\&=f_{{\\alpha}}(f_{{\\alpha}}(\\ldots{}f_{{\\alpha}}(n)\\ldots{}))&& (n\\text{ levels})\\\\&=f_{{\\alpha}+1}(n).\\end{aligned}\\]</li><li>Induction gives \\(H_{{\\omega}^{{\\alpha}}}(n)=f_{{\\alpha}}(n)\\); the remaining proof details are omitted.</li></ul><p>The following program represents ordinals below \\({\\omega}^{{\\omega}}\\) with a one-dimensional array and evaluates \\(H_{{\\omega}^{{\\omega}}}(n).\\)</p>`
+                            html: `<p>Reading the FGH entry first is recommended. The Hardy hierarchy (HH) also turns ordinals into large numbers, but a successor step simply increases the input by \\(1\\). It provides a useful tool for analyzing constructions such as Goodstein sequences.</p><h3>The three defining rules of HH</h3><ul><li>\\(H_0(n)=n\\);</li><li>\\(H_{\\alpha+1}(n)=H_\\alpha(n+1)\\);</li><li>\\(H_\\lambda(n)=H_{\\lambda[n]}(n)\\) for a limit ordinal \\(\\lambda\\).</li></ul><p>With the fundamental sequences used here, \\(H_{\\omega^\\alpha}(n)=f_\\alpha(n)\\) for \\(\\alpha\\lt\\varepsilon_0\\). For example, \\(H_\\omega(n)=2n\\) and \\(H_{\\omega^2}(n)=n2^n\\). At a successor index the correspondence follows from</p>\\[H_{\\omega^{\\alpha+1}}(n)=H_{\\omega^\\alpha\\cdot n}(n)=H_{\\omega^\\alpha}^{\\,n}(n)=f_\\alpha^{\\,n}(n)=f_{\\alpha+1}(n).\\]<p>The superscript \\(n\\) denotes function iteration. Continuing along limit fundamental sequences gives the correspondence above; at the \\(\\varepsilon_0\\) level, HH and FGH have comparable growth.</p><p>The program below represents ordinals below \\(\\omega^\\omega\\) with an array and evaluates \\(H_{\\omega^\\omega}(n)\\). Reference: <a href="https://lsv.ens-paris-saclay.fr/Publis/PAPERS/PDF/HSS-lmcs14.pdf"><cite>The Power of Priority Channel Systems</cite>, §4.1.1</a>.</p>`
                         },
                         {
                             type: 'code',
@@ -284,7 +313,8 @@ while(len(a) > 0): # Hardy hierarchy on ordinals.
         a.pop()
         a.extend([v-1,] * n)
 print(n)`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -557,10 +587,24 @@ print(f2(n,n))`
                 }
             },
             'item-034': {
-                label: '\\(f_{{\\omega}\\cdot{}2+1}(n)\\)'
+                label: '\\(f_{{\\omega}\\cdot{}2+1}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}\\cdot{}2+1}(n)\\)',
+                    sections: [
+                        { type: 'html', html: `<p>A successor level iterates the preceding function \\(n\\) times:\\[f_{\\omega\\cdot2+1}(n)=f_{\\omega\\cdot2}^{\\,n}(n).\\]The superscript denotes composition, not exponentiation.</p>` },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-035': {
-                label: '\\(f_{{\\omega}\\cdot{}2+2}(n)\\)'
+                label: '\\(f_{{\\omega}\\cdot{}2+2}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}\\cdot{}2+2}(n)\\)',
+                    sections: [
+                        { type: 'html', html: `<p>Iterate the preceding function \\(n\\) times again:\\[f_{\\omega\\cdot2+2}(n)=f_{\\omega\\cdot2+1}^{\\,n}(n).\\]Continuing gives the levels \\(\\omega\\cdot2+3\\), \\(\\omega\\cdot2+4\\), and so on.</p>` },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-036': {
                 label: '\\(f_{{\\omega}\\cdot{}3}(n)\\)',
@@ -599,7 +643,14 @@ print(f2(n,n))`
                 }
             },
             'item-039': {
-                label: '\\(f_{{\\omega}\\cdot{}5}(n)\\)'
+                label: '\\(f_{{\\omega}\\cdot{}5}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}\\cdot{}5}(n)\\)',
+                    sections: [
+                        { type: 'html', html: `<p>Using \\((\\omega\\cdot5)[n]=\\omega\\cdot4+n\\), we obtain \\[f_{\\omega\\cdot5}(n)=f_{\\omega\\cdot4+n}(n).\\]Letting the finite multiplier grow leads to the later \\(\\omega^2\\) level.</p>` },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-040': {
                 label: '\\(f_{{\\omega}^{2}}(n)\\)',

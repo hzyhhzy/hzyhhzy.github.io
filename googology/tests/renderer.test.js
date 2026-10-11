@@ -175,8 +175,7 @@ function createFixture(coreApi = core, mathApi) {
         branchNames: {
             1: { id: 'branch-1', text: 'branch one' },
             2: { id: 'branch-2', text: 'branch two' },
-            3: { id: 'branch-3', text: 'branch three' },
-            4: { id: 'branch-4', text: 'branch four' }
+            3: { id: 'branch-3', text: 'branch three' }
         },
         onOpenDetail(detail) {
             openedDetails.push(detail);
@@ -195,8 +194,7 @@ function cachedNodes(renderer) {
         ...renderer.branchNodes.flatMap((nodes) => [
             nodes.axis,
             nodes.arrow,
-            nodes.forkCurve,
-            nodes.mergeCurve
+            nodes.forkCurve
         ].filter(Boolean)),
         ...renderer.ellipsisNodes,
         renderer.finalArrowNode
@@ -223,24 +221,24 @@ function assertSameReferences(actual, expected) {
 test('constructor creates and caches the complete renderer DOM once', () => {
     const { document, elements, renderer } = createFixture();
 
-    assert.equal(document.elementCreationCount, 33);
+    assert.equal(document.elementCreationCount, 34);
     assert.equal(document.fragmentCreationCount, 2);
     assert.equal(renderer.itemNodes.length, 2);
     assert.equal(renderer.tickNodes.length, 2);
     assert.equal(renderer.axisSegmentNodes.length, 1);
     assert.equal(renderer.axisSubSegmentNodes.length, 1);
-    assert.equal(renderer.branchNodes.length, 4);
-    assert.equal(renderer.ellipsisNodes.length, 6);
+    assert.equal(renderer.branchNodes.length, 3);
+    assert.equal(renderer.ellipsisNodes.length, 10);
     assert.ok(renderer.finalArrowNode);
 
     assert.equal(elements.itemsContainer.children.length, 2);
     assert.equal(elements.ticksContainer.children.length, 2);
-    assert.equal(elements.ruler.children.length, 8);
-    assert.equal(elements.svgLayer.children.length, 4);
-    assert.equal(elements.root.children.length, 9);
+    assert.equal(elements.ruler.children.length, 12);
+    assert.equal(elements.svgLayer.children.length, 3);
+    assert.equal(elements.root.children.length, 7);
     assert.equal(new Set(cachedNodes(renderer)).size, cachedNodes(renderer).length);
     assert.equal(
-        renderer.branchNodes.every((nodes) => nodes.mergeCurve === null),
+        renderer.branchNodes.every((nodes) => !('mergeCurve' in nodes)),
         true
     );
 });
@@ -402,7 +400,7 @@ test('constructor and locale updates typeset every formula-bearing label', () =>
     };
     const { renderer } = createFixture(core, math);
 
-    assert.equal(renderedNodes.length, 8);
+    assert.equal(renderedNodes.length, 7);
     assert.equal(renderedNodes.includes(renderer.itemLabelNodes[0].text), true);
     assert.equal(renderedNodes.includes(renderer.axisSegmentNodes[0]), true);
     assert.equal(renderedNodes.includes(renderer.axisSubSegmentNodes[0]), true);
@@ -432,7 +430,7 @@ test('constructor and locale updates typeset every formula-bearing label', () =>
         )
     });
 
-    assert.equal(renderedNodes.length, 16);
+    assert.equal(renderedNodes.length, 14);
     assert.equal(
         renderer.itemLabelNodes[0].text.innerHTML,
         '\\(10^{10}\\)'
@@ -469,55 +467,45 @@ test('repeated renders preserve node identity and update visibility and ticks', 
 
     assert.equal(renderer.itemNodes[1].hidden, false);
     assert.equal(renderer.tickNodes[1].classList.contains('tick-short'), false);
-    assert.equal(renderer.tickNodes[1].style.height, '100px');
+    assert.equal(renderer.tickNodes[1].style.height, '110px');
     assert.equal(document.elementCreationCount, creationsBefore);
     assertSameReferences(cachedNodes(renderer), nodesBefore);
     assertSameReferences(containerChildren(elements), childrenBefore);
 });
 
-test('merge-curve feature creates four extra cached paths and updates them', () => {
-    const enabledCore = {
-        ...core,
-        CONFIG: {
-            ...core.CONFIG,
-            FEATURES: {
-                ...core.CONFIG.FEATURES,
-                SHOW_MERGE_CURVES: true
-            }
-        }
-    };
-    const { document, elements, renderer } = createFixture(enabledCore);
+test('branch paths stay independent and retain their cached DOM after zooming', () => {
+    const { document, elements, renderer } = createFixture();
     const paths = elements.svgLayer.children;
     const nodesBefore = cachedNodes(renderer);
     const creationsBefore = document.elementCreationCount;
 
-    assert.equal(paths.length, 8);
+    assert.equal(paths.length, 3);
     assert.equal(paths.every((node) => node.tagName === 'PATH'), true);
     assert.equal(
-        renderer.branchNodes.every((nodes) => Boolean(nodes.mergeCurve)),
+        renderer.branchNodes.every((nodes) => !('mergeCurve' in nodes)),
         true
     );
 
     renderer.render(
-        enabledCore.createState({ zoom: 1, offsetX: 0 }),
+        core.createState({ zoom: 1, offsetX: 0 }),
         { width: 1000, height: 800 }
     );
-    const firstMergePaths = renderer.branchNodes.map((nodes) =>
-        nodes.mergeCurve.getAttribute('d')
+    const firstPaths = renderer.branchNodes.map((nodes) =>
+        nodes.forkCurve.getAttribute('d')
     );
 
-    assert.equal(firstMergePaths.every(Boolean), true);
+    assert.equal(firstPaths.every(Boolean), true);
 
     renderer.render(
-        enabledCore.createState({ zoom: 2, offsetX: -100 }),
+        core.createState({ zoom: 2, offsetX: -100 }),
         { width: 1200, height: 900 }
     );
-    const secondMergePaths = renderer.branchNodes.map((nodes) =>
-        nodes.mergeCurve.getAttribute('d')
+    const secondPaths = renderer.branchNodes.map((nodes) =>
+        nodes.forkCurve.getAttribute('d')
     );
 
-    secondMergePaths.forEach((pathValue, index) => {
-        assert.notEqual(pathValue, firstMergePaths[index]);
+    secondPaths.forEach((pathValue, index) => {
+        assert.notEqual(pathValue, firstPaths[index]);
     });
     assert.equal(document.elementCreationCount, creationsBefore);
     assertSameReferences(cachedNodes(renderer), nodesBefore);

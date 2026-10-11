@@ -88,60 +88,117 @@ print(g)`;
 
     i18n.registerMessages('en', {
         ui: {
-            documentTitle: 'Googology Scale',
-            title: 'Googology Scale',
-            language: 'Language',
-            modalLabel: 'Content details',
-            modalClose: 'Close details',
-            filters: {
-                label: 'Content filters',
-                all: 'Show all',
-                info: 'Only entries with explanations',
-                code: 'Only entries with code',
-                zoomVisibility: 'Hide by zoom automatically',
-                manualLevel: 'Visible level: {level} (0–3)'
+            "documentTitle": "Googology Scale",
+            "title": "Googology Scale",
+            "language": "Language",
+            "modalLabel": "Entry details",
+            "modalClose": "Close details",
+            "codeClose": "Close code",
+            "codeOpen": "View program",
+            "subtitle": "A map of numbers beyond imagination.",
+            "home": "Back to the homepage",
+            "explore": "Explore the scale",
+            "search": "Search all entries",
+            "searchPlaceholder": "Find a number, notation, or topic…",
+            "directory": "Directory",
+            "jump": "Explore",
+            "guide": "Guide",
+            "mapLabel": "Googology Scale: arrow keys to pan, plus and minus to zoom",
+            "mapCaption": "Stages use equal spacing; branch x-positions are layout guides.",
+            "edition": "Sources updated · 2026-10",
+            "sources": "Source collection ↗",
+            "copyLink": "Copy link",
+            "copied": "Copied",
+            "copyFallback": "Copy the entry link from the address bar",
+            "mainAxis": "Main axis",
+            "noResults": "No entries match. Try a shorter search, or choose All in display settings.",
+            "resultCount": "{count} entries",
+            "jumps": {
+                "frontier": "Ordinal frontier",
+                "start": "Numbers & hyperoperations",
+                "epsilon": "Basic ordinals",
+                "bms": "Mountain notation family",
+                "pto": "Proof-theoretic ordinals",
+                "laver": "Laver Table"
             },
-            view: {
-                label: 'View controls',
-                zoom: 'Zoom: ',
-                hint: 'Scroll to zoom / drag to pan',
-                reset: 'Back to start',
-                zoomIn: 'Zoom in',
-                zoomOut: 'Zoom out'
+            "filters": {
+                "label": "Display",
+                "all": "All",
+                "info": "Explained",
+                "code": "With code",
+                "zoomVisibility": "Show detail as you zoom",
+                "manualLevel": "Detail level: {level} (0–3)"
+            },
+            "view": {
+                "label": "View controls",
+                "zoom": "Zoom",
+                "hint": "Drag to pan · Wheel to zoom · Shift + wheel to scroll branches",
+                "reset": "Overview",
+                "zoomIn": "Zoom in",
+                "zoomOut": "Zoom out"
             }
         },
+        guide: {
+            "title": "Reading the map",
+            "sections": [
+                {
+                    "type": "html",
+                    "html": "<p>The main axis leads from everyday numbers through ordinal notations and proof-theoretic landmarks, then to Busy Beaver and Rayo. After \\(\\varepsilon_0\\), the major landmarks are equally spaced.</p><p>Drag the canvas or use the Explore menu. The directory searches both languages and includes entries hidden at the current zoom. Click an entry for its definition, references and programs; the link button gives it a shareable address.</p><p>The main axis continues horizontally. Three side paths collect Laver constructions, BTBMS, and Friedman's finite combinatorics. Their horizontal positions suggest a region for display, not an exact comparison with the main axis. Gaps indicate omitted distance. Ordinal notations, concrete large numbers and functions are displayed together as growth landmarks.</p><p>On a keyboard, focus the map and use the arrow keys, plus/minus, Home and End. On a touch screen, drag horizontally and swipe vertically to see the branches.</p>"
+                },
+                {
+                    "type": "note",
+                    "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                }
+            ]
+        },
         branches: {
-            'branch-1': {
-                text: 'Y sequences and variants',
-                detail: document('Y sequences and variants', [
-                    html(
-                        '<p>A matrix-system extension developed by several googologists to explore growth beyond BMS.</p>'
-                    )
-                ])
+            "branch-1": {
+                "text": "Laver constructions",
+                "detail": {
+                    "title": "Laver constructions",
+                    "sections": [
+                        {
+                            "type": "html",
+                            "html": "<p>iBLP, Laver Table and LTY link finite combinatorial rules to elementary embeddings. Open the individual entries for their constructions and sources.</p>"
+                        },
+                        {
+                            "type": "note",
+                            "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                        }
+                    ]
+                }
             },
-            'branch-2': {
-                text: 'Laver-table constructions',
-                detail: document('Laver-table constructions', [
-                    html(
-                        '<p>Originating in large-cardinal axioms in set theory, these constructions are closely related to the combinatorial properties of finite algebraic structures and have a highly distinctive growth rate.</p>'
-                    )
-                ])
+            "branch-2": {
+                "text": "BTBMS",
+                "detail": {
+                    "title": "BTBMS",
+                    "sections": [
+                        {
+                            "type": "html",
+                            "html": "<p>Bubby3’s Transfinite BMS extends the parent structure of BMS with ordinal-indexed ancestry. The entry links to the NER implementation.</p>"
+                        },
+                        {
+                            "type": "note",
+                            "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                        }
+                    ]
+                }
             },
-            'branch-3': {
-                text: 'PTO series',
-                detail: document('Proof-theoretic ordinal (PTO) series', [
-                    html(
-                        '<p>A scale for measuring the “strength” of mathematical systems. From ZFC to systems with various large-cardinal axioms, the corresponding growth rates are the fastest currently known.</p>'
-                    )
-                ])
-            },
-            'branch-4': {
-                text: 'Unstudied content',
-                detail: document('Unstudied content', [
-                    html(
-                        '<p>Definitions in large-number research that have not yet been fully formalized or analyzed in depth.</p>'
-                    )
-                ])
+            "branch-3": {
+                "text": "Friedman",
+                "detail": {
+                    "title": "Friedman’s finite combinatorics",
+                    "sections": [
+                        {
+                            "type": "html",
+                            "html": "<p>Finite trees, graphs and other combinatorial objects can lead to termination principles of remarkable logical strength. This branch continues past the TREE and SCG landmarks on the earlier axis.</p>"
+                        },
+                        {
+                            "type": "note",
+                            "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                        }
+                    ]
+                }
             }
         },
         axisSegments: {
@@ -180,14 +237,21 @@ print(g)`;
                 ])
             },
             'axis-04': {
-                text: 'Extended OCFs',
-                detail: document('Extended OCFs', [
-                    html(
-                        '<p>OCFs are extended by introducing larger cardinals such as \\(I\\), \\(M\\), and \\(K\\) to build stronger ordinal systems. ' +
-                        'Because large-cardinal OCF rules are so convoluted, they have now largely been abandoned and replaced by BMS.</p>'
-                    )
-                ])
-            },
+            "text": "Extended collapsing functions",
+            "detail": {
+                "title": "Extended collapsing functions",
+                "sections": [
+                    {
+                        "type": "html",
+                        "html": "<p>Ordinal collapsing functions combine symbols for larger structures with collapse operations to describe countable ordinals. Extended Buchholz systems and BMS provide different ways to explore this stretch of the scale.</p><p>Continue to the highlighted BMS term \\((0,0,0)(1,1,1)(2,2,0)\\), then beyond fixed row counts to the BMS limit.</p>"
+                    },
+                    {
+                        "type": "note",
+                        "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                    }
+                ]
+            }
+        },
             'axis-05': {
                 text: 'BMS',
                 detail: document(
@@ -201,24 +265,40 @@ print(g)`;
                 )
             },
             'axis-06': {
-                text: 'Unknown frontier',
-                detail: document('Entering the unknown', [
-                    html(
-                        '<p>This is the current research frontier. The subject is extremely difficult and little is known about it. ' +
-                        'Many entries cannot yet be compared, and most lack rigorous termination proofs.</p>' +
-                        '<p>This page separates different kinds of notation into branches; the ordering between branches is currently unknown.</p>'
-                    )
-                ])
-            },
-            'axis-07': {
-                text: 'Uncomputable large numbers',
-                detail: document('Uncomputable large numbers', [
-                    html(
-                        '<p>Uncomputable large numbers exceed every computable function. They cannot be represented by program code, ' +
-                        'and most follow an idea like “the largest number expressible in \\(N\\) characters of some language,” so relatively few people are interested in them.</p>'
-                    )
-                ])
+            "text": "Mountain notation family",
+            "detail": {
+                "title": "Mountain notation family",
+                "sections": [
+                    {
+                        "type": "html",
+                        "html": "<p>TBMS, SRPD, Y and \\(\\omega\\)-Y occupy this part of the map. Recent comparisons and well-ordering proofs connect these concrete expansion systems with weak set theory.</p><p>Follow the entries for the results, or explore their definitions in <a href=\"https://smilelee-lyx.github.io/ne-rewritten/\">NER</a> and the <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy\">source collection</a>.</p>"
+                    },
+                    {
+                        "type": "note",
+                        "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                    }
+                ]
             }
+        },
+            'axis-07': {
+            "text": "Beyond computable growth",
+            "detail": {
+                "title": "Busy Beaver and Rayo",
+                "sections": [
+                    {
+                        "type": "html",
+                        "html": "<p>The Busy Beaver function outgrows every total computable function. Rayo's construction instead maximizes over numbers uniquely specified by formulas in a fixed language. Individual values are finite natural numbers; the obstacle is a uniform algorithm for the function.</p>"
+                    },
+                    {
+                        "type": "note",
+                        "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                    }
+                ]
+            }
+        },
+            'axis-08': {
+            "text": "Proof-theoretic ordinals"
+        }
         },
         axisSubSegments: {
             'subaxis-00': {
@@ -366,36 +446,53 @@ print(g)`;
                 ])
             },
             'subaxis-09': {
-                text: 'Large-cardinal \\(\\Psi\\)',
-                detail: document('EBO to SSO: large-cardinal \\(\\Psi\\)', [
-                    html(
-                        '<p>Introducing large cardinals such as \\(I\\), \\(M\\), and \\(K\\) into \\(\\Psi\\) makes the definitions extremely complicated and disorderly, and relevant references are difficult to find.</p>' +
-                        '<p>Compared with <a href="' + links.bms +
-                        '">BMS</a>, however, the increase in strength is negligible: even using every available letter barely reaches \\((0,0,0)(1,1,1)(2,2,0)\\).</p>' +
-                        '<p>Large-cardinal \\(\\Psi\\) is consequently used very little today, with BMS expressions usually used instead.</p>'
-                    )
-                ])
-            },
-            'subaxis-10': {
-                text: '[TODO: choose a suitable name]',
-                detail: document('[TODO: choose a suitable name]', [
-                    html(
-                        '<p>[TODO: add a description for this range.]</p>'
-                    )
-                ])
-            },
-            'subaxis-11': {
-                text: 'BMS-dominated range',
-                detail: document(
-                    '<a href="' + links.bms + '">BMS</a>-dominated range',
-                    [
-                        html(
-                            '<p>There is not much other content between this point and the BMS limit \\((0,0,0,\\ldots{})(1,1,1,\\ldots{}).\\) ' +
-                            'Without BMS or a similar structure, few notations can reach the BMS expression \\((0,0,0)(1,1,1)(2,2,2)\\).</p>'
-                        )
-                    ]
-                )
+            "text": "Large-cardinal collapse",
+            "detail": {
+                "title": "Beyond EBO",
+                "sections": [
+                    {
+                        "type": "html",
+                        "html": "<p>Further collapsing functions use symbols such as \\(I\\), \\(M\\) and \\(K\\). Their definitions depend on the chosen system. Here BMS matrix expressions give additional concrete landmarks on the way to \\((0,0,0)(1,1,1)(2,2,0)\\).</p>"
+                    },
+                    {
+                        "type": "note",
+                        "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                    }
+                ]
             }
+        },
+            'subaxis-10': {
+            "text": "Rows and ancestry",
+            "detail": {
+                "title": "Rows and ancestry in BMS",
+                "sections": [
+                    {
+                        "type": "html",
+                        "html": "<p>BMS uses finite matrices. Entries specify nested parent relations; expansion cuts off the final column and copies a selected block according to those relations. More rows allow deeper ancestry to influence copying.</p>"
+                    },
+                    {
+                        "type": "note",
+                        "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                    }
+                ]
+            }
+        },
+            'subaxis-11': {
+            "text": "Toward the BMS limit",
+            "detail": {
+                "title": "Toward the BMS limit",
+                "sections": [
+                    {
+                        "type": "html",
+                        "html": "<p>The sequence of finite-row BMS systems leads to the full BMS limit. Transfinite extensions then allow the row structure itself to carry ordinal information; TBMS and Y-related systems are introduced in the next segment.</p>"
+                    },
+                    {
+                        "type": "note",
+                        "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                    }
+                ]
+            }
+        }
         }
     });
 }(globalThis));

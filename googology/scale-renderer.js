@@ -94,6 +94,9 @@
             model.isBottom ? 'side-bottom' : '',
             'zoom-level-' + model.zoomLevel
         ].filter(Boolean).join(' ');
+        node.setAttribute('data-item-id', model.item.id);
+        node.setAttribute('data-branch', model.branchId);
+        label.setAttribute('data-item-id', model.item.id);
 
         label.className = 'scale-label';
         text.className = 'scale-label-text';
@@ -134,6 +137,7 @@
     ) {
         var node = documentRef.createElement('div');
         node.className = className;
+        node.setAttribute('data-axis-id', segment.id);
         node.textContent = segment.text;
         if (global.GoogologyMath) {
             global.GoogologyMath.render(node);
@@ -153,6 +157,7 @@
     ) {
         var node = documentRef.createElement('div');
         node.className = 'branch-axis';
+        node.setAttribute('data-branch', branchInfo.branch);
         node.textContent = branchInfo.text || '';
         if (global.GoogologyMath) {
             global.GoogologyMath.render(node);
@@ -232,7 +237,9 @@
                 function () {
                     return this.itemModels[index].detail;
                 }.bind(this),
-                this.onOpenDetail
+                function (detail) {
+                    this.onOpenDetail(detail, this.itemModels[index].item);
+                }.bind(this)
             );
             var tickNode = createTickNode(this.document);
 
@@ -305,45 +312,36 @@
                 SVG_NAMESPACE,
                 'path'
             );
-            var mergeCurve = null;
-
             arrow.className = 'branch-arrow';
+            arrow.setAttribute('data-branch', branchId);
             forkCurve.setAttribute('class', 'fork-curve');
-
-            if (Core.CONFIG.FEATURES.SHOW_MERGE_CURVES) {
-                mergeCurve = this.document.createElementNS(
-                    SVG_NAMESPACE,
-                    'path'
-                );
-                mergeCurve.setAttribute('class', 'fork-curve');
-            }
+            forkCurve.setAttribute('data-branch', branchId);
+            axis.setAttribute('data-branch', branchId);
 
             this.branchNodes.push({
                 branchId: branchId,
                 axis: axis,
                 arrow: arrow,
-                forkCurve: forkCurve,
-                mergeCurve: mergeCurve
+                forkCurve: forkCurve
             });
 
             this.root.appendChild(axis);
             this.root.appendChild(arrow);
             this.svgLayer.appendChild(forkCurve);
-            if (mergeCurve) {
-                this.svgLayer.appendChild(mergeCurve);
-            }
         }, this);
     };
 
     GoogologyScaleRenderer.prototype.createEllipsisNodes = function () {
-        var count = Core.CONFIG.ELLIPSIS.COUNT;
-
-        for (var index = 0; index < count; index += 1) {
-            var node = this.document.createElement('div');
-            node.className = 'ellipsis-dot';
-            this.ellipsisNodes.push(node);
-            this.ruler.appendChild(node);
-        }
+        Core.CONFIG.AXIS_GAPS.forEach(function (gap) {
+            for (var index = 0; index < gap.count; index += 1) {
+                var node = this.document.createElement('div');
+                node.className = 'ellipsis-dot';
+                node.setAttribute('data-gap', gap.id);
+                node.setAttribute('aria-hidden', 'true');
+                this.ellipsisNodes.push(node);
+                this.ruler.appendChild(node);
+            }
+        }, this);
     };
 
     GoogologyScaleRenderer.prototype.createFinalArrowNode = function () {
@@ -517,12 +515,6 @@
                 curvePath(geometry.forkCurve)
             );
 
-            if (nodes.mergeCurve) {
-                nodes.mergeCurve.setAttribute(
-                    'd',
-                    curvePath(geometry.mergeCurve)
-                );
-            }
         });
     };
 

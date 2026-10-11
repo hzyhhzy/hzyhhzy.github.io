@@ -13,7 +13,8 @@ const LOCALE_FILES = LOCALES.flatMap((locale) => [
     `locales/${locale}/interface.js`,
     `locales/${locale}/items-000-040.js`,
     `locales/${locale}/items-041-081.js`,
-    `locales/${locale}/items-082-122.js`
+    `locales/${locale}/items-082-122.js`,
+    `locales/${locale}/items-123-129.js`
 ]);
 const LEGACY_MATH_PATTERN =
     /<\/?(?:sup|sub)>|&(?:omega|Omega|Gamma|epsilon|varepsilon|phi|psi|zeta|eta|alpha|beta|theta|xi|rho|tau|lambda|kappa|mu|nu|pi|Sigma|Pi|middot|times|uarr|rarr|le|ge|lt|gt|infin);/u;
@@ -86,6 +87,7 @@ function createMessages() {
         LOCALES.map((locale) => [
             locale,
             {
+                guide: context.GoogologyI18n.get('guide', { locale }),
                 items: context.GoogologyI18n.get('items', { locale }),
                 branches: context.GoogologyI18n.get('branches', { locale }),
                 axisSegments: context.GoogologyI18n.get(

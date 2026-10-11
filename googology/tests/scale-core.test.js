@@ -30,22 +30,19 @@ test('scale-core exposes the same API to CommonJS and a classic script', () => {
     );
 });
 
-test('CONFIG centralizes the ruler, zoom, branch, item, and feature constants', () => {
+test('CONFIG centralizes the main axis and three non-merging branches', () => {
     assert.deepEqual(core.CONFIG.RULER, {
         START: 0,
         DOUBLE_AXIS_END: 6,
-        FORK_X: 6.75,
-        BRANCH_START: 7.25,
-        BRANCH_END: 8.85,
-        MERGE_X: 9,
-        UNCOMPUTABLE_START: 9.5,
-        END: 12
+        FORK_X: 7.75,
+        BRANCH_START: 9,
+        UNCOMPUTABLE_START: 14.2,
+        END: 16
     });
     assert.deepEqual(core.CONFIG.BRANCH_Y_OFFSETS, {
-        1: -225,
-        2: -75,
-        3: 75,
-        4: 225
+        1: -230,
+        2: 230,
+        3: 460
     });
     assert.deepEqual(core.CONFIG.ZOOM_LEVELS, {
         0: 0,
@@ -54,9 +51,10 @@ test('CONFIG centralizes the ruler, zoom, branch, item, and feature constants', 
         3: 10
     });
     assert.equal(core.CONFIG.ITEM_LAYOUT.BASE_OFFSET, 35);
-    assert.equal(core.CONFIG.ITEM_LAYOUT.LEVEL_GAP, 65);
-    assert.equal(core.CONFIG.ELLIPSIS.COUNT, 6);
-    assert.equal(core.CONFIG.FEATURES.SHOW_MERGE_CURVES, false);
+    assert.equal(core.CONFIG.ITEM_LAYOUT.LEVEL_GAP, 75);
+    assert.deepEqual(core.CONFIG.AXIS_GAPS.map(({ start, end }) => [start, end]),
+        [[8.025, 8.225], [12.8, 14.2]]);
+    assert.equal('MERGE_X' in core.CONFIG.RULER, false);
 });
 
 test('item models derive filter, branch, and layout facts without mutation', () => {
@@ -67,7 +65,7 @@ test('item models derive filter, branch, and layout facts without mutation', () 
         zoomLevel: 2,
         side: 'bottom',
         level: 3,
-        branch: 4
+        branch: 3
     };
     const before = structuredClone(item);
     const model = core.createItemModel(item, 17);
@@ -77,11 +75,11 @@ test('item models derive filter, branch, and layout facts without mutation', () 
     assert.equal(model.index, 17);
     assert.equal(model.hasInfo, true);
     assert.equal(model.hasCode, true);
-    assert.equal(model.branchId, 4);
-    assert.equal(model.yOffset, 225);
+    assert.equal(model.branchId, 3);
+    assert.equal(model.yOffset, 460);
     assert.equal(model.isBottom, true);
     assert.equal(model.minZoom, 4);
-    assert.equal(model.labelOffset, 230);
+    assert.equal(model.labelOffset, 260);
 
     assert.equal(
         core.createItemModel({

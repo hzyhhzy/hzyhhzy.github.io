@@ -20,11 +20,11 @@ test('world coordinates use offset + value * pixels-per-unit * zoom', () => {
 
 test('offset clamping keeps START and END from crossing the viewport center', () => {
     assert.equal(core.clampOffset(1000, 1, 1000), 500);
-    assert.equal(core.clampOffset(-10000, 1, 1000), -2500);
+    assert.equal(core.clampOffset(-10000, 1, 1000), -3500);
     assert.equal(core.clampOffset(-1000, 1, 1000), -1000);
 });
 
-test('resetView restores zoom 1 and centers the full 0..12 ruler', () => {
+test('resetView restores zoom 1 and centers the full ruler', () => {
     const original = core.createState({
         zoom: 7,
         offsetX: 99,
@@ -34,7 +34,7 @@ test('resetView restores zoom 1 and centers the full 0..12 ruler', () => {
     const reset = core.resetView(original, 1000);
 
     assert.equal(reset.zoom, 1);
-    assert.equal(reset.offsetX, -1000);
+    assert.equal(reset.offsetX, -1500);
     assert.equal(reset.filter, 'code');
     assert.equal(reset.manualZoomLevel, 3);
     assert.notEqual(reset, original);
@@ -97,7 +97,7 @@ test('panBy applies a delta and then clamps without mutating state', () => {
     const state = core.createState({ zoom: 1, offsetX: -1000 });
     assert.equal(core.panBy(state, 200, 1000).offsetX, -800);
     assert.equal(core.panBy(state, 5000, 1000).offsetX, 500);
-    assert.equal(core.panBy(state, -5000, 1000).offsetX, -2500);
+    assert.equal(core.panBy(state, -5000, 1000).offsetX, -3500);
     assert.equal(state.offsetX, -1000);
 });
 
@@ -126,9 +126,9 @@ test('itemGeometry preserves branch and top/bottom label placement', () => {
         side: 'top',
         isBottom: false,
         branchId: 1,
-        axisYOffset: -225,
-        labelOffset: 165,
-        centerYOffset: -390,
+        axisYOffset: -230,
+        labelOffset: 185,
+        centerYOffset: -415,
         transform: 'translate(-50%, -100%)'
     });
     assert.deepEqual(core.itemGeometry(bottom, state), {
@@ -137,9 +137,9 @@ test('itemGeometry preserves branch and top/bottom label placement', () => {
         side: 'bottom',
         isBottom: true,
         branchId: 3,
-        axisYOffset: 75,
-        labelOffset: 100,
-        centerYOffset: 175,
+        axisYOffset: 460,
+        labelOffset: 110,
+        centerYOffset: 570,
         transform: 'translate(-50%, 0)'
     });
 });
@@ -156,7 +156,7 @@ test('axis segment geometry includes overlap and double-axis boundary', () => {
     );
 });
 
-test('rulerGeometry describes endpoints, branches, curves, and ellipsis', () => {
+test('rulerGeometry keeps the main axis straight and describes three independent branches', () => {
     const state = core.createState({ zoom: 1, offsetX: -1000 });
     const geometry = core.rulerGeometry(state, {
         width: 1000,
@@ -167,14 +167,12 @@ test('rulerGeometry describes endpoints, branches, curves, and ellipsis', () => 
     assert.deepEqual(geometry.x, {
         start: -1000,
         doubleAxisEnd: 500,
-        fork: 687.5,
-        branchStart: 812.5,
-        branchEnd: 1212.5,
-        merge: 1250,
-        uncomputableStart: 1375,
-        end: 2000
+        fork: 937.5,
+        branchStart: 1250,
+        uncomputableStart: 2550,
+        end: 3000
     });
-    assert.deepEqual(geometry.ruler, { left: -1000, width: 3005 });
+    assert.deepEqual(geometry.ruler, { left: -1000, width: 4005 });
     assert.deepEqual(
         geometry.branches.map(({ branchId, yOffset, y, left, width }) => ({
             branchId,
@@ -184,31 +182,34 @@ test('rulerGeometry describes endpoints, branches, curves, and ellipsis', () => 
             width
         })),
         [
-            { branchId: 1, yOffset: -225, y: 175, left: 812.5, width: 400 },
-            { branchId: 2, yOffset: -75, y: 325, left: 812.5, width: 400 },
-            { branchId: 3, yOffset: 75, y: 475, left: 812.5, width: 400 },
-            { branchId: 4, yOffset: 225, y: 625, left: 812.5, width: 400 }
+            { branchId: 1, yOffset: -230, y: 170, left: 1250, width: 1000 },
+            { branchId: 2, yOffset: 230, y: 630, left: 1250, width: 375 },
+            { branchId: 3, yOffset: 460, y: 860, left: 1250, width: 1000 }
         ]
     );
     assert.deepEqual(geometry.branches[0].forkCurve, {
-        start: { x: 686.5, y: 400 },
-        control1: { x: 750, y: 400 },
-        control2: { x: 750, y: 175 },
-        end: { x: 813.5, y: 175 }
+        start: { x: 936.5, y: 400 },
+        control1: { x: 1093.75, y: 400 },
+        control2: { x: 1093.75, y: 170 },
+        end: { x: 1251, y: 170 }
     });
-    assert.equal(geometry.ellipsis.length, 6);
-    assert.deepEqual(geometry.ellipsis[0], {
-        index: 0,
-        relativeLeft: 2262.5,
-        screenX: 1262.5,
-        width: 10
-    });
-    assert.deepEqual(geometry.ellipsis.at(-1), {
-        index: 5,
-        relativeLeft: 2375,
-        screenX: 1375,
-        width: 10
-    });
-    assert.equal(geometry.finalArrowX, 1999);
-    assert.equal(geometry.showMergeCurves, false);
+    assert.ok(geometry.branches.every((branch) => !('mergeCurve' in branch)));
+    assert.equal(geometry.finalArrowX, 2999);
+});
+
+test('both main-axis omissions remain within their requested gaps at every zoom', () => {
+    for (const zoom of [0.1, 1, 4, 20]) {
+        const state = core.createState({ zoom, offsetX: -200 });
+        const geometry = core.rulerGeometry(state, { width: 1200, height: 1100 });
+        assert.equal(geometry.ellipsis.length, 10);
+        core.CONFIG.AXIS_GAPS.forEach((gap) => {
+            const dots = geometry.ellipsis.filter((dot) => dot.gapId === gap.id);
+            assert.equal(dots.length, gap.count);
+            dots.forEach((dot) => {
+                assert.ok(dot.screenX > core.worldToScreen(gap.start, state));
+                assert.ok(dot.screenX + dot.width < core.worldToScreen(gap.end, state));
+                assert.ok(dot.width > 0);
+            });
+        });
+    }
 });

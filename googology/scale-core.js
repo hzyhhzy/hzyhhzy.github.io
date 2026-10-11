@@ -16,12 +16,10 @@
     var RULER = Object.freeze({
         START: 0,
         DOUBLE_AXIS_END: 6,
-        FORK_X: 6.75,
-        BRANCH_START: 7.25,
-        BRANCH_END: 8.85,
-        MERGE_X: 9,
-        UNCOMPUTABLE_START: 9.5,
-        END: 12
+        FORK_X: 7.75,
+        BRANCH_START: 9,
+        UNCOMPUTABLE_START: 14.2,
+        END: 16
     });
 
     var VIEW = Object.freeze({
@@ -42,11 +40,16 @@
     });
 
     var BRANCH_Y_OFFSETS = Object.freeze({
-        1: -225,
-        2: -75,
-        3: 75,
-        4: 225
+        1: -230,
+        2: 230,
+        3: 460
     });
+
+    var BRANCH_ENDS = Object.freeze({ 1: 13, 2: 10.5, 3: 13 });
+    var AXIS_GAPS = Object.freeze([
+        Object.freeze({ id: 'pto-gap', start: 8.025, end: 8.225, count: 3 }),
+        Object.freeze({ id: 'computability-gap', start: 12.8, end: 14.2, count: 7 })
+    ]);
 
     var ZOOM_LEVELS = Object.freeze({
         0: 0,
@@ -57,22 +60,10 @@
 
     var ITEM_LAYOUT = Object.freeze({
         BASE_OFFSET: 35,
-        LEVEL_GAP: 65,
+        LEVEL_GAP: 75,
         SHORT_TICK_BASE_HEIGHT: 30,
         SHORT_TICK_LEVEL_STEP: 3,
         MIN_SHORT_TICK_HEIGHT: 2
-    });
-
-    var ELLIPSIS = Object.freeze({
-        COUNT: 6,
-        DOT_WIDTH_UNITS: 0.04,
-        WIDTH_UNITS: 0.04,
-        GAP_UNITS: 0.05,
-        START_OFFSET_UNITS: 0.05
-    });
-
-    var FEATURES = Object.freeze({
-        SHOW_MERGE_CURVES: false
     });
 
     var FILTERS = Object.freeze({
@@ -85,10 +76,10 @@
         RULER: RULER,
         VIEW: VIEW,
         BRANCH_Y_OFFSETS: BRANCH_Y_OFFSETS,
+        BRANCH_ENDS: BRANCH_ENDS,
+        AXIS_GAPS: AXIS_GAPS,
         ZOOM_LEVELS: ZOOM_LEVELS,
         ITEM_LAYOUT: ITEM_LAYOUT,
-        ELLIPSIS: ELLIPSIS,
-        FEATURES: FEATURES,
         FILTERS: FILTERS
     });
 
@@ -315,29 +306,8 @@
         };
     }
 
-    function curveGeometry(startX, endX, centerY, yOffset, reverse) {
+    function curveGeometry(startX, endX, centerY, yOffset) {
         var controlX = startX + ((endX - startX) * 0.5);
-
-        if (reverse) {
-            return {
-                start: {
-                    x: startX - VIEW.ARROW_OVERLAP,
-                    y: centerY + yOffset
-                },
-                control1: {
-                    x: controlX,
-                    y: centerY + yOffset
-                },
-                control2: {
-                    x: controlX,
-                    y: centerY
-                },
-                end: {
-                    x: endX + VIEW.ARROW_OVERLAP,
-                    y: centerY
-                }
-            };
-        }
 
         return {
             start: {
@@ -368,8 +338,6 @@
             doubleAxisEnd: worldToScreen(RULER.DOUBLE_AXIS_END, state),
             fork: worldToScreen(RULER.FORK_X, state),
             branchStart: worldToScreen(RULER.BRANCH_START, state),
-            branchEnd: worldToScreen(RULER.BRANCH_END, state),
-            merge: worldToScreen(RULER.MERGE_X, state),
             uncomputableStart: worldToScreen(
                 RULER.UNCOMPUTABLE_START,
                 state
@@ -380,45 +348,38 @@
         var branches = Object.keys(BRANCH_Y_OFFSETS).map(function (key) {
             var branchId = Number(key);
             var yOffset = BRANCH_Y_OFFSETS[key];
+            var endX = worldToScreen(BRANCH_ENDS[key], state);
             return {
                 branchId: branchId,
                 yOffset: yOffset,
                 y: centerY + yOffset,
                 left: x.branchStart,
-                width: x.branchEnd - x.branchStart,
-                arrowX: x.branchEnd - VIEW.ARROW_OVERLAP,
+                width: endX - x.branchStart,
+                arrowX: endX - VIEW.ARROW_OVERLAP,
                 forkCurve: curveGeometry(
                     x.fork,
                     x.branchStart,
                     centerY,
-                    yOffset,
-                    false
-                ),
-                mergeCurve: curveGeometry(
-                    x.branchEnd,
-                    x.merge,
-                    centerY,
-                    yOffset,
-                    true
+                    yOffset
                 )
             };
         });
 
         var ellipsis = [];
-        var ellipsisStart = RULER.MERGE_X - RULER.START +
-            ELLIPSIS.START_OFFSET_UNITS;
-
-        for (var index = 0; index < ELLIPSIS.COUNT; index += 1) {
-            var leftUnits = ellipsisStart +
-                (index * (ELLIPSIS.WIDTH_UNITS + ELLIPSIS.GAP_UNITS));
-            var relativeLeft = leftUnits * currentUnitWidth;
-            ellipsis.push({
-                index: index,
-                relativeLeft: relativeLeft,
-                screenX: x.start + relativeLeft,
-                width: ELLIPSIS.WIDTH_UNITS * currentUnitWidth
-            });
-        }
+        AXIS_GAPS.forEach(function (gap) {
+            var step = (gap.end - gap.start) / gap.count;
+            for (var index = 0; index < gap.count; index += 1) {
+                var leftUnits = gap.start + step * (index + 0.25);
+                var relativeLeft = (leftUnits - RULER.START) * currentUnitWidth;
+                ellipsis.push({
+                    index: ellipsis.length,
+                    gapId: gap.id,
+                    relativeLeft: relativeLeft,
+                    screenX: x.start + relativeLeft,
+                    width: Math.min(step * 0.35 * currentUnitWidth, 10)
+                });
+            }
+        });
 
         return {
             unitWidth: currentUnitWidth,
@@ -430,8 +391,7 @@
             },
             branches: branches,
             ellipsis: ellipsis,
-            finalArrowX: x.end - VIEW.ARROW_OVERLAP,
-            showMergeCurves: FEATURES.SHOW_MERGE_CURVES
+            finalArrowX: x.end - VIEW.ARROW_OVERLAP
         };
     }
 

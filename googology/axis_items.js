@@ -3,8 +3,7 @@
 const branchNames = Object.freeze({
     1: Object.freeze({ id: 'branch-1', branch: 1 }),
     2: Object.freeze({ id: 'branch-2', branch: 2 }),
-    3: Object.freeze({ id: 'branch-3', branch: 3 }),
-    4: Object.freeze({ id: 'branch-4', branch: 4 })
+    3: Object.freeze({ id: 'branch-3', branch: 3 })
 });
 
 const axisSegments = Object.freeze([
@@ -14,8 +13,9 @@ const axisSegments = Object.freeze([
     { id: 'axis-03', start: 3, end: 4, bg: '#FFD700', color: '#000' },
     { id: 'axis-04', start: 4, end: 5, bg: '#FF6000', color: '#000' },
     { id: 'axis-05', start: 5, end: 6, bg: '#C00000', color: '#fff' },
-    { id: 'axis-06', start: 6, end: 6.75, bg: '#000', color: '#fff' },
-    { id: 'axis-07', start: 9.5, end: 12, bg: '#666', color: '#fff' }
+    { id: 'axis-06', start: 6, end: 8.025, bg: '#435d89', color: '#fff' },
+    { id: 'axis-08', start: 8.225, end: 12.8, bg: '#365574', color: '#fff' },
+    { id: 'axis-07', start: 14.2, end: 16, bg: '#616975', color: '#fff' }
 ].map(Object.freeze));
 
 const axisSubSegments = Object.freeze([

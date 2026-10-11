@@ -36,9 +36,26 @@
                 }
             };
             this.handleKeyDown = (event) => {
-                if (event.key !== 'Escape' || this.root.hidden) {
+                if (this.root.hidden || this.root.querySelector('dialog[open]')) {
                     return;
                 }
+
+                if (event.key === 'Tab') {
+                    const focusable = Array.from(this.root.querySelectorAll(
+                        'button, a[href], input, select, textarea, [tabindex="0"]'
+                    )).filter((element) => !element.hidden && !element.disabled && element.getClientRects().length);
+                    const first = focusable[0] || this.closeButton;
+                    const last = focusable[focusable.length - 1] || first;
+                    if (event.shiftKey && this.document.activeElement === first) {
+                        event.preventDefault();
+                        last.focus();
+                    } else if (!event.shiftKey && this.document.activeElement === last) {
+                        event.preventDefault();
+                        first.focus();
+                    }
+                    return;
+                }
+                if (event.key !== 'Escape') return;
 
                 event.preventDefault();
                 event.stopPropagation();
@@ -61,6 +78,7 @@
                 this.enhanceLegacyCodeBlocks();
             }
             this.highlightCodeBlocks();
+            if (this.body.parentElement) this.body.parentElement.scrollTop = 0;
             this.setOpen(true);
             this.closeButton.focus();
         }
@@ -146,6 +164,10 @@
         setOpen(isOpen) {
             this.root.hidden = !isOpen;
             this.root.setAttribute('aria-hidden', String(!isOpen));
+            if (this.document.querySelectorAll) {
+                this.document.querySelectorAll('.site-header, .explorer-toolbar, .workspace, .map-footer')
+                    .forEach((element) => { element.inert = isOpen; });
+            }
         }
     }
 

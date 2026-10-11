@@ -1,6 +1,13 @@
 (function (global) {
     'use strict';
 
+    function unreviewedNotice() {
+        return {
+            type: 'note',
+            html: '该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性'
+        };
+    }
+
     global.GoogologyI18n.registerMessages('zh-CN', {
         items: {
             'item-000': {
@@ -24,7 +31,13 @@
                 label: '\\(1000\\)',
                 detail: {
                     title: '\\(1000\\)',
-                    sections: []
+                    sections: [
+                        {
+                            type: 'html',
+                            html: `<p>\\(1000=10^{3}\\)，中文读作“一千”，英文写作 one thousand。它是最小的四位正整数。</p>`
+                        },
+                        unreviewedNotice()
+                    ]
                 }
             },
             'item-002': {
@@ -213,13 +226,29 @@ print(result)`
                     sections: [
                         {
                             type: 'html',
-                            html: `<p>\\(10\\uparrow{}\\uparrow{}\\uparrow{}10=10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}10)))))))))\\)。</p><p>对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9-1\\) 次“十进制位数”，结果是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8-1\\) 次，结果也是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}7-1\\) 次，结果仍是 11；依此类推。</p>`
+                            html: `<p>\\(10\\uparrow{}\\uparrow{}\\uparrow{}10=10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}10)))))))))\\)。</p><p>对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9-1\\) 次“十进制位数”，结果是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8-1\\) 次，结果也是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}7-1\\) 次，结果仍是 11；依此类推。</p><p>下面的程序按照 <a href="https://doi.org/10.1126/science.194.4271.1235">Knuth 上箭头记号</a>的递归规则求值；它没有预先写入答案，也不设置整数位数上限。</p>`
                         },
                         {
                             type: 'code',
                             language: 'python',
-                            source: `TODO`
-                        }
+                            title: '递归求值（理论实现）',
+                            source: `def up_arrow(base, arrows, argument):
+    # a ↑^0 b = a * b；当 arrows >= 1 时，a ↑^arrows 0 = 1。
+    if arrows == 0:
+        return base * argument
+    if argument == 0:
+        return 1
+
+    return up_arrow(
+        base,
+        arrows - 1,
+        up_arrow(base, arrows, argument - 1),
+    )
+
+
+print(up_arrow(10, 3, 10))`
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -268,7 +297,7 @@ print(f(n, n))`
                     sections: [
                         {
                             type: 'html',
-                            html: `<p>建议先阅读 FGH 条目。Hardy 层级（HH）同样把序数转换为大数；对于后继序数，它舍弃嵌套规则，改用简单的“\\(+1\\)”。Goodstein 序列、\\(\\operatorname{TREE}\\) 函数和 \\(\\operatorname{SCG}\\) 函数等大数的行为都类似某个序数上的 HH，因此 HH 为分析这些大数提供了工具。</p><h3>HH 的三条定义规则</h3><ul><li><strong>起点：</strong>\\(H_{0}(n)=n\\)。</li><li><strong>后继序数：</strong>\\(H_{{\\alpha}+1}(n)=H_{{\\alpha}}(n)+1\\)。</li><li><strong>极限序数：</strong>\\(H_{{\\alpha}}(n)=H_{{\\alpha}[n]}(n)\\)，其中 \\({\\alpha}[n]\\) 是极限序数 \\({\\alpha}\\) 的基本列第 \\(n\\) 项。</li></ul><p>在初期，HH 远小于 FGH；但到达 \\({\\varepsilon}_{0}\\) 后，HH 的增长速度便与 FGH 相当。下面给出粗略证明。</p><h3>定理：\\(H_{{\\omega}^{{\\alpha}}}(n)=f_{{\\alpha}}(n)\\)</h3><p>这里是严格相等，而不是约等于。</p><ul><li>容易证明 \\(H_{{\\alpha}+{\\beta}}(n)=H_{{\\alpha}}(H_{{\\beta}}(n))\\)。</li><li>因此：\\[\\begin{aligned}H_{{\\omega}^{{\\alpha}+1}}(n)&=H_{{\\omega}^{{\\alpha}}\\cdot{}{\\omega}}(n)\\\\&=H_{{\\omega}^{{\\alpha}}\\cdot{}n}(n)\\\\&=H_{{\\omega}^{{\\alpha}}}(H_{{\\omega}^{{\\alpha}}}(\\ldots{}H_{{\\omega}^{{\\alpha}}}(n)\\ldots{}))&& (\\text{嵌套 }n\\text{ 层})\\\\&=f_{{\\alpha}}(f_{{\\alpha}}(\\ldots{}f_{{\\alpha}}(n)\\ldots{}))&& (\\text{嵌套 }n\\text{ 层})\\\\&=f_{{\\alpha}+1}(n)\\end{aligned}\\]。</li><li>归纳可得 \\(H_{{\\omega}^{{\\alpha}}}(n)=f_{{\\alpha}}(n)\\)，具体证明细节从略。</li></ul><p>以下程序用一维数组表示小于 \\({\\omega}^{{\\omega}}\\) 的序数，并计算 \\(H_{{\\omega}^{{\\omega}}}(n)\\)。</p>`
+                            html: `<p>建议先阅读 FGH 条目。Hardy 层级（HH）同样把序数转换为大数，但后继步骤只把输入增加 \\(1\\)。Goodstein 序列等构造可以借助它来分析。</p><h3>HH 的三条定义规则</h3><ul><li>\\(H_0(n)=n\\)；</li><li>\\(H_{\\alpha+1}(n)=H_\\alpha(n+1)\\)；</li><li>\\(H_\\lambda(n)=H_{\\lambda[n]}(n)\\)，其中 \\(\\lambda\\) 为极限序数。</li></ul><p>在这里采用的基本列约定下，对 \\(\\alpha\\lt\\varepsilon_0\\) 有 \\(H_{\\omega^\\alpha}(n)=f_\\alpha(n)\\)。例如 \\(H_\\omega(n)=2n\\)、\\(H_{\\omega^2}(n)=n2^n\\)。后继步骤的对应关系为</p>\\[H_{\\omega^{\\alpha+1}}(n)=H_{\\omega^\\alpha\\cdot n}(n)=H_{\\omega^\\alpha}^{\\,n}(n)=f_\\alpha^{\\,n}(n)=f_{\\alpha+1}(n).\\]<p>这里上标 \\(n\\) 表示函数迭代。沿极限基本列继续递推，就得到上述对应；到 \\(\\varepsilon_0\\) 级时，HH 与 FGH 的增长速度相当。</p><p>下面的程序用一维数组表示小于 \\(\\omega^\\omega\\) 的序数，并计算 \\(H_{\\omega^\\omega}(n)\\)。参考：<a href="https://lsv.ens-paris-saclay.fr/Publis/PAPERS/PDF/HSS-lmcs14.pdf">《The Power of Priority Channel Systems》§4.1.1</a>。</p>`
                         },
                         {
                             type: 'code',
@@ -284,7 +313,8 @@ while(len(a) > 0): # Hardy hierarchy on ordinals.
         a.pop()
         a.extend([v-1,] * n)
 print(n)`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -557,10 +587,24 @@ print(f2(n,n))`
                 }
             },
             'item-034': {
-                label: '\\(f_{{\\omega}\\cdot{}2+1}(n)\\)'
+                label: '\\(f_{{\\omega}\\cdot{}2+1}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}\\cdot{}2+1}(n)\\)',
+                    sections: [
+                        { type: 'html', html: `<p>后继层级把前一层函数迭代 \\(n\\) 次：\\[f_{\\omega\\cdot2+1}(n)=f_{\\omega\\cdot2}^{\\,n}(n).\\]上标表示复合迭代，而不是乘方。</p>` },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-035': {
-                label: '\\(f_{{\\omega}\\cdot{}2+2}(n)\\)'
+                label: '\\(f_{{\\omega}\\cdot{}2+2}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}\\cdot{}2+2}(n)\\)',
+                    sections: [
+                        { type: 'html', html: `<p>再把上一层函数迭代 \\(n\\) 次：\\[f_{\\omega\\cdot2+2}(n)=f_{\\omega\\cdot2+1}^{\\,n}(n).\\]这样可以依次得到 \\(\\omega\\cdot2+3\\)、\\(\\omega\\cdot2+4\\) 等层级。</p>` },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-036': {
                 label: '\\(f_{{\\omega}\\cdot{}3}(n)\\)',
@@ -599,7 +643,14 @@ print(f2(n,n))`
                 }
             },
             'item-039': {
-                label: '\\(f_{{\\omega}\\cdot{}5}(n)\\)'
+                label: '\\(f_{{\\omega}\\cdot{}5}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}\\cdot{}5}(n)\\)',
+                    sections: [
+                        { type: 'html', html: `<p>使用基本列 \\((\\omega\\cdot5)[n]=\\omega\\cdot4+n\\)，得到 \\[f_{\\omega\\cdot5}(n)=f_{\\omega\\cdot4+n}(n).\\]把有限倍数也放开，就会到达后面的 \\(\\omega^2\\) 层级。</p>` },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-040': {
                 label: '\\(f_{{\\omega}^{2}}(n)\\)',
