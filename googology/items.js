@@ -105,7 +105,6 @@ const items = Object.freeze([
     {"id":"item-101","value":5.75,"zoomLevel":1,"side":"top","level":0},
     {"id":"item-102","value":5.75,"zoomLevel":1,"side":"top","level":1},
     {"id":"item-103","value":6,"zoomLevel":0,"side":"top","level":0},
-    {"id":"item-104","value":6,"zoomLevel":0,"side":"top","level":1},
     {"id":"item-105","value":6,"zoomLevel":0,"side":"top","level":2},
     {"id":"item-106","value":4.05,"zoomLevel":0,"side":"bottom","level":0},
     {"id":"item-107","value":6.625,"zoomLevel":2,"side":"top","level":1},
@@ -123,11 +122,13 @@ const items = Object.freeze([
     {"id":"item-120","value":12,"zoomLevel":0,"side":"top","level":0,"branch":3},
     {"id":"item-121","value":14.5,"zoomLevel":0,"side":"top","level":0},
     {"id":"item-122","value":15.5,"zoomLevel":0,"side":"top","level":0},
-    {"id":"item-123","value":6.25,"zoomLevel":0,"side":"bottom","level":0},
-    {"id":"item-124","value":6.375,"zoomLevel":0,"side":"top","level":0},
-    {"id":"item-125","value":6.5,"zoomLevel":0,"side":"bottom","level":1},
+    {"id":"item-123","value":6.25,"zoomLevel":1,"side":"bottom","level":0},
+    {"id":"item-124","value":6.375,"zoomLevel":1,"side":"top","level":0},
+    {"id":"item-125","value":6.5,"zoomLevel":1,"side":"bottom","level":1},
     {"id":"item-126","value":7.5,"zoomLevel":0,"side":"top","level":1},
     {"id":"item-127","value":8.5,"zoomLevel":0,"side":"top","level":0},
     {"id":"item-128","value":9.5,"zoomLevel":0,"side":"top","level":0,"branch":2},
-    {"id":"item-129","value":10.5,"zoomLevel":0,"side":"bottom","level":1}
+    {"id":"item-129","value":10.5,"zoomLevel":1,"side":"bottom","level":1},
+    {"id":"item-130","value":6,"zoomLevel":0,"side":"top","level":1},
+    {"id":"item-131","value":14.5,"zoomLevel":0,"side":"bottom","level":0}
 ].map(Object.freeze));

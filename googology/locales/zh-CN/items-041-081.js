@@ -4,7 +4,7 @@
     function unreviewedNotice() {
         return {
             type: 'note',
-            html: '该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性'
+            html: '该内容由gpt6-astra完成，且暂时未经过人工审核，不保证正确性'
         };
     }
 
@@ -143,7 +143,8 @@ print(A3(n, n, n))`
                             type: 'html',
                             html: `
                                 <p><strong>定义。</strong>固定 \\(k\\geq1\\)，取字母表 \\(\\{1,\\ldots,k\\}\\) 上的有限词 \\(x_1\\cdots x_N\\)。若不存在 \\(i\\lt j\\leq N/2\\)，使连续块 \\(x_i\\cdots x_{2i}\\) 是较后连续块 \\(x_j\\cdots x_{2j}\\) 的子序列，则称该词满足性质 \\(*\\)。这里“子序列”允许删除字符，但须保持其余字符的相对次序。\\(n(k)\\) 是满足性质 \\(*\\) 的词的最大长度。</p>
-                                <p>Higman 引理排除了无限长的反例；再对所有合法有限前缀组成的有限分支树应用 König 引理，即知最大长度存在。已知 \\(n(1)=3\\)、\\(n(2)=11\\)，而 \\(12221111111\\) 达到第二个值。Friedman 还证明 \\(n(3)>\\operatorname{A}_{7198}(158386)\\)。令 \\(\\operatorname{A}(t)=\\operatorname{A}(t,t)\\)，则有 \\[n(4)>\\operatorname{A}^{\\operatorname{A}(187196)}(1),\\]其中上标表示函数复合迭代。</p>
+                                <p>Higman 引理排除了无限长的反例；再对所有合法有限前缀组成的有限分支树应用 König 引理，即知最大长度存在。已知 \\(n(1)=3\\)、\\(n(2)=11\\)，而 \\(12221111111\\) 达到第二个值。</p>
+                                <p>以下下界使用 Friedman 的 Ackermann 约定：\\[A_1(t)=2t,\\qquad A_{r+1}(t)=A_r^{\\circ t}(1),\\qquad A(t)=A_t(t).\\]这里 \\(r,t\\geq1\\)，上标 \\(\\circ t\\) 表示函数复合 \\(t\\) 次。Friedman 证明了\\[n(3)>A_{7198}(158386),\\qquad n(4)>A^{\\circ A(187196)}(1).\\]</p>
                                 <p>作为 \\(k\\) 的函数，\\(n(k)\\) 最终支配每个 \\(H_\\beta\\; (\\beta\\lt\\omega^\\omega)\\)，并最终被 \\(H_{\\omega^\\omega+1}\\) 支配；这里的 \\(H\\) 沿用原论文的快速增长层级记号，不是本站的 Hardy 层级。按本站采用的 FGH 对照，可将它放在 \\(f_{\\omega^\\omega}\\) 层级。又因为 \\(\\operatorname{TREE}(3)\\) 远大于 \\(n(4)\\)，上述 \\(n(4)\\) 下界也成为 \\(\\operatorname{TREE}(3)\\) 的一个很弱的下界。</p>
                                 <p>不过，\\(\\operatorname{TREE}(3)\\) 位于<a href="https://googology.fandom.com/wiki/Small_Veblen_ordinal">小 Veblen 序数（SVO）</a>级别，因此这个下界非常弱。后来，人们把 \\(\\operatorname{A}^{\\operatorname{A}(187196)}(1)\\) 及其他含有“187196”的相关表达式戏称为“\\(\\operatorname{TERR}(3)\\)”；“TERR”是对“TREE”的故意误拼。</p>
                                 <p><strong>来源：</strong><a href="https://doi.org/10.1006/jcta.2000.3154">Harvey M. Friedman，《Long Finite Sequences》，§1、Theorems 5.19 与 6.8</a>；<a href="https://bpb-us-w2.wpmucdn.com/u.osu.edu/dist/1/1952/files/2014/01/EnormousInt.12pt.6_1_00-23kmig3.pdf">Harvey M. Friedman，《Enormous Integers in Real Life》，Theorems 8.4–8.5</a>。</p>
@@ -163,7 +164,7 @@ print(A3(n, n, n))`
                             html: `
                                 <p><strong>定义。</strong>令 \\(\\operatorname{STR}(n)\\) 为满足下述条件的最长字符串序列 \\(S_1,\\ldots,S_N\\) 的长度：字符串取自一个含 \\(n\\) 个字符的字母表，\\(|S_i|\\leq i\\)，并且对所有 \\(i\\lt j\\)，\\(S_i\\) 都不是 \\(S_j\\) 的子序列。这里“子序列”指删除若干字符而不改变其余字符的相对次序；空串也允许出现。</p>
                                 <p>Higman 引理和 König 引理保证 \\(\\operatorname{STR}(n)\\) 总是有限。小值及下界为 \\(\\operatorname{STR}(1)=2\\)、\\(\\operatorname{STR}(2)=4\\)、\\(\\operatorname{STR}(3)\\geq11\\)；相应例子可写成 \\((A,\\varnothing)\\)、\\((A,BB,B,\\varnothing)\\) 与 \\((A,BB,BC,CB,B,CCCCC,CCCC,CCC,CC,C,\\varnothing)\\)。</p>
-                                <p>这个定义可以看作不允许树分叉的 TREE 风格坏序列：带有 \\(n\\) 种标号的树退化为使用 \\(n\\) 种字符的字符串。由 \\(n\\) 个字符组成的全部有限串在子序列序下的最大序型为 \\(\\omega^{\\omega^{n-1}}\\)。该构造与 Friedman 在《Long Finite Sequences》§5 中研究的 \\(F\\) 函数只差索引约定；相应上下界将它的增长放在 \\(H_{\\omega^{\\omega^{\\omega}}}=f_{\\omega^\\omega}\\) 层级。</p>
+                                <p>这个定义可以看作不允许树分叉的 TREE 风格坏序列：带有 \\(n\\) 种标号的树退化为使用 \\(n\\) 种字符的字符串。由 \\(n\\) 个字符组成的全部有限串在子序列序下的最大序型为 \\(\\omega^{\\omega^{n-1}}\\)。Friedman 在《Long Finite Sequences》§5 中的 \\(F(n)\\) 把长度限制改为 \\(|S_i|\\leq i+1\\)，因此\\[\\operatorname{STR}(n)\\leq F(n)\\lt\\operatorname{STR}(n+1).\\]右侧不等式可通过在序列最前面放一个新字符得到。相应上下界将其增长放在 \\(H_{\\omega^{\\omega^{\\omega}}}=f_{\\omega^\\omega}\\) 层级。</p>
                                 <p><strong>来源：</strong><a href="https://mathoverflow.net/questions/285755/growth-rate-of-longest-sequence-of-strings-where-no-string-is-a-subsequence-of-a">MathOverflow，“Growth rate of longest sequence of strings where no string is a subsequence of a later one”（定义与小值）</a>；<a href="https://doi.org/10.1006/jcta.2000.3154">Harvey M. Friedman，《Long Finite Sequences》，§5 与 Theorem 5.19</a>；<a href="https://arxiv.org/abs/1103.4399">Schmitz、Schnoebelen，《Multiply-Recursive Upper Bounds with Higman's Lemma》</a>。</p>
                             `
                         },
@@ -399,7 +400,8 @@ print(g)`
                         {
                             type: 'html',
                             html: `
-                                <p>它是<a href="https://googology.fandom.com/wiki/Fusible_number">燃烧数（fusible numbers）</a>的一个下界，而且在大数尺度上与燃烧数几乎一样大，两者均为 \\({\\varepsilon}_{0}\\) 级。定义由下面的代码给出。</p>
+                                <p>这里的“伪燃烧数”指论文中的 tame fusible numbers：普通二元燃烧数的一个子集，其序型同样为 \\(\\varepsilon_0\\)。下面的 \\(f(x)\\) 是论文的算法 \\(M\\)，返回严格大于 \\(x\\) 的最小 tame 燃烧数与 \\(x\\) 的差；产生大数的是间隙的倒数 \\(1/f(x)\\)。</p>
+                                <p>递归定义为\\[f(x)=\\begin{cases}-x,&x\\lt0,\\\\\\dfrac{f(x-f(x-1))}{2},&x\\geq0.\\end{cases}\\]代码使用有理数，避免浮点舍入改变递归路径。</p>
                             `
                         },
                         {
@@ -423,9 +425,9 @@ def f(x):
                                     <li>\\(f(2)=\\frac{1}{1024}=2^{-10}\\)</li>
                                     <li>\\(f(3)=2^{-1541023937}\\)</li>
                                 </ul>
-                                <p>根据 @Hypcos 的分析，\\(\\frac{1}{f(4)}\\) 是 \\(10\\uparrow{}\\uparrow{}5\\) 级别。</p>
-                                <p>@Hypcos 猜测 \\(\\frac{1}{f(5)}\\) 可能达到 Ackermann 函数级别。</p>
-                                <p>这里的 \\(f(x)\\) 给出越来越小的间隔，产生大数的是它的倒数 \\(1/f(x)\\)。<a href="https://lmcs.episciences.org/9850/pdf">《Fusible numbers and Peano Arithmetic》</a>研究了燃烧数的 \\(\\varepsilon_0\\) 序型，以及间隙倒数的快速增长。</p>
+                                <p>为看清后面的规模，令 \\(E(x)=-\\log_2 f(x)\\)，于是 \\(1/f(x)=2^{E(x)}\\)。本次提供的计算笔记把 \\(x=4\\) 的估计细化为\\[\\log_{10}\\log_{10}E(4)\\approx1.05014\\times10^{28},\\]也就是 \\(E(4)\\) 约在 \\(10^{10^{1.05014\\times10^{28}}}\\) 的尺度上。这是迭代对数尺度的渐近估计。</p>
+                                <p>记 \\(K=E(4)\\)。同一笔记把 \\(E(5)\\) 估计在 \\(F_{K+1}(10)\\) 的层级；这里 \\(F\\) 是本站的快速增长层级，即 \\(F_0(n)=n+1\\)、\\(F_{k+1}(n)=F_k^{\\circ n}(n)\\)。这比“可能达到 Ackermann 级别”给出了更具体的层级描述，但仍是层级估计，不是数值等式。</p>
+                                <p><strong>来源：</strong><a href="https://arxiv.org/html/2003.14342#S4">Erickson、Nivasch、Xu，《Fusible numbers and Peano Arithmetic》，§4 与 §4.1</a>给出 tame 构造、算法 \\(M\\) 和 \\(f(3)\\) 的精确指数；\\(f(4)\\)、\\(f(5)\\) 的上述估计采用本次提供的 2026 年 9 月计算笔记。</p>
                             `
                         },
                         unreviewedNotice()

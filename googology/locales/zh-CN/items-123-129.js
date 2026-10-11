@@ -1,10 +1,10 @@
-(function registerItems123To129(global) {
+(function registerItems123To130(global) {
     'use strict';
 
     function unreviewedNotice() {
         return {
             type: 'note',
-            html: "<p>该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性</p>",
+            html: "<p>该内容由gpt6-astra完成，且暂时未经过人工审核，不保证正确性</p>",
         };
     }
 
@@ -56,20 +56,20 @@
                     sections: [
                         {
                             type: 'html',
-                            html: "<p>\\(\\varepsilon_0\\)MN（e0 Mountain Notation）由 @test_alpha0 提出。本条使用普通版：每列保存父地址与 \\(\\varepsilon_0\\) 以下的 Cantor 正规形行标；反射复制时，父地址和行标内部的数值都会随结构搬运。</p><p>默认基本列对极限项进行指定次数的反射，最后删去末列。NER 中还可以切换到行高差、山脉图和精确计数序列，观察同一个表达式。</p><p>已有构造把整个 \\(\\omega\\)-Y 标准域保序嵌入普通 \\(\\varepsilon_0\\)MN 的有限项 \\((1,3,14,2)\\) 以下；该项又位于 \\((1,4)\\) 以下。另有\\[\\lim(\\mathrm{SRPD})=|\\mathrm{e0MN}(1,3)|.\\]这些具体对应让它与前面的序列和列图记号连接起来。</p><p><strong>来源：</strong><a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/external/README.zh-CN.md\">作者、版本及 NER 代码</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/order-comparisons/proofs/cwy2-e0mn-cover-20260917/CWY2-wY-le-e0MN.zh-CN.md\">\\(\\omega\\)-Y 到普通 \\(\\varepsilon_0\\)MN 的嵌入</a>。</p>",
+                            html: "<p>\\(\\varepsilon_0\\)MN（e0 Mountain Notation）由 @test_alpha0 提出。本条使用普通版：每列保存父地址与 \\(\\varepsilon_0\\) 以下的 Cantor 正规形行标；反射复制时，父地址和行标内部的数值都会随结构搬运。</p><p>默认基本列对极限项进行指定次数的反射，最后删去末列。NER 中还可以切换到行高差、山脉图和精确计数序列，观察同一个表达式。</p><p>@test_alpha0 已完成普通版在 \\(KP_\\omega+\\text{“}\\omega_1\\text{ 存在”}\\) 中的良序证明。</p><p>已有构造把整个 \\(\\omega\\)-Y 标准域保序嵌入普通 \\(\\varepsilon_0\\)MN 的有限项 \\((1,3,14,2)\\) 以下；该项又位于 \\((1,4)\\) 以下。另有\\[\\lim(\\mathrm{SRPD})=|\\mathrm{e0MN}(1,3)|.\\]这些具体对应让它与前面的序列和列图记号连接起来。</p><p><strong>展开与比较资料：</strong><a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/external/README.zh-CN.md\">作者、版本及 NER 代码</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/order-comparisons/proofs/cwy2-e0mn-cover-20260917/CWY2-wY-le-e0MN.zh-CN.md\">\\(\\omega\\)-Y 到普通 \\(\\varepsilon_0\\)MN 的嵌入</a>。</p>",
                         },
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-127': {
-                label: "\\(\\operatorname{PTO}(KP_\\omega+\\mathrm{UC})\\)",
+                label: "\\(\\operatorname{PTO}(KP_\\omega+\\text{“}\\omega_1\\text{ 存在”})\\)",
                 detail: {
-                    title: "\\(\\operatorname{PTO}(KP_\\omega+\\text{存在不可数序数})\\)",
+                    title: "\\(\\operatorname{PTO}(KP_\\omega+\\text{“}\\omega_1\\text{ 存在”})\\)",
                     sections: [
                         {
                             type: 'html',
-                            html: "<p>这里 \\(\\mathrm{UC}\\) 是“存在不可数序数”的缩写。精确假设是存在序数 \\(\\nu\\gt\\omega\\)，不存在集合函数 \\(\\omega\\twoheadrightarrow\\nu\\)。基础 \\(KP_\\omega\\) 为含无穷公理和完整集合归纳的 Kripke–Platek 集合论。</p><p>2026 年的 Y 与 \\(\\omega\\)-Y 良序分析使用这一弱集合论背景。它提供足够的序数秩来证明展开下降，同时不需要加入幂集或选择公理。主轴在这里标示该理论的证明论序数。</p><p><strong>来源：</strong><a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/well-ordering.zh-CN.md\">Y 与列图记号：弱集合论内的良序证明</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.zh-CN.md\">\\(\\omega\\)-Y／CWY2 的证明背景</a>。</p>",
+                            html: "<p>这里“\\(\\omega_1\\) 存在”指存在不可数序数：存在序数 \\(\\nu\\gt\\omega\\)，不存在集合函数 \\(\\omega\\twoheadrightarrow\\nu\\)。基础 \\(KP_\\omega\\) 为含无穷公理和完整集合归纳的 Kripke–Platek 集合论。</p><p>2026 年的 Y 与 \\(\\omega\\)-Y 良序分析使用这一弱集合论背景。它提供足够的序数秩来证明展开下降，同时不需要加入幂集或选择公理。主轴在这里标示该理论的证明论序数。</p><p><strong>来源：</strong><a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/well-ordering.zh-CN.md\">Y 与列图记号：弱集合论内的良序证明</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.zh-CN.md\">\\(\\omega\\)-Y／CWY2 的证明背景</a>。</p>",
                         },
                         unreviewedNotice(),
                     ],
@@ -96,6 +96,19 @@
                         {
                             type: 'html',
                             html: "<p>DQDN（Demand Query Diagram Notation）把有类型程序、类型和环境写成只向左引用的图列。数据列和活动列分别以 \\(1\\)、\\(2\\) 计数；基本列改写末端活动列，并公平枚举程序的下一步分支。</p><p>查询指令 \\(Q(n)\\) 可以返回任意自然数 \\(m\\)，因此一次活动可以产生无限多个孩子；每个基本列指标只取其中有限部分。整个记号把程序归约、递归和查询结构统一为列的展开。</p><p>标准 TOP 域已有纸面良序论证，已收录的定位包括\\[\\mathrm{TOP}[1]=\\varepsilon_0,\\qquad \\lim(\\mathrm{BMS})\\le\\operatorname{PTO}(Z_2)\\le|\\mathrm{TOP}[2]|,\\]\\[\\lim(\\mathrm{DQDN})\\ge\\operatorname{PTO}(Z_\\omega).\\]这给出了与有限高阶算术相连的具体记号。</p><p><strong>来源：</strong><a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/DQDN/definition.zh-CN.md\">DQDN 定义</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/dqdn-well-ordering.zh-CN.md\">标准域良序证明</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/dqdn/README.zh-CN.md\">定位与证明总览</a>。</p>",
+                        },
+                        unreviewedNotice(),
+                    ],
+                },
+            },
+            'item-130': {
+                label: "\\(\\operatorname{PTO}(Z_2)\\,?\\)",
+                detail: {
+                    title: "\\(\\operatorname{PTO}(Z_2)\\,?\\)",
+                    sections: [
+                        {
+                            type: 'html',
+                            html: "<p>\\(Z_2\\) 是完全二阶算术，允许自然数和任意自然数集合，并具有完全概括公理。\\(\\operatorname{PTO}(Z_2)\\) 衡量它能够证明良序的可计算序关系的序型高度。</p><p>BMS 极限高度疑似对应这一位置，所以将这个带问号的标记放在 BMS 极限旁。目前收录的比较结果给出的上界是\\[\\lim(\\mathrm{BMS})\\le\\operatorname{PTO}(Z_2).\\]这提供了上述对应的一个方向。</p><p><strong>来源：</strong><a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/dqdn/bms-top2.zh-CN.md\">BMS、二阶算术与 DQDN 的比较</a>。</p>",
                         },
                         unreviewedNotice(),
                     ],

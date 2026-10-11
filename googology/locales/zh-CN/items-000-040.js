@@ -4,7 +4,7 @@
     function unreviewedNotice() {
         return {
             type: 'note',
-            html: '该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性'
+            html: '该内容由gpt6-astra完成，且暂时未经过人工审核，不保证正确性'
         };
     }
 
@@ -226,7 +226,7 @@ print(result)`
                     sections: [
                         {
                             type: 'html',
-                            html: `<p>\\(10\\uparrow{}\\uparrow{}\\uparrow{}10=10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}10)))))))))\\)。</p><p>对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9-1\\) 次“十进制位数”，结果是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8-1\\) 次，结果也是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}7-1\\) 次，结果仍是 11；依此类推。</p><p>下面的程序按照 <a href="https://doi.org/10.1126/science.194.4271.1235">Knuth 上箭头记号</a>的递归规则求值；它没有预先写入答案，也不设置整数位数上限。</p>`
+                            html: `<p>\\(10\\uparrow{}\\uparrow{}\\uparrow{}10=10\\uparrow{}\\uparrow{}(10\\uparrow{}\\uparrow{}\\uparrow{}9)\\)。若令 \\(T(x)=10\\uparrow{}\\uparrow{}x\\)，这个数就是从 \\(10\\) 开始，连续应用 \\(T\\) 共 \\(9\\) 次。</p><p>对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}10\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9-1\\) 次“十进制位数”，结果是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}9\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8-1\\) 次，结果也是 11；对 \\(10\\uparrow{}\\uparrow{}\\uparrow{}8\\) 连续取 \\(10\\uparrow{}\\uparrow{}\\uparrow{}7-1\\) 次，结果仍是 11；依此类推。</p><p>下面的程序按照 <a href="https://doi.org/10.1126/science.194.4271.1235">Knuth 上箭头记号</a>的递归规则求值；它没有预先写入答案，也不设置整数位数上限。</p>`
                         },
                         {
                             type: 'code',
@@ -303,7 +303,8 @@ print(f(n, n))`
                             type: 'code',
                             language: 'python',
                             source: `n = 10
-a = [n] # a represents the ordinal = ω^a[0] + ω^a[1] + ... + ω^a[-1].
+# 先应用极限步骤 (ω^ω)[n] = ω^n。
+a = [n] # 数组 a 表示 ω^a[0] + ω^a[1] + ... + ω^a[-1]。
 while(len(a) > 0): # Hardy hierarchy on ordinals.
     if a[-1] == 0: # a is a successor ordinal
         a.pop() # subtract 1
@@ -355,18 +356,17 @@ print(A(10, 10))`
                         {
                             type: 'code',
                             language: 'python',
-                            source: `def arr(a,b,k): # knuth_arrow, a ^(k) b
+                            source: `def arr(a, b, k): # a >= 1，b >= 0，k >= 1；均为整数。
     if k == 1:
-        return a**b
-    else:
-        if b == 1:
-            return a
-        else:
-            return arr(a,arr(a,b-1,k),k-1)
+        return a ** b
+    if b == 0:
+        return 1
+    return arr(a, arr(a, b - 1, k), k - 1)
 
 n = 100
-print(n,n,n)`
-                        }
+print(arr(n, n, n))`
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },

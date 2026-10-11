@@ -4,7 +4,7 @@
     function unreviewedNotice() {
         return {
             type: 'note',
-            html: `<p>This content was produced by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed.</p>`,
+            html: `<p>This content was produced by gpt6-astra and has not yet been reviewed by a human; its correctness is not guaranteed.</p>`,
         };
     }
 
@@ -370,20 +370,17 @@ print(TREE(3))`,
                 label: '\\(\\mathrm{BMS}:(0,0,0,0)(1,1,1,1)\\)',
             },
             'item-103': {
-                label: "\\(\\lim(\\mathrm{BMS})\\)",
+                label: "\\(\\boldsymbol{\\lim(\\mathbf{BMS})}\\) · SHO",
                 detail: {
                     title: "The BMS limit (SHO)",
                     sections: [
                         {
                             type: 'html',
-                            html: "<p>The Bashicu Matrix System (BMS) represents ordinals by matrices of natural numbers. Expansion copies and increases a bad part according to parent relations. The limit of the standard domain allowing every finite number of rows is often called SHO (Small Hydra Ordinal).</p><p>BMS has a well-ordering proof. Increasing the number of rows opens further stages; this marker denotes the combined limit over all finite row counts.</p><p><strong>Sources:</strong> <a href=\"https://github.com/EgoFakeFantasy/BMS-Well-Ordering-Lean\">BMS well-ordering formalization and original-paper references</a>; <a href=\"https://github.com/Phyrion1343/1Y-Well-Ordering-Lean\">0-Y/BMS correspondence and standard-domain well-ordering</a>.</p>",
+                            html: "<p>The Bashicu Matrix System (BMS) represents ordinals by matrices of natural numbers. Expansion copies and increases a bad part according to parent relations. The limit of the standard domain allowing every finite number of rows is commonly called SHO (Small Hydra Ordinal) in the googology community.</p><p>SHO is a historical community name; it does not literally identify this limit with the ordinal of a particular hydra game. BMS has a well-ordering proof. Increasing the number of rows opens further stages; this marker denotes the combined limit over all finite row counts.</p><p><strong>Sources:</strong> <a href=\"https://github.com/EgoFakeFantasy/BMS-Well-Ordering-Lean\">BMS well-ordering formalization and original-paper references</a>; <a href=\"https://github.com/Phyrion1343/1Y-Well-Ordering-Lean\">0-Y/BMS correspondence and standard-domain well-ordering</a>.</p>",
                         },
                         unreviewedNotice(),
                     ],
                 },
-            },
-            'item-104': {
-                label: '\\(\\mathrm{BMS}:(0,0,0,\\ldots)(1,1,1,\\ldots)\\)',
             },
             'item-105': {
                 label: '\\(Y:(1,3)\\)',
@@ -395,7 +392,7 @@ print(TREE(3))`,
                     sections: [
                         {
                             type: 'html',
-                            html: `<p>A finite undirected graph is subcubic when every vertex has degree at most \\(3\\). SSCG uses simple subcubic graphs, with no loops or parallel edges; SCG allows loops and parallel edges. Neither definition requires connectedness.</p><p><strong>Definition.</strong> Fix \\(k\\in\\mathbb N\\). Consider sequences \\(G_1,\\ldots,G_N\\) such that \\(|V(G_i)|\\leq i+k\\), with no \\(i\\lt j\\) for which \\(G_i\\) is homeomorphically embeddable in \\(G_j\\). Equivalently, a subdivision of \\(G_i\\) must occur as a subgraph of \\(G_j\\). The greatest possible \\(N\\) is \\(\\operatorname{SCG}(k)\\); restricting all graphs to be simple gives \\(\\operatorname{SSCG}(k)\\). Hence \\[\\operatorname{SCG}(k)\\geq\\operatorname{SSCG}(k).\\]</p><p>Finite subcubic graphs are well-quasi-ordered by homeomorphic embeddability, so an infinite bad sequence cannot exist. For each vertex bound there are only finitely many isomorphism types; applying König's lemma to the finitely branching tree of bad sequences therefore gives a finite maximum for every \\(k\\).</p><p>Friedman proved that \\(\\operatorname{SSCG}(13)\\) exceeds the halting time of every blank-tape Turing machine whose termination has a proof in \\(\\Pi^1_1\\text{-}\\mathrm{CA}_0\\) using at most \\(2^{[2000]}\\) symbols, where \\(2^{[r]}\\) denotes a tower of \\(2\\)s of height \\(r\\). He later removed the simplicity restriction and restated the result for \\(\\operatorname{SCG}(13)\\), noting that \\(\\operatorname{TREE}(3)\\) is negligible by comparison.</p><p><strong>Sources:</strong> <a href="https://fomarchive.ugent.be/2006-April/010305.html">Harvey M. Friedman, FOM #274, <cite>Subcubic Graph Numbers</cite></a>; <a href="https://fomarchive.ugent.be/2006-April/010362.html">Harvey M. Friedman, FOM #279, <cite>Subcubic Graph Numbers/restated</cite></a>; <a href="https://doi.org/10.1090/conm/065/891251">Friedman, Robertson, and Seymour, <cite>The Metamathematics of the Graph Minor Theorem</cite></a>.</p>`,
+                            html: `<p>A finite undirected graph is subcubic when every vertex has degree at most \\(3\\). SSCG uses simple subcubic graphs, with no loops or parallel edges; SCG allows loops and parallel edges. Neither definition requires connectedness.</p><p><strong>Definition.</strong> Fix \\(k\\in\\mathbb N\\). Consider sequences \\(G_1,\\ldots,G_N\\) such that \\(|V(G_i)|\\leq i+k\\), with no \\(i\\lt j\\) for which \\(G_i\\) is homeomorphically embeddable in \\(G_j\\). Here \\(G_i\\) embeds homeomorphically in \\(G_j\\) exactly when a subdivision of \\(G_i\\) is isomorphic to a subgraph of \\(G_j\\). The greatest possible \\(N\\) is \\(\\operatorname{SCG}(k)\\); restricting all graphs to be simple gives \\(\\operatorname{SSCG}(k)\\). Hence \\[\\operatorname{SCG}(k)\\geq\\operatorname{SSCG}(k).\\]</p><p>Finite subcubic graphs are well-quasi-ordered by homeomorphic embeddability, so an infinite bad sequence cannot exist. For each vertex bound there are only finitely many isomorphism types; applying König's lemma to the finitely branching tree of bad sequences therefore gives a finite maximum for every \\(k\\).</p><p>Friedman proved that \\(\\operatorname{SSCG}(13)\\) exceeds the halting time of every blank-tape Turing machine whose termination has a proof in \\(\\Pi^1_1\\text{-}\\mathrm{CA}_0\\) using at most \\(2^{[2000]}\\) symbols, where \\(2^{[r]}\\) denotes a tower of \\(2\\)s of height \\(r\\). He later removed the simplicity restriction and restated the result for \\(\\operatorname{SCG}(13)\\), noting that \\(\\operatorname{TREE}(3)\\) is negligible by comparison.</p><p><strong>Sources:</strong> <a href="https://fomarchive.ugent.be/2006-April/010305.html">Harvey M. Friedman, FOM #274, <cite>Subcubic Graph Numbers</cite></a>; <a href="https://fomarchive.ugent.be/2006-April/010362.html">Harvey M. Friedman, FOM #279, <cite>Subcubic Graph Numbers/restated</cite></a>; <a href="https://doi.org/10.1090/conm/065/891251">Friedman, Robertson, and Seymour, <cite>The Metamathematics of the Graph Minor Theorem</cite></a>.</p>`,
                         },
                         unreviewedNotice(),
                     ],
@@ -415,26 +412,26 @@ print(TREE(3))`,
                 },
             },
             'item-108': {
-                label: "Limit of Y sequences",
+                label: "\\(\\lim(Y)\\)",
                 detail: {
-                    title: "Limit of Y sequences",
+                    title: "\\(\\lim(Y)\\)",
                     sections: [
                         {
                             type: 'html',
-                            html: "<p>Introduced by Yukito, Y sequences turn finite sequences of natural numbers into difference mountains with ancestry relations. Expansion copies and adjusts the terminal structure, then reconstructs a sequence. This marker denotes the limit of the system generated from the standard seeds \\((1,m)\\), \\(m\\ge2\\).</p><p>On September 11, 2026, @Phyrion published a well-ordering proof for Y. Shortly afterwards, @test_alpha0 lowered the axiomatic upper bound to \\(KP_\\omega+\\text{there exists an uncountable ordinal}\\), connecting its concrete expansion rules with well-ordering analysis in weak set theory.</p><p><strong>Sources:</strong> <a href=\"https://github.com/Phyrion1343/1Y-Well-Ordering-Lean\">Y well-ordering proof and formalization</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/README.md\">progress record</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/well-ordering.md\">proof in weak set theory</a>.</p>",
+                            html: "<p>Introduced by Yukito, Y sequences turn finite sequences of natural numbers into difference mountains with ancestry relations. Expansion copies and adjusts the terminal structure, then reconstructs a sequence. This marker denotes the limit of the system generated from the standard seeds \\((1,m)\\), \\(m\\ge2\\).</p><p>On September 11, 2026, @Phyrion published a well-ordering proof for Y. Shortly afterwards, @test_alpha0 lowered the axiomatic upper bound to \\(KP_\\omega+\\text{“}\\omega_1\\text{ exists”}\\), connecting its concrete expansion rules with well-ordering analysis in weak set theory.</p><p><strong>Sources:</strong> <a href=\"https://github.com/Phyrion1343/1Y-Well-Ordering-Lean\">Y well-ordering proof and formalization</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/README.md\">progress record</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/well-ordering.md\">proof in weak set theory</a>.</p>",
                         },
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-109': {
-                label: "Limit of \\(\\omega\\)-Y sequences",
+                label: "\\(\\lim(\\omega\\text{-}Y)\\)",
                 detail: {
-                    title: "Limit of \\(\\omega\\)-Y sequences",
+                    title: "\\(\\lim(\\omega\\text{-}Y)\\)",
                     sections: [
                         {
                             type: 'html',
-                            html: "<p>\\(\\omega\\)-Y extends the Y mountain construction through arbitrary finite levels. This entry uses NER's weak-magma version of omega-Y and marks the limit of its entire standard domain.</p><p>The system has a well-ordering proof in \\(KP_\\omega+\\text{there exists an uncountable ordinal}\\). CWY2 presents the same structure as columns of parent addresses and finite words. The archived correspondence gives an order isomorphism of their standard domains and commutes with each indexed fundamental-sequence step.</p><p><strong>Sources:</strong> <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.md\">CWY2 definition and its cited \\(\\omega\\)-Y well-ordering manuscript</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/cwy2-equivalence.md\">CWY2/\\(\\omega\\)-Y equivalence proof</a>.</p>",
+                            html: "<p>\\(\\omega\\)-Y extends the Y mountain construction through arbitrary finite levels. This entry uses NER's weak-magma version of omega-Y and marks the limit of its entire standard domain.</p><p>The system has a well-ordering proof in \\(KP_\\omega+\\text{“}\\omega_1\\text{ exists”}\\). CWY2 presents the same structure as columns of parent addresses and finite words. The archived correspondence gives an order isomorphism of their standard domains and commutes with each indexed fundamental-sequence step.</p><p><strong>Sources:</strong> <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.md\">CWY2 definition and its cited \\(\\omega\\)-Y well-ordering manuscript</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/cwy2-equivalence.md\">CWY2/\\(\\omega\\)-Y equivalence proof</a>.</p>",
                         },
                         unreviewedNotice(),
                     ],
@@ -473,7 +470,7 @@ print(TREE(3))`,
                     sections: [
                         {
                             type: 'html',
-                            html: `<p>Laver Tables are a special class of finite algebraic structures studied in set theory. The underlying set of the \\(n\\)-th Laver Table \\(A_n\\) is \\(\\{1,\\ldots,2^n\\}\\), and its operation is uniquely determined by the recursion\\[2^n\\star_n b=b,\\qquad a\\star_n1=a+1,\\]\\[a\\star_n(b+1)=(a\\star_n b)\\star_n(a+1)\\qquad(a,b\\lt{}2^n).\\]This operation satisfies left self-distributivity: \\[a\\star_n(b\\star_n c)=(a\\star_n b)\\star_n(a\\star_n c).\\]</p><p>For every \\(a\\), the sequence \\(a\\star_n1,a\\star_n2,\\ldots\\) repeats periodically. Its least period is a power of \\(2\\); the values within one period are strictly increasing and end at \\(2^n\\). The natural reduction modulo \\(2^n\\) from \\(A_{n+1}\\) to \\(A_n\\) is a homomorphism.</p><p>Let \\(\\pi_k(1)\\) be the least period of the first row of \\(A_k\\), and define\\[q(n)=\\min\\{k\\in\\mathbb N\\mid\\pi_k(1)=2^n\\}.\\]Thus \\(q(n)\\) is the least table index at which the first-row period becomes \\(2^n\\); the corresponding algebra \\(A_{q(n)}\\) has order \\(2^{q(n)}\\). The program below constructs complete Laver Tables for \\(k=0,1,2,\\ldots\\) and checks their first rows. It verifies \\(q(0),\\ldots,q(4)=(0,2,3,5,9)\\) and, when time and memory costs are ignored, gives an exhaustive computation of general \\(q(n)\\).</p><p><strong>Sources:</strong> <a href="https://arxiv.org/abs/math/9503204">Randall Dougherty, <cite>Critical points in an algebra of elementary embeddings, II</cite>, §2 and Proposition 2.5</a>; <a href="https://arxiv.org/abs/1810.00548">Philippe Biane, <cite>Laver tables and combinatorics</cite>, §§2–3 and §7.2</a>.</p>`,
+                            html: `<p>Laver Tables are a special class of finite algebraic structures studied in set theory. The underlying set of the \\(n\\)-th Laver Table \\(A_n\\) is \\(\\{1,\\ldots,2^n\\}\\), and its operation is uniquely determined by the recursion\\[2^n\\star_n b=b,\\qquad a\\star_n1=a+1,\\]\\[a\\star_n(b+1)=(a\\star_n b)\\star_n(a+1)\\qquad(a,b\\lt{}2^n).\\]This operation satisfies left self-distributivity: \\[a\\star_n(b\\star_n c)=(a\\star_n b)\\star_n(a\\star_n c).\\]</p><p>For every \\(a\\), the sequence \\(a\\star_n1,a\\star_n2,\\ldots\\) repeats periodically. Its least period is a power of \\(2\\); the values within one period are strictly increasing and end at \\(2^n\\). The natural reduction modulo \\(2^n\\) from \\(A_{n+1}\\) to \\(A_n\\) is a homomorphism.</p><p>Let \\(\\pi_k(1)\\) be the least period of the first row of \\(A_k\\), and define\\[q(n)=\\min\\{k\\in\\mathbb N\\mid\\pi_k(1)=2^n\\}.\\]Thus \\(q(n)\\) is the least table index at which the first-row period becomes \\(2^n\\); the corresponding algebra \\(A_{q(n)}\\) has order \\(2^{q(n)}\\). The program below constructs complete Laver Tables for \\(k=0,1,2,\\ldots\\) and checks their first rows. It verifies \\(q(0),\\ldots,q(4)=(0,2,3,5,9)\\) and, when time and memory costs are ignored, gives an exhaustive computation of general \\(q(n)\\). Under \\(I_3\\), Laver's unbounded-period theorem guarantees that this search terminates for every \\(n\\).</p><p><strong>Sources:</strong> <a href="https://arxiv.org/abs/math/9503204">Randall Dougherty, <cite>Critical points in an algebra of elementary embeddings, II</cite>, §2 and Proposition 2.5</a>; <a href="https://arxiv.org/abs/1810.00548">Philippe Biane, <cite>Laver tables and combinatorics</cite>, §§2–3 and §7.2</a>.</p>`,
                         },
                         {
                             type: 'code',

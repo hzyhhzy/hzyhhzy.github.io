@@ -43,8 +43,7 @@
 
         self.s = self.s[:-1]
         copy_part = self.s[root:]
-        if n > 1:
-            self.s = self.s + copy_part * (n - 1)
+        self.s = self.s[:root] + copy_part * n
 
 
 def HH(a, n) -> int:
@@ -119,7 +118,9 @@ print(g)`;
                 "epsilon": "Basic ordinals",
                 "bms": "Mountain notation family",
                 "pto": "Proof-theoretic ordinals",
-                "laver": "Laver Table"
+                "laver": "Laver Table",
+                "btbms": "Frontier notations",
+                "friedman": "Other"
             },
             "filters": {
                 "label": "Display",
@@ -143,11 +144,11 @@ print(g)`;
             "sections": [
                 {
                     "type": "html",
-                    "html": "<p>The main axis leads from everyday numbers through ordinal notations and proof-theoretic landmarks, then to Busy Beaver and Rayo. After \\(\\varepsilon_0\\), the major landmarks are equally spaced.</p><p>Drag the canvas or use the Explore menu. The directory searches both languages and includes entries hidden at the current zoom. Click an entry for its definition, references and programs; the link button gives it a shareable address.</p><p>The main axis continues horizontally. Three side paths collect Laver constructions, BTBMS, and Friedman's finite combinatorics. Their horizontal positions suggest a region for display, not an exact comparison with the main axis. Gaps indicate omitted distance. Ordinal notations, concrete large numbers and functions are displayed together as growth landmarks.</p><p>On a keyboard, focus the map and use the arrow keys, plus/minus, Home and End. On a touch screen, drag horizontally and swipe vertically to see the branches.</p>"
+                    "html": "<p>The main axis leads from everyday numbers through ordinal notations and proof-theoretic landmarks, then to Busy Beaver and Rayo. After \\(\\varepsilon_0\\), the major landmarks are equally spaced.</p><p>Drag the canvas or use the Explore menu. The directory searches both languages and includes entries hidden at the current zoom. Click an entry for its definition, references and programs; the link button gives it a shareable address.</p><p>The main axis continues horizontally. Three side paths collect Laver constructions, frontier notations, and other constructions. Their horizontal positions suggest a region for display, not an exact comparison with the main axis. Gaps indicate omitted distance. Ordinal notations, concrete large numbers and functions are displayed together as growth landmarks.</p><p>On a keyboard, focus the map and use the arrow keys, plus/minus, Home and End. On a touch screen, drag horizontally and swipe vertically to see the branches.</p>"
                 },
                 {
                     "type": "note",
-                    "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                    "html": "This content was completed by gpt6-astra and has not yet been reviewed by a human; its correctness is not guaranteed."
                 }
             ]
         },
@@ -163,31 +164,31 @@ print(g)`;
                         },
                         {
                             "type": "note",
-                            "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                            "html": "This content was completed by gpt6-astra and has not yet been reviewed by a human; its correctness is not guaranteed."
                         }
                     ]
                 }
             },
             "branch-2": {
-                "text": "BTBMS",
+                "text": "Frontier notations",
                 "detail": {
-                    "title": "BTBMS",
+                    "title": "Frontier notations",
                     "sections": [
                         {
                             "type": "html",
-                            "html": "<p>Bubby3’s Transfinite BMS extends the parent structure of BMS with ordinal-indexed ancestry. The entry links to the NER implementation.</p>"
+                            "html": "<p>This branch collects notations extending the current frontier. It currently features BTBMS; open the entry for its recursive row structure and NER implementation.</p>"
                         },
                         {
                             "type": "note",
-                            "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                            "html": "This content was completed by gpt6-astra and has not yet been reviewed by a human; its correctness is not guaranteed."
                         }
                     ]
                 }
             },
             "branch-3": {
-                "text": "Friedman",
+                "text": "Other",
                 "detail": {
-                    "title": "Friedman’s finite combinatorics",
+                    "title": "Other",
                     "sections": [
                         {
                             "type": "html",
@@ -195,7 +196,7 @@ print(g)`;
                         },
                         {
                             "type": "note",
-                            "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                            "html": "This content was completed by gpt6-astra and has not yet been reviewed by a human; its correctness is not guaranteed."
                         }
                     ]
                 }
@@ -247,7 +248,7 @@ print(g)`;
                     },
                     {
                         "type": "note",
-                        "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                        "html": "This content was completed by gpt6-astra and has not yet been reviewed by a human; its correctness is not guaranteed."
                     }
                 ]
             }
@@ -275,7 +276,7 @@ print(g)`;
                     },
                     {
                         "type": "note",
-                        "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                        "html": "This content was completed by gpt6-astra and has not yet been reviewed by a human; its correctness is not guaranteed."
                     }
                 ]
             }
@@ -287,11 +288,11 @@ print(g)`;
                 "sections": [
                     {
                         "type": "html",
-                        "html": "<p>The Busy Beaver function outgrows every total computable function. Rayo's construction instead maximizes over numbers uniquely specified by formulas in a fixed language. Individual values are finite natural numbers; the obstacle is a uniform algorithm for the function.</p>"
+                        "html": "<p>The Busy Beaver function outgrows every total computable function. Rayo's construction chooses a number larger than all natural numbers uniquely specified in a fixed language within a fixed symbol budget. Individual values are finite natural numbers; the obstacle is a uniform algorithm for the function.</p>"
                     },
                     {
                         "type": "note",
-                        "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                        "html": "This content was completed by gpt6-astra and has not yet been reviewed by a human; its correctness is not guaranteed."
                     }
                 ]
             }
@@ -456,7 +457,7 @@ print(g)`;
                     },
                     {
                         "type": "note",
-                        "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                        "html": "This content was completed by gpt6-astra and has not yet been reviewed by a human; its correctness is not guaranteed."
                     }
                 ]
             }
@@ -472,7 +473,7 @@ print(g)`;
                     },
                     {
                         "type": "note",
-                        "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                        "html": "This content was completed by gpt6-astra and has not yet been reviewed by a human; its correctness is not guaranteed."
                     }
                 ]
             }
@@ -488,7 +489,7 @@ print(g)`;
                     },
                     {
                         "type": "note",
-                        "html": "This content was completed by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed."
+                        "html": "This content was completed by gpt6-astra and has not yet been reviewed by a human; its correctness is not guaranteed."
                     }
                 ]
             }

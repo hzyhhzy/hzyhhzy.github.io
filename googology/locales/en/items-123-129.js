@@ -1,10 +1,10 @@
-(function registerItems123To129(global) {
+(function registerItems123To130(global) {
     'use strict';
 
     function unreviewedNotice() {
         return {
             type: 'note',
-            html: "<p>This content was produced by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed.</p>",
+            html: "<p>This content was produced by gpt6-astra and has not yet been reviewed by a human; its correctness is not guaranteed.</p>",
         };
     }
 
@@ -56,20 +56,20 @@
                     sections: [
                         {
                             type: 'html',
-                            html: "<p>\\(\\varepsilon_0\\)MN (e0 Mountain Notation) was introduced by @test_alpha0. This entry uses the ordinary version: columns store parent addresses and Cantor-normal-form row labels below \\(\\varepsilon_0\\). Reflection transports both parent addresses and numbers inside those row labels.</p><p>The default fundamental sequence performs the specified number of reflections on a limit term, then deletes the last column. NER also provides row-height differences, mountain diagrams and exact count-sequence views of the same expression.</p><p>An existing construction order-embeds the entire \\(\\omega\\)-Y standard domain below the finite ordinary \\(\\varepsilon_0\\)MN term \\((1,3,14,2)\\), itself below \\((1,4)\\). Another correspondence is\\[\\lim(\\mathrm{SRPD})=|\\mathrm{e0MN}(1,3)|.\\]These concrete connections link it to the preceding sequence and column notations.</p><p><strong>Sources:</strong> <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/external/README.md\">attribution, versions and NER code</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/order-comparisons/proofs/cwy2-e0mn-cover-20260917/CWY2-wY-le-e0MN.zh-CN.md\">embedding \\(\\omega\\)-Y into ordinary \\(\\varepsilon_0\\)MN</a>.</p>",
+                            html: "<p>\\(\\varepsilon_0\\)MN (e0 Mountain Notation) was introduced by @test_alpha0. This entry uses the ordinary version: columns store parent addresses and Cantor-normal-form row labels below \\(\\varepsilon_0\\). Reflection transports both parent addresses and numbers inside those row labels.</p><p>The default fundamental sequence performs the specified number of reflections on a limit term, then deletes the last column. NER also provides row-height differences, mountain diagrams and exact count-sequence views of the same expression.</p><p>@test_alpha0 has proved well-ordering of the ordinary system in \\(KP_\\omega+\\text{“}\\omega_1\\text{ exists”}\\).</p><p>An existing construction order-embeds the entire \\(\\omega\\)-Y standard domain below the finite ordinary \\(\\varepsilon_0\\)MN term \\((1,3,14,2)\\), itself below \\((1,4)\\). Another correspondence is\\[\\lim(\\mathrm{SRPD})=|\\mathrm{e0MN}(1,3)|.\\]These concrete connections link it to the preceding sequence and column notations.</p><p><strong>Expansion and comparison sources:</strong> <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/external/README.md\">attribution, versions and NER code</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/order-comparisons/proofs/cwy2-e0mn-cover-20260917/CWY2-wY-le-e0MN.zh-CN.md\">embedding \\(\\omega\\)-Y into ordinary \\(\\varepsilon_0\\)MN</a>.</p>",
                         },
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-127': {
-                label: "\\(\\operatorname{PTO}(KP_\\omega+\\mathrm{UC})\\)",
+                label: "\\(\\operatorname{PTO}(KP_\\omega+\\text{“}\\omega_1\\text{ exists”})\\)",
                 detail: {
-                    title: "\\(\\operatorname{PTO}(KP_\\omega+\\text{an uncountable ordinal exists})\\)",
+                    title: "\\(\\operatorname{PTO}(KP_\\omega+\\text{“}\\omega_1\\text{ exists”})\\)",
                     sections: [
                         {
                             type: 'html',
-                            html: "<p>Here \\(\\mathrm{UC}\\) abbreviates “there exists an uncountable ordinal”: an ordinal \\(\\nu\\gt\\omega\\) exists with no set-function surjection \\(\\omega\\twoheadrightarrow\\nu\\). The base theory \\(KP_\\omega\\) is Kripke–Platek set theory with infinity and full set induction.</p><p>The 2026 well-ordering analyses of Y and \\(\\omega\\)-Y use this weak set-theoretic background. It supplies ordinal ranks that decrease under expansion, without adding power set or choice. This axis marker denotes the theory's proof-theoretic ordinal.</p><p><strong>Sources:</strong> <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/well-ordering.md\">Y and column notations: well-ordering in weak set theory</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.md\">the \\(\\omega\\)-Y/CWY2 proof background</a>.</p>",
+                            html: "<p>Here “\\(\\omega_1\\) exists” means that an uncountable ordinal exists: there is an ordinal \\(\\nu\\gt\\omega\\) with no set-function surjection \\(\\omega\\twoheadrightarrow\\nu\\). The base theory \\(KP_\\omega\\) is Kripke–Platek set theory with infinity and full set induction.</p><p>The 2026 well-ordering analyses of Y and \\(\\omega\\)-Y use this weak set-theoretic background. It supplies ordinal ranks that decrease under expansion, without adding power set or choice. This axis marker denotes the theory's proof-theoretic ordinal.</p><p><strong>Sources:</strong> <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/well-ordering.md\">Y and column notations: well-ordering in weak set theory</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.md\">the \\(\\omega\\)-Y/CWY2 proof background</a>.</p>",
                         },
                         unreviewedNotice(),
                     ],
@@ -96,6 +96,19 @@
                         {
                             type: 'html',
                             html: "<p>DQDN represents typed programs, types and environments as diagram columns with references only to earlier columns. Data and active columns have counts \\(1\\) and \\(2\\). A fundamental-sequence step rewrites the terminal active column and fairly enumerates the program's next-step branches.</p><p>A query \\(Q(n)\\) may return any natural number \\(m\\), so one activity can have infinitely many children; each fundamental-sequence index selects a finite part. Program reduction, recursion and queries thus become column expansion.</p><p>The standard TOP domain has a paper well-ordering argument. Archived calibrations include\\[\\mathrm{TOP}[1]=\\varepsilon_0,\\qquad \\lim(\\mathrm{BMS})\\le\\operatorname{PTO}(Z_2)\\le|\\mathrm{TOP}[2]|,\\]\\[\\lim(\\mathrm{DQDN})\\ge\\operatorname{PTO}(Z_\\omega).\\]This supplies a concrete notation connected with finite higher-order arithmetic.</p><p><strong>Sources:</strong> <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/DQDN/definition.md\">DQDN definition</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/dqdn-well-ordering.md\">standard-domain well-ordering proof</a>; <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/dqdn/README.md\">calibrations and proof overview</a>.</p>",
+                        },
+                        unreviewedNotice(),
+                    ],
+                },
+            },
+            'item-130': {
+                label: "\\(\\operatorname{PTO}(Z_2)\\,?\\)",
+                detail: {
+                    title: "\\(\\operatorname{PTO}(Z_2)\\,?\\)",
+                    sections: [
+                        {
+                            type: 'html',
+                            html: "<p>\\(Z_2\\) is full second-order arithmetic, allowing natural numbers and arbitrary sets of natural numbers with full comprehension. \\(\\operatorname{PTO}(Z_2)\\) measures the order types of computable well-orders whose well-ordering it proves.</p><p>The BMS limit is strongly suspected to coincide with this height, so this marker is placed alongside it with a question mark. The currently archived comparison gives the upper bound\\[\\lim(\\mathrm{BMS})\\le\\operatorname{PTO}(Z_2).\\]This bound supplies one direction of the proposed identification.</p><p><strong>Source:</strong> <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/dqdn/bms-top2.md\">BMS, second-order arithmetic and the DQDN comparison</a>.</p>",
                         },
                         unreviewedNotice(),
                     ],

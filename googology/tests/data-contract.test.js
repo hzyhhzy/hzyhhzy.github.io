@@ -10,9 +10,9 @@ const core = require('../scale-core.js');
 const SOURCE_ROOT = path.join(__dirname, '..');
 const LOCALES = ['zh-CN', 'en'];
 const ITEM_IDS = Array.from(
-    { length: 130 },
+    { length: 132 },
     (_, index) => `item-${String(index).padStart(3, '0')}`
-).filter((id) => id !== 'item-110');
+).filter((id) => !['item-104', 'item-110'].includes(id));
 const AXIS_IDS = Array.from(
     { length: 9 },
     (_, index) => `axis-${String(index).padStart(2, '0')}`
@@ -27,7 +27,8 @@ const LOCALE_FILES = LOCALES.flatMap((locale) => [
     `locales/${locale}/items-000-040.js`,
     `locales/${locale}/items-041-081.js`,
     `locales/${locale}/items-082-122.js`,
-    `locales/${locale}/items-123-129.js`
+    `locales/${locale}/items-123-129.js`,
+    `locales/${locale}/items-131.js`
 ]);
 
 function normalize(value) {
@@ -306,7 +307,7 @@ test('items.js contains unique stable geometry records on the main axis and thre
         ITEM_IDS.slice(0, 57), 'all early-scale entries are retained');
     const positions = Object.fromEntries(items.map((item) => [item.id, item.value]));
     assert.deepEqual(
-        ['057', '092', '098', '104', '109', '127', '115', '116', '118', '119', '121', '122']
+        ['057', '092', '098', '103', '109', '127', '115', '116', '118', '119', '121', '122']
             .map((id) => positions['item-' + id]),
         [3, 4, 5, 6, 7, 8.5, 9.5, 10.5, 11.5, 12.5, 14.5, 15.5]
     );
@@ -323,6 +324,10 @@ test('items.js contains unique stable geometry records on the main axis and thre
         [9.5, 10.3, 11.8, 12.5, 12, 9.5]);
     assert.ok(items.filter((item) => ['item-115', 'item-116', 'item-117', 'item-118', 'item-119', 'item-127', 'item-129'].includes(item.id))
         .every((item) => !item.branch), 'PTO, Loader and DQDN belong to the main axis');
+    assert.ok(items.filter((item) => ['item-123', 'item-124', 'item-125', 'item-129'].includes(item.id))
+        .every((item) => item.zoomLevel === 1), 'TBMS, SRPD, Y1343 and DQDN use the second display tier');
+    assert.equal(positions['item-130'], positions['item-103'], 'suspected PTO(Z2) aligns with lim(BMS)');
+    assert.equal(positions['item-131'], positions['item-121'], 'big-number golf aligns with BB');
 });
 
 test('both locale packs independently cover all item content', () => {
@@ -540,5 +545,21 @@ test('both locale packs cover branch and axis content with valid details', () =>
                 );
             }
         });
+    }
+});
+
+test('all model-audited content retains the human-review notice in both languages', () => {
+    for (const locale of LOCALES) {
+        const messages = localized[locale].messages;
+        const documents = [messages.guide, ...['items', 'branches', 'axisSegments', 'axisSubSegments']
+            .flatMap((key) => Object.values(messages[key]).map((entry) => entry.detail))];
+        const notes = documents.filter(Boolean).flatMap((detail) => detail.sections || [])
+            .filter((section) => section.type === 'note');
+        assert.ok(notes.length > 0);
+        for (const note of notes) {
+            assert.match(note.html, /gpt6-astra/);
+            assert.match(note.html, locale === 'zh-CN' ? /暂时未经过人工审核/ : /not yet been reviewed by a human/);
+        }
+        assert.doesNotMatch(JSON.stringify(messages), /gpt5\.6sol/);
     }
 });

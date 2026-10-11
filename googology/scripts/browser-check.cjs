@@ -42,12 +42,15 @@ const { chromium } = require('playwright');
         await page.locator('[data-item-id="item-109"].scale-label').waitFor();
         await page.screenshot({ path: path.join(output, 'desktop.png') });
 
-        // The newly requested mountain-family landmarks are visible on arrival.
-        await page.locator('[data-item-id="item-124"].scale-label').waitFor();
-        await page.locator('[data-item-id="item-125"].scale-label').waitFor();
-        const bmsLimitLabel = await page.locator('[data-item-id="item-104"].scale-label').boundingBox();
+        // Secondary landmarks appear after zooming, but remain searchable.
+        assert.equal(await page.locator('[data-item-id="item-124"].scale-label').isVisible(), false);
+        assert.equal(await page.locator('[data-item-id="item-125"].scale-label').isVisible(), false);
+        assert.equal(await page.locator('[data-item-id="item-104"]').count(), 0);
+        const bmsLimitLabel = await page.locator('[data-item-id="item-130"].scale-label').boundingBox();
         const y13Label = await page.locator('[data-item-id="item-105"].scale-label').boundingBox();
-        assert.ok(y13Label.y + y13Label.height < bmsLimitLabel.y, 'stacked BMS / Y labels do not overlap');
+        assert.ok(y13Label.y + y13Label.height < bmsLimitLabel.y, 'stacked PTO / Y labels do not overlap');
+        assert.match(await page.locator('[data-item-id="item-103"].scale-label').textContent(), /SHO/);
+        assert.ok(await page.locator('[data-item-id="item-103"] .mathbf').count(), 'lim(BMS) uses a bold math font');
         assert.match(await page.locator('.axis-segment').allTextContents().then(parts => parts.join(' ')), /山脉记号家族/);
 
         // Search discovers entries without navigating the diagram manually.
@@ -84,7 +87,12 @@ const { chromium } = require('playwright');
         assert.match(await page.locator('#modal-body h2').textContent(), /DQDN/);
         await page.keyboard.press('Escape');
         await page.locator('#jump-select').selectOption('pto');
+        assert.equal(await page.locator('[data-item-id="item-129"].scale-label').isVisible(), false);
         await page.screenshot({ path: path.join(output, 'proof-theory.png') });
+        await page.goto(base + '#item-131');
+        await page.locator('#detail-modal:not([hidden])').waitFor();
+        assert.match(await page.locator('#modal-body h2').textContent(), /golf/);
+        assert.match(await page.locator('#modal-body').textContent(), /gpt6-astra/);
 
         // Narrow viewports retain reachable search, stages and code controls.
         const mobile = await browser.newPage({

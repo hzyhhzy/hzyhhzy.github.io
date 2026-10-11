@@ -4,7 +4,7 @@
     function unreviewedNotice() {
         return {
             type: 'note',
-            html: 'This content was produced by gpt5.6sol and has not yet been reviewed; its correctness is not guaranteed.'
+            html: 'This content was produced by gpt6-astra and has not yet been reviewed by a human; its correctness is not guaranteed.'
         };
     }
 
@@ -143,7 +143,8 @@ print(A3(n, n, n))`
                             type: 'html',
                             html: `
                                 <p><strong>Definition.</strong> Fix \\(k\\geq1\\) and take a finite word \\(x_1\\cdots x_N\\) over \\(\\{1,\\ldots,k\\}\\). It has property \\(*\\) when there are no \\(i\\lt j\\leq N/2\\) for which the consecutive block \\(x_i\\cdots x_{2i}\\) is a subsequence of the later block \\(x_j\\cdots x_{2j}\\). Here a subsequence may delete symbols but must preserve the relative order of those retained. The number \\(n(k)\\) is the greatest possible \\(N\\).</p>
-                                <p>Higman's lemma rules out an infinite word with property \\(*\\); applying König's lemma to the finitely branching tree of valid finite prefixes then gives a maximum length. The first two exact values are \\(n(1)=3\\) and \\(n(2)=11\\), with \\(12221111111\\) attaining the latter. Friedman also proved \\(n(3)>\\operatorname{A}_{7198}(158386)\\). If \\(\\operatorname{A}(t)=\\operatorname{A}(t,t)\\), then \\[n(4)>\\operatorname{A}^{\\operatorname{A}(187196)}(1),\\]where the superscript denotes functional iteration.</p>
+                                <p>Higman's lemma rules out an infinite word with property \\(*\\); applying König's lemma to the finitely branching tree of valid finite prefixes then gives a maximum length. The first two exact values are \\(n(1)=3\\) and \\(n(2)=11\\), with \\(12221111111\\) attaining the latter.</p>
+                                <p>The following bounds use Friedman's Ackermann convention:\\[A_1(t)=2t,\\qquad A_{r+1}(t)=A_r^{\\circ t}(1),\\qquad A(t)=A_t(t).\\]Here \\(r,t\\geq1\\), and \\(\\circ t\\) denotes \\(t\\)-fold composition. Friedman proved\\[n(3)>A_{7198}(158386),\\qquad n(4)>A^{\\circ A(187196)}(1).\\]</p>
                                 <p>As a function of \\(k\\), \\(n(k)\\) eventually dominates every \\(H_\\beta\\) with \\(\\beta\\lt\\omega^\\omega\\), and is eventually dominated by \\(H_{\\omega^\\omega+1}\\). Here \\(H\\) is the paper's notation for a fast-growing hierarchy, not the Hardy hierarchy used elsewhere on this site. Under the FGH correspondence used on this site, this places it at the \\(f_{\\omega^\\omega}\\) level. Since \\(\\operatorname{TREE}(3)\\) is far larger than \\(n(4)\\), the bound above is also a very weak lower bound for \\(\\operatorname{TREE}(3)\\).</p>
                                 <p>However, \\(\\operatorname{TREE}(3)\\) lies at the level of the <a href="https://googology.fandom.com/wiki/Small_Veblen_ordinal">small Veblen ordinal (SVO)</a>, so this lower bound is extremely weak. People later jokingly called \\(\\operatorname{A}^{\\operatorname{A}(187196)}(1),\\) and related expressions containing “187196,” “\\(\\operatorname{TERR}(3)\\)”; “TERR” is an intentional misspelling of “TREE.”</p>
                                 <p><strong>Sources:</strong> <a href="https://doi.org/10.1006/jcta.2000.3154">Harvey M. Friedman, <cite>Long Finite Sequences</cite>, §1 and Theorems 5.19 and 6.8</a>; <a href="https://bpb-us-w2.wpmucdn.com/u.osu.edu/dist/1/1952/files/2014/01/EnormousInt.12pt.6_1_00-23kmig3.pdf">Harvey M. Friedman, <cite>Enormous Integers in Real Life</cite>, Theorems 8.4–8.5</a>.</p>
@@ -163,7 +164,7 @@ print(A3(n, n, n))`
                             html: `
                                 <p><strong>Definition.</strong> Let \\(\\operatorname{STR}(n)\\) be the greatest length \\(N\\) of a sequence of strings \\(S_1,\\ldots,S_N\\) such that the alphabet has \\(n\\) symbols, \\(|S_i|\\leq i\\), and \\(S_i\\) is not a subsequence of \\(S_j\\) whenever \\(i\\lt j\\). A subsequence may delete symbols but preserves the relative order of those retained; the empty string is allowed.</p>
                                 <p>Higman's lemma together with König's lemma ensures that \\(\\operatorname{STR}(n)\\) is finite. The known initial values and bound are \\(\\operatorname{STR}(1)=2\\), \\(\\operatorname{STR}(2)=4\\), and \\(\\operatorname{STR}(3)\\geq11\\). Witnesses are \\((A,\\varnothing)\\), \\((A,BB,B,\\varnothing)\\), and \\((A,BB,BC,CB,B,CCCCC,CCCC,CCC,CC,C,\\varnothing)\\), respectively.</p>
-                                <p>This can be viewed as a TREE-style bad-sequence function with no branching: trees with \\(n\\) node labels degenerate into strings over an \\(n\\)-symbol alphabet. The maximal order type of all finite strings over \\(n\\) symbols under the subsequence ordering is \\(\\omega^{\\omega^{n-1}}\\). This construction differs only by an indexing convention from the function \\(F\\) studied in §5 of Friedman's <cite>Long Finite Sequences</cite>; the corresponding bounds place its growth at \\(H_{\\omega^{\\omega^{\\omega}}}=f_{\\omega^\\omega}\\).</p>
+                                <p>This can be viewed as a TREE-style bad-sequence function with no branching: trees with \\(n\\) node labels degenerate into strings over an \\(n\\)-symbol alphabet. The maximal order type of all finite strings over \\(n\\) symbols under the subsequence ordering is \\(\\omega^{\\omega^{n-1}}\\). Friedman's \\(F(n)\\) in §5 of <cite>Long Finite Sequences</cite> instead permits \\(|S_i|\\leq i+1\\), giving\\[\\operatorname{STR}(n)\\leq F(n)\\lt\\operatorname{STR}(n+1).\\]For the right-hand inequality, prepend a new symbol to the sequence. The corresponding bounds place its growth at \\(H_{\\omega^{\\omega^{\\omega}}}=f_{\\omega^\\omega}\\).</p>
                                 <p><strong>Sources:</strong> <a href="https://mathoverflow.net/questions/285755/growth-rate-of-longest-sequence-of-strings-where-no-string-is-a-subsequence-of-a">MathOverflow, “Growth rate of longest sequence of strings where no string is a subsequence of a later one” (definition and small cases)</a>; <a href="https://doi.org/10.1006/jcta.2000.3154">Harvey M. Friedman, <cite>Long Finite Sequences</cite>, §5 and Theorem 5.19</a>; <a href="https://arxiv.org/abs/1103.4399">Schmitz and Schnoebelen, <cite>Multiply-Recursive Upper Bounds with Higman's Lemma</cite></a>.</p>
                             `
                         },
@@ -399,7 +400,8 @@ print(g)`
                         {
                             type: 'html',
                             html: `
-                                <p>They form a lower bound for <a href="https://googology.fandom.com/wiki/Fusible_number">fusible numbers</a> and are almost as large on the googological scale; both are at the \\({\\varepsilon}_{0}\\) level. The definition is given by the following code.</p>
+                                <p>Here “pseudo-fusible numbers” means the paper's tame fusible numbers: a subset of ordinary binary fusible numbers, also of order type \\(\\varepsilon_0\\). The function \\(f(x)\\) below is the paper's algorithm \\(M\\). It returns the gap from \\(x\\) to the least tame fusible number strictly above it; the large number is the reciprocal gap \\(1/f(x)\\).</p>
+                                <p>The recursion is\\[f(x)=\\begin{cases}-x,&x\\lt0,\\\\\\dfrac{f(x-f(x-1))}{2},&x\\geq0.\\end{cases}\\]The code uses rational arithmetic so that floating-point rounding cannot change the recursion path.</p>
                             `
                         },
                         {
@@ -423,9 +425,9 @@ def f(x):
                                     <li>\\(f(2)=\\frac{1}{1024}=2^{-10}\\)</li>
                                     <li>\\(f(3)=2^{-1541023937}\\)</li>
                                 </ul>
-                                <p>According to @Hypcos's analysis, \\(\\frac{1}{f(4)}\\) is at the level of \\(10\\uparrow{}\\uparrow{}5\\).</p>
-                                <p>@Hypcos conjectures that \\(\\frac{1}{f(5)}\\) may be at the level of the Ackermann function.</p>
-                                <p>Here \\(f(x)\\) gives increasingly small gaps; the large numbers come from its reciprocal \\(1/f(x)\\). <a href="https://lmcs.episciences.org/9850/pdf"><cite>Fusible numbers and Peano Arithmetic</cite></a> studies the \\(\\varepsilon_0\\) order type of fusible numbers and the rapid growth of reciprocal gaps.</p>
+                                <p>To describe the next scales, set \\(E(x)=-\\log_2 f(x)\\), so \\(1/f(x)=2^{E(x)}\\). The supplied calculation notes refine the estimate at \\(x=4\\) to\\[\\log_{10}\\log_{10}E(4)\\approx1.05014\\times10^{28}.\\]Thus \\(E(4)\\) is on the scale of \\(10^{10^{1.05014\\times10^{28}}}\\). This is an asymptotic estimate on an iterated-logarithm scale.</p>
+                                <p>Write \\(K=E(4)\\). The same notes estimate \\(E(5)\\) at the level of \\(F_{K+1}(10)\\), where \\(F\\) is this site's fast-growing hierarchy: \\(F_0(n)=n+1\\) and \\(F_{k+1}(n)=F_k^{\\circ n}(n)\\). This gives a more specific growth-level description than “possibly Ackermannian,” but it remains a level estimate, not a numerical equality.</p>
+                                <p><strong>Sources:</strong> <a href="https://arxiv.org/html/2003.14342#S4">Erickson, Nivasch and Xu, <cite>Fusible numbers and Peano Arithmetic</cite>, §§4–4.1</a> gives the tame construction, algorithm \\(M\\), and the exact exponent for \\(f(3)\\). The estimates for \\(f(4)\\) and \\(f(5)\\) come from the September 2026 calculation notes supplied for this update.</p>
                             `
                         },
                         unreviewedNotice()

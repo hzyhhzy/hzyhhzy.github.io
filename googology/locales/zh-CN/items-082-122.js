@@ -4,7 +4,7 @@
     function unreviewedNotice() {
         return {
             type: 'note',
-            html: `<p>该内容由gpt5.6sol完成，且暂时未经过审核，不保证正确性</p>`,
+            html: `<p>该内容由gpt6-astra完成，且暂时未经过人工审核，不保证正确性</p>`,
         };
     }
 
@@ -370,20 +370,17 @@ print(TREE(3))`,
                 label: '\\(\\mathrm{BMS}:(0,0,0,0)(1,1,1,1)\\)',
             },
             'item-103': {
-                label: "\\(\\lim(\\mathrm{BMS})\\)",
+                label: "\\(\\boldsymbol{\\lim(\\mathbf{BMS})}\\) · SHO",
                 detail: {
                     title: "BMS 极限（SHO）",
                     sections: [
                         {
                             type: 'html',
-                            html: "<p>Bashicu Matrix System（BMS）用自然数矩阵表示序数，展开时依据父关系复制并增加坏部。允许任意有限行数后得到的整个标准域极限，常称为 SHO（Small Hydra Ordinal）。</p><p>BMS 的良序性已有证明。矩阵行数增加会进入新的阶段；这里取的是所有有限行数的整体极限。</p><p><strong>来源：</strong><a href=\"https://github.com/EgoFakeFantasy/BMS-Well-Ordering-Lean\">BMS 良序形式化与原论文来源</a>；<a href=\"https://github.com/Phyrion1343/1Y-Well-Ordering-Lean\">0-Y／BMS 对应与标准域良序证明</a>。</p>",
+                            html: "<p>Bashicu Matrix System（BMS）用自然数矩阵表示序数，展开时依据父关系复制并增加坏部。允许任意有限行数后得到的整个标准域极限，在大数社区中常称为 SHO（Small Hydra Ordinal）。</p><p>SHO 是沿用的社区历史名称，不按字面将它等同于某个特定九头蛇游戏的序数。BMS 的良序性已有证明；矩阵行数增加会进入新的阶段，这里取所有有限行数的整体极限。</p><p><strong>来源：</strong><a href=\"https://github.com/EgoFakeFantasy/BMS-Well-Ordering-Lean\">BMS 良序形式化与原论文来源</a>；<a href=\"https://github.com/Phyrion1343/1Y-Well-Ordering-Lean\">0-Y／BMS 对应与标准域良序证明</a>。</p>",
                         },
                         unreviewedNotice(),
                     ],
                 },
-            },
-            'item-104': {
-                label: '\\(\\mathrm{BMS}:(0,0,0,\\ldots)(1,1,1,\\ldots)\\)',
             },
             'item-105': {
                 label: '\\(Y:(1,3)\\)',
@@ -415,26 +412,26 @@ print(TREE(3))`,
                 },
             },
             'item-108': {
-                label: "Y 序列极限",
+                label: "\\(\\lim(Y)\\)",
                 detail: {
-                    title: "Y 序列极限",
+                    title: "\\(\\lim(Y)\\)",
                     sections: [
                         {
                             type: 'html',
-                            html: "<p>Y 序列由 Yukito 提出。它把有限自然数序列展开成带祖先关系的差分山脉，再按末端结构复制、调整并还原为数列。这里取标准种子 \\((1,m)\\)、\\(m\\ge2\\) 所生成的整个序数系统的极限。</p><p>2026 年 9 月 11 日，@Phyrion 公布了 Y 序列的良序证明；随后 @test_alpha0 将证明所用的公理体系降至 \\(KP_\\omega+\\text{存在不可数序数}\\)。这使 Y 的具体展开规则接上了弱集合论中的良序分析。</p><p><strong>来源：</strong><a href=\"https://github.com/Phyrion1343/1Y-Well-Ordering-Lean\">Y 良序证明与形式化</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/README.zh-CN.md\">进展记录</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/well-ordering.zh-CN.md\">弱集合论内的证明</a>。</p>",
+                            html: "<p>Y 序列由 Yukito 提出。它把有限自然数序列展开成带祖先关系的差分山脉，再按末端结构复制、调整并还原为数列。这里取标准种子 \\((1,m)\\)、\\(m\\ge2\\) 所生成的整个序数系统的极限。</p><p>2026 年 9 月 11 日，@Phyrion 公布了 Y 序列的良序证明；随后 @test_alpha0 将证明所用的公理体系降至 \\(KP_\\omega+\\text{“}\\omega_1\\text{ 存在”}\\)。这使 Y 的具体展开规则接上了弱集合论中的良序分析。</p><p><strong>来源：</strong><a href=\"https://github.com/Phyrion1343/1Y-Well-Ordering-Lean\">Y 良序证明与形式化</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/README.zh-CN.md\">进展记录</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/well-ordering.zh-CN.md\">弱集合论内的证明</a>。</p>",
                         },
                         unreviewedNotice(),
                     ],
                 },
             },
             'item-109': {
-                label: "\\(\\omega\\)-Y 序列极限",
+                label: "\\(\\lim(\\omega\\text{-}Y)\\)",
                 detail: {
-                    title: "\\(\\omega\\)-Y 序列极限",
+                    title: "\\(\\lim(\\omega\\text{-}Y)\\)",
                     sections: [
                         {
                             type: 'html',
-                            html: "<p>\\(\\omega\\)-Y 将 Y 的山脉构造推进到任意有限层数。本条采用 NER 中 omega-Y 的 weak magma 版本，标示整个标准域的极限。</p><p>该系统已有 \\(KP_\\omega+\\text{存在不可数序数}\\) 下的良序证明。列图版本 CWY2 把相同结构写成父地址和有限词组成的列；已收录的对应证明给出 CWY2 与 \\(\\omega\\)-Y 标准域的序同构，并保持基本列逐项展开。</p><p><strong>来源：</strong><a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.zh-CN.md\">CWY2 定义及所引 \\(\\omega\\)-Y 良序原稿</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/cwy2-equivalence.zh-CN.md\">CWY2／\\(\\omega\\)-Y 等价证明</a>。</p>",
+                            html: "<p>\\(\\omega\\)-Y 将 Y 的山脉构造推进到任意有限层数。本条采用 NER 中 omega-Y 的 weak magma 版本，标示整个标准域的极限。</p><p>该系统已有 \\(KP_\\omega+\\text{“}\\omega_1\\text{ 存在”}\\) 下的良序证明。列图版本 CWY2 把相同结构写成父地址和有限词组成的列；已收录的对应证明给出 CWY2 与 \\(\\omega\\)-Y 标准域的序同构，并保持基本列逐项展开。</p><p><strong>来源：</strong><a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.zh-CN.md\">CWY2 定义及所引 \\(\\omega\\)-Y 良序原稿</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/cwy2-equivalence.zh-CN.md\">CWY2／\\(\\omega\\)-Y 等价证明</a>。</p>",
                         },
                         unreviewedNotice(),
                     ],
@@ -473,7 +470,7 @@ print(TREE(3))`,
                     sections: [
                         {
                             type: 'html',
-                            html: `<p>Laver Table 是集合论中研究的一类特殊有限代数结构。第 \\(n\\) 张 Laver Table \\(A_n\\) 的底集为 \\(\\{1,\\ldots,2^n\\}\\)，其运算由下列递归唯一确定：\\[2^n\\star_n b=b,\\qquad a\\star_n1=a+1,\\]\\[a\\star_n(b+1)=(a\\star_n b)\\star_n(a+1)\\qquad(a,b\\lt{}2^n).\\]该运算满足左自分配律\\[a\\star_n(b\\star_n c)=(a\\star_n b)\\star_n(a\\star_n c).\\]</p><p>对每个 \\(a\\)，序列 \\(a\\star_n1,a\\star_n2,\\ldots\\) 周期重复。它的最小周期是 \\(2\\) 的幂；一个周期内的值严格递增，最后到达 \\(2^n\\)。自然的模 \\(2^n\\) 投影 \\(A_{n+1}\\to A_n\\) 是同态。</p><p>记 \\(\\pi_k(1)\\) 为 \\(A_k\\) 第一行的最小周期，并定义\\[q(n)=\\min\\{k\\in\\mathbb N\\mid\\pi_k(1)=2^n\\}.\\]因此 \\(q(n)\\) 是第一行周期首次成为 \\(2^n\\) 的最小表编号，相应代数 \\(A_{q(n)}\\) 的阶数为 \\(2^{q(n)}\\)。下面的程序按 \\(k=0,1,2,\\ldots\\) 完整构造各张 Laver Table 并检查第一行；它能验证 \\(q(0),\\ldots,q(4)=(0,2,3,5,9)\\)，也在不计时间与内存开销的意义下给出了计算一般 \\(q(n)\\) 的穷举过程。</p><p><strong>来源：</strong><a href="https://arxiv.org/abs/math/9503204">Randall Dougherty，《Critical points in an algebra of elementary embeddings, II》，§2 与 Proposition 2.5</a>；<a href="https://arxiv.org/abs/1810.00548">Philippe Biane，《Laver tables and combinatorics》，§§2–3、§7.2</a>。</p>`,
+                            html: `<p>Laver Table 是集合论中研究的一类特殊有限代数结构。第 \\(n\\) 张 Laver Table \\(A_n\\) 的底集为 \\(\\{1,\\ldots,2^n\\}\\)，其运算由下列递归唯一确定：\\[2^n\\star_n b=b,\\qquad a\\star_n1=a+1,\\]\\[a\\star_n(b+1)=(a\\star_n b)\\star_n(a+1)\\qquad(a,b\\lt{}2^n).\\]该运算满足左自分配律\\[a\\star_n(b\\star_n c)=(a\\star_n b)\\star_n(a\\star_n c).\\]</p><p>对每个 \\(a\\)，序列 \\(a\\star_n1,a\\star_n2,\\ldots\\) 周期重复。它的最小周期是 \\(2\\) 的幂；一个周期内的值严格递增，最后到达 \\(2^n\\)。自然的模 \\(2^n\\) 投影 \\(A_{n+1}\\to A_n\\) 是同态。</p><p>记 \\(\\pi_k(1)\\) 为 \\(A_k\\) 第一行的最小周期，并定义\\[q(n)=\\min\\{k\\in\\mathbb N\\mid\\pi_k(1)=2^n\\}.\\]因此 \\(q(n)\\) 是第一行周期首次成为 \\(2^n\\) 的最小表编号，相应代数 \\(A_{q(n)}\\) 的阶数为 \\(2^{q(n)}\\)。下面的程序按 \\(k=0,1,2,\\ldots\\) 完整构造各张 Laver Table 并检查第一行；它能验证 \\(q(0),\\ldots,q(4)=(0,2,3,5,9)\\)，也在不计时间与内存开销的意义下给出了计算一般 \\(q(n)\\) 的穷举过程。在 \\(I_3\\) 假设下，Laver 的周期无界定理保证对每个 \\(n\\) 搜索最终终止。</p><p><strong>来源：</strong><a href="https://arxiv.org/abs/math/9503204">Randall Dougherty，《Critical points in an algebra of elementary embeddings, II》，§2 与 Proposition 2.5</a>；<a href="https://arxiv.org/abs/1810.00548">Philippe Biane，《Laver tables and combinatorics》，§§2–3、§7.2</a>。</p>`,
                         },
                         {
                             type: 'code',
