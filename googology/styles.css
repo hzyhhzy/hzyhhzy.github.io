@@ -84,7 +84,7 @@ select { border: 1px solid var(--line); border-radius: 8px; background: #fff; co
 .zoom-level-2 { z-index: 30; }
 .zoom-level-3 { z-index: 20; }
 .zoom-level-0 .scale-label { font-size: 17px; font-weight: 650; border-top: 3px solid var(--accent); padding-top: 7px; }
-.scale-label[data-item-id="item-103"] { font-size: 20px; font-weight: 800; border: 2px solid var(--accent); border-top-width: 4px; background: #e9f5fc; box-shadow: 0 4px 18px #166e9620; }
+.scale-label[data-item-id="item-103"] { font-weight: 800; }
 .zoom-level-1 .scale-label { font-size: 14px; }
 .zoom-level-2 .scale-label { font-size: 12px; }
 .zoom-level-3 .scale-label { font-size: 11px; color: #526c7f; }

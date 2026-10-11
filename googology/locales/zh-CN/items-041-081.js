@@ -15,6 +15,7 @@
                 detail: {
                     title: '三元 Ackermann 函数',
                     sections: [
+                        { type: 'html', html: "<p>对应的增长层级与 BMS 指标见<a href=\"#item-040\">\\(\\omega^2\\) 级条目</a>。</p>" },
                         {
                             type: 'html',
                             html: `
@@ -54,10 +55,12 @@ print(A3(n, n, n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a> \\(f_{{\\omega}^{2}+{\\omega}}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega^2+\\omega\\ \\longleftrightarrow\\ (0)(1)(1)(0)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
                         {
                             type: 'html',
                             html: `<p>\\((\\omega^{2}+\\omega)[n]=\\omega^{2}+n\\)</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -66,10 +69,12 @@ print(A3(n, n, n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a> \\(f_{{\\omega}^{2}\\cdot{}2}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega^2\\cdot2\\ \\longleftrightarrow\\ (0)(1)(1)(0)(1)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
                         {
                             type: 'html',
                             html: `<p>\\((\\omega^{2}\\cdot{}2)[n]=(\\omega^{2}+\\omega^{2})[n]=\\omega^{2}+\\omega\\cdot{}n\\)</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -78,10 +83,12 @@ print(A3(n, n, n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a> \\(f_{{\\omega}^{3}}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega^3\\ \\longleftrightarrow\\ (0)(1)(1)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
                         {
                             type: 'html',
                             html: `<p>\\((\\omega^{3})[n]=(\\omega^{2}\\cdot{}\\omega)[n]=\\omega^{2}\\cdot{}n\\)</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -90,10 +97,12 @@ print(A3(n, n, n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a> \\(f_{{\\omega}^{4}}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega^4\\ \\longleftrightarrow\\ (0)(1)(1)(1)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
                         {
                             type: 'html',
                             html: `<p>\\((\\omega^{4})[n]=(\\omega^{3}\\cdot{}\\omega)[n]=\\omega^{3}\\cdot{}n\\)</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -102,6 +111,7 @@ print(A3(n, n, n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a> \\(f_{{\\omega}^{{\\omega}}}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega^\\omega\\ \\longleftrightarrow\\ (0)(1)(2).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
                         {
                             type: 'html',
                             html: `
@@ -114,7 +124,8 @@ print(A3(n, n, n))`
                                     =\\ldots
                                 \\]</p>
                             `
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -123,6 +134,7 @@ print(A3(n, n, n))`
                 detail: {
                     title: '多元 Ackermann 函数',
                     sections: [
+                        { type: 'html', html: "<p>对应的增长层级与 BMS 指标见<a href=\"#item-046\">\\(\\omega^\\omega\\) 级条目</a>。</p>" },
                         {
                             type: 'html',
                             html: `
@@ -130,7 +142,8 @@ print(A3(n, n, n))`
                                 <p>因此，最终的极限是 \\(f_{{\\omega}^{{\\omega}}}\\)；多元 Ackermann 函数无法表示增长率不低于 \\(f_{{\\omega}^{{\\omega}}}\\) 的函数。</p>
                                 <p>多元 Ackermann 函数的详细定义较为繁琐，此处不展开。</p>
                             `
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -139,6 +152,7 @@ print(A3(n, n, n))`
                 detail: {
                     title: '<a href="https://doi.org/10.1006/jcta.2000.3154">Friedman n 函数</a>',
                     sections: [
+                        { type: 'html', html: "<p>对应的增长层级与 BMS 指标见<a href=\"#item-046\">\\(\\omega^\\omega\\) 级条目</a>。</p>" },
                         {
                             type: 'html',
                             html: `
@@ -159,6 +173,7 @@ print(A3(n, n, n))`
                 detail: {
                     title: '字符串子序列函数',
                     sections: [
+                        { type: 'html', html: "<p>对应的增长层级与 BMS 指标见<a href=\"#item-046\">\\(\\omega^\\omega\\) 级条目</a>。</p>" },
                         {
                             type: 'html',
                             html: `
@@ -173,34 +188,78 @@ print(A3(n, n, n))`
                 }
             },
             'item-050': {
-                label: '\\(f_{{\\omega}^{{\\omega}}\\cdot{}2}(n)\\)'
+                label: '\\(f_{{\\omega}^{{\\omega}}\\cdot{}2}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}^{{\\omega}}\\cdot{}2}(n)\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega^\\omega\\cdot2\\ \\longleftrightarrow\\ (0)(1)(2)(0)(1)(2).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-051': {
                 label: '\\(f_{{\\omega}^{{\\omega}+1}}(n)\\)',
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a> \\(f_{{\\omega}^{{\\omega}+1}}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega^{\\omega+1}\\ \\longleftrightarrow\\ (0)(1)(2)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
                         {
                             type: 'html',
                             html: `<p>\\((\\omega^{\\omega+1})[n]=(\\omega^{\\omega}\\cdot{}\\omega)[n]=\\omega^{\\omega}\\cdot{}n\\)</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
             'item-052': {
-                label: '\\(f_{{\\omega}^{{\\omega}\\cdot{}2}}(n)\\)'
+                label: '\\(f_{{\\omega}^{{\\omega}\\cdot{}2}}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}^{{\\omega}\\cdot{}2}}(n)\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega^{\\omega\\cdot2}\\ \\longleftrightarrow\\ (0)(1)(2)(1)(2).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-053': {
-                label: '\\(f_{{\\omega}^{{\\omega}^{2}}}(n)\\)'
+                label: '\\(f_{{\\omega}^{{\\omega}^{2}}}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}^{{\\omega}^{2}}}(n)\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega^{\\omega^2}\\ \\longleftrightarrow\\ (0)(1)(2)(2).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-054': {
-                label: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}}}}(n)\\)'
+                label: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}}}}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}}}}(n)\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega^{\\omega^\\omega}\\ \\longleftrightarrow\\ (0)(1)(2)(3).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-055': {
-                label: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}}}}}(n)\\)'
+                label: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}}}}}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}}}}}(n)\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega^{\\omega^{\\omega^\\omega}}\\ \\longleftrightarrow\\ (0)(1)(2)(3)(4).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-056': {
-                label: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}}}}}}(n)\\)'
+                label: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}}}}}}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}}}}}}(n)\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应（FGH 指标）：</strong></p>\\[\\omega^{\\omega^{\\omega^{\\omega^\\omega}}}\\ \\longleftrightarrow\\ (0)(1)(2)(3)(4)(5).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-057': {
                 label: '\\({\\varepsilon}_{0}\\)',
@@ -425,8 +484,7 @@ def f(x):
                                     <li>\\(f(2)=\\frac{1}{1024}=2^{-10}\\)</li>
                                     <li>\\(f(3)=2^{-1541023937}\\)</li>
                                 </ul>
-                                <p>为看清后面的规模，令 \\(E(x)=-\\log_2 f(x)\\)，于是 \\(1/f(x)=2^{E(x)}\\)。本次提供的计算笔记把 \\(x=4\\) 的估计细化为\\[\\log_{10}\\log_{10}E(4)\\approx1.05014\\times10^{28},\\]也就是 \\(E(4)\\) 约在 \\(10^{10^{1.05014\\times10^{28}}}\\) 的尺度上。这是迭代对数尺度的渐近估计。</p>
-                                <p>记 \\(K=E(4)\\)。同一笔记把 \\(E(5)\\) 估计在 \\(F_{K+1}(10)\\) 的层级；这里 \\(F\\) 是本站的快速增长层级，即 \\(F_0(n)=n+1\\)、\\(F_{k+1}(n)=F_k^{\\circ n}(n)\\)。这比“可能达到 Ackermann 级别”给出了更具体的层级描述，但仍是层级估计，不是数值等式。</p>
+                                <p>按增长层级估计：\\[f(4)\\approx10^{-10^{10^{1.05\\times10^{28}}}}.\\]\\[\\frac{1}{f(5)}\\approx f_\\omega\\!\\left(10^{10^{1.05\\times10^{28}}}\\right).\\]后一个带下标的 \\(f\\) 表示快速增长层级（FGH）。</p>
                                 <p><strong>来源：</strong><a href="https://arxiv.org/html/2003.14342#S4">Erickson、Nivasch、Xu，《Fusible numbers and Peano Arithmetic》，§4 与 §4.1</a>给出 tame 构造、算法 \\(M\\) 和 \\(f(3)\\) 的精确指数；\\(f(4)\\)、\\(f(5)\\) 的上述估计采用本次提供的 2026 年 9 月计算笔记。</p>
                             `
                         },
@@ -528,29 +586,52 @@ def f(x):
                 }
             },
             'item-064': {
-                label: '\\({\\varepsilon}_{0}^{{\\varepsilon}_{0}}\\)'
+                label: '\\({\\varepsilon}_{0}^{{\\varepsilon}_{0}}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{0}^{{\\varepsilon}_{0}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\varepsilon_0^{\\varepsilon_0}\\ \\longleftrightarrow\\ (0,0)(1,1)(1,0)(2,1)(2,0)(3,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-065': {
-                label: '\\({\\varepsilon}_{0}^{{\\varepsilon}_{0}^{{\\varepsilon}_{0}}}\\)'
+                label: '\\({\\varepsilon}_{0}^{{\\varepsilon}_{0}^{{\\varepsilon}_{0}}}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{0}^{{\\varepsilon}_{0}^{{\\varepsilon}_{0}}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\varepsilon_0^{\\varepsilon_0^{\\varepsilon_0}}\\ \\longleftrightarrow\\ (0,0)(1,1)(1,0)(2,1)(2,0)(3,1)(3,0)(4,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-066': {
                 label: '\\({\\varepsilon}_{1}\\)',
                 detail: {
                     title: '\\({\\varepsilon}_{1}\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\varepsilon_1\\ \\longleftrightarrow\\ (0,0)(1,1)(1,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
                         { type: 'html', html: `<p>\\(\\varepsilon_1\\) 是 \\(\\varepsilon_0\\) 之后第一个满足 \\(\\omega^\\alpha=\\alpha\\) 的序数。令 \\(a_0=\\varepsilon_0+1\\)、\\(a_{n+1}=\\omega^{a_n}\\)，则 \\(\\varepsilon_1=\\sup_{n\\lt\\omega}a_n\\)。Veblen 记号为 \\(\\varphi_1(1)\\)。</p><p>参考：<a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen 的序数不动点层级</a>。</p>` },
                         unreviewedNotice()
                     ]
                 }
             },
             'item-067': {
-                label: '\\({\\varepsilon}_{1}^{{\\varepsilon}_{1}}\\)'
+                label: '\\({\\varepsilon}_{1}^{{\\varepsilon}_{1}}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{1}^{{\\varepsilon}_{1}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\varepsilon_1^{\\varepsilon_1}\\ \\longleftrightarrow\\ (0,0)(1,1)(1,1)(1,0)(2,1)(2,1)(2,0)(3,1)(3,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-068': {
                 label: '\\({\\varepsilon}_{2}\\)',
                 detail: {
                     title: '\\({\\varepsilon}_{2}\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\varepsilon_2\\ \\longleftrightarrow\\ (0,0)(1,1)(1,1)(1,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
                         { type: 'html', html: `<p>\\(\\varepsilon_2\\) 是第三个 epsilon 数，也就是 \\(\\varepsilon_1\\) 之后的下一个 \\(\\omega^\\alpha=\\alpha\\) 不动点。一般地，\\(\\varepsilon_{\\beta+1}\\) 是 \\(\\varepsilon_\\beta\\) 之后的第一个这种不动点。</p><p>参考：<a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen 的序数不动点层级</a>。</p>` },
                         unreviewedNotice()
                     ]
@@ -561,28 +642,58 @@ def f(x):
                 detail: {
                     title: '\\({\\varepsilon}_{{\\omega}}\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\varepsilon_\\omega\\ \\longleftrightarrow\\ (0,0)(1,1)(2,0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
                         { type: 'html', html: `<p>把所有有限编号的 epsilon 数汇集起来：\\[\\varepsilon_\\omega=\\sup_{n\\lt\\omega}\\varepsilon_n.\\]它仍满足 \\(\\omega^{\\varepsilon_\\omega}=\\varepsilon_\\omega\\)，而下标已经从有限数进入了 \\(\\omega\\)。</p><p>参考：<a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen 的序数不动点层级</a>。</p>` },
                         unreviewedNotice()
                     ]
                 }
             },
             'item-070': {
-                label: '\\({\\varepsilon}_{{\\omega}+1}\\)'
+                label: '\\({\\varepsilon}_{{\\omega}+1}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{{\\omega}+1}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\varepsilon_{\\omega+1}\\ \\longleftrightarrow\\ (0,0)(1,1)(2,0)(1,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-071': {
-                label: '\\({\\varepsilon}_{{\\varepsilon}_{0}}\\)'
+                label: '\\({\\varepsilon}_{{\\varepsilon}_{0}}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{{\\varepsilon}_{0}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\varepsilon_{\\varepsilon_0}\\ \\longleftrightarrow\\ (0,0)(1,1)(2,0)(3,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-072': {
-                label: '\\({\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{0}}}\\)'
+                label: '\\({\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{0}}}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{0}}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\varepsilon_{\\varepsilon_{\\varepsilon_0}}\\ \\longleftrightarrow\\ (0,0)(1,1)(2,0)(3,1)(4,0)(5,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-073': {
-                label: '\\({\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{0}}}}\\)'
+                label: '\\({\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{0}}}}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{0}}}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\varepsilon_{\\varepsilon_{\\varepsilon_{\\varepsilon_0}}}\\ \\longleftrightarrow\\ (0,0)(1,1)(2,0)(3,1)(4,0)(5,1)(6,0)(7,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-074': {
                 label: '\\({\\zeta}_{0}\\)',
                 detail: {
                     title: '\\({\\zeta}_{0}={\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{\\ldots{}}}}}}\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\zeta_0\\ \\longleftrightarrow\\ (0,0)(1,1)(2,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
                         {
                             type: 'html',
                             html: `<p>\\({\\zeta}_{0}\\) 是枚举 epsilon 数的函数 \\(\\alpha\\mapsto\\varepsilon_{\\alpha}\\) 的第一个不动点，即满足 \\(\\varepsilon_{{\\zeta}_{0}}={\\zeta}_{0}\\) 的最小正序数。</p><p>令 \\(\\alpha_{0}=0\\)、\\(\\alpha_{n+1}=\\varepsilon_{\\alpha_n}\\)，则 \\({\\zeta}_{0}=\\sup_{n\\lt{}\\omega}\\alpha_n\\)。在常用的二元 Veblen 函数约定下，它也写作 \\(\\varphi_{2}(0)\\)。这一固定点层级源自 <a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen 的连续递增序数函数</a>。</p>`
@@ -592,29 +703,52 @@ def f(x):
                 }
             },
             'item-075': {
-                label: '\\({\\varepsilon}_{{\\zeta}_{0}+1}\\)'
+                label: '\\({\\varepsilon}_{{\\zeta}_{0}+1}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{{\\zeta}_{0}+1}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\varepsilon_{\\zeta_0+1}\\ \\longleftrightarrow\\ (0,0)(1,1)(2,1)(1,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-076': {
-                label: '\\({\\varepsilon}_{{\\varepsilon}_{{\\zeta}_{0}+1}}\\)'
+                label: '\\({\\varepsilon}_{{\\varepsilon}_{{\\zeta}_{0}+1}}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{{\\varepsilon}_{{\\zeta}_{0}+1}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\varepsilon_{\\varepsilon_{\\zeta_0+1}}\\ \\longleftrightarrow\\ (0,0)(1,1)(2,0)(3,1)(4,1)(3,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-077': {
                 label: '\\({\\zeta}_{1}\\)',
                 detail: {
                     title: '\\({\\zeta}_{1}\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\zeta_1\\ \\longleftrightarrow\\ (0,0)(1,1)(2,1)(1,1)(2,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
                         { type: 'html', html: `<p>\\(\\zeta_1\\) 是 \\(\\zeta_0\\) 之后第一个满足 \\(\\varepsilon_\\alpha=\\alpha\\) 的序数。在 Veblen 记号中，\\(\\zeta_1=\\varphi_2(1)\\)。</p><p>参考：<a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen 的序数不动点层级</a>。</p>` },
                         unreviewedNotice()
                     ]
                 }
             },
             'item-078': {
-                label: '\\({\\zeta}_{{\\zeta}_{0}}\\)'
+                label: '\\({\\zeta}_{{\\zeta}_{0}}\\)',
+                detail: {
+                    title: '\\({\\zeta}_{{\\zeta}_{0}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\zeta_{\\zeta_0}\\ \\longleftrightarrow\\ (0,0)(1,1)(2,1)(2,0)(3,1)(4,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-079': {
                 label: '\\({\\eta}_{0}\\)',
                 detail: {
                     title: '\\({\\eta}_{0}\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\eta_0\\ \\longleftrightarrow\\ (0,0)(1,1)(2,1)(2,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
                         { type: 'html', html: `<p>\\(\\eta_0\\) 是枚举 zeta 数的函数 \\(\\alpha\\mapsto\\zeta_\\alpha\\) 的第一个不动点，即最小的 \\(\\zeta_\\alpha=\\alpha\\) 解。常用 Veblen 记号为 \\(\\eta_0=\\varphi_3(0)\\)。</p><p>参考：<a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen 的序数不动点层级</a>。</p>` },
                         unreviewedNotice()
                     ]
@@ -625,6 +759,7 @@ def f(x):
                 detail: {
                     title: '\\({\\varphi}(4,0)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\varphi(4,0)\\ \\longleftrightarrow\\ (0,0)(1,1)(2,1)(2,1)(2,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
                         { type: 'html', html: `<p>Veblen 层级再前进一步：\\(\\varphi_4\\) 枚举 \\(\\varphi_3\\) 的不动点，\\(\\varphi_4(0)\\) 是其中第一个。因此它同时也是所有较低 Veblen 层级的共同不动点。</p><p>参考：<a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen 的序数不动点层级</a>。</p>` },
                         unreviewedNotice()
                     ]
@@ -635,6 +770,7 @@ def f(x):
                 detail: {
                     title: '\\({\\varphi}({\\omega},0)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 对应：</strong></p>\\[\\varphi(\\omega,0)\\ \\longleftrightarrow\\ (0,0)(1,1)(2,1)(3,0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER 的 BMS–BOCF 转换实现</a>。</p>" },
                         { type: 'html', html: `<p>第一个极限编号的 Veblen 层级：\\(\\varphi_\\omega(0)\\) 是所有有限层 \\(\\varphi_n\\) 的第一个共同不动点，并且 \\[\\varphi_\\omega(0)=\\sup_{n\\lt\\omega}\\varphi_n(0).\\]</p><p>参考：<a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen 的序数不动点层级</a>。</p>` },
                         unreviewedNotice()
                     ]

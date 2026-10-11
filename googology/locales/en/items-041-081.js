@@ -15,6 +15,7 @@
                 detail: {
                     title: 'Ternary Ackermann function',
                     sections: [
+                        { type: 'html', html: "<p>For the corresponding growth level and BMS index, see the <a href=\"#item-040\">\\(\\omega^2\\)-level entry</a>.</p>" },
                         {
                             type: 'html',
                             html: `
@@ -54,10 +55,12 @@ print(A3(n, n, n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a> \\(f_{{\\omega}^{2}+{\\omega}}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega^2+\\omega\\ \\longleftrightarrow\\ (0)(1)(1)(0)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>\\((\\omega^{2}+\\omega)[n]=\\omega^{2}+n\\)</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -66,10 +69,12 @@ print(A3(n, n, n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a> \\(f_{{\\omega}^{2}\\cdot{}2}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega^2\\cdot2\\ \\longleftrightarrow\\ (0)(1)(1)(0)(1)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>\\((\\omega^{2}\\cdot{}2)[n]=(\\omega^{2}+\\omega^{2})[n]=\\omega^{2}+\\omega\\cdot{}n\\)</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -78,10 +83,12 @@ print(A3(n, n, n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a> \\(f_{{\\omega}^{3}}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega^3\\ \\longleftrightarrow\\ (0)(1)(1)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>\\((\\omega^{3})[n]=(\\omega^{2}\\cdot{}\\omega)[n]=\\omega^{2}\\cdot{}n\\)</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -90,10 +97,12 @@ print(A3(n, n, n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a> \\(f_{{\\omega}^{4}}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega^4\\ \\longleftrightarrow\\ (0)(1)(1)(1)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>\\((\\omega^{4})[n]=(\\omega^{3}\\cdot{}\\omega)[n]=\\omega^{3}\\cdot{}n\\)</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -102,6 +111,7 @@ print(A3(n, n, n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a> \\(f_{{\\omega}^{{\\omega}}}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega^\\omega\\ \\longleftrightarrow\\ (0)(1)(2).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `
@@ -114,7 +124,8 @@ print(A3(n, n, n))`
                                     =\\ldots
                                 \\]</p>
                             `
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -123,6 +134,7 @@ print(A3(n, n, n))`
                 detail: {
                     title: 'Multivariate Ackermann function',
                     sections: [
+                        { type: 'html', html: "<p>For the corresponding growth level and BMS index, see the <a href=\"#item-046\">\\(\\omega^\\omega\\)-level entry</a>.</p>" },
                         {
                             type: 'html',
                             html: `
@@ -130,7 +142,8 @@ print(A3(n, n, n))`
                                 <p>Its final limit is therefore \\(f_{{\\omega}^{{\\omega}}}\\); multivariate Ackermann functions cannot express functions whose growth rate is at least \\(f_{{\\omega}^{{\\omega}}}.\\)</p>
                                 <p>The full definition of the multivariate Ackermann function is lengthy and is omitted here.</p>
                             `
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -139,6 +152,7 @@ print(A3(n, n, n))`
                 detail: {
                     title: '<a href="https://doi.org/10.1006/jcta.2000.3154">Friedman&#39;s n function</a>',
                     sections: [
+                        { type: 'html', html: "<p>For the corresponding growth level and BMS index, see the <a href=\"#item-046\">\\(\\omega^\\omega\\)-level entry</a>.</p>" },
                         {
                             type: 'html',
                             html: `
@@ -159,6 +173,7 @@ print(A3(n, n, n))`
                 detail: {
                     title: 'String-subsequence function',
                     sections: [
+                        { type: 'html', html: "<p>For the corresponding growth level and BMS index, see the <a href=\"#item-046\">\\(\\omega^\\omega\\)-level entry</a>.</p>" },
                         {
                             type: 'html',
                             html: `
@@ -173,34 +188,78 @@ print(A3(n, n, n))`
                 }
             },
             'item-050': {
-                label: '\\(f_{{\\omega}^{{\\omega}}\\cdot{}2}(n)\\)'
+                label: '\\(f_{{\\omega}^{{\\omega}}\\cdot{}2}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}^{{\\omega}}\\cdot{}2}(n)\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega^\\omega\\cdot2\\ \\longleftrightarrow\\ (0)(1)(2)(0)(1)(2).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-051': {
                 label: '\\(f_{{\\omega}^{{\\omega}+1}}(n)\\)',
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a> \\(f_{{\\omega}^{{\\omega}+1}}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega^{\\omega+1}\\ \\longleftrightarrow\\ (0)(1)(2)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>\\((\\omega^{\\omega+1})[n]=(\\omega^{\\omega}\\cdot{}\\omega)[n]=\\omega^{\\omega}\\cdot{}n\\)</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
             'item-052': {
-                label: '\\(f_{{\\omega}^{{\\omega}\\cdot{}2}}(n)\\)'
+                label: '\\(f_{{\\omega}^{{\\omega}\\cdot{}2}}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}^{{\\omega}\\cdot{}2}}(n)\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega^{\\omega\\cdot2}\\ \\longleftrightarrow\\ (0)(1)(2)(1)(2).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-053': {
-                label: '\\(f_{{\\omega}^{{\\omega}^{2}}}(n)\\)'
+                label: '\\(f_{{\\omega}^{{\\omega}^{2}}}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}^{{\\omega}^{2}}}(n)\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega^{\\omega^2}\\ \\longleftrightarrow\\ (0)(1)(2)(2).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-054': {
-                label: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}}}}(n)\\)'
+                label: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}}}}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}}}}(n)\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega^{\\omega^\\omega}\\ \\longleftrightarrow\\ (0)(1)(2)(3).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-055': {
-                label: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}}}}}(n)\\)'
+                label: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}}}}}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}}}}}(n)\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega^{\\omega^{\\omega^\\omega}}\\ \\longleftrightarrow\\ (0)(1)(2)(3)(4).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-056': {
-                label: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}}}}}}(n)\\)'
+                label: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}}}}}}(n)\\)',
+                detail: {
+                    title: '\\(f_{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}^{{\\omega}}}}}}(n)\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega^{\\omega^{\\omega^{\\omega^\\omega}}}\\ \\longleftrightarrow\\ (0)(1)(2)(3)(4)(5).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-057': {
                 label: '\\({\\varepsilon}_{0}\\)',
@@ -425,8 +484,7 @@ def f(x):
                                     <li>\\(f(2)=\\frac{1}{1024}=2^{-10}\\)</li>
                                     <li>\\(f(3)=2^{-1541023937}\\)</li>
                                 </ul>
-                                <p>To describe the next scales, set \\(E(x)=-\\log_2 f(x)\\), so \\(1/f(x)=2^{E(x)}\\). The supplied calculation notes refine the estimate at \\(x=4\\) to\\[\\log_{10}\\log_{10}E(4)\\approx1.05014\\times10^{28}.\\]Thus \\(E(4)\\) is on the scale of \\(10^{10^{1.05014\\times10^{28}}}\\). This is an asymptotic estimate on an iterated-logarithm scale.</p>
-                                <p>Write \\(K=E(4)\\). The same notes estimate \\(E(5)\\) at the level of \\(F_{K+1}(10)\\), where \\(F\\) is this site's fast-growing hierarchy: \\(F_0(n)=n+1\\) and \\(F_{k+1}(n)=F_k^{\\circ n}(n)\\). This gives a more specific growth-level description than “possibly Ackermannian,” but it remains a level estimate, not a numerical equality.</p>
+                                <p>At the level of growth-rate estimates:\\[f(4)\\approx10^{-10^{10^{1.05\\times10^{28}}}}.\\]\\[\\frac{1}{f(5)}\\approx f_\\omega\\!\\left(10^{10^{1.05\\times10^{28}}}\\right).\\]The subscripted \\(f\\) in the latter expression denotes the fast-growing hierarchy (FGH).</p>
                                 <p><strong>Sources:</strong> <a href="https://arxiv.org/html/2003.14342#S4">Erickson, Nivasch and Xu, <cite>Fusible numbers and Peano Arithmetic</cite>, §§4–4.1</a> gives the tame construction, algorithm \\(M\\), and the exact exponent for \\(f(3)\\). The estimates for \\(f(4)\\) and \\(f(5)\\) come from the September 2026 calculation notes supplied for this update.</p>
                             `
                         },
@@ -528,29 +586,52 @@ def f(x):
                 }
             },
             'item-064': {
-                label: '\\({\\varepsilon}_{0}^{{\\varepsilon}_{0}}\\)'
+                label: '\\({\\varepsilon}_{0}^{{\\varepsilon}_{0}}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{0}^{{\\varepsilon}_{0}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\varepsilon_0^{\\varepsilon_0}\\ \\longleftrightarrow\\ (0,0)(1,1)(1,0)(2,1)(2,0)(3,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-065': {
-                label: '\\({\\varepsilon}_{0}^{{\\varepsilon}_{0}^{{\\varepsilon}_{0}}}\\)'
+                label: '\\({\\varepsilon}_{0}^{{\\varepsilon}_{0}^{{\\varepsilon}_{0}}}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{0}^{{\\varepsilon}_{0}^{{\\varepsilon}_{0}}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\varepsilon_0^{\\varepsilon_0^{\\varepsilon_0}}\\ \\longleftrightarrow\\ (0,0)(1,1)(1,0)(2,1)(2,0)(3,1)(3,0)(4,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-066': {
                 label: '\\({\\varepsilon}_{1}\\)',
                 detail: {
                     title: '\\({\\varepsilon}_{1}\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\varepsilon_1\\ \\longleftrightarrow\\ (0,0)(1,1)(1,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         { type: 'html', html: `<p>\\(\\varepsilon_1\\) is the first solution of \\(\\omega^\\alpha=\\alpha\\) above \\(\\varepsilon_0\\). If \\(a_0=\\varepsilon_0+1\\) and \\(a_{n+1}=\\omega^{a_n}\\), then \\(\\varepsilon_1=\\sup_{n\\lt\\omega}a_n\\). Its Veblen notation is \\(\\varphi_1(1)\\).</p><p>Reference: <a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen’s ordinal fixed-point hierarchy</a>.</p>` },
                         unreviewedNotice()
                     ]
                 }
             },
             'item-067': {
-                label: '\\({\\varepsilon}_{1}^{{\\varepsilon}_{1}}\\)'
+                label: '\\({\\varepsilon}_{1}^{{\\varepsilon}_{1}}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{1}^{{\\varepsilon}_{1}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\varepsilon_1^{\\varepsilon_1}\\ \\longleftrightarrow\\ (0,0)(1,1)(1,1)(1,0)(2,1)(2,1)(2,0)(3,1)(3,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-068': {
                 label: '\\({\\varepsilon}_{2}\\)',
                 detail: {
                     title: '\\({\\varepsilon}_{2}\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\varepsilon_2\\ \\longleftrightarrow\\ (0,0)(1,1)(1,1)(1,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         { type: 'html', html: `<p>\\(\\varepsilon_2\\) is the third epsilon number: the next fixed point of \\(\\omega^\\alpha=\\alpha\\) after \\(\\varepsilon_1\\). In general, \\(\\varepsilon_{\\beta+1}\\) is the first such fixed point above \\(\\varepsilon_\\beta\\).</p><p>Reference: <a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen’s ordinal fixed-point hierarchy</a>.</p>` },
                         unreviewedNotice()
                     ]
@@ -561,28 +642,58 @@ def f(x):
                 detail: {
                     title: '\\({\\varepsilon}_{{\\omega}}\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\varepsilon_\\omega\\ \\longleftrightarrow\\ (0,0)(1,1)(2,0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         { type: 'html', html: `<p>Collect all epsilon numbers with finite indices:\\[\\varepsilon_\\omega=\\sup_{n\\lt\\omega}\\varepsilon_n.\\]It still satisfies \\(\\omega^{\\varepsilon_\\omega}=\\varepsilon_\\omega\\), while its index has reached \\(\\omega\\).</p><p>Reference: <a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen’s ordinal fixed-point hierarchy</a>.</p>` },
                         unreviewedNotice()
                     ]
                 }
             },
             'item-070': {
-                label: '\\({\\varepsilon}_{{\\omega}+1}\\)'
+                label: '\\({\\varepsilon}_{{\\omega}+1}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{{\\omega}+1}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\varepsilon_{\\omega+1}\\ \\longleftrightarrow\\ (0,0)(1,1)(2,0)(1,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-071': {
-                label: '\\({\\varepsilon}_{{\\varepsilon}_{0}}\\)'
+                label: '\\({\\varepsilon}_{{\\varepsilon}_{0}}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{{\\varepsilon}_{0}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\varepsilon_{\\varepsilon_0}\\ \\longleftrightarrow\\ (0,0)(1,1)(2,0)(3,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-072': {
-                label: '\\({\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{0}}}\\)'
+                label: '\\({\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{0}}}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{0}}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\varepsilon_{\\varepsilon_{\\varepsilon_0}}\\ \\longleftrightarrow\\ (0,0)(1,1)(2,0)(3,1)(4,0)(5,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-073': {
-                label: '\\({\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{0}}}}\\)'
+                label: '\\({\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{0}}}}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{0}}}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\varepsilon_{\\varepsilon_{\\varepsilon_{\\varepsilon_0}}}\\ \\longleftrightarrow\\ (0,0)(1,1)(2,0)(3,1)(4,0)(5,1)(6,0)(7,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-074': {
                 label: '\\({\\zeta}_{0}\\)',
                 detail: {
                     title: '\\({\\zeta}_{0}={\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{{\\varepsilon}_{\\ldots{}}}}}}\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\zeta_0\\ \\longleftrightarrow\\ (0,0)(1,1)(2,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>\\({\\zeta}_{0}\\) is the first fixed point of the epsilon-enumerating function \\(\\alpha\\mapsto\\varepsilon_{\\alpha}\\): it is the least positive ordinal satisfying \\(\\varepsilon_{{\\zeta}_{0}}={\\zeta}_{0}\\).</p><p>If \\(\\alpha_{0}=0\\) and \\(\\alpha_{n+1}=\\varepsilon_{\\alpha_n}\\), then \\({\\zeta}_{0}=\\sup_{n\\lt{}\\omega}\\alpha_n\\). Under the usual binary Veblen convention it can also be written \\(\\varphi_{2}(0)\\). This fixed-point hierarchy goes back to <a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen's continuous increasing ordinal functions</a>.</p>`
@@ -592,29 +703,52 @@ def f(x):
                 }
             },
             'item-075': {
-                label: '\\({\\varepsilon}_{{\\zeta}_{0}+1}\\)'
+                label: '\\({\\varepsilon}_{{\\zeta}_{0}+1}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{{\\zeta}_{0}+1}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\varepsilon_{\\zeta_0+1}\\ \\longleftrightarrow\\ (0,0)(1,1)(2,1)(1,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-076': {
-                label: '\\({\\varepsilon}_{{\\varepsilon}_{{\\zeta}_{0}+1}}\\)'
+                label: '\\({\\varepsilon}_{{\\varepsilon}_{{\\zeta}_{0}+1}}\\)',
+                detail: {
+                    title: '\\({\\varepsilon}_{{\\varepsilon}_{{\\zeta}_{0}+1}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\varepsilon_{\\varepsilon_{\\zeta_0+1}}\\ \\longleftrightarrow\\ (0,0)(1,1)(2,0)(3,1)(4,1)(3,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-077': {
                 label: '\\({\\zeta}_{1}\\)',
                 detail: {
                     title: '\\({\\zeta}_{1}\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\zeta_1\\ \\longleftrightarrow\\ (0,0)(1,1)(2,1)(1,1)(2,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         { type: 'html', html: `<p>\\(\\zeta_1\\) is the first solution of \\(\\varepsilon_\\alpha=\\alpha\\) above \\(\\zeta_0\\). In Veblen notation, \\(\\zeta_1=\\varphi_2(1)\\).</p><p>Reference: <a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen’s ordinal fixed-point hierarchy</a>.</p>` },
                         unreviewedNotice()
                     ]
                 }
             },
             'item-078': {
-                label: '\\({\\zeta}_{{\\zeta}_{0}}\\)'
+                label: '\\({\\zeta}_{{\\zeta}_{0}}\\)',
+                detail: {
+                    title: '\\({\\zeta}_{{\\zeta}_{0}}\\)',
+                    sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\zeta_{\\zeta_0}\\ \\longleftrightarrow\\ (0,0)(1,1)(2,1)(2,0)(3,1)(4,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
+                        unreviewedNotice()
+                    ]
+                }
             },
             'item-079': {
                 label: '\\({\\eta}_{0}\\)',
                 detail: {
                     title: '\\({\\eta}_{0}\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\eta_0\\ \\longleftrightarrow\\ (0,0)(1,1)(2,1)(2,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         { type: 'html', html: `<p>\\(\\eta_0\\) is the first fixed point of the zeta-number enumeration \\(\\alpha\\mapsto\\zeta_\\alpha\\): the least solution of \\(\\zeta_\\alpha=\\alpha\\). In the usual Veblen notation, \\(\\eta_0=\\varphi_3(0)\\).</p><p>Reference: <a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen’s ordinal fixed-point hierarchy</a>.</p>` },
                         unreviewedNotice()
                     ]
@@ -625,6 +759,7 @@ def f(x):
                 detail: {
                     title: '\\({\\varphi}(4,0)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\varphi(4,0)\\ \\longleftrightarrow\\ (0,0)(1,1)(2,1)(2,1)(2,1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         { type: 'html', html: `<p>The next Veblen level: \\(\\varphi_4\\) enumerates fixed points of \\(\\varphi_3\\), and \\(\\varphi_4(0)\\) is the first. It is also a common fixed point of all lower Veblen levels.</p><p>Reference: <a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen’s ordinal fixed-point hierarchy</a>.</p>` },
                         unreviewedNotice()
                     ]
@@ -635,6 +770,7 @@ def f(x):
                 detail: {
                     title: '\\({\\varphi}({\\omega},0)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence：</strong></p>\\[\\varphi(\\omega,0)\\ \\longleftrightarrow\\ (0,0)(1,1)(2,1)(3,0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         { type: 'html', html: `<p>The first Veblen level with a limit index: \\(\\varphi_\\omega(0)\\) is the first common fixed point of all finite levels \\(\\varphi_n\\), and \\[\\varphi_\\omega(0)=\\sup_{n\\lt\\omega}\\varphi_n(0).\\]</p><p>Reference: <a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Veblen’s ordinal fixed-point hierarchy</a>.</p>` },
                         unreviewedNotice()
                     ]

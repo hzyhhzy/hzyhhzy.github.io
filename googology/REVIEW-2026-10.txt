@@ -37,7 +37,7 @@ NER 核对版本：26d2dd981134231b44280934514d63aac2cc31af
    https://github.com/hzyhhzy/column-ordinal-notations-hzy
 
 5. item-109 · ω-Y 良序证明的历史信息
-   当前：使用 NER 的 weak-magma ω-Y 版本，引用 CWY2 定义及等价证明所引的原稿。
+   当前：使用 NER 的 weak-magma ω-Y 版本；正文不再介绍 CWY2，仅保留该档案中对 ω-Y 良序原稿的资料引用。
    待补充：原稿的公开链接与希望展示的作者署名。档案所引日期为 2026-09-13，未自行补作者。
    原稿标题：Well-foundedness of the Weak-Magma ω-Y System in KP with an Uncountable Ordinal
    来源：
@@ -50,7 +50,8 @@ NER 核对版本：26d2dd981134231b44280934514d63aac2cc31af
 7. item-061 · 伪燃烧数 f(4)、f(5) 的估计
    当前：已依据作者提供的 fusible_run4/calculation_notes.md 与 function_grid_65_normalized.md 更新。
    f 是 tame 算法 M。精确值 f(3)=2^(-1541023937)；令 E(x)=-log₂ f(x)，笔记给 log₁₀log₁₀E(4) 的渐近主项约 1.05014×10^28。
-   f(5) 部分使用笔记中的启发式 FGH 层级换写，不写成数值等式。目录中的 ternary、full-fusible、meek 与 bounded_restart 研究没有混入此条。
+   按作者确认精简为 f(4) ≈ 10^(-10^(10^(1.05×10^28)))、1/f(5) ≈ f_ω(10^(10^(1.05×10^28)))，均为增长层级估计；后一个带下标的小写 f 表示 FGH。
+   目录中的 ternary、full-fusible、meek 与 bounded_restart 研究没有混入此条。
    待补充：f(4) 的误差界、f(5) 的严格比较；如果要提供公开复核资料，可另选合适笔记公开。本次没有复制或修改外部研究文件。
 
 8. item-111 / item-112 / item-117 · 支线和具体大数的定位
@@ -62,6 +63,19 @@ NER 核对版本：26d2dd981134231b44280934514d63aac2cc31af
    当前：按作者要求写成 PTO(Z₂) ?，表示高度疑似对应。
    已核对文献仅支持 lim(BMS) ≤ PTO(Z₂)；若得到反方向或等号证明，请补充。
    https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/dqdn/bms-top2.zh-CN.md
+
+10. item-087 · TREE(3) 下界的复杂下标
+   当前：引用 HypCos 给出的 TREE(3) > f_β(tree(tree(3)))，β=ϑ(Ω^ω+3)+ϑ(Ω^ω)。
+   已补齐 tree 的 SVO、TREE 函数的 φ(ω@ω)、LVO 等对应 BMS；TREE 的矩阵为 (00)(11)(21)(31)(40)(30)，最后一列是 (30)。
+   待确认：β 的精确 BMS 转写。非极限参数处的 ϑ 归一化约定需要继续核对，因此没有把仅凭类比猜出的矩阵写入正文。
+   来源：https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)
+
+11. item-106 · SCG 的上下界与社区猜测
+   当前严格界的来源是 Krombholz–Rathjen 对图小元定理的序数分析：ψ₀(Ω_ω) < α_GMT ≤ ψ₀(Ω_ω^(ω^ω))；原文给的是定理的证明论序数界，并不是固定输入 SCG(13) 的数值公式。
+   另按作者在本轮提供的信息，单列社区猜测区间 ψ₀(Ω_ω·ω) 至 ψ₀(Ω_ω^ω)；没有把该猜测归给上述论文。
+   四个端点的 BMS 分别为 (000)(111)、(000)(111)(210)(300)(400)、(000)(111)(200)、(000)(111)(210)(300)，均经同一 BMS 转换器核对。
+   待补充：社区猜测的原始分析链接；若需要精确到某个 FGH 约定的逐输入函数界，还需明确该换写与参数调整。
+   来源：https://arxiv.org/html/1907.00412#S3
 
 已核对且特意保留的边界
 ----------------------
@@ -89,6 +103,16 @@ NER 核对版本：26d2dd981134231b44280934514d63aac2cc31af
   https://arxiv.org/abs/1703.05170
 - 视觉：lim(BMS) 加粗并显示 SHO；冗余无限矩阵标签删除；TBMS、SRPD、Y1343、DQDN 降为第二显示档。
 
+第三轮对应补充
+--------------
+- ω 至 ε₀ 之前及 ε₀ 至 Veblen 层级：补全 42 个序数/BMS 对应；加入 HH 与有限迭代的指标说明，同位置的其他函数通过内部链接共用对应表。
+- 进一步补齐 Γ₀、Γ₁、四元 Veblen、SVO、TREE 函数、LVO、BHO、TFB 的 BMS 表示。
+- 用同一套 BMS 展开与转换规则核对，不把资料间的不同分析归结为版本差异。
+- 转换实现：https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts
+- 高段交叉核对：https://solarzone1010.github.io/bms-analyzer.html
+- TFB 对应 (000)(111)(210)(320)，另参见：https://wiki.googology.top/index.php/BMS分析Part2：BO~EBO
+- SHO 恢复普通标签框，仅保留加粗；正文移除 CWY2 的讨论。
+
 这些检查是文本核对、定义复查和小规模程序验证，不是对所有巨大参数的重新形式化证明。
 
 维护与验证
@@ -103,4 +127,4 @@ NER 核对版本：26d2dd981134231b44280934514d63aac2cc31af
 浏览器检查需在外部安装 Playwright（或通过 NODE_PATH 指向已有安装）及 Edge。
 脚本自建临时本地服务器，检查桌面/移动端、中英切换、搜索、直达链接、代码弹窗，并将截图保存到系统临时目录。
 
-本次结果：57 项单元测试通过；桌面和 390px 移动端浏览器检查通过；git diff --check 通过。
+本次结果：60 项单元测试通过；桌面和 390px 移动端浏览器检查通过（含词条互跳、燃烧数与 SCG 公式）；git diff --check 通过。

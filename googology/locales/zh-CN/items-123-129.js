@@ -69,7 +69,7 @@
                     sections: [
                         {
                             type: 'html',
-                            html: "<p>这里“\\(\\omega_1\\) 存在”指存在不可数序数：存在序数 \\(\\nu\\gt\\omega\\)，不存在集合函数 \\(\\omega\\twoheadrightarrow\\nu\\)。基础 \\(KP_\\omega\\) 为含无穷公理和完整集合归纳的 Kripke–Platek 集合论。</p><p>2026 年的 Y 与 \\(\\omega\\)-Y 良序分析使用这一弱集合论背景。它提供足够的序数秩来证明展开下降，同时不需要加入幂集或选择公理。主轴在这里标示该理论的证明论序数。</p><p><strong>来源：</strong><a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/well-ordering.zh-CN.md\">Y 与列图记号：弱集合论内的良序证明</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.zh-CN.md\">\\(\\omega\\)-Y／CWY2 的证明背景</a>。</p>",
+                            html: "<p>这里“\\(\\omega_1\\) 存在”指存在不可数序数：存在序数 \\(\\nu\\gt\\omega\\)，不存在集合函数 \\(\\omega\\twoheadrightarrow\\nu\\)。基础 \\(KP_\\omega\\) 为含无穷公理和完整集合归纳的 Kripke–Platek 集合论。</p><p>2026 年的 Y 与 \\(\\omega\\)-Y 良序分析使用这一弱集合论背景。它提供足够的序数秩来证明展开下降，同时不需要加入幂集或选择公理。主轴在这里标示该理论的证明论序数。</p><p><strong>来源：</strong><a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/well-ordering.zh-CN.md\">Y 与列图记号：弱集合论内的良序证明</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.zh-CN.md\">\\(\\omega\\)-Y 的证明背景</a>。</p>",
                         },
                         unreviewedNotice(),
                     ],

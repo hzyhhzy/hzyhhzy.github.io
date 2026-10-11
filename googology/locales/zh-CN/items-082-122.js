@@ -15,6 +15,7 @@
                 detail: {
                     title: '\\({\\Gamma}_{0}\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 表示：</strong>\\[(0,0)(1,1)(2,1)(3,1)\\]</p><p>对应核对：<a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>。</p>" },
                         {
                             type: 'html',
                             html: `<p>在本站接下来采用的有限元 Veblen 约定中，\\({\\Gamma}_{0}=\\varphi(1,0,0)\\)。等价地，它是函数 \\(\\alpha\\mapsto\\varphi_{\\alpha}(0)\\) 的最小正不动点。</p><p>若 \\(\\gamma_0=1\\)、\\(\\gamma_{n+1}=\\varphi_{\\gamma_n}(0)\\)，则\\[{\\Gamma}_{0}=\\sup_{n\\lt{}\\omega}\\gamma_n.\\]它通常称为 Feferman–Schütte 序数，是 Veblen 固定点层级中的重要节点。</p><p><strong>来源：</strong><a href="https://arxiv.org/abs/2205.11017">Bufetov、Nivasch、Pakhomov，《Generalized fusible numbers and their ordinals》，§3.2</a>。</p>`,
@@ -28,6 +29,7 @@
                 detail: {
                     title: '\\({\\varphi}(1,0,1)\\)',
                     sections: [
+                        { type: 'html', html: "<p>\\(\\varphi(1,0,1)=\\Gamma_1\\)</p><p><strong>BMS 表示：</strong>\\[(0,0)(1,1)(2,1)(3,1)(1,1)(2,1)(3,1)\\]</p><p>对应核对：<a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>。</p>" },
                         {
                             type: 'html',
                             html: `<p>这是三元 Veblen 函数的一个值。固定前两个参数 \\((1,0)\\) 后，最后一个参数依次枚举这一层级的值；由于 \\(\\varphi(1,0,0)={\\Gamma}_{0}\\)，\\(\\varphi(1,0,1)\\) 是把末参数从 \\(0\\) 提升到 \\(1\\) 后得到的下一个索引值。</p><p>这里的“下一个”不是序数后继：一般而言，\\(\\varphi(1,0,1)\\neq {\\Gamma}_{0}+1\\)，而是同一正规函数所枚举的下一个固定点层级值。</p><p><strong>记号约定与来源：</strong><a href="https://arxiv.org/abs/2205.11017">Bufetov、Nivasch、Pakhomov，《Generalized fusible numbers and their ordinals》，§3.2</a>。</p>`,
@@ -41,6 +43,7 @@
                 detail: {
                     title: '\\({\\varphi}(1,0,0,0)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 表示：</strong>\\[(0,0)(1,1)(2,1)(3,1)(3,1)\\]</p><p>对应核对：<a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>。</p>" },
                         {
                             type: 'html',
                             html: `<p>\\(\\varphi(1,0,0,0)\\) 使用四元 Veblen 函数。与三元表达式 \\(\\varphi(1,0,0)={\\Gamma}_{0}\\) 相比，新增的参数位置把共同不动点构造再推进一层；末尾全取 \\(0\\) 表示这一四元层级的第一个新闭包点。</p><p>有限元 Veblen 函数按元数递归定义：增加一个参数位置，就枚举由较低元数和较早参数值产生的函数的共同不动点。</p><p><strong>记号约定与来源：</strong><a href="https://arxiv.org/abs/2205.11017">Bufetov、Nivasch、Pakhomov，《Generalized fusible numbers and their ordinals》，§3.2</a>。</p>`,
@@ -54,6 +57,7 @@
                 detail: {
                     title: 'SVO',
                     sections: [
+                        { type: 'html', html: "<p>\\(\\mathrm{SVO}=\\vartheta(\\Omega^\\omega)=\\psi_0(\\Omega^{\\Omega^\\omega})\\)</p><p><strong>BMS 表示：</strong>\\[(0,0)(1,1)(2,1)(3,1)(4,0)\\]</p><p>对应核对：<a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>。</p>" },
                         {
                             type: 'html',
                             html: `<p>SVO 是 small Veblen ordinal（小 Veblen 序数）的缩写。它是从 \\(0\\) 出发，反复使用序数加法以及任意有限元 Veblen 函数仍不能达到的最小序数；也就是所有有限元 Veblen 层级共同的闭包界。</p><p>直观地说，\\(\\varphi(1,0,0)\\)、\\(\\varphi(1,0,0,0)\\) 等表达式会随着参数个数增加而进入越来越高的层级，SVO 位于全部有限参数个数的构造之上。</p><p><strong>来源：</strong><a href="https://arxiv.org/abs/2205.11017">Bufetov、Nivasch、Pakhomov，《Generalized fusible numbers and their ordinals》，§3.2</a>。</p>`,
@@ -67,10 +71,8 @@
                 detail: {
                     title: '\\(\\operatorname{tree}(n)\\)',
                     sections: [
-                        {
-                            type: 'html',
-                            html: `<p>\\(\\operatorname{tree}(n)\\) 是 \\(\\operatorname{TREE}\\) 的弱化版本，其中节点只有一种颜色；在大数尺度上，二者非常接近。</p>`,
-                        },
+                        { type: 'html', html: "<p>\\(\\operatorname{tree}(n)\\) 使用单色根树，第 \\(i\\) 棵树至多有 \\(n+i\\) 个顶点，且较早的树不能嵌入较晚的树。其增长层级对应 \\(\\mathrm{SVO}=\\vartheta(\\Omega^\\omega)\\)，也就是 \\(f_{\\mathrm{SVO}}\\) 层级；BMS 表示见同位置的 <a href=\"#item-085\">SVO</a>。</p><p>来源：<a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos 对 tree 与 TREE 的分析</a>。</p>" },
+                        unreviewedNotice(),
                     ],
                 },
             },
@@ -224,7 +226,7 @@ print(TREE(3))`,
                         },
                         {
                             type: 'html',
-                            html: `<p>\\(\\operatorname{TREE}(3)\\) 略高于 SVO 层级。HypCos 对 \\(\\operatorname{tree}\\) 函数和 \\(\\operatorname{TREE}(3)\\) 做过进一步分析，可参阅以下资料：</p><ul><li><a href="https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)">\\(\\operatorname{tree}\\) function and \\(\\operatorname{TREE}(3)\\)</a></li><li><a href="https://www.zhihu.com/question/667616017/answer/13389602444">知乎：葛立恒数、\\(\\operatorname{TREE}(3)\\) 与 \\(\\operatorname{SCG}(13)\\) 如何用 BMS 表示？</a></li><li><a href="https://www.zhihu.com/question/353941713/answer/885942447">知乎：葛立恒数、\\(\\operatorname{tree}(3)\\) 等数为何如此巨大？</a></li></ul>`,
+                            html: "<p><strong>序数下界。</strong>HypCos 给出的一个简化下界是\\[\\operatorname{TREE}(3)>f_{\\beta}\\bigl(\\operatorname{tree}(\\operatorname{tree}(3))\\bigr),\\qquad\\beta=\\vartheta(\\Omega^\\omega+3)+\\vartheta(\\Omega^\\omega).\\]其中 \\(\\vartheta(\\Omega^\\omega)=\\mathrm{SVO}\\)，其 BMS 为 \\((0,0)(1,1)(2,1)(3,1)(4,0)\\)。这说明固定值 \\(\\operatorname{TREE}(3)\\) 已越过 SVO 层级；整个 \\(\\operatorname{TREE}(n)\\) 函数的层级另见<a href=\"#item-089\">下一词条</a>。</p><p>来源：<a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos：tree function and \\(\\operatorname{TREE}(3)\\)</a>。</p>",
                         },
                         unreviewedNotice(),
                     ],
@@ -237,8 +239,9 @@ print(TREE(3))`,
                     sections: [
                         {
                             type: 'html',
-                            html: `<p>\\(\\operatorname{TREE}\\) 函数位于这一层级。不过，这里并不是标志性节点；除了 \\(\\operatorname{TREE}\\) 函数，这里没有其他内容。</p>`,
+                            html: "<p>\\(\\operatorname{TREE}(n)\\) 对应的序数层级为\\[\\varphi(\\omega @\\omega)=\\vartheta(\\Omega^\\omega\\cdot\\omega)=\\psi_0(\\Omega^{\\Omega^\\omega\\cdot\\omega}).\\]</p><p><strong>BMS 表示：</strong>\\[(0,0)(1,1)(2,1)(3,1)(4,0)(3,0).\\]</p><p>来源：<a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos 的 TREE 分析</a>；<a href=\"https://solarzone1010.github.io/bms-analyzer.html\">Solarzone 的 BMS 分析器</a>。</p>",
                         },
+                        unreviewedNotice(),
                     ],
                 },
             },
@@ -249,8 +252,9 @@ print(TREE(3))`,
                     sections: [
                         {
                             type: 'html',
-                            html: `<p>\\(\\operatorname{TREE}(1)=1\\)，\\(\\operatorname{TREE}(2)=3\\)；从 \\(\\operatorname{TREE}(3)\\) 开始，其数值便已远超通常的大数记法所能直观表达的范围。</p>`,
+                            html: "<p>\\(\\operatorname{TREE}(1)=1\\)，\\(\\operatorname{TREE}(2)=3\\)。令允许的标号数 \\(n\\) 增长，\\(\\operatorname{TREE}(n)\\) 对应 \\(f_{\\varphi(\\omega @\\omega)}\\) 层级；序数的展开写法及 BMS 表示见同位置的 <a href=\"#item-088\">\\(\\varphi(\\omega @\\omega)\\)</a>。</p><p>来源：<a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos 的分析</a>及其引用的 <a href=\"https://cage.ugent.be/~jvdm/Site/Research_files/DissertationJeroenVanderMeerenPrinted.pdf\">Van der Meeren 关于标号树与序数记号的博士论文</a>。</p>",
                         },
+                        unreviewedNotice(),
                     ],
                 },
             },
@@ -259,6 +263,7 @@ print(TREE(3))`,
                 detail: {
                     title: 'LVO',
                     sections: [
+                        { type: 'html', html: "<p>\\(\\mathrm{LVO}=\\vartheta(\\Omega^\\Omega)=\\psi_0(\\Omega^{\\Omega^\\Omega})\\)</p><p><strong>BMS 表示：</strong>\\[(0,0)(1,1)(2,1)(3,1)(4,1)\\]</p><p>对应核对：<a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>。</p>" },
                         {
                             type: 'html',
                             html: `<p>LVO 即 large Veblen ordinal（大 Veblen 序数）。它把 Veblen 构造推广到超限参数位置，同时要求每个表达式仅有有限多个非零参数；LVO 是这些有限支撑、超限位置 Veblen 运算的闭包界。在 Veblen 的原始体系中，它也称为 \\(E(0)\\) 或 great Veblen number。</p><p>由于这一扩展包含任意有限元 Veblen 层级，LVO 位于 SVO 之上。</p><p><strong>来源：</strong><a href="https://doi.org/10.1090/S0002-9947-1908-1500814-9">Oswald Veblen，《Continuous Increasing Functions of Finite and Transfinite Ordinals》（1908）</a>。</p>`,
@@ -272,6 +277,7 @@ print(TREE(3))`,
                 detail: {
                     title: '\\(\\mathrm{BHO}={\\psi}({\\Omega}_{2})\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS 表示：</strong>\\[(0,0)(1,1)(2,2)\\]</p><p>对应核对：<a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER · BMS–BOCF</a>。</p>" },
                         {
                             type: 'html',
                             html: `<p>Bachmann–Howard 序数由序数坍缩构造得到：先在闭包运算中引入辅助的 \\(\\Omega\\) 层级，再由 \\(\\psi\\) 将所得结构坍缩回可数序数。在本站采用的 Buchholz 约定中，\\(\\psi\\) 表示 \\(\\psi_0\\)，并写作\\[\\mathrm{BHO}=\\psi_0(\\Omega_2).\\]</p><p>辅助符号 \\(\\Omega_n\\) 是递归闭包构造的脚手架；\\(\\psi_0\\) 最终返回的值仍是可数序数。</p><p><strong>来源：</strong><a href="https://doi.org/10.1016/0168-0072(86)90052-7">Wilfried Buchholz，《A new system of proof-theoretic ordinal functions》（1986）</a>（<a href="https://epub.ub.uni-muenchen.de/3841/1/3841.pdf">开放 PDF</a>）。</p>`,
@@ -301,10 +307,8 @@ print(TREE(3))`,
                 detail: {
                     title: '\\(\\mathrm{TFB}={\\psi}({\\Omega}_{{\\omega}+1})\\)',
                     sections: [
-                        {
-                            type: 'html',
-                            html: `<p>也可写作 \\({\\psi}({\\varepsilon}_{{\\Omega}_{{\\omega}}+1})\\)。此处的 TFB 表示 Buchholz hydra 的极限。</p>`,
-                        },
+                        { type: 'html', html: "<p>TFB 是 Buchholz hydra 的极限，写作 \\(\\psi_0(\\Omega_{\\omega+1})=\\psi_0(\\varepsilon_{\\Omega_\\omega+1})\\)。</p><p><strong>BMS 表示：</strong>\\[(0,0,0)(1,1,1)(2,1,0)(3,2,0).\\]</p><p>对应来源：<a href=\"https://wiki.googology.top/index.php/BMS分析Part2：BO~EBO\">最菜萌新，BMS 分析 Part 2：BO 至 EBO</a>；<a href=\"https://solarzone1010.github.io/bms-analyzer.html\">Solarzone 的 BMS 分析器</a>。</p>" },
+                        unreviewedNotice(),
                     ],
                 },
             },
@@ -394,6 +398,8 @@ print(TREE(3))`,
                             type: 'html',
                             html: `<p>一个有限无向图若每个顶点的度数都不超过 \\(3\\)，就称为 subcubic graph。SSCG 使用没有自环和重边的 simple subcubic graphs；SCG 则允许自环和重边，两者都不要求图连通。</p><p><strong>定义。</strong>固定 \\(k\\in\\mathbb N\\)，考虑序列 \\(G_1,\\ldots,G_N\\)，其中 \\(|V(G_i)|\\leq i+k\\)，并且不存在 \\(i\\lt j\\) 使 \\(G_i\\) 可同胚嵌入 \\(G_j\\)。这里“可同胚嵌入”是指 \\(G_i\\) 的某个边细分同构于 \\(G_j\\) 的一个子图。\\(\\operatorname{SCG}(k)\\) 是这类 subcubic graph 序列的最大长度；若只允许简单图，所得函数就是 \\(\\operatorname{SSCG}(k)\\)。因此 \\[\\operatorname{SCG}(k)\\geq\\operatorname{SSCG}(k).\\]</p><p>有限 subcubic graphs 在可同胚嵌入下构成良拟序，所以不存在无限长的上述“坏序列”。另一方面，在给定顶点数上界时只有有限多个同构类型；对坏序列组成的有限分支树应用 König 引理，便得到每个 \\(k\\) 对应的有限最大长度。</p><p>Friedman 证明，\\(\\operatorname{SSCG}(13)\\) 已大于任何满足下述条件的空白纸带 Turing machine 的停机时间：其停机性在 \\(\\Pi^1_1\\text{-}\\mathrm{CA}_0\\) 中能由不超过 \\(2^{[2000]}\\) 个符号的证明给出，其中 \\(2^{[r]}\\) 表示高度为 \\(r\\) 的 \\(2\\) 的指数塔。随后他去掉“简单图”限制，将同一结果重述为 \\(\\operatorname{SCG}(13)\\)，并指出相比之下 \\(\\operatorname{TREE}(3)\\) 小到可以忽略。</p><p><strong>来源：</strong><a href="https://fomarchive.ugent.be/2006-April/010305.html">Harvey M. Friedman，FOM #274《Subcubic Graph Numbers》</a>；<a href="https://fomarchive.ugent.be/2006-April/010362.html">Harvey M. Friedman，FOM #279《Subcubic Graph Numbers/restated》</a>；<a href="https://doi.org/10.1090/conm/065/891251">Friedman、Robertson、Seymour，《The Metamathematics of the Graph Minor Theorem》</a>。</p>`,
                         },
+                        { type: 'html', html: "<p><strong>严格上下界。</strong>\\(\\operatorname{SCG}\\) 的下界达到 Buchholz ordinal \\(\\mathrm{BO}=\\psi_0(\\Omega_\\omega)\\) 层级；上界可由图小元定理的证明论分析来标定。Krombholz–Rathjen 给出的图小元定理序数区间为\\[\\psi_0(\\Omega_\\omega)\\lt\\alpha_{\\mathrm{GMT}}\\leq\\psi_0(\\Omega_\\omega^{\\omega^\\omega}).\\]两端的 BMS 表示分别是\\[\\begin{gathered}(0,0,0)(1,1,1),\\\\(0,0,0)(1,1,1)(2,1,0)(3,0,0)(4,0,0).\\end{gathered}\\]这是函数增长层级的定位；固定值 \\(\\operatorname{SCG}(13)\\) 的下界见上文 Friedman 的结果。</p><p>来源：<a href=\"https://arxiv.org/html/1907.00412#S3\">Krombholz、Rathjen，《Upper bounds on the graph minor theorem》，§3</a>；BMS 对应经 <a href=\"https://solarzone1010.github.io/bms-analyzer.html\">Solarzone 分析器</a>核对。</p>" },
+                        { type: 'html', html: "<p><strong>非严格上下界（社区猜测）。</strong>另有分析将 \\(\\operatorname{SCG}\\) 的层级估计在 \\(\\psi_0(\\Omega_\\omega\\cdot\\omega)\\) 与 \\(\\psi_0(\\Omega_\\omega^\\omega)\\) 之间。两端的 BMS 表示为\\[\\begin{gathered}(0,0,0)(1,1,1)(2,0,0),\\\\(0,0,0)(1,1,1)(2,1,0)(3,0,0).\\end{gathered}\\]</p>" },
                         unreviewedNotice(),
                     ],
                 },
@@ -431,7 +437,7 @@ print(TREE(3))`,
                     sections: [
                         {
                             type: 'html',
-                            html: "<p>\\(\\omega\\)-Y 将 Y 的山脉构造推进到任意有限层数。本条采用 NER 中 omega-Y 的 weak magma 版本，标示整个标准域的极限。</p><p>该系统已有 \\(KP_\\omega+\\text{“}\\omega_1\\text{ 存在”}\\) 下的良序证明。列图版本 CWY2 把相同结构写成父地址和有限词组成的列；已收录的对应证明给出 CWY2 与 \\(\\omega\\)-Y 标准域的序同构，并保持基本列逐项展开。</p><p><strong>来源：</strong><a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.zh-CN.md\">CWY2 定义及所引 \\(\\omega\\)-Y 良序原稿</a>；<a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/cwy2-equivalence.zh-CN.md\">CWY2／\\(\\omega\\)-Y 等价证明</a>。</p>",
+                            html: "<p>\\(\\omega\\)-Y 将 Y 的山脉构造推进到任意有限层数。本条采用 NER 中 omega-Y 的 weak magma 版本，标示整个标准域的极限。</p><p>该系统已有 \\(KP_\\omega+\\text{“}\\omega_1\\text{ 存在”}\\) 下的良序证明。</p><p><strong>来源：</strong><a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.zh-CN.md\">\\(\\omega\\)-Y 良序原稿的资料记录</a>。</p>",
                         },
                         unreviewedNotice(),
                     ],

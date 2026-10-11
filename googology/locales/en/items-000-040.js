@@ -269,6 +269,7 @@ print(up_arrow(10, 3, 10))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">Fast-growing hierarchy (FGH)</a>: \\(f_{{\\omega}}(n)=f_{n}(n)\\approx n\\uparrow{}(\\times{}n)n\\)',
                     sections: [
+                        { type: 'html', html: "<p>The BMS expressions below represent ordinal indices, not the natural numbers returned by the functions.</p><p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega\\ \\longleftrightarrow\\ (0)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>From this point onward, the scale consistently uses the fast-growing hierarchy (FGH) to represent large numbers.</p><h3>The three defining rules of the FGH</h3><ul><li><strong>Starting point:</strong> \\(f_{0}(n)=n+1\\).</li><li><strong>Successor ordinal:</strong> \\(f_{{\\alpha}+1}(n)=f_{{\\alpha}}^{n}(n),\\) meaning that \\(f_{{\\alpha}}\\) is nested \\(n\\) times.</li><li><strong>Limit ordinal:</strong> \\(f_{{\\alpha}}(n)=f_{{\\alpha}[n]}(n),\\) where \\({\\alpha}[n]\\) is the nth term of the fundamental sequence for the limit ordinal \\({\\alpha}.\\)</li></ul><h3>Direct consequences</h3><ul><li>\\(f_{1}(n)=2n\\);</li><li>\\(f_{2}(n)=n\\cdot 2^{n}\\);</li><li>\\(f_{3}(n)\\) is on the same level as \\(n\\uparrow{}\\uparrow{}n\\);</li><li>\\(f_{4}(n)\\) is on the same level as \\(n\\uparrow{}\\uparrow{}\\uparrow{}n\\);</li><li>\\(\\ldots{}\\)</li></ul><h3>Introducing \\({\\omega}\\)</h3><p>Let \\({\\omega}[n]=n\\). Then \\(f_{{\\omega}}(n)=f_{n}(n).\\)</p>`
@@ -286,7 +287,8 @@ print(up_arrow(10, 3, 10))`
         return x
 n = 10
 print(f(n, n))`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -295,6 +297,7 @@ print(f(n, n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Hardy_hierarchy">Hardy hierarchy (HH)</a>: \\(H_{{\\omega}^{{\\omega}}}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS for the Hardy index:</strong> \\(\\omega^\\omega\\longleftrightarrow(0)(1)(2)\\). Since \\(H_{\\omega^\\omega}=f_\\omega\\), this gives the \\(\\omega\\)-level FGH on the main axis.</p>" },
                         {
                             type: 'html',
                             html: `<p>Reading the FGH entry first is recommended. The Hardy hierarchy (HH) also turns ordinals into large numbers, but a successor step simply increases the input by \\(1\\). It provides a useful tool for analyzing constructions such as Goodstein sequences.</p><h3>The three defining rules of HH</h3><ul><li>\\(H_0(n)=n\\);</li><li>\\(H_{\\alpha+1}(n)=H_\\alpha(n+1)\\);</li><li>\\(H_\\lambda(n)=H_{\\lambda[n]}(n)\\) for a limit ordinal \\(\\lambda\\).</li></ul><p>With the fundamental sequences used here, \\(H_{\\omega^\\alpha}(n)=f_\\alpha(n)\\) for \\(\\alpha\\lt\\varepsilon_0\\). For example, \\(H_\\omega(n)=2n\\) and \\(H_{\\omega^2}(n)=n2^n\\). At a successor index the correspondence follows from</p>\\[H_{\\omega^{\\alpha+1}}(n)=H_{\\omega^\\alpha\\cdot n}(n)=H_{\\omega^\\alpha}^{\\,n}(n)=f_\\alpha^{\\,n}(n)=f_{\\alpha+1}(n).\\]<p>The superscript \\(n\\) denotes function iteration. Continuing along limit fundamental sequences gives the correspondence above; at the \\(\\varepsilon_0\\) level, HH and FGH have comparable growth.</p><p>The program below represents ordinals below \\(\\omega^\\omega\\) with an array and evaluates \\(H_{\\omega^\\omega}(n)\\). Reference: <a href="https://lsv.ens-paris-saclay.fr/Publis/PAPERS/PDF/HSS-lmcs14.pdf"><cite>The Power of Priority Channel Systems</cite>, §4.1.1</a>.</p>`
@@ -324,6 +327,7 @@ print(n)`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Ackermann_function">Ackermann function</a>',
                     sections: [
+                        { type: 'html', html: "<p>For the corresponding growth level and BMS index, see the <a href=\"#item-017\">\\(\\omega\\)-level entry</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>The Ackermann function is one of the earliest discovered functions that is not primitive recursive. It grows extremely quickly.</p><p>It is defined by:</p>\\[\\begin{aligned}A(0,n)&=n+1,\\\\A(m,0)&=A(m-1,1),\\\\A(m,n)&=A(m-1,A(m,n-1)).\\end{aligned}\\]<p>The diagonal \\(A(n,n)\\) grows at approximately the same rate as \\(f_{{\\omega}}(n)\\) in the FGH.</p>`
@@ -340,7 +344,8 @@ print(n)`
         return A(m - 1, A(m, n - 1))
 n = 10
 print(A(10, 10))`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -349,6 +354,7 @@ print(A(10, 10))`
                 detail: {
                     title: 'The limit of <a href="https://googology.fandom.com/wiki/Arrow_notation">Knuth\'s up-arrow notation</a>: \\(n\\uparrow{}\\uparrow{}\\ldots{}\\uparrow{}\\uparrow{}n\\)',
                     sections: [
+                        { type: 'html', html: "<p>For the corresponding growth level and BMS index, see the <a href=\"#item-017\">\\(\\omega\\)-level entry</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>This is the most commonly used notation for hyperoperations. Donald Knuth introduced it in 1976. One arrow, \\(\\uparrow{},\\) denotes exponentiation; two arrows, \\(\\uparrow{}\\uparrow{},\\) denote the fourth hyperoperation; three arrows, \\(\\uparrow{}\\uparrow{}\\uparrow{},\\) denote the fifth; and so on.</p><p>Writing \\(\\uparrow{}^{k}\\) for \\(k\\) arrows, the definition is:</p><ul><li>\\(a\\uparrow{}b=a^{b}\\);</li><li>\\(a\\uparrow{}^{n}1=a\\);</li><li>\\(a\\uparrow{}^{n+1}b=a\\uparrow{}^{n}(a\\uparrow{}^{n+1}(b-1))\\).</li></ul>`
@@ -375,10 +381,12 @@ print(arr(n, n, n))`
                 detail: {
                     title: '\\(f_{{\\omega}}(f_{{\\omega}}(n))\\)',
                     sections: [
+                        { type: 'html', html: "<p>The function iterated twice is \\(f_\\omega\\); its ordinal index has BMS representation \\(\\omega\\longleftrightarrow(0)(1)\\).</p>" },
                         {
                             type: 'html',
                             html: `<p>This is the second iterate of \\(f_{{\\omega}}.\\) Since \\(f_{{\\omega}}(n)=f_{n}(n),\\) it can be written as:</p>\\[\\begin{aligned}f_{{\\omega}}(f_{{\\omega}}(n))&=f_{{\\omega}}(f_{n}(n))\\\\&=f_{f_{n}(n)}(f_{n}(n)).\\end{aligned}\\]`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -387,10 +395,12 @@ print(arr(n, n, n))`
                 detail: {
                     title: '\\(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(n)))\\)',
                     sections: [
+                        { type: 'html', html: "<p>The function iterated three times is \\(f_\\omega\\); its ordinal index has BMS representation \\(\\omega\\longleftrightarrow(0)(1)\\).</p>" },
                         {
                             type: 'html',
                             html: `<p>This is the third iterate of \\(f_{{\\omega}}.\\)</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -399,10 +409,12 @@ print(arr(n, n, n))`
                 detail: {
                     title: 'The second term of the <a href="https://googology.fandom.com/wiki/Graham\'s_number">Graham sequence</a>',
                     sections: [
+                        { type: 'html', html: "<p>Here the previous term sets the arrow count; the underlying benchmark is the <a href=\"#item-017\">\\(\\omega\\) growth level and its BMS index</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>\\(G_{2}=3\\uparrow{}^{G_{1}}3,\\) meaning that \\(G_{1}\\) arrows are placed between the two 3s.</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -411,10 +423,12 @@ print(arr(n, n, n))`
                 detail: {
                     title: 'The third term of the <a href="https://googology.fandom.com/wiki/Graham\'s_number">Graham sequence</a>',
                     sections: [
+                        { type: 'html', html: "<p>Here the previous term sets the arrow count; the underlying benchmark is the <a href=\"#item-017\">\\(\\omega\\) growth level and its BMS index</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>\\(G_{3}=3\\uparrow{}^{G_{2}}3,\\) meaning that \\(G_{2}\\) arrows are placed between the two 3s.</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -423,6 +437,7 @@ print(arr(n, n, n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>: \\(f_{{\\omega}+1}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega+1\\ \\longleftrightarrow\\ (0)(1)(0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `\\[f_{{\\omega}+1}(10)=f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(f_{{\\omega}}(10)))))))))).\\]`
@@ -447,7 +462,8 @@ x = n
 for i in range(n):
     x = f_w(x)
 print(x) # x = f_(w+1)(64), slightly larger than Graham's number`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -456,6 +472,7 @@ print(x) # x = f_(w+1)(64), slightly larger than Graham's number`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Graham\'s_number">Graham\'s number</a> \\((G_{64})\\)',
                     sections: [
+                        { type: 'html', html: "<p>For the corresponding growth level and BMS index, see the <a href=\"#item-025\">\\(\\omega+1\\)-level entry</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>Define:</p>\\[\\begin{aligned}G_{1}&=3\\uparrow{}\\uparrow{}\\uparrow{}\\uparrow{}3,\\\\G_{2}&=3\\uparrow{}^{G_{1}}3,\\\\G_{3}&=3\\uparrow{}^{G_{2}}3,\\\\&\\ldots{}\\\\G_{64}&=3\\uparrow{}^{G_{63}}3.\\end{aligned}\\]<p>\\(G_{64}\\) is Graham's number.</p>`
@@ -476,7 +493,8 @@ G = 4
 for i in range(64):
     G = arr(3,3,G)
 print(G)`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -485,10 +503,12 @@ print(G)`
                 detail: {
                     title: '\\(f_{{\\omega}+1}(f_{{\\omega}+1}(n))\\)',
                     sections: [
+                        { type: 'html', html: "<p>The function iterated twice is \\(f_{\\omega+1}\\); its ordinal index has BMS representation \\(\\omega+1\\longleftrightarrow(0)(1)(0)\\).</p>" },
                         {
                             type: 'html',
                             html: `<p>This is the second iterate of \\(f_{{\\omega}+1}.\\)</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -497,10 +517,12 @@ print(G)`
                 detail: {
                     title: '\\(G(G(n))\\)',
                     sections: [
+                        { type: 'html', html: "<p>For the corresponding growth level and BMS index, see the <a href=\"#item-027\">\\(\\omega+1\\)-level entry</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>Nest the Graham-number function \\(G(n)\\) twice to obtain \\(GGn\\), or \\(G(G(n))\\).</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -509,10 +531,12 @@ print(G)`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>: \\(f_{{\\omega}+2}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega+2\\ \\longleftrightarrow\\ (0)(1)(0)(0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `\\[f_{{\\omega}+2}(10)=f_{{\\omega}+1}(f_{{\\omega}+1}(\\ldots{}f_{{\\omega}+1}(10)\\ldots{})).\\]`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -521,10 +545,12 @@ print(G)`
                 detail: {
                     title: 'Finite iteration of the generating function \\(G\\)',
                     sections: [
+                        { type: 'html', html: "<p>For the corresponding growth level and BMS index, see the <a href=\"#item-029\">\\(\\omega+2\\)-level entry</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>\\(GGGG\\ldots{}GGGn\\) (\\(n\\) copies of \\(G\\)).</p><p>At first glance, nesting \\(G\\) may seem to make the result extraordinarily large. In the FGH, however, it only adds 1 to the index and is equivalent to \\(f_{{\\omega}+2}(n).\\)</p>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -533,10 +559,12 @@ print(G)`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>: \\(f_{{\\omega}+3}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega+3\\ \\longleftrightarrow\\ (0)(1)(0)(0)(0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `\\[f_{{\\omega}+3}(10)=f_{{\\omega}+2}(f_{{\\omega}+2}(\\ldots{}f_{{\\omega}+2}(10)\\ldots{})).\\]`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -545,10 +573,12 @@ print(G)`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>: \\(f_{{\\omega}+4}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega+4\\ \\longleftrightarrow\\ (0)(1)(0)(0)(0)(0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `\\[f_{{\\omega}+4}(10)=f_{{\\omega}+3}(f_{{\\omega}+3}(\\ldots{}f_{{\\omega}+3}(10)\\ldots{})).\\]`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -557,6 +587,7 @@ print(G)`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>: \\(f_{{\\omega}\\cdot{}2}(n)=f_{{\\omega}+n}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega\\cdot2\\ \\longleftrightarrow\\ (0)(1)(0)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>When taking \\([n]\\) of \\({\\omega}\\cdot{}2\\), first write \\({\\omega}\\cdot{}2\\) as \\({\\omega}+{\\omega},\\) then take \\([n]\\) of the final \\({\\omega}:\\)</p><p>\\(({\\omega}\\cdot{}2)[n]=({\\omega}+{\\omega})[n]={\\omega}+n,\\)<br>not \\(({\\omega}\\cdot{}2)[n]=2n\\).</p><p>Therefore:</p>\\[\\begin{aligned}f_{{\\omega}\\cdot{}2}(10)&=f_{{\\omega}+10}(10)\\\\&=f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(f_{{\\omega}+9}(10)))))))))).\\end{aligned}\\]`
@@ -582,7 +613,8 @@ def f2(n,a): # f_(w+a)(n)
         return x
 n = 10
 print(f2(n,n))`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -591,6 +623,7 @@ print(f2(n,n))`
                 detail: {
                     title: '\\(f_{{\\omega}\\cdot{}2+1}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega\\cdot2+1\\ \\longleftrightarrow\\ (0)(1)(0)(1)(0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         { type: 'html', html: `<p>A successor level iterates the preceding function \\(n\\) times:\\[f_{\\omega\\cdot2+1}(n)=f_{\\omega\\cdot2}^{\\,n}(n).\\]The superscript denotes composition, not exponentiation.</p>` },
                         unreviewedNotice()
                     ]
@@ -601,6 +634,7 @@ print(f2(n,n))`
                 detail: {
                     title: '\\(f_{{\\omega}\\cdot{}2+2}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega\\cdot2+2\\ \\longleftrightarrow\\ (0)(1)(0)(1)(0)(0).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         { type: 'html', html: `<p>Iterate the preceding function \\(n\\) times again:\\[f_{\\omega\\cdot2+2}(n)=f_{\\omega\\cdot2+1}^{\\,n}(n).\\]Continuing gives the levels \\(\\omega\\cdot2+3\\), \\(\\omega\\cdot2+4\\), and so on.</p>` },
                         unreviewedNotice()
                     ]
@@ -611,10 +645,12 @@ print(f2(n,n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>: \\(f_{{\\omega}\\cdot{}3}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega\\cdot3\\ \\longleftrightarrow\\ (0)(1)(0)(1)(0)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>\\(({\\omega}\\cdot{}3)[n]=({\\omega}\\cdot{}2+{\\omega})[n]={\\omega}\\cdot{}2+n\\).</p><p>Therefore:</p>\\[\\begin{aligned}f_{{\\omega}\\cdot{}3}(10)&=f_{{\\omega}\\cdot{}2+{\\omega}}(10)\\\\&=f_{{\\omega}\\cdot{}2+10}(10).\\end{aligned}\\]`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -623,10 +659,12 @@ print(f2(n,n))`
                 detail: {
                     title: '“\\(\\operatorname{TERR}[3]\\)” is not \\(\\operatorname{TREE}(3)\\)',
                     sections: [
+                        { type: 'html', html: "<p>For the corresponding growth level and BMS index, see the <a href=\"#item-036\">\\(\\omega\\cdot3\\)-level entry</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p><strong>This entry is a meme: “\\(\\operatorname{TERR}[3]\\)” is not a mathematical function, but a name derived from a misspelling.</strong></p><p>It comes from the Bilibili video <a href="https://www.bilibili.com/video/BV1X94y1n7D1/">BV1X94y1n7D1, “How much larger is \\(\\operatorname{TERR}[3]\\) than Graham's number?”</a>, posted by the creator “超级大钢球” on November 19, 2023. The video was intended to discuss \\(\\operatorname{TREE}(3)\\), but its analysis is unrelated to \\(\\operatorname{TREE}(3)\\), and it also misspells \\(\\operatorname{TREE}\\) as \\(\\operatorname{TERR}\\).</p><p>After an extended series of groundless constructions, the video ultimately produces a number at the \\(f_{{\\omega}\\cdot{}3}(187196)\\) level.</p><p>The number 187196 comes from \\(n(4)>A^{A(187196)}(1),\\) where \\(n\\) is the <a href="https://googology.fandom.com/wiki/Block_subsequence_theorem">Friedman \\(n\\) function</a>, \\(A\\) is the Ackermann function, and the superscript denotes function iteration.</p><p>Some content farms confuse this lower bound for \\(n(4)\\) with \\(\\operatorname{TREE}(3)\\) and frequently write the notation incorrectly. This has produced many purported lower bounds for \\(\\operatorname{TREE}(3)\\) containing “187196”; “\\(\\operatorname{TERR}[3]\\)” is one of the best-known examples.</p><p>The actual \\(\\operatorname{TREE}(3)\\) is slightly above the <a href="https://googology.fandom.com/wiki/Small_Veblen_ordinal">SVO</a> level. For analysis by @HypCos, see:</p><ul><li><a href="https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)">tree_function_and_\\(\\operatorname{TREE}(3)\\)</a>;</li><li><a href="https://www.zhihu.com/question/667616017/answer/13389602444">Expressing Graham's number, \\(\\operatorname{TREE}(3)\\), and \\(\\operatorname{SCG}(13)\\) with BMS</a>;</li><li><a href="https://www.zhihu.com/question/353941713/answer/885942447">Understanding the size of Graham's number and \\(\\operatorname{TREE}(3)\\) mathematically</a>.</li></ul>`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -635,10 +673,12 @@ print(f2(n,n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>: \\(f_{{\\omega}\\cdot{}4}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega\\cdot4\\ \\longleftrightarrow\\ (0)(1)(0)(1)(0)(1)(0)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `<p>\\(({\\omega}\\cdot{}4)[n]=({\\omega}\\cdot{}3+{\\omega})[n]={\\omega}\\cdot{}3+n\\).</p><p>Therefore:</p>\\[\\begin{aligned}f_{{\\omega}\\cdot{}4}(10)&=f_{{\\omega}\\cdot{}3+{\\omega}}(10)\\\\&=f_{{\\omega}\\cdot{}3+10}(10).\\end{aligned}\\]`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             },
@@ -647,6 +687,7 @@ print(f2(n,n))`
                 detail: {
                     title: '\\(f_{{\\omega}\\cdot{}5}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega\\cdot5\\ \\longleftrightarrow\\ (0)(1)(0)(1)(0)(1)(0)(1)(0)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         { type: 'html', html: `<p>Using \\((\\omega\\cdot5)[n]=\\omega\\cdot4+n\\), we obtain \\[f_{\\omega\\cdot5}(n)=f_{\\omega\\cdot4+n}(n).\\]Letting the finite multiplier grow leads to the later \\(\\omega^2\\) level.</p>` },
                         unreviewedNotice()
                     ]
@@ -657,6 +698,7 @@ print(f2(n,n))`
                 detail: {
                     title: '<a href="https://googology.fandom.com/wiki/Fast-growing_hierarchy">FGH</a>: \\(f_{{\\omega}^{2}}(n)=f_{{\\omega}\\cdot{}n}(n)\\)',
                     sections: [
+                        { type: 'html', html: "<p><strong>BMS correspondence (FGH index)：</strong></p>\\[\\omega^2\\ \\longleftrightarrow\\ (0)(1)(1).\\]<p><a href=\"https://github.com/smilelee-lyx/ne-rewritten/blob/master/src/notations/translators/BM-BOCF.ts\">NER BMS–BOCF conversion</a>.</p>" },
                         {
                             type: 'html',
                             html: `\\[\\begin{aligned}f_{{\\omega}^{2}}(10)&=f_{{\\omega}\\cdot{}{\\omega}}(10)\\\\&=f_{{\\omega}\\cdot{}10}(10)\\\\&=f_{{\\omega}\\cdot{}9+{\\omega}}(10)\\\\&=f_{{\\omega}\\cdot{}9+10}(10)\\\\&=f_{{\\omega}\\cdot{}9+9}(f_{{\\omega}\\cdot{}9+9}(\\ldots{}f_{{\\omega}\\cdot{}9+9}(10)\\ldots{})).\\end{aligned}\\]`
@@ -677,7 +719,8 @@ print(f2(n,n))`
         return x
 n = 10
 print(f(n, n, 0))`
-                        }
+                        },
+                        unreviewedNotice()
                     ]
                 }
             }

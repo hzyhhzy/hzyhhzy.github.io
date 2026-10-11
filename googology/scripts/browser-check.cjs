@@ -51,6 +51,12 @@ const { chromium } = require('playwright');
         assert.ok(y13Label.y + y13Label.height < bmsLimitLabel.y, 'stacked PTO / Y labels do not overlap');
         assert.match(await page.locator('[data-item-id="item-103"].scale-label').textContent(), /SHO/);
         assert.ok(await page.locator('[data-item-id="item-103"] .mathbf').count(), 'lim(BMS) uses a bold math font');
+        const labelFrame = selector => page.locator(selector).evaluate(element => {
+            const style = getComputedStyle(element);
+            return [style.fontSize, style.backgroundColor, style.borderTopWidth, style.borderRightWidth, style.boxShadow];
+        });
+        assert.deepEqual(await labelFrame('[data-item-id="item-103"].scale-label'),
+            await labelFrame('[data-item-id="item-109"].scale-label'), 'BMS uses the same frame as other major labels');
         assert.match(await page.locator('.axis-segment').allTextContents().then(parts => parts.join(' ')), /山脉记号家族/);
 
         // Search discovers entries without navigating the diagram manually.
@@ -94,6 +100,19 @@ const { chromium } = require('playwright');
         assert.match(await page.locator('#modal-body h2').textContent(), /golf/);
         assert.match(await page.locator('#modal-body').textContent(), /gpt6-astra/);
 
+        // New ordinal references remain navigable within the detail modal.
+        await page.goto(base + '#item-086');
+        await page.locator('#modal-body a[href="#item-085"]').click();
+        await page.waitForURL('**/#item-085');
+        await page.locator('#modal-body h2').filter({ hasText: 'SVO' }).waitFor();
+        assert.match(await page.locator('#modal-body h2').textContent(), /SVO/);
+        assert.match(await page.locator('#modal-body').textContent(), /BMS/);
+        await page.goto(base + '#item-106');
+        await page.locator('#modal-body strong').filter({ hasText: 'Rigorous bounds' }).waitFor();
+        assert.match(await page.locator('#modal-body').textContent(), /Rigorous bounds/);
+        assert.match(await page.locator('#modal-body').textContent(), /Conjectured bounds/);
+        assert.equal(await page.locator('.katex-error').count(), 0);
+
         // Narrow viewports retain reachable search, stages and code controls.
         const mobile = await browser.newPage({
             viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true
@@ -112,6 +131,15 @@ const { chromium } = require('playwright');
         await mobile.locator('[data-action="reset"]').tap();
         const endTick = await mobile.locator('.scale-item[data-item-id="item-122"]').boundingBox();
         assert.ok(endTick && endTick.x + endTick.width / 2 < 390, 'mobile overview includes Rayo');
+        for (const id of ['061', '106']) {
+            await mobile.goto(base + '#item-' + id);
+            await mobile.locator('#detail-modal:not([hidden])').waitFor();
+            await mobile.locator('#modal-body h2').filter({ hasText: id === '061' ? '伪燃烧数' : 'SCG' }).waitFor();
+            assert.equal(await mobile.locator('.katex-error').count(), 0);
+            assert.equal(await mobile.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+            await mobile.locator('#modal-body .katex-display').last().scrollIntoViewIfNeeded();
+            await mobile.screenshot({ path: path.join(output, 'mobile-item-' + id + '.png') });
+        }
         assert.deepEqual(errors, []);
         console.log('Browser checks passed. Screenshots: ' + output);
     } finally {

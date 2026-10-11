@@ -149,6 +149,56 @@ function stripMathAndMarkup(value) {
 
 const messages = createMessages();
 
+function itemProse(locale, id) {
+    return messages[locale].items[id].detail.sections
+        .filter((section) => section.type !== 'code')
+        .map((section) => section.html || '').join('\n');
+}
+
+test('ordinal landmarks from omega through TFB retain matching bilingual BMS formulas', () => {
+    const ids = [17, 25, 29, 31, 32, 33, 34, 35, 36, 38, 39, 40,
+        42, 43, 44, 45, 46, 50, 51, 52, 53, 54, 55, 56,
+        ...Array.from({ length: 22 }, (_, index) => index + 64), 88, 90, 91, 94];
+    for (const number of ids) {
+        const id = 'item-' + String(number).padStart(3, '0');
+        const formulas = LOCALES.map((locale) => {
+            const prose = itemProse(locale, id);
+            assert.match(prose, /BMS/, locale + '.' + id);
+            const matrices = prose.match(/(?:\(\d+(?:,\d+)*\)){2,}/g);
+            assert.ok(matrices?.length, locale + '.' + id + ' has a BMS matrix');
+            return matrices;
+        });
+        assert.deepEqual(formulas[0], formulas[1], id + ' BMS translation parity');
+    }
+});
+
+test('TREE and SCG retain their distinct ordinal placements and four SCG endpoints', () => {
+    for (const locale of LOCALES) {
+        const tree = itemProse(locale, 'item-088');
+        assert.ok(tree.includes(String.raw`\vartheta(\Omega^\omega\cdot\omega)`));
+        assert.ok(tree.includes('(0,0)(1,1)(2,1)(3,1)(4,0)(3,0)'));
+        const scg = itemProse(locale, 'item-106');
+        for (const matrix of [
+            '(0,0,0)(1,1,1)',
+            '(0,0,0)(1,1,1)(2,1,0)(3,0,0)(4,0,0)',
+            '(0,0,0)(1,1,1)(2,0,0)',
+            '(0,0,0)(1,1,1)(2,1,0)(3,0,0)'
+        ]) assert.ok(scg.includes(matrix), locale + ': ' + matrix);
+        assert.match(scg, locale === 'zh-CN' ? /非严格上下界（社区猜测）/ : /Conjectured bounds/);
+    }
+});
+
+test('fusible estimates preserve the reciprocal, exponential layers and lowercase FGH', () => {
+    for (const locale of LOCALES) {
+        const prose = itemProse(locale, 'item-061');
+        assert.ok(prose.includes(String.raw`f(4)\approx10^{-10^{10^{1.05\times10^{28}}}}`));
+        assert.ok(prose.includes(String.raw`\frac{1}{f(5)}\approx f_\omega`));
+        assert.ok(prose.includes(String.raw`\left(10^{10^{1.05\times10^{28}}}\right)`));
+        assert.match(prose, /FGH/);
+        assert.doesNotMatch(prose, /F_/);
+    }
+});
+
 test('local KaTeX assets required by the static page are vendored', () => {
     [
         'lib/katex/LICENSE',
