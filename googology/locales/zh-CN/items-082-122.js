@@ -89,7 +89,7 @@
                 detail: {
                     title: "\\(\\operatorname{TREE}(3)\\)",
                     representations: [
-                        { label: "常用表示", html: "\\(\\operatorname{TREE}(3)\\)<br>下界指标：\\(\\beta=\\vartheta(\\Omega^\\omega+3)+\\vartheta(\\Omega^\\omega)\\)" },
+                        { label: "常用表示", html: "\\( \\operatorname{TREE}(3) \\)<br>增长层级：略大于 \\(\\mathrm{SVO}\\)" },
                         { label: "BMS 表示", html: "SVO 参照点：\\((0,0)(1,1)(2,1)(3,1)(4,0)\\)" },
                     ],
                     sections: [
@@ -233,7 +233,7 @@ assert TREE(2) == 3
 
 print(TREE(3))`,
                         },
-                        {"type":"html","html":"<p><strong>序数下界。</strong>HypCos 给出的一个简化下界是\\[\\operatorname{TREE}(3)>f_{\\beta}\\bigl(\\operatorname{tree}(\\operatorname{tree}(3))\\bigr),\\qquad\\beta=\\vartheta(\\Omega^\\omega+3)+\\vartheta(\\Omega^\\omega).\\]其中 \\(\\vartheta(\\Omega^\\omega)=\\mathrm{SVO}\\)。这说明固定值 \\(\\operatorname{TREE}(3)\\) 已越过 SVO 层级；整个 \\(\\operatorname{TREE}(n)\\) 函数的层级另见<a href=\"#item-089\">下一词条</a>。</p><p>来源：<a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos：tree function and \\(\\operatorname{TREE}(3)\\)</a>。</p>"},
+                        {"type":"html","html":"<p>在本页的增长层级比较中，\\(\\operatorname{TREE}(3)\\) 略大于 SVO。整个 \\(\\operatorname{TREE}(n)\\) 函数的层级另见<a href=\"#item-089\">下一词条</a>。</p><p>来源：<a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos：tree function and \\(\\operatorname{TREE}(3)\\)</a>。</p>"},
                         unreviewedNotice(),
                     ],
                 },
@@ -527,7 +527,7 @@ print(TREE(3))`,
                         { label: "Y 序列表示", html: "超出 \\(\\lim(Y)\\)" },
                     ],
                     sections: [
-                        {"type":"html","html":"<p>\\(\\omega\\)-Y 将 Y 的山脉构造推进到任意有限层数。本条采用 NER 中 omega-Y 的 weak magma 版本，标示整个标准域的极限。</p><p>该系统已有 \\(KP_\\omega+\\text{“}\\omega_1\\text{ 存在”}\\) 下的良序证明。</p><p><strong>来源：</strong><a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.zh-CN.md\">\\(\\omega\\)-Y 良序原稿的资料记录</a>。</p>"},
+                        {"type":"html","html":"<p>\\(\\omega\\)-Y 将 Y 的山脉构造推进到任意有限层数。本条采用 NER 中 omega-Y 的 weak magma 版本，标示整个标准域的极限。</p><p>其良序性由 @Phyrion 和 @test_alpha0 各自独立证明。目前已有 \\(KP_\\omega+\\text{“}\\omega_1\\text{ 存在”}\\) 下的良序证明。</p><p><strong>来源：</strong><a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.zh-CN.md\">\\(\\omega\\)-Y 良序原稿的资料记录</a>。</p>"},
                         unreviewedNotice(),
                     ],
                 },
@@ -726,7 +726,7 @@ print(f"q({requested_n}) = {q(requested_n)}")`,
                     sections: [
                         {
                             type: 'html',
-                            html: "<p>固定两符号、空白纸带的确定型图灵机，计数 \\(n\\) 个非停机状态。忙碌海狸函数常用两种约定：\\(\\Sigma(n)\\) 是停机时纸带上最多能留下的 \\(1\\) 的数量；\\(S(n)\\) 是停机前最多能执行的步数。本页以 \\(S(n)\\) 作为 \\(\\operatorname{BB}(n)\\)。</p><p>只取最终停机的机器，因而每个参数都给出有限整数；但整个函数不可计算，而且最终超过每个全可计算函数。横轴在此处断开，转入不可计算增长。</p><p><strong>来源：</strong><a href=\"https://doi.org/10.1002/j.1538-7305.1962.tb00480.x\">Tibor Radó，《On Non-Computable Functions》（1962）</a>。</p>",
+                            html: "<p>固定两符号、空白纸带的确定型图灵机，计数 \\(n\\) 个非停机状态。\\(\\operatorname{BB}(n)\\) 是其中最终停机的机器所能执行的最大步数。</p><p>只取最终停机的机器，因而每个参数都给出有限整数；但整个函数不可计算，而且最终超过每个全可计算函数。横轴在此处断开，转入不可计算增长。</p><p><strong>来源：</strong><a href=\"https://doi.org/10.1002/j.1538-7305.1962.tb00480.x\">Tibor Radó，《On Non-Computable Functions》（1962）</a>。</p>",
                         },
                         unreviewedNotice(),
                     ],

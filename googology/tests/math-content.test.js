@@ -241,6 +241,35 @@ test('mountain candidates, DQDN encoding and displayed SRPD programs match the a
     }
 });
 
+test('October 13 review decisions retain attribution, conjectures and the chosen conventions', () => {
+    for (const locale of LOCALES) {
+        const zh = locale === 'zh-CN';
+        const items = messages[locale].items;
+        assert.match(items['item-123'].detail.representations[1].html, zh ? /较可信的猜测/ : /well-supported conjecture/);
+        assert.ok(items['item-123'].detail.representations[1].html.includes(String.raw`\lim(\mathrm{TBMS})=Y(1,3,4,2,5,8,10)`));
+        assert.match(items['item-124'].detail.representations[1].html, /@最菜萌新/);
+        assert.match(items['item-124'].detail.representations[1].html, zh ? /猜测/ : /Conjectured/);
+        assert.match(itemProse(locale, 'item-124'), zh ? /已证明的对应/ : /proved correspondence/);
+        const wy = itemProse(locale, 'item-109');
+        assert.match(wy, /@Phyrion/);
+        assert.match(wy, /@test_alpha0/);
+        assert.match(wy, zh ? /各自独立/ : /independently/);
+        assert.match(itemProse(locale, 'item-127'), zh ? /目前已知.*最弱/ : /weakest.*currently known/);
+        assert.doesNotMatch(itemProse(locale, 'item-121'), /\\Sigma/);
+        const tree = itemContent(locale, 'item-087');
+        assert.match(tree, zh ? /略大于/ : /slightly above/);
+        assert.doesNotMatch(tree, /\\beta/);
+        const dqdn = itemProse(locale, 'item-129');
+        assert.ok(dqdn.includes(String.raw`\sup_{k\lt\omega}\sum_{i=0}^{k}`));
+        assert.ok(dqdn.includes(String.raw`1+\omega^{h(G(i))}`));
+        assert.ok(dqdn.includes(String.raw`\ge\operatorname{PTO}(Z_\omega)`));
+        const bms = itemProse(locale, 'item-130');
+        assert.ok(bms.includes(String.raw`\lim(\mathrm{BMS}_{n-1})\le\operatorname{PTO}(\Pi^1_n\text{-}\mathrm{CA}_0)`));
+        assert.ok(bms.includes(String.raw`\operatorname{PTO}(\Pi^1_n\text{-}\mathrm{CA}_0)=\lim(\mathrm{BMS}_{n+1})`));
+        assert.match(bms, zh ? /猜测的精确对应/ : /conjectured exact correspondence/);
+    }
+});
+
 test('local KaTeX assets required by the static page are vendored', () => {
     [
         'lib/katex/LICENSE',

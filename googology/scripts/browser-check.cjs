@@ -66,7 +66,7 @@ const { chromium } = require('playwright');
         assert.match(await page.locator('#modal-body h2').textContent(), /SRPD/);
         assert.equal(new URL(page.url()).hash, '#item-124');
         assert.equal(await page.locator('.detail-representation').count(), 2);
-        assert.match(await page.locator('.detail-representation').last().textContent(), /可能是/);
+        assert.match(await page.locator('.detail-representation').last().textContent(), /@最菜萌新 猜测/);
         await page.locator('.code-dialog-open').first().click();
         const golf = await page.locator('dialog[open] code').textContent();
         assert.equal(golf.length, 226);

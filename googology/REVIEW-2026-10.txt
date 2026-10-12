@@ -1,25 +1,25 @@
-Googology Scale · 2026-10 内容审查清单
+Googology Scale · 2026-10 内容审查记录
 ====================================
 
 本次修改基于 main，工作分支 codex/googology-2026-refresh；不合并 main。
-资料核对日期：2026-10-11。
+资料核对日期：2026-10-11；作者反馈落实日期：2026-10-13。
 column-ordinal-notations-hzy 核对版本：2dfd1bb0c770ee6a6c1890064fbe5ebc55e338e4
 NER 采用 https://smilelee-lyx.github.io/ne-rewritten/ 对应 master 分支的代码定义。
 NER 核对版本：26d2dd981134231b44280934514d63aac2cc31af
 
-以下疑点集中列出供作者审查；未在网页各处反复添加保留性说明。
+以下记录作者审查后的采用结论。第 3 项按要求维持原状；已解决或决定不追究的事项不再作为待办。未在网页各处反复添加保留性说明。
 
 1. item-127 · 良序证明使用的公理强度
-   当前：PTO(KP_ω + “ω₁ 存在”)，详情说明为存在不可数序数；删除本站自设的 UC 缩写。
-   核对到的结论：这是已有 Y / ω-Y 良序证明使用的充分理论；KP 取全体集合归纳。
-   待确认：是否另有证明它是“最小公理强度”的结果？目前没有把充分条件写成最小值。
+   已确认：PTO(KP_ω + “ω₁ 存在”) 是目前已知证明 Y / ω-Y 良序所用的最弱理论，不是已经证明不可再降低的最小值。KP 取全体集合归纳。
+   文案使用“目前已知……最弱公理体系”，不另加反复的保留说明。
    来源：
    https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/well-ordering.zh-CN.md
 
-2. item-124 / item-125 · SRPD 与 Y(1,3,4,3)
-   当前：按要求分别放在 BMS+3/8、BMS+1/2。正文写已取得的对应，不写两者比较定理。
-   核对到的结论：lim(TBMS) ≤ |D44| < lim(SRPD)；尚未找到 SRPD 整体与 Y(1,3,4,3) 的完成比较。
-   待补充：如果这一比较已有新进展，请提供方向、严格与否及证明位置。
+2. item-124 / item-125 · SRPD 与 Y 的候选定位
+   已确认：lim(SRPD) 的候选是 Y(1,3,4,2,5,8,10,4,9,14,17,10)，末尾为 17、10。
+   表示栏写“@最菜萌新 猜测 lim(SRPD)=Y(...)”；署名与候选的分析状态按作者 2026-10-13 的反馈。
+   仓库列出了该主候选，但双向比较及等号均未完成。这里保持为个人分析提出的猜测。
+   SRPD 与 Y(1,3,4,3) 的布局位置不变。
    来源：
    https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/srpd-tbms/continuation/README.zh-CN.md
 
@@ -31,64 +31,68 @@ NER 核对版本：26d2dd981134231b44280934514d63aac2cc31af
    https://github.com/hzyhhzy/column-ordinal-notations-hzy
 
 4. item-129 · DQDN 与 PTO(Z_ω)
-   当前：按要求与 Loader 数对齐；正文为 lim(DQDN) ≥ PTO(Z_ω)。
-   待补充：目前核对到的是下界，不是等号；如有新上界或等号证明，请提供。
-   来源入口：
-   https://github.com/hzyhhzy/column-ordinal-notations-hzy
+   正文补充精确描述：
+   lim(DQDN) = sup_{k<ω} Σ_{i=0}^k (1+ω^{h(G(i))}) ≥ PTO(Z_ω)。
+   G(i) 为第 i 层有类型按需查询程序生成器；h 是包括生成及计算步骤的完整源树秩。该式展开了标准序型赋值，不是声称与 PTO(Z_ω) 相等，也不是把裸 F_ω 的强正规化序数直接当作 DQDN。
+   坐标仍与 PTO(Z_ω) 对齐，不改变布局。
+   来源：
+   https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/proofs/paper/dqdn-well-ordering.zh-CN.md
+   https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/dqdn/girard-oracle-bridge.zh-CN.md
 
 5. item-109 · ω-Y 良序证明的历史信息
-   当前：使用 NER 的 weak-magma ω-Y 版本；正文不再介绍 CWY2，仅保留该档案中对 ω-Y 良序原稿的资料引用。
-   待补充：原稿的公开链接与希望展示的作者署名。档案所引日期为 2026-09-13，未自行补作者。
-   原稿标题：Well-foundedness of the Weak-Magma ω-Y System in KP with an Uncountable Ordinal
+   已确认：@Phyrion 和 @test_alpha0 各自独立完成 ω-Y 的良序证明。中英文正文均补上此署名。
+   使用 NER 的 weak-magma ω-Y 版本；正文不介绍 CWY2，原资料链接保留。
+   署名依据作者 2026-10-13 的反馈；不自行添加两份证明各自的发布日期。
    来源：
    https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.md
 
 6. item-121 · 忙碌海狸的记号约定
-   当前：BB(n) 取两符号、空白纸带、n 个非停机状态的最大停机步数 S(n)。
-   待确认：是否更希望沿用最大输出 1 的个数 Σ(n)？两者都常称忙碌海狸，本页当前固定前一种以免混用。
+   已确定：BB(n) 取两符号、空白纸带、n 个非停机状态的最大停机步数。
+   网页只介绍这一约定，不再展开另一种约定，也不再列为待确认项。
 
 7. item-061 · 伪燃烧数 f(4)、f(5) 的估计
-   当前：已依据作者提供的 fusible_run4/calculation_notes.md 与 function_grid_65_normalized.md 更新。
+   当前：依据作者提供的 fusible_run4/calculation_notes.md 与 function_grid_65_normalized.md。
    f 是 tame 算法 M。精确值 f(3)=2^(-1541023937)；令 E(x)=-log₂ f(x)，笔记给 log₁₀log₁₀E(4) 的渐近主项约 1.05014×10^28。
-   按作者确认精简为 f(4) ≈ 10^(-10^(10^(1.05×10^28)))、1/f(5) ≈ f_ω(10^(10^(1.05×10^28)))，均为增长层级估计；后一个带下标的小写 f 表示 FGH。
-   目录中的 ternary、full-fusible、meek 与 bounded_restart 研究没有混入此条。
-   待补充：f(4) 的误差界、f(5) 的严格比较；如果要提供公开复核资料，可另选合适笔记公开。本次没有复制或修改外部研究文件。
+   保持 f(4) ≈ 10^(-10^(10^(1.05×10^28)))、1/f(5) ≈ f_ω(10^(10^(1.05×10^28)))；后一个带下标的小写 f 表示 FGH。
+   作者已确认不需要补误差界：最内层科学计数法的舍入误差远大于所讨论的误差界。不再把误差界列为待办。
+   目录中的 ternary、full-fusible、meek 与 bounded_restart 研究没有混入此条；本轮不改相关公式。
 
 8. item-111 / item-112 / item-117 · 支线和具体大数的定位
-   当前：iBLP、q(5) 沿 Laver 支线排列；Loader 数按要求放在 PTO(Z_ω) 同一横坐标。
-   待补充：整个 iBLP 系统与有限数 q(5) 的比较，以及 Loader 数相对该增长层级的更精确定位。
-   BLP 给 q(5) 的下界不能直接当作整个 iBLP 系统的比较结论；同横坐标也不表示等号。
+   已确认：iBLP、q(5) 和 Loader 数暂时无法精确定位，当前坐标仅供排版，不代表实际大小或与主轴等号对应。
+   保留当前位置，不再请求补充定位结果。BLP 给 q(5) 的下界不当作整个 iBLP 系统的比较结论。
 
-9. item-130 · BMS 与 PTO(Z₂)
-   当前：按作者要求写成 PTO(Z₂) ?，表示高度疑似对应。
-   已核对文献仅支持 lim(BMS) ≤ PTO(Z₂)；若得到反方向或等号证明，请补充。
+9. item-130 · BMS 与二阶算术
+   lim(BMS) ≤ PTO(Z₂) 是已证明的方向；带问号的 PTO(Z₂) 标记继续保留猜测等号的含义。
+   按作者反馈补充：PTO(Π¹_n-CA₀) ≥ lim((n−1)行 BMS)。
+   猜测的精确对应：PTO(Π¹_n-CA₀) = lim((n+1)行 BMS)，与目前证明的界还相差两行；未写成已证明等号。
+   网页以 n≥2 展示这两个一般式，避免引入未定义的“0 行 BMS”；这是展示范围，不是声称核实了原定理最小 n。
+   一般有限行结果和猜测采用作者 2026-10-13 提供的信息，不把现有全 BMS 比较链接冒充为一般式的原始证明。
+   全 BMS 比较来源：
    https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/dqdn/bms-top2.zh-CN.md
 
-10. item-087 · TREE(3) 下界的复杂下标
-   当前：引用 HypCos 给出的 TREE(3) > f_β(tree(tree(3)))，β=ϑ(Ω^ω+3)+ϑ(Ω^ω)。
-   已补齐 tree 的 SVO、TREE 函数的 φ(ω@ω)、LVO 等对应 BMS；TREE 的矩阵为 (00)(11)(21)(31)(40)(30)，最后一列是 (30)。
-   待确认：β 的精确 BMS 转写。非极限参数处的 ϑ 归一化约定需要继续核对，因此没有把仅凭类比猜出的矩阵写入正文。
+10. item-087 · TREE(3) 的简明定位
+   按作者要求，增长层级只写“略大于 SVO”。
+   复杂 β 下标已从常用表示栏及下界说明中删除；BMS 栏仍给 SVO 参照点。
+   保留 TREE(3) 定义、理论穷举代码及原分析链接，不再将 β 的 BMS 转写列为待办。
    来源：https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)
 
 11. item-106 · SCG 的上下界与社区猜测
-   当前严格界的来源是 Krombholz–Rathjen 对图小元定理的序数分析：ψ₀(Ω_ω) < α_GMT ≤ ψ₀(Ω_ω^(ω^ω))；原文给的是定理的证明论序数界，并不是固定输入 SCG(13) 的数值公式。
-   另按作者在本轮提供的信息，单列社区猜测区间 ψ₀(Ω_ω·ω) 至 ψ₀(Ω_ω^ω)；没有把该猜测归给上述论文。
-   四个端点的 BMS 分别为 (000)(111)、(000)(111)(210)(300)(400)、(000)(111)(200)、(000)(111)(210)(300)，均经同一 BMS 转换器核对。
-   待补充：社区猜测的原始分析链接；若需要精确到某个 FGH 约定的逐输入函数界，还需明确该换写与参数调整。
+   当前严格界的来源是 Krombholz–Rathjen 对图小元定理的序数分析：ψ₀(Ω_ω) < α_GMT ≤ ψ₀(Ω_ω^(ω^ω))；这不是固定输入 SCG(13) 的数值公式。
+   社区猜测区间 ψ₀(Ω_ω·ω) 至 ψ₀(Ω_ω^ω) 保持不变，作者确认暂时没有具体链接；不再请求链接，也不归因于上述论文。
+   四个端点的 BMS 分别为 (000)(111)、(000)(111)(210)(300)(400)、(000)(111)(200)、(000)(111)(210)(300)。
    来源：https://arxiv.org/html/1907.00412#S3
 
 12. item-123 / item-124 · Y 序列对应
-   TBMS 当前表示栏使用已知下界 Y(1,3,4,2,5,8,10)，没有添上末尾的 5，也没有将下界写成等号。
-   记录中的 Y(1,3,4,2,5,8,10,5) 是另一个与 SRPD 比较的目标；它还高于下述 SRPD 候选，不能同时作为 TBMS 的等号候选而保留 TBMS < SRPD。
-   SRPD 当前写“可能是 Y(1,3,4,2,5,8,10,4,9,14,17,10)”，这是档案中的主要候选。
-   待确认：TBMS 极限的更精确 Y 对应；SRPD 候选是否已有更新。
+   已确认 TBMS 的等号候选：lim(TBMS)=Y(1,3,4,2,5,8,10)，没有末尾的 5，表示栏标为“较可信的猜测”。
+   SRPD 的等号候选：lim(SRPD)=Y(1,3,4,2,5,8,10,4,9,14,17,10)，标为“@最菜萌新 猜测”。
+   两者均尚无严格等号证明；前者相当可信，后者是 @最菜萌新 一人的分析。仓库已有前者的单向下界，不再把它误当作最终候选仅能写下界。
    来源：https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/srpd-tbms/continuation/README.zh-CN.md
 
 13. item-124 · S🎄O、公共初段与 BMS 极限
-   按作者本轮提供的信息写 SRPD 计数序列 (1,2,4,2) 对应 lim(BMS)；保留显式空根的记法为 (1,1,2,4,2)。
-   核对到的展开实例：(1,2,4,1,2,7,1,2,10,1,2,13,1,2,16)。
-   档案证明目前明确给 lim(BMS) ≤ SRPD1242，早期论文把等号列为猜想；这里的等号依照作者提供的信息，待补充反向比较的出处。
-   公共初段端点 lim(SRPD)=|e0MN(1,3)|=|RPD(1,2)|=|ARD(1,1,3)|=|ARD2(1,1,3)| 已核对，未误写成这些记号的整体极限相等。
+   作者已确认：SRPD 计数序列 (1,2,4,2)（显式首根版本为 (1,1,2,4,2)）后来已严格证明等于 lim(BMS)。正文按已证明对应表述，不再要求补反向证明。
+   展开实例：(1,2,4,1,2,7,1,2,10,1,2,13,1,2,16)。
+   公共初段端点 lim(SRPD)=|e0MN(1,3)|=|RPD(1,2)|=|ARD(1,1,3)|=|ARD2(1,1,3)| 保持不变，未误写成各系统整体极限相等。
+   新等号证明状态依据作者 2026-10-13 的反馈；旧档案中的单向结论不再限制当前文案。
    来源：https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/SRPD/correspondence.zh-CN.md
 
 14. item-129 · DQDN 的编码理念与列数
@@ -97,7 +101,7 @@ NER 核对版本：26d2dd981134231b44280934514d63aac2cc31af
    来源：https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/research/dqdn/small-ordinals.zh-CN.md
 
 15. item-124 · SRPD JavaScript 大数高尔夫
-   完整程序 226 ASCII 字符/字节，含初值与 console.log 输出，仅排除末尾换行；尚未达到 200 或 150 字符，不声称最短。
+   完整程序 226 ASCII 字符/字节，含初值与 console.log 输出，仅排除末尾换行；作者已接受此版本，暂停继续压缩；不声称最短。
    规则采用理想化 JavaScript：整数精确且位数、数组长度、内存、运行时间无上限；无输入、无外部资源，终止后输出唯一整数。
    初始项 [[0]]、指标 9，每步展开后指标加一。可读参考版额外设置安全整数/步数保护，只供小规模核对，不计入高尔夫字数。
    本地程序：programs/srpd-golf.js；参考实现：programs/srpd-reference.cjs；测试：tests/srpd-golf.test.js。
@@ -107,7 +111,7 @@ NER 核对版本：26d2dd981134231b44280934514d63aac2cc31af
 
 已核对且特意保留的边界
 ----------------------
-- Y 良序史：@Phyrion 于 2026-09-11 公布证明，之后 @test_alpha0 降低所需理论上界。
+- Y 良序史：@Phyrion 于 2026-09-11 公布证明，之后 @test_alpha0 降低所需理论上界。ω-Y 的良序证明则由两人各自独立完成。
 - iBLP 的 ZFC+I3 结果限定为文献所处理的六行标准根终止，没有扩成任意根或整个系统良序。
 - Laver / iBLP / LTY 支线横坐标是排版位置，不把它们写成与主轴节点相等。
 - q(5) 保留精简的下界说明和来源；没有重新加入先前要求删除的解释段。
@@ -163,4 +167,4 @@ NER 核对版本：26d2dd981134231b44280934514d63aac2cc31af
 浏览器检查需在外部安装 Playwright（或通过 NODE_PATH 指向已有安装）及 Edge。
 脚本自建临时本地服务器，检查桌面/移动端、中英切换、搜索、直达链接、代码弹窗，并将截图保存到系统临时目录。
 
-本次结果：69 项单元测试通过；桌面和 390px 移动端浏览器检查通过（含表示栏、候选序列搜索、226 字符程序弹窗、词条互跳、燃烧数与 SCG 公式）；git diff --check 通过。
+本次结果：70 项单元测试通过；桌面和 390px 移动端浏览器检查通过（含表示栏、候选序列搜索、226 字符程序弹窗、词条互跳、燃烧数与 SCG 公式）；git diff --check 通过。

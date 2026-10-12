@@ -89,7 +89,7 @@
                 detail: {
                     title: "\\(\\operatorname{TREE}(3)\\)",
                     representations: [
-                        { label: "Common representations", html: "\\(\\operatorname{TREE}(3)\\)<br>Lower-bound index: \\(\\beta=\\vartheta(\\Omega^\\omega+3)+\\vartheta(\\Omega^\\omega)\\)" },
+                        { label: "Common representations", html: "\\( \\operatorname{TREE}(3) \\)<br>Growth level: slightly above \\(\\mathrm{SVO}\\)" },
                         { label: "BMS representation", html: "SVO reference point: \\((0,0)(1,1)(2,1)(3,1)(4,0)\\)" },
                     ],
                     sections: [
@@ -233,7 +233,7 @@ assert TREE(2) == 3
 
 print(TREE(3))`,
                         },
-                        {"type":"html","html":"<p><strong>Ordinal lower bound.</strong> One simplified lower bound obtained by HypCos is\\[\\operatorname{TREE}(3)>f_{\\beta}\\bigl(\\operatorname{tree}(\\operatorname{tree}(3))\\bigr),\\qquad\\beta=\\vartheta(\\Omega^\\omega+3)+\\vartheta(\\Omega^\\omega).\\]Here \\(\\vartheta(\\Omega^\\omega)=\\mathrm{SVO}\\). Thus the particular value \\(\\operatorname{TREE}(3)\\) already passes the SVO level; see <a href=\"#item-089\">the next entry</a> for the growth of the whole \\(\\operatorname{TREE}(n)\\) function.</p><p>Source: <a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos: tree function and \\(\\operatorname{TREE}(3)\\)</a>.</p>"},
+                        {"type":"html","html":"<p>On this page's growth scale, \\(\\operatorname{TREE}(3)\\) is slightly above SVO. See <a href=\"#item-089\">the next entry</a> for the growth of the whole \\(\\operatorname{TREE}(n)\\) function.</p><p>Source: <a href=\"https://googology.fandom.com/wiki/User_blog:Hyp_cos/tree_function_and_TREE(3)\">HypCos: tree function and \\(\\operatorname{TREE}(3)\\)</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
@@ -527,7 +527,7 @@ print(TREE(3))`,
                         { label: "Y-sequence representation", html: "Beyond \\(\\lim(Y)\\)" },
                     ],
                     sections: [
-                        {"type":"html","html":"<p>\\(\\omega\\)-Y extends the Y mountain construction through arbitrary finite levels. This entry uses NER's weak-magma version of omega-Y and marks the limit of its entire standard domain.</p><p>The system has a well-ordering proof in \\(KP_\\omega+\\text{“}\\omega_1\\text{ exists”}\\).</p><p><strong>Sources:</strong> <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.md\">record of the \\(\\omega\\)-Y well-ordering manuscript</a>.</p>"},
+                        {"type":"html","html":"<p>\\(\\omega\\)-Y extends the Y mountain construction through arbitrary finite levels. This entry uses NER's weak-magma version of omega-Y and marks the limit of its entire standard domain.</p><p>Its well-ordering was proved independently by @Phyrion and @test_alpha0. A proof is available in \\(KP_\\omega+\\text{“}\\omega_1\\text{ exists”}\\).</p><p><strong>Sources:</strong> <a href=\"https://github.com/hzyhhzy/column-ordinal-notations-hzy/blob/main/notations/CWY2/definition.md\">record of the \\(\\omega\\)-Y well-ordering manuscript</a>.</p>"},
                         unreviewedNotice(),
                     ],
                 },
@@ -727,7 +727,7 @@ print(f"q({requested_n}) = {q(requested_n)}")`,
                     sections: [
                         {
                             type: 'html',
-                            html: "<p>Fix deterministic two-symbol Turing machines started on a blank tape, with \\(n\\) nonhalting states. Two standard Busy Beaver conventions are \\(\\Sigma(n)\\), the greatest number of \\(1\\)s left on the tape at termination, and \\(S(n)\\), the greatest number of steps before termination. This page uses \\(S(n)\\) for \\(\\operatorname{BB}(n)\\).</p><p>Only machines that eventually halt are included, so every input gives a finite integer. The function itself is uncomputable and eventually exceeds every total computable function. The break in the axis marks this move into uncomputable growth.</p><p><strong>Source:</strong> <a href=\"https://doi.org/10.1002/j.1538-7305.1962.tb00480.x\">Tibor Radó, <cite>On Non-Computable Functions</cite> (1962)</a>.</p>",
+                            html: "<p>Fix deterministic two-symbol Turing machines started on a blank tape, with \\(n\\) nonhalting states. \\(\\operatorname{BB}(n)\\) is the greatest number of steps taken by any such machine that eventually halts.</p><p>Only machines that eventually halt are included, so every input gives a finite integer. The function itself is uncomputable and eventually exceeds every total computable function. The break in the axis marks this move into uncomputable growth.</p><p><strong>Source:</strong> <a href=\"https://doi.org/10.1002/j.1538-7305.1962.tb00480.x\">Tibor Radó, <cite>On Non-Computable Functions</cite> (1962)</a>.</p>",
                         },
                         unreviewedNotice(),
                     ],
